@@ -1,0 +1,7 @@
+#Format:
+#'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'
+minecraft:planks 4 sl 11 minecraft:log 1
+minecraft:stick 4 sd 12 minecraft:planks 11
+minecraft:crafting_table 1 sd 22 minecraft:planks 1111
+minecraft:chest 1 sd 33 minecraft:planks 111101111
+minecraft:wooden_pickaxe 1 sd 33 minecraft:cobblestone minecraft:stick 111020020

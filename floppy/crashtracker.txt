@@ -1,0 +1,14 @@
+/lib/package.lua:64: module 'craftingmanager' load failed:
+/mnt/8d1/util/data.lua:37: attempt to perform arithmetic on a nil value (local 'b')
+stack traceback:
+	machine:796: in function <machine:791>
+	[C]: in function 'assert'
+	/lib/package.lua:64: in global 'require'
+	/mnt/8d1/crashtracker.lua:6: in function </mnt/8d1/crashtracker.lua:5>
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/mnt/8d1/crashtracker.lua:9: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>

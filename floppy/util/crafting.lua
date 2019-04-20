@@ -1,0 +1,471 @@
+local robot = require('robot')
+local invctrl = require('component').inventory_controller
+local crafting = require('component').crafting
+local importdir = (...):match("(.-)[^%.]+$")
+local data = require(importdir .. 'data')
+
+-- analyzeCrafting(shaped:boolean, ignoreMetadata:boolean):table
+--	Analyzes the crafting recipe and it's result and put the result into a table.
+--	Note: Put recipe into crafting grid before executing this function. Will try to craft.
+--				Put inventory selection outside the crafting grid and on an empty slot.
+--	Expected output:
+--	 On success: A table containing array 1-9 and has result (which contains name and damage if not ignored).
+--	 On failure: nil.
+local function analyzeCrafting(shaped, ignoreMetadata)
+	if invctrl.getStackInInternalSlot() ~= nil then return nil end
+	local itemTable = {}
+	local itemSlots = {1, 2, 3, 5, 6, 7, 9, 10, 11}
+	for i = 1, 9 do
+		local item = {}
+		local itemAnalyze = invctrl.getStackInInternalSlot(itemSlots[i]) or {}
+		item.name = itemAnalyze.name
+		if not ignoreMetadata then
+			if itemAnalyze.damage ~= nil then
+				item.damage = math.floor(itemAnalyze.damage)
+			end
+		end
+		itemTable[#itemTable+1] = item
+	end
+	local craftResult, ccnt = crafting.craft(1)
+	if not craftResult then return nil end
+	local itemAnalyze = invctrl.getStackInInternalSlot() or {}
+	local item = {}
+	item.name = itemAnalyze.name
+	if not ignoreMetadata then
+		item.damage = math.floor(itemAnalyze.damage)
+	end
+	item.size = math.floor(itemAnalyze.size)
+	itemTable.result = item
+	itemTable.shaped = shaped
+	return itemTable
+end
+
+-- craftingInfo(tb:table):(width:number, height:number, offsetX:number, offsetY:number)
+--	Check for crafting table.
+--	Expected output:
+--	 width: The width of the crafting recipe.
+--	 height: The height of the crafting recipe.
+--	 offsetX: The leftmost recipe point.
+--	 offsetY: the topmost recipe point.
+local function craftingInfo(tb)
+	local function scanRow(t, col) -- Help scan row
+		local d
+		for i = (col - 1) * 3 + 1, col * 3 do
+			d = d or (t[i].name ~= nil)
+		end
+		return d
+	end
+	local function scanCol(t, row) -- Help scan column
+		local d
+		for i = 0, 2 do
+			d = d or (t[(i * 3) + row].name ~= nil)
+		end
+		return d
+	end
+
+	local width, height, ofx, ofy = 0, 0
+	if scanCol(tb, 1) and scanCol(tb, 3) then
+		width = 3
+		ofx = 1
+	elseif (scanCol(tb, 1) and scanCol(tb, 2)) or (scanCol(tb, 2) and scanCol(tb, 3)) then
+		width = 2
+		if scanCol(tb, 1) then
+			ofx = 1
+		else
+			ofx = 2
+		end
+	elseif scanCol(tb, 1) or scanCol(tb, 2) or scanCol(tb, 3) then
+		width = 1
+		for i=1, 3 do if scanCol(tb, i) then ofx = i end end
+	else
+		width = 0
+		ofx = 0
+	end
+
+	if scanRow(tb, 1) and scanRow(tb, 3) then
+		height = 3
+		ofy = 1
+	elseif (scanRow(tb, 1) and scanRow(tb, 2)) or (scanRow(tb, 2) and scanRow(tb, 3)) then
+		height = 2
+		if scanRow(tb, 1) then
+			ofy = 1
+		else
+			ofy = 2
+		end
+	elseif scanRow(tb, 1) or scanRow(tb, 2) or scanRow(tb, 3) then
+		height = 1
+		for i=1, 3 do if scanRow(tb, i) then ofy = i end end
+	else
+		height = 0
+		ofy = 0
+	end
+
+	return width, height, ofx, ofy
+end
+
+-- compressCrafting(tb:table):table
+--	Compresses crafting table into smaller table, with addition of crafting size.
+--	Expected output:
+--	 When supplied with table: A smaller table with defined size (width and height).
+--	 When supplied with nil: nil.
+local function compressCrafting(tb)
+	if tb == nil then return nil end
+	local t = {result=tb.result, shaped = tb.shaped, width = 0, height = 0}
+	if not tb.shaped then
+		for i = 1, 9 do
+			if tb[i].name ~= nil then
+				t[#t+1] = tb[i]
+			end
+		end
+		return t
+	end
+
+	local function scanRow(t, col) -- Help scan row
+		local d
+		for i = (col - 1) * 3 + 1, col * 3 do
+			d = d or (t[i].name ~= nil)
+		end
+		return d
+	end
+	local function scanCol(t, row) -- Help scan column
+		local d
+		for i = 0, 2 do
+			d = d or (t[(i * 3) + row].name ~= nil)
+		end
+		return d
+	end
+	local function coord2Array(x, y, w, h) -- Help convert coordinate to array number by size
+		return x + y * w
+	end
+
+	local width, height, ofx, ofy = craftingInfo(tb)
+	t.width = width
+	t.height = height
+	for x = 1, width do
+		for y = 1, height do
+			t[coord2Array(x - 1, y - 1, width, height) + 1] = tb[coord2Array(x + ofx - 2, y + ofy - 2, 3, 3) + 1]
+		end
+	end
+	return t
+end
+
+-- getItemsUsed(tb:table):table
+--	Get item names used in a crafting table.
+--	Expected output:
+--	 When supplied with table: All item names used in a crafting table.
+--	 When supplied with nil: nil.
+local function getItemsUsed(tb)
+	if tb == nil then return nil end
+
+	local function compareItem(i1, i2) if i1.name == i2.name and i1.damage == i2.damage then return true end end
+	local function itemIndex(t, v)
+		for i = 1, #t do
+			if compareItem(t[i], v) then return i end
+		end
+		return 0
+	end
+	local function tableIsEmpty(t) for k, v in pairs(t) do return false end return true end
+
+	local t = {}
+	for i = 1, #tb do
+		if itemIndex(t, tb[i]) == 0 then
+			if not tableIsEmpty(tb[i]) then
+				t[#t+1] = tb[i]
+				t[#t].size = 1
+			end
+		else
+			t[itemIndex(t, tb[i])].size = t[itemIndex(t, tb[i])].size + 1
+		end
+	end
+	return t
+end
+
+local function indexItemByItemUsed(ct, it)
+	local function compareItem(i1, i2) if i1.name == i2.name and i1.damage == i2.damage then return true end end
+	local function itemIndex(t, v)
+		for i = 1, #t do
+			if compareItem(t[i], v) then return i end
+		end
+		return 0
+	end
+
+	local t = {}
+	for i = 1, #ct do
+		if itemIndex(it, ct[i]) ~= 0 then
+			t[#t+1] = itemIndex(it, ct[i])
+		else
+			t[#t+1] = 0
+		end
+	end
+	return t
+end
+
+local function crafting2String(tb)
+	if tb == nil then return '' end
+
+	-- Format: 'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'
+	buf = tb.result.name
+	if tb.result.damage then buf = buf .. '|' .. tostring(tb.result.damage) end
+	buf = buf .. ' ' .. tostring(tb.result.size) .. ' '
+	if tb.shaped then buf = buf .. 'sd' else buf = buf .. 'sl' end
+	buf = buf .. ' ' .. tostring(tb.width) .. tostring(tb.height)
+	local itemsUsed = getItemsUsed(tb)
+	for _, i in pairs(itemsUsed) do
+	  buf = buf .. ' ' .. i.name
+	  if i.damage then buf = buf .. '|' .. tostring(i.damage) end
+	end
+	buf = buf .. ' '
+	for _, i in pairs(indexItemByItemUsed(tb, itemsUsed)) do
+		buf = buf .. tostring(i)
+	end
+	return buf
+end
+
+local function string2Crafting(s)
+	if s == '' then return nil end
+
+	local tb = {}
+	local items = {[0] = {}}
+	local craftingParams = data.strSplit(s)
+	local i = data.strSplit(craftingParams[1], '|')
+	tb.result = {name = i[1], damage = tonumber(i[2]), size = tonumber(craftingParams[2])}
+	tb.shaped = (craftingParams[3] == 'sd')
+	i = tonumber(craftingParams[4])
+	tb.width, tb.height = math.floor(i/10), i - math.floor(i/10) * 10
+	i = 5
+	while tonumber(craftingParams[i]) == nil do
+		local e = data.strSplit(craftingParams[i], '|')
+		items[#items+1] = {name = e[1], damage = tonumber(e[2])}
+		i = i + 1
+	end
+	i = craftingParams[i]
+	for e = 1, #i do
+		local u = tonumber(i:sub(e, e))
+		tb[#tb+1] = items[u]
+	end
+	return tb
+end
+
+local function addToDatabase(tb, db)
+	local name = tb.result.name
+	if tb.result.damage ~= nil then name = name .. '|' .. tostring(tb.result.damage) end
+	db[name] = tb
+end
+
+local function removeFromDatabase(name, db)
+	db[name] = nil
+end
+
+local function loadCraftingRecipes()
+	local craftingdb = {}
+	local f = io.open('crafting.db', 'r')
+	local buf = f:read('*l')
+	while buf ~= nil do
+		if buf:sub(1,1) ~= '#' then
+			local l = string2Crafting(buf)
+			addToDatabase(l, craftingdb)
+		end
+		buf = f:read('*l')
+	end
+	f:close()
+	return craftingdb
+end
+
+local function saveCraftingRecipes(craftingdb)
+	local f = io.open('crafting.db', 'w')
+	f:write("#Format:\n#'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'\n")
+	for k, v in pairs(craftingdb) do
+		local acraft = crafting2String(v)
+		f:write(acraft .. '\n')
+	end
+	f:close()
+end
+
+local function printCrafting(tb)
+	if tb == nil then
+		print('No recipe.')
+	else
+		local shape = ''
+		if tb.shaped then shape = 'shaped' else shape = 'shapeless' end
+		if tb.result.damage == nil then
+			print(string.format('Crafting: %d %s (%s)\n(%dx%d)', tb.result.size, tb.result.name, shape, tb.width, tb.height))
+		else
+			print(string.format('Crafting: %d %s|%d (%s)', tb.result.size, tb.result.name, tb.result.damage, shape))
+		end
+		for i = 1, #tb do
+			local iname = tb[i].name
+			if iname == nil then iname = '[Empty]' end
+			if tb[i].damage == nil then
+				print(string.format('[%d] %s', i, iname))
+			else
+				print(string.format('[%d] %s|%d', i, iname, tb[i].damage))
+			end
+		end
+	end
+end
+
+local function listDatabase(craftingdb)
+	local buf = ''
+	for k, v in pairs(craftingdb) do
+		buf = buf .. k .. '\n'
+	end
+	data.pagedPrint(buf)
+end
+
+local function loadRawItems()
+	local rawdb = {}
+	local f = io.open('raw.db', 'r')
+	local l = f:read('*l')
+	while l ~= nil do
+		rawdb[l] = true
+		l = f:read('*l')
+	end
+	f:close()
+	return rawdb
+end
+
+local function saveRawItems(rawdb)
+	local f = io.open('raw.db', 'w')
+	for k, v in pairs(rawdb) do
+		f:write(k .. '\n')
+	end
+	f:close()
+end
+
+local function isRaw(name, rawdb)
+	if rawdb[name] ~= nil then
+		return true
+	end
+	return false
+end
+
+local function addRaw(name, rawdb)
+	rawdb[name] = true
+end
+
+local function removeRaw(name, rawdb)
+	rawdb[name] = nil
+end
+
+local function listRaw(rawdb)
+	local buf = ''
+	for k, v in pairs(rawdb) do
+		buf = buf .. k .. '\n'
+	end
+	data.pagedPrint(buf)
+end
+
+local function traceIngredients(name, size, craftingdb, rawdb, stacktrace)
+
+	local ingredients = {}
+	local function pushstack(name)
+		if stacktrace ~= nil then
+			stacktrace[#stacktrace+1] = name
+		else
+			stacktrace = {name}
+		end
+	end
+
+	local function popstack()
+		if stacktrace ~= nil then
+			if #stacktrace ~= 0 then
+				stacktrace[#stacktrace] = nil
+			end
+		end
+	end
+	
+	local function isRepeating(name)
+		if stacktrace ~= nil then
+			if #stacktrace > 1 then
+				if stacktrace[#stacktrace - 1] == name then
+					return true
+				end
+			end
+		end
+		return false
+	end
+
+	local function retrace(iname, tb)
+		local items = getItemsUsed(tb)
+		for k, v in pairs(items) do
+			local itemname = v.name
+			if v.damage ~= nil then itemname = itemname .. '|' .. tostring(v.damage) end
+			pushstack(name)
+			for times = 1, math.ceil(v.size / craftingdb[iname].result.size) do
+				local anotherTrace = traceIngredients(itemname, size, craftingdb, rawdb, stacktrace)
+				for k, v in pairs(anotherTrace) do
+					ingredients[k] = (ingredients[k] or 0) + v
+				end	
+			end
+		end
+		return ingredients
+	end
+
+	if rawdb[name] == true then
+		popstack()
+		return {[name] = 1}
+	end
+	if data.strSplit(name, '|')[2] == nil then -- Recipe doesn't need damage/item all variant
+		for k, v in pairs(craftingdb) do
+			if data.strSplit(k, '|')[1] == name then
+				return retrace(k, v)
+			end
+		end
+	else -- Recipe needs damage/item specific variant
+		for k, v in pairs(craftingdb) do
+			if k == name then
+				return retrace(k, v)
+			end
+		end
+	end
+	popstack()
+	return {[name] = 1}
+end
+
+local function printTracedIngredients(ti, rawdb)
+	local buf = ''
+	if rawdb ~= nil then
+		buf = buf .. '[+] In raw, [-] Not in raw.\n'
+		for k, v in pairs(ti) do
+			if rawdb[k] == true then
+				buf = buf .. '[+] '
+			else
+				buf = buf .. '[-] '
+			end
+			buf = buf .. tostring(v) .. '\t' .. k .. '\n'
+		end
+	else
+		for k, v in pairs(ti) do
+			buf = buf .. '  ' .. tostring(v) .. '\t' .. k .. '\n'
+		end
+	end
+	data.pagedPrint(buf)
+end
+
+local function craft(name, craftingdb, rawdb)
+	
+end
+
+return {
+	analyzeCrafting = analyzeCrafting,
+	craftingInfo = craftingInfo,
+	compressCrafting = compressCrafting,
+	getItemsUsed = getItemsUsed,
+	indexItemByItemUsed = indexItemByItemUsed,
+	crafting2String = crafting2String,
+	string2Crafting = string2Crafting,
+	loadCraftingRecipes = loadCraftingRecipes,
+	saveCraftingRecipes = saveCraftingRecipes,
+	addToDatabase = addToDatabase,
+	removeFromDatabase = removeFromDatabase,
+	printCrafting = printCrafting,
+	listDatabase = listDatabase,
+	loadRawItems = loadRawItems,
+	saveRawItems = saveRawItems,
+	isRaw = isRaw,
+	addRaw = addRaw,
+	removeRaw = removeRaw,
+	listRaw = listRaw,
+	traceIngredients = traceIngredients,
+	printTracedIngredients = printTracedIngredients
+}
