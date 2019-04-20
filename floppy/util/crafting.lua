@@ -355,7 +355,7 @@ local function listRaw(rawdb)
 	data.pagedPrint(buf)
 end
 
-local function traceIngredients(name, size, craftingdb, rawdb, stacktrace)
+local function traceIngredients(name, craftingdb, rawdb, stacktrace)
 
 	local ingredients = {}
 	local function pushstack(name)
@@ -391,11 +391,9 @@ local function traceIngredients(name, size, craftingdb, rawdb, stacktrace)
 			local itemname = v.name
 			if v.damage ~= nil then itemname = itemname .. '|' .. tostring(v.damage) end
 			pushstack(name)
-			for times = 1, math.ceil(v.size / craftingdb[iname].result.size) do
-				local anotherTrace = traceIngredients(itemname, size, craftingdb, rawdb, stacktrace)
-				for k, v in pairs(anotherTrace) do
-					ingredients[k] = (ingredients[k] or 0) + v
-				end	
+			local anotherTrace = traceIngredients(itemname, craftingdb, rawdb, stacktrace)
+			for k, v in pairs(anotherTrace) do
+				ingredients[k] = true
 			end
 		end
 		return ingredients
@@ -403,7 +401,7 @@ local function traceIngredients(name, size, craftingdb, rawdb, stacktrace)
 
 	if rawdb[name] == true then
 		popstack()
-		return {[name] = 1}
+		return {[name] = true}
 	end
 	if data.strSplit(name, '|')[2] == nil then -- Recipe doesn't need damage/item all variant
 		for k, v in pairs(craftingdb) do
@@ -419,10 +417,10 @@ local function traceIngredients(name, size, craftingdb, rawdb, stacktrace)
 		end
 	end
 	popstack()
-	return {[name] = 1}
+	return {[name] = true}
 end
 
-local function printTracedIngredients(ti, rawdb)
+local function printTracedIngredients(ti, rawdb, icount)
 	local buf = ''
 	if rawdb ~= nil then
 		buf = buf .. '[+] In raw, [-] Not in raw.\n'
@@ -432,11 +430,11 @@ local function printTracedIngredients(ti, rawdb)
 			else
 				buf = buf .. '[-] '
 			end
-			buf = buf .. tostring(v) .. '\t' .. k .. '\n'
+			buf = buf .. k .. '\n'
 		end
 	else
 		for k, v in pairs(ti) do
-			buf = buf .. '  ' .. tostring(v) .. '\t' .. k .. '\n'
+			buf = buf .. '  ' .. k .. '\n'
 		end
 	end
 	data.pagedPrint(buf)
