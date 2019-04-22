@@ -7,6 +7,12 @@ local function quickSave(filename, buffer)
 	f:close()
 end
 
+local function quickAppend(filename, buffer)
+	local f = io.open(filename, 'a')
+	f:write(buffer)
+	f:close()
+end
+
 local function strSplit(s, delim)
   delim = delim or '%s'
   local t = {}
@@ -64,7 +70,7 @@ local function pagedPrint(s)
 	io.write('\n')
 end
 
-local function printTable(tb)
+local function table2String(tb, name)
 	local screenWidth, screenHeight = gpu.getResolution()
 	screenWidth, screenHeight = math.floor(screenWidth), math.floor(screenHeight)
 	local buf = ''
@@ -94,18 +100,23 @@ local function printTable(tb)
 		return count
 	end
 
-	local function createTable(t, tabulation)
+	local function createTable(t, tabulation, name)
 		if type(t) ~= 'table' then return 'nil' end
 		if next(t) == nil then return '{}' end
 		local tabulation = tabulation or 0
-		buf = '{'
+		local buf = ''
+		if name == nil then
+			buf = buf .. '{'
+		else
+			buf = buf .. name .. ' = {'
+		end
 		tabulation = tabulation + 1
 		local k, v = next(t, nil)
 		while k do
 			if type(v) == 'table' then
-				buf = buf .. '\n' .. tab(tabulation) .. key(k) .. '= ' .. createTable(v, tabulation + 1)
+				buf = buf .. '\n' .. tab(tabulation) .. key(k) .. ' = ' .. createTable(v, tabulation + 1)
 			else
-				buf = buf .. '\n' .. tab(tabulation) .. key(k) .. '= ' .. val(v)
+				buf = buf .. '\n' .. tab(tabulation) .. key(k) .. ' = ' .. val(v)
 			end
 			if next(t, k) ~= nil then
 				buf = buf .. ','
@@ -117,12 +128,15 @@ local function printTable(tb)
 		return buf
 	end
 
-	pagedPrint(createTable(tb))
+	return createTable(tb, 0, name)
+end
+
+local function printTable(tb, name)
+	pagedPrint(table2String(tb, name))
 end
 
 local function getSpaceKey()
-	local evt, _, key, __ = event.pull()
-	while ((evt ~= 'key_down') or (key ~= 32.0)) do evt,_,key,__=event.pull() end
+	event.pull('key_down', nil, 32)
 end
 
 local function hasData(t)
@@ -136,12 +150,21 @@ local function isEmpty(t)
 	return not hasData(t)
 end
 
+local function debugWaitSpace(s)
+	io.write(s)
+	getSpaceKey()
+	io.write('\n')
+end
+
 return {
 	quickSave = quickSave,
+	quickAppend = quickAppend,
 	strSplit = strSplit,
 	pagedPrint = pagedPrint,
+	table2String = table2String,
 	printTable = printTable,
 	getSpaceKey = getSpaceKey,
 	hasData = hasData,
-	isEmpty = isEmpty
+	isEmpty = isEmpty,
+	debugWaitSpace = debugWaitSpace
 }

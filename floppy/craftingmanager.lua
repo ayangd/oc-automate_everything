@@ -10,8 +10,8 @@ local slot = {}
 local commandUsages = {
 	help = 'Usage: help',
 	exit = 'Usage: exit',
-	load = 'Usage: load <crafting/raw>',
-	save = 'Usage: save <crafting/raw>',
+	load = 'Usage: load <crafting/raw/all>',
+	save = 'Usage: save <crafting/raw/all>',
 	analyze = 'Usage: analyze <shaped/shapeless> <ignoreMetadata>',
 	show = 'Usage: show <slot/name>',
 	keep = 'Usage: keep',
@@ -49,6 +49,10 @@ local commandCallbacks = {
 		elseif args[1] == 'raw' then
 			rawdb = crafting.loadRawItems()
 			print('Raw items loaded.')
+		elseif args[1] == 'all' then
+			craftingdb = crafting.loadCraftingRecipes()
+			rawdb = crafting.loadRawItems()
+			print('Crafting recipes and raw items loaded.')
 		else
 			wrongUsage('load')
 		end
@@ -60,6 +64,10 @@ local commandCallbacks = {
 		elseif args[1] == 'raw' then
 			crafting.saveRawItems(rawdb)
 			print('Raw items saved.')
+		elseif args[1] == 'all' then
+			crafting.saveCraftingRecipes(craftingdb)
+			crafting.saveRawItems(rawdb)
+			print('Crafting recipes and raw items saved.')
 		else
 			wrongUsage('save')
 		end
@@ -184,6 +192,7 @@ local commandCallbacks = {
 		end
 		crafting.printTracedIngredients(crafting.traceIngredients(args[1], craftingdb, rawdb), rawdb)
 	end
+	, test = function(args) crafting.test(args[1], craftingdb, rawdb); print('tested') end
 }
 
 while running do

@@ -1,9 +1,17 @@
 #Format:
 #'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'
-minecraft:planks|0 4 sl 00 minecraft:log|0 1
 minecraft:crafting_table 1 sd 22 minecraft:planks 1111
-minecraft:ladder 3 sd 33 minecraft:stick 101111101
-minecraft:stick 4 sd 12 minecraft:planks 11
 minecraft:wooden_pickaxe 1 sd 33 minecraft:planks minecraft:stick 111020020
+minecraft:stone_axe 1 sd 23 minecraft:cobblestone minecraft:stick 111202
+minecraft:iron_nugget 9 sl 00 minecraft:iron_ingot 1
+minecraft:bow 1 sd 33 minecraft:stick minecraft:string 012102012
+minecraft:stick 4 sd 12 minecraft:planks 11
+minecraft:diamond_pickaxe 1 sd 33 minecraft:diamond minecraft:stick 111020020
+minecraft:diamond_axe 1 sd 23 minecraft:diamond minecraft:stick 111202
+minecraft:iron_axe 1 sd 23 minecraft:iron_ingot minecraft:stick 111202
+minecraft:planks|0 4 sl 00 minecraft:log|0 1
+minecraft:iron_pickaxe 1 sd 33 minecraft:iron_ingot minecraft:stick 111020020
+minecraft:furnace 1 sd 33 minecraft:cobblestone 111101111
 minecraft:chest 1 sd 33 minecraft:planks 111101111
+minecraft:ladder 3 sd 33 minecraft:stick 101111101
 minecraft:stone_pickaxe 1 sd 33 minecraft:cobblestone minecraft:stick 111020020

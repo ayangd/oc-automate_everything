@@ -30,8 +30,7 @@ You can try running `craftingmanager` and run these lines of code slowly:
 ```
 help
     Not a code: You scroll down by pressing the `space` key until it finishes printing.
-load crafting
-load raw
+load all
     Not a code: You put a cobblestone stairs' recipe into the robot's crafting grid
     Not a code: Empty slot 8
 select 8
@@ -39,6 +38,9 @@ analyze shaped true
 show slot
 keep
 save crafting
+list crafting
+trace minecraft:diamond_pickaxe
+trace minecraft:chest
 exit
 ```
 

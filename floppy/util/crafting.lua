@@ -3,6 +3,7 @@ local invctrl = require('component').inventory_controller
 local crafting = require('component').crafting
 local importdir = (...):match("(.-)[^%.]+$")
 local data = require(importdir .. 'data')
+local inv = require(importdir .. 'inventory')
 
 -- analyzeCrafting(shaped:boolean, ignoreMetadata:boolean):table
 --	Analyzes the crafting recipe and it's result and put the result into a table.
@@ -12,12 +13,12 @@ local data = require(importdir .. 'data')
 --	 On success: A table containing array 1-9 and has result (which contains name and damage if not ignored).
 --	 On failure: nil.
 local function analyzeCrafting(shaped, ignoreMetadata)
-	if invctrl.getStackInInternalSlot() ~= nil then return nil end
+	if inv.getInfo() ~= nil then return nil end
 	local itemTable = {}
 	local itemSlots = {1, 2, 3, 5, 6, 7, 9, 10, 11}
 	for i = 1, 9 do
 		local item = {}
-		local itemAnalyze = invctrl.getStackInInternalSlot(itemSlots[i]) or {}
+		local itemAnalyze = inv.getInfo(itemSlots[i]) or {}
 		item.name = itemAnalyze.name
 		if not ignoreMetadata then
 			if itemAnalyze.damage ~= nil then
@@ -28,7 +29,7 @@ local function analyzeCrafting(shaped, ignoreMetadata)
 	end
 	local craftResult, ccnt = crafting.craft(1)
 	if not craftResult then return nil end
-	local itemAnalyze = invctrl.getStackInInternalSlot() or {}
+	local itemAnalyze = inv.getInfo() or {}
 	local item = {}
 	item.name = itemAnalyze.name
 	if not ignoreMetadata then
@@ -355,6 +356,7 @@ local function listRaw(rawdb)
 	data.pagedPrint(buf)
 end
 
+--[[ This function is deprecated and was replaced by the new one below.
 local function traceIngredients(name, craftingdb, rawdb, stacktrace)
 
 	local ingredients = {}
@@ -419,8 +421,109 @@ local function traceIngredients(name, craftingdb, rawdb, stacktrace)
 	popstack()
 	return {[name] = true}
 end
+]]--
 
-local function printTracedIngredients(ti, rawdb, icount)
+local function traceIngredients(item, craftingdb, rawdb)
+	local itemsAvailable = {}
+	local itemsAdded = {}
+
+	local function addItem(item, amount)
+		local amount = amount or 1
+		if itemsAvailable[item] == nil then
+			itemsAvailable[item] = amount
+		else
+			itemsAvailable[item] = itemsAvailable[item] + amount
+		end
+		if itemsAdded[item] == nil then
+			itemsAdded[item] = amount
+		else
+			itemsAdded[item] = itemsAdded[item] + amount
+		end
+	end
+	
+	local function createdItem(item, amount)
+		if itemsAvailable[item] == nil then
+			itemsAvailable[item] = amount
+		else
+			itemsAvailable[item] = itemsAvailable[item] + amount
+		end
+	end
+	
+	local function tryTakeItem(item, amount)
+		local amount = amount or 1
+		local itemToTake = ''
+		if data.strSplit(item, '|')[2] == nil then
+			for k, v in pairs(itemsAvailable) do
+				if data.strSplit(k, '|')[1] == item then
+					itemToTake = k
+					break
+				end
+			end
+		else
+			itemToTake = item
+		end
+		if itemsAvailable[itemToTake] == nil then
+			return false
+		else
+			if itemsAvailable[itemToTake] > amount then
+				itemsAvailable[itemToTake] = itemsAvailable[itemToTake] - amount
+				return true
+			elseif itemsAvailable[itemToTake] == amount then
+				itemsAvailable[itemToTake] = nil
+				return true
+			elseif item ~= itemToTake then
+				amount = amount - itemsAvailable[itemToTake]
+				itemsAvailable[itemToTake] = nil
+				return tryTakeItem(item, amount)
+			else
+				return false
+			end
+		end
+	end
+	
+	local function getCraftableItemName(name)
+		if data.strSplit(name, '|')[2] == nil then -- Recipe doesn't need damage/item all variant
+			for k, v in pairs(craftingdb) do
+				if data.strSplit(k, '|')[1] == name then
+					return k
+				end
+			end
+		else -- Recipe needs damage/item specific variant
+			for k, v in pairs(craftingdb) do
+				if k == name then
+					return k
+				end
+			end
+		end
+		return nil
+	end
+	
+	local function craftItem(item, amount)
+		local amount = amount or 1
+		if rawdb[name] == true then
+			addItem(item, amount)
+		elseif getCraftableItemName(item) ~= nil then
+			for i = 1, math.ceil(amount / craftingdb[getCraftableItemName(item)].result.size) do
+				local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item)])
+				for k, v in pairs(itemsNeeded) do
+					local realname = v.name
+					if v.damage ~= nil then realname = realname .. '|' .. tostring(v.damage) end
+					while not tryTakeItem(realname, v.size) do
+						craftItem(realname, v.size)
+					end
+				end
+				createdItem(craftingdb[getCraftableItemName(item)].result.name, craftingdb[getCraftableItemName(item)].result.size)
+			end
+		else
+			addItem(item, amount)
+		end
+	end
+
+	craftItem(item)
+	return itemsAdded
+end
+
+local function printTracedIngredients(ti, rawdb)
 	local buf = ''
 	if rawdb ~= nil then
 		buf = buf .. '[+] In raw, [-] Not in raw.\n'
@@ -430,19 +533,163 @@ local function printTracedIngredients(ti, rawdb, icount)
 			else
 				buf = buf .. '[-] '
 			end
-			buf = buf .. k .. '\n'
+			buf = buf .. tostring(v) .. ' ' .. k .. '\n'
 		end
 	else
 		for k, v in pairs(ti) do
-			buf = buf .. '  ' .. k .. '\n'
+			buf = buf .. '- ' .. tostring(v) .. ' ' .. k .. '\n'
 		end
 	end
 	data.pagedPrint(buf)
 end
 
-local function craft(name, craftingdb, rawdb)
+
+local function test(name, craftingdb, rawdb)
+	---------------------------------------------------------------------
+	-- Function being tested
+	---------------------------------------------------------------------
+	local function traceIngredientsdbg(item, craftingdb, rawdb)
+		local itemsAvailable = {}
+		local itemsAdded = {}
+
+		local function addItem(item, amount)
+			local amount = amount or 1
+			--data.debugWaitSpace(string.format('[Function call] addItem(%s, %d)', item, amount))
+			if itemsAvailable[item] == nil then
+				itemsAvailable[item] = amount
+			else
+				itemsAvailable[item] = itemsAvailable[item] + amount
+			end
+			if itemsAdded[item] == nil then
+				itemsAdded[item] = amount
+			else
+				itemsAdded[item] = itemsAdded[item] + amount
+			end
+		end
+		
+		local function createdItem(item, amount)
+			local amount = amount or 1
+			--data.debugWaitSpace(string.format('[Function call] createdItem(%s, %d)', item, amount))
+			if itemsAvailable[item] == nil then
+				itemsAvailable[item] = amount
+			else
+				itemsAvailable[item] = itemsAvailable[item] + amount
+			end
+		end
+		
+		local function tryTakeItem(item, amount)
+			local amount = amount or 1
+			--data.debugWaitSpace(string.format('[Function call] tryTakeItem(%s, %d)', item, amount))
+			local itemToTake = ''
+			if data.strSplit(item, '|')[2] == nil then
+				for k, v in pairs(itemsAvailable) do
+					if data.strSplit(k, '|')[1] == item then
+						itemToTake = k
+						break
+					end
+				end
+			else
+				itemToTake = item
+			end
+			if itemsAvailable[itemToTake] == nil then
+				return false
+			else
+				if itemsAvailable[itemToTake] > amount then
+					itemsAvailable[itemToTake] = itemsAvailable[itemToTake] - amount
+					return true
+				elseif itemsAvailable[itemToTake] == amount then
+					itemsAvailable[itemToTake] = nil
+					return true
+				elseif item ~= itemToTake then
+					amount = amount - itemsAvailable[itemToTake]
+					itemsAvailable[itemToTake] = nil
+					return tryTakeItem(item, amount)
+				else
+					return false
+				end
+			end
+		end
+		
+		local function getCraftableItemName(name)
+			if data.strSplit(name, '|')[2] == nil then -- Recipe doesn't need damage/item all variant
+				for k, v in pairs(craftingdb) do
+					if data.strSplit(k, '|')[1] == name then
+						return k
+					end
+				end
+			else -- Recipe needs damage/item specific variant
+				for k, v in pairs(craftingdb) do
+					if k == name then
+						return k
+					end
+				end
+			end
+			return nil
+		end
+		
+		local function craftItem(item, amount)
+			local amount = amount or 1
+			--data.debugWaitSpace(string.format('[Function call] craftItem(%s, %d)', item, amount))
+			if rawdb[name] == true then
+				addItem(item, amount)
+			elseif getCraftableItemName(item) ~= nil then
+				for i = 1, math.ceil(amount / craftingdb[getCraftableItemName(item)].result.size) do
+					local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item)])
+					for k, v in pairs(itemsNeeded) do
+						local realname = v.name
+						if v.damage ~= nil then realname = realname .. '|' .. tostring(v.damage) end
+						while not tryTakeItem(realname, v.size) do
+							craftItem(realname, v.size)
+						end
+					end
+					createdItem(craftingdb[getCraftableItemName(item)].result.name, craftingdb[getCraftableItemName(item)].result.size)
+				end
+			else
+				addItem(item, amount)
+			end
+		end
+
+		craftItem(item)
+		return itemsAdded, itemsAvailable
+	end
+	---------------------------------------------------------------------
+	-- [END] Function being tested
+	---------------------------------------------------------------------
+
 	
+	---------------------------------------------------------------------
+	-- Function being outputted
+	---------------------------------------------------------------------
+	local function saveTracedIngredients(ti, rawdb, filename)
+		local buf = ''
+		if rawdb ~= nil then
+			buf = buf .. '[+] In raw, [-] Not in raw.\n'
+			for k, v in pairs(ti) do
+				if rawdb[k] == true then
+					buf = buf .. '[+] '
+				else
+					buf = buf .. '[-] '
+				end
+				buf = buf .. tostring(v) .. ' ' .. k .. '\n'
+			end
+		else
+			for k, v in pairs(ti) do
+				buf = buf .. '- ' .. tostring(v) .. ' ' .. k .. '\n'
+			end
+		end
+		data.quickSave(filename, buf)
+	end
+	---------------------------------------------------------------------
+	-- [END]Function being outputted
+	---------------------------------------------------------------------
+	
+	local ia, iav = traceIngredientsdbg(name, craftingdb, rawdb)
+	io.write('itemAdded = ')
+	data.printTable(ia)
+	io.write('itemAvailable = ')
+	data.printTable(iav)
 end
+
 
 return {
 	analyzeCrafting = analyzeCrafting,
@@ -466,4 +713,5 @@ return {
 	listRaw = listRaw,
 	traceIngredients = traceIngredients,
 	printTracedIngredients = printTracedIngredients
+	, test = test
 }

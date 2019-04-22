@@ -1,2 +1,6 @@
-minecraft:log|0
+minecraft:string
+minecraft:diamond
+minecraft:iron_nugget
 minecraft:cobblestone
+minecraft:iron_ingot
+minecraft:log|0

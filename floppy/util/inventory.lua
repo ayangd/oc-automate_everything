@@ -7,6 +7,7 @@ end
 
 local function getInfo(slot)
 	local t = invctrl.getStackInInternalSlot(slot)
+	if t == nil then return nil end
 	for k, v in pairs(t) do
 		if type(v) == 'number' then
 			if v == math.floor(v) then
@@ -19,6 +20,7 @@ end
 
 local function getMinInfo(slot)
 	local t = getInfo(slot)
+	if t == nil then return nil end
 	local nt = {name = t.name, damage = t.damage, size = t.size}
 	return nt
 end
@@ -35,9 +37,19 @@ local function find(name, damage)
 	return itemPos
 end
 
+local function count(name, damage)
+	local c = 0
+	local items = find(name, damage)
+	for k, v in pairs(items) do
+		c = c + getInfo(v).size
+	end
+	return c
+end
+
 return {
 	select = select,
 	getInfo = getInfo,
 	getMinInfo = getMinInfo,
-	find = find
+	find = find,
+	count = count
 }
