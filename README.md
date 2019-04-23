@@ -6,14 +6,17 @@ Starting from two robots, then they expand themselves into an unlimited resource
 Because a robot cannot eject a floppy disk from itself :)
 
 ## Progress
-- Robot navigation system [WIP]
+### Libraries/Utilities
+- Robot navigation system [Gradually Building Up]
 - Crafting system [Currently WIP]
 - Smelting system [Not yet]
-- Inventory system [WIP]
+- Inventory system [Gradually Building Up]
 - Logistic system [Not yet]
+
+### Subsystems
 - Mining system [Not yet]
 - Logging system [Not yet]
-- Replication system [Not yet]
+- Replication system [Not yet] [Planned Next]
 - Storage system [Not yet]
 - Player interface [Not yet]
 - Extra: Infrastructure building system [Not yet]

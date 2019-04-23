@@ -12,7 +12,7 @@ local commandUsages = {
 	exit = 'Usage: exit',
 	load = 'Usage: load <crafting/raw/all>',
 	save = 'Usage: save <crafting/raw/all>',
-	analyze = 'Usage: analyze <shaped/shapeless> <ignoreMetadata>',
+	analyze = 'Usage: analyze <shaped/shapeless> [ignoreMetadata]',
 	show = 'Usage: show <slot/name>',
 	keep = 'Usage: keep',
 	discard = 'Usage: discard',
@@ -87,6 +87,8 @@ local commandCallbacks = {
 			ignoreMetadata = false
 		elseif args[2] == 'true' then
 			ignoreMetadata = true
+		elseif args[3] == nil then
+			ignoreMetadata = nil
 		else
 			wrongUsage('analyze')
 			return

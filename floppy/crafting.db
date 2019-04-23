@@ -1,17 +1,23 @@
 #Format:
 #'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'
-minecraft:crafting_table 1 sd 22 minecraft:planks 1111
-minecraft:wooden_pickaxe 1 sd 33 minecraft:planks minecraft:stick 111020020
-minecraft:stone_axe 1 sd 23 minecraft:cobblestone minecraft:stick 111202
-minecraft:iron_nugget 9 sl 00 minecraft:iron_ingot 1
-minecraft:bow 1 sd 33 minecraft:stick minecraft:string 012102012
-minecraft:stick 4 sd 12 minecraft:planks 11
-minecraft:diamond_pickaxe 1 sd 33 minecraft:diamond minecraft:stick 111020020
-minecraft:diamond_axe 1 sd 23 minecraft:diamond minecraft:stick 111202
-minecraft:iron_axe 1 sd 23 minecraft:iron_ingot minecraft:stick 111202
-minecraft:planks|0 4 sl 00 minecraft:log|0 1
-minecraft:iron_pickaxe 1 sd 33 minecraft:iron_ingot minecraft:stick 111020020
-minecraft:furnace 1 sd 33 minecraft:cobblestone 111101111
 minecraft:chest 1 sd 33 minecraft:planks 111101111
-minecraft:ladder 3 sd 33 minecraft:stick 101111101
+minecraft:stick 4 sd 12 minecraft:planks 11
+opencomputers:material|8 4 sd 33 minecraft:gold_nugget minecraft:redstone opencomputers:material|6 111232111
+minecraft:planks|0 4 sl 00 minecraft:log|0 1
+minecraft:iron_axe 1 sd 23 minecraft:iron_ingot minecraft:stick 111202
+opencomputers:material|6 8 sd 33 minecraft:iron_ingot minecraft:gold_nugget minecraft:paper minecraft:redstone 111232040
+minecraft:bow 1 sd 33 minecraft:stick minecraft:string 012102012
+minecraft:paper 3 sd 31 minecraft:reeds 111
+minecraft:diamond_pickaxe 1 sd 33 minecraft:diamond minecraft:stick 111020020
+minecraft:furnace 1 sd 33 minecraft:cobblestone 111101111
+minecraft:wooden_pickaxe 1 sd 33 minecraft:planks minecraft:stick 111020020
+minecraft:iron_bars 16 sd 32 minecraft:iron_ingot 111111
+minecraft:iron_nugget 9 sl 00 minecraft:iron_ingot 1
+minecraft:iron_pickaxe 1 sd 33 minecraft:iron_ingot minecraft:stick 111020020
 minecraft:stone_pickaxe 1 sd 33 minecraft:cobblestone minecraft:stick 111020020
+minecraft:gold_nugget 9 sl 00 minecraft:gold_ingot 1
+opencomputers:case2 1 sd 33 minecraft:gold_ingot opencomputers:material|8 minecraft:iron_bars minecraft:chest opencomputers:material|4 121343151
+minecraft:crafting_table 1 sd 22 minecraft:planks 1111
+minecraft:diamond_axe 1 sd 23 minecraft:diamond minecraft:stick 111202
+minecraft:stone_axe 1 sd 23 minecraft:cobblestone minecraft:stick 111202
+minecraft:ladder 3 sd 33 minecraft:stick 101111101

@@ -1,6 +1,5 @@
 /lib/package.lua:64: module 'craftingmanager' load failed:
-/lib/package.lua:64: module 'util.crafting' loadfile failed:
-/mnt/875/util/crafting.lua:624: ')' expected near ']'
+too long without yielding
 stack traceback:
 	machine:796: in function <machine:791>
 	[C]: in function 'assert'

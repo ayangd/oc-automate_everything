@@ -1,6 +1,10 @@
-minecraft:string
-minecraft:diamond
-minecraft:iron_nugget
-minecraft:cobblestone
-minecraft:iron_ingot
 minecraft:log|0
+minecraft:diamond
+minecraft:iron_ingot
+opencomputers:material|4
+minecraft:cobblestone
+minecraft:gold_ingot
+minecraft:string
+minecraft:reeds
+minecraft:iron_nugget
+minecraft:redstone

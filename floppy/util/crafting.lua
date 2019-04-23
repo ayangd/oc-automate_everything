@@ -20,9 +20,13 @@ local function analyzeCrafting(shaped, ignoreMetadata)
 		local item = {}
 		local itemAnalyze = inv.getInfo(itemSlots[i]) or {}
 		item.name = itemAnalyze.name
-		if not ignoreMetadata then
-			if itemAnalyze.damage ~= nil then
+		if itemAnalyze.damage ~= nil then
+			if ignoreMetadata == false then
 				item.damage = math.floor(itemAnalyze.damage)
+			elseif ignoreMetadata == nil then
+				if itemAnalyze.damage ~= 0 then
+					item.damage = math.floor(itemAnalyze.damage)
+				end
 			end
 		end
 		itemTable[#itemTable+1] = item
@@ -32,8 +36,12 @@ local function analyzeCrafting(shaped, ignoreMetadata)
 	local itemAnalyze = inv.getInfo() or {}
 	local item = {}
 	item.name = itemAnalyze.name
-	if not ignoreMetadata then
+	if ignoreMetadata == false then
 		item.damage = math.floor(itemAnalyze.damage)
+	elseif ignoreMetadata == nil then
+		if itemAnalyze.damage ~= 0 then
+			item.damage = math.floor(itemAnalyze.damage)
+		end
 	end
 	item.size = math.floor(itemAnalyze.size)
 	itemTable.result = item
@@ -433,6 +441,9 @@ local function traceIngredients(item, craftingdb, rawdb)
 			itemsAvailable[item] = amount
 		else
 			itemsAvailable[item] = itemsAvailable[item] + amount
+			if itemsAvailable[item] > 9 then
+				print(string.format("[Warning] Ridiculous amount of %s (%d)!", item, itemsAvailable[item]))
+			end
 		end
 		if itemsAdded[item] == nil then
 			itemsAdded[item] = amount
@@ -458,6 +469,9 @@ local function traceIngredients(item, craftingdb, rawdb)
 					itemToTake = k
 					break
 				end
+			end
+			if itemToTake == '' then
+				return false
 			end
 		else
 			itemToTake = item
@@ -512,7 +526,7 @@ local function traceIngredients(item, craftingdb, rawdb)
 						craftItem(realname, v.size)
 					end
 				end
-				createdItem(craftingdb[getCraftableItemName(item)].result.name, craftingdb[getCraftableItemName(item)].result.size)
+				createdItem(getCraftableItemName(item), craftingdb[getCraftableItemName(item)].result.size)
 			end
 		else
 			addItem(item, amount)
