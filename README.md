@@ -5,7 +5,7 @@ Starting from a robot and a computer, then they expand themselves into an unlimi
 ## Why a robot and a computer?
 Because a robot cannot eject a floppy disk from itself, also cannot start the assembler machine alone.
 
-![Minimal computer][computer.png]
+![Minimal computer](computer.png)
 **Image** - Minimal computer.
 
 ## Progress
