@@ -1,13 +1,13 @@
-/lib/package.lua:64: module 'craftingmanager' load failed:
-too long without yielding
+/lib/package.lua:64: module 'util.crafting' loadfile failed:
+/mnt/875/util/crafting.lua:572: ')' expected (to close '(' at line 571) near 'if'
 stack traceback:
 	machine:796: in function <machine:791>
 	[C]: in function 'assert'
 	/lib/package.lua:64: in global 'require'
-	/mnt/875/crashtracker.lua:6: in function </mnt/875/crashtracker.lua:5>
+	/mnt/875/craftingmanager.lua:1: in main chunk
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
-	/mnt/875/crashtracker.lua:9: in main chunk
+	/mnt/875/crashtracker.lua:16: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

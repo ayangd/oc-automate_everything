@@ -14,12 +14,12 @@ local function quickAppend(filename, buffer)
 end
 
 local function strSplit(s, delim)
-  delim = delim or '%s'
-  local t = {}
-  for str in string.gmatch(s, '([^'..delim..']+)') do
-    table.insert(t, str)
-  end
-  return t
+	delim = delim or '%s'
+	local t = {}
+	for str in string.gmatch(s, '([^'..delim..']+)') do
+		table.insert(t, str)
+	end
+	return t
 end
 
 local function pagedPrint(s)
@@ -156,6 +156,15 @@ local function debugWaitSpace(s)
 	io.write('\n')
 end
 
+local function dataInTable(d, t)
+	for i, v in ipairs(t) do
+		if v == d then
+			return true
+		end
+	end
+	return false
+end
+
 return {
 	quickSave = quickSave,
 	quickAppend = quickAppend,
@@ -166,5 +175,6 @@ return {
 	getSpaceKey = getSpaceKey,
 	hasData = hasData,
 	isEmpty = isEmpty,
-	debugWaitSpace = debugWaitSpace
+	debugWaitSpace = debugWaitSpace,
+	dataInTable = dataInTable
 }

@@ -21,7 +21,8 @@ local commandUsages = {
 	select = 'Usage: select <slot>',
 	addraw = 'Usage: addraw <name>',
 	removeraw = 'Usage: removeraw <name>',
-	trace = 'Usage: trace <name>'
+	trace = 'Usage: trace <name>',
+	craft = 'Usage: craft <name> [amount]'
 }
 
 local function printUsage(command, indented)
@@ -193,6 +194,21 @@ local commandCallbacks = {
 			return
 		end
 		crafting.printTracedIngredients(crafting.traceIngredients(args[1], craftingdb, rawdb), rawdb)
+	end,
+	craft = function(args)
+		local amount = 1
+		if args[1] == nil then
+			wrongUsage('craft')
+			return
+		end
+		if tonumber(args[2]) ~= nil then
+			amount = tonumber(args[2])
+		end
+		if crafting.craft(args[1], amount, craftingdb, rawdb) then
+			print('Crafted successfully.')
+		else
+			print('Crafting failed.')
+		end
 	end
 	, test = function(args) crafting.test(args[1], craftingdb, rawdb); print('tested') end
 }
@@ -206,7 +222,7 @@ while running do
 			args[#args+1] = command[i]
 		end
 		commandCallbacks[command[1]](args)
-	else
+	elseif command ~= '' then
 		print('Command not understood.')
 	end
 end
