@@ -5,6 +5,9 @@ local importdir = (...):match("(.-)[^%.]+$")
 local data = require(importdir .. 'data')
 local inv = require(importdir .. 'inventory')
 
+local craftingdb = {}
+local rawdb = {}
+
 local function clearCraftingArea()
 	local craftingArea = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
 	for k, v in pairs(craftingArea) do
@@ -268,24 +271,23 @@ local function string2Crafting(s)
 	return tb
 end
 
-local function addToDatabase(tb, db)
+local function addToDatabase(tb)
 	local name = tb.result.name
 	if tb.result.damage ~= nil then name = name .. '|' .. tostring(tb.result.damage) end
-	db[name] = tb
+	craftingdb[name] = tb
 end
 
-local function removeFromDatabase(name, db)
-	db[name] = nil
+local function removeFromDatabase(name)
+	craftingdb[name] = nil
 end
 
 local function loadCraftingRecipes()
-	local craftingdb = {}
 	local f = io.open('crafting.db', 'r')
 	local buf = f:read('*l')
 	while buf ~= nil do
 		if buf:sub(1,1) ~= '#' then
 			local l = string2Crafting(buf)
-			addToDatabase(l, craftingdb)
+			addToDatabase(l)
 		end
 		buf = f:read('*l')
 	end
@@ -293,7 +295,7 @@ local function loadCraftingRecipes()
 	return craftingdb
 end
 
-local function saveCraftingRecipes(craftingdb)
+local function saveCraftingRecipes()
 	local f = io.open('crafting.db', 'w')
 	f:write("#Format:\n#'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'\n")
 	for k, v in pairs(craftingdb) do
@@ -326,7 +328,7 @@ local function printCrafting(tb)
 	end
 end
 
-local function listDatabase(craftingdb)
+local function listDatabase()
 	local buf = ''
 	for k, v in pairs(craftingdb) do
 		buf = buf .. k .. '\n'
@@ -335,7 +337,6 @@ local function listDatabase(craftingdb)
 end
 
 local function loadRawItems()
-	local rawdb = {}
 	local f = io.open('raw.db', 'r')
 	local l = f:read('*l')
 	while l ~= nil do
@@ -346,7 +347,7 @@ local function loadRawItems()
 	return rawdb
 end
 
-local function saveRawItems(rawdb)
+local function saveRawItems()
 	local f = io.open('raw.db', 'w')
 	for k, v in pairs(rawdb) do
 		f:write(k .. '\n')
@@ -354,22 +355,22 @@ local function saveRawItems(rawdb)
 	f:close()
 end
 
-local function isRaw(name, rawdb)
+local function isRaw(name)
 	if rawdb[name] ~= nil then
 		return true
 	end
 	return false
 end
 
-local function addRaw(name, rawdb)
+local function addRaw(name)
 	rawdb[name] = true
 end
 
-local function removeRaw(name, rawdb)
+local function removeRaw(name)
 	rawdb[name] = nil
 end
 
-local function listRaw(rawdb)
+local function listRaw()
 	local buf = ''
 	for k, v in pairs(rawdb) do
 		buf = buf .. k .. '\n'
@@ -377,7 +378,7 @@ local function listRaw(rawdb)
 	data.pagedPrint(buf)
 end
 
-local function getCraftableItemName(name, craftingdb)
+local function getCraftableItemName(name)
 	if data.strSplit(name, '|')[2] == nil then -- Recipe doesn't need damage/item all variant
 		for k, v in pairs(craftingdb) do
 			if data.strSplit(k, '|')[1] == name then
@@ -395,7 +396,7 @@ local function getCraftableItemName(name, craftingdb)
 end
 
 --[[ This function was deprecated and replaced by the new one below.
-local function traceIngredients(name, craftingdb, rawdb, stacktrace)
+local function traceIngredients(name, stacktrace)
 
 	local ingredients = {}
 	local function pushstack(name)
@@ -431,7 +432,7 @@ local function traceIngredients(name, craftingdb, rawdb, stacktrace)
 			local itemname = v.name
 			if v.damage ~= nil then itemname = itemname .. '|' .. tostring(v.damage) end
 			pushstack(name)
-			local anotherTrace = traceIngredients(itemname, craftingdb, rawdb, stacktrace)
+			local anotherTrace = traceIngredients(itemname, stacktrace)
 			for k, v in pairs(anotherTrace) do
 				ingredients[k] = true
 			end
@@ -461,7 +462,7 @@ local function traceIngredients(name, craftingdb, rawdb, stacktrace)
 end
 ]]--
 
-local function traceIngredients(item, craftingdb, rawdb)
+local function traceIngredients(item)
 	local itemsAvailable = {}
 	local itemsAdded = {}
 
@@ -478,7 +479,7 @@ local function traceIngredients(item, craftingdb, rawdb)
 			itemsAdded[item] = itemsAdded[item] + amount
 		end
 	end
-	
+
 	local function createdItem(item, amount)
 		if itemsAvailable[item] == nil then
 			itemsAvailable[item] = amount
@@ -486,7 +487,7 @@ local function traceIngredients(item, craftingdb, rawdb)
 			itemsAvailable[item] = itemsAvailable[item] + amount
 		end
 	end
-	
+
 	local function tryTakeItem(item, amount)
 		local amount = amount or 1
 		local itemToTake = ''
@@ -521,14 +522,14 @@ local function traceIngredients(item, craftingdb, rawdb)
 			end
 		end
 	end
-	
+
 	local function craftItem(item, amount)
 		local amount = amount or 1
 		if rawdb[name] == true then
 			addItem(item, amount)
-		elseif getCraftableItemName(item, craftingdb) ~= nil then
-			for i = 1, math.ceil(amount / craftingdb[getCraftableItemName(item, craftingdb)].result.size) do
-				local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item, craftingdb)])
+		elseif getCraftableItemName(item) ~= nil then
+			for i = 1, math.ceil(amount / craftingdb[getCraftableItemName(item)].result.size) do
+				local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item)])
 				for k, v in pairs(itemsNeeded) do
 					local realname = v.name
 					if v.damage ~= nil then realname = realname .. '|' .. tostring(v.damage) end
@@ -536,7 +537,7 @@ local function traceIngredients(item, craftingdb, rawdb)
 						craftItem(realname, v.size)
 					end
 				end
-				createdItem(getCraftableItemName(item, craftingdb), craftingdb[getCraftableItemName(item, craftingdb)].result.size)
+				createdItem(getCraftableItemName(item, craftingdb), craftingdb[getCraftableItemName(item)].result.size)
 			end
 		else
 			addItem(item, amount)
@@ -547,7 +548,7 @@ local function traceIngredients(item, craftingdb, rawdb)
 	return itemsAdded
 end
 
-local function printTracedIngredients(ti, rawdb)
+local function printTracedIngredients(ti)
 	local buf = ''
 	if rawdb ~= nil then
 		buf = buf .. '[+] In raw, [-] Not in raw.\n'
@@ -567,66 +568,91 @@ local function printTracedIngredients(ti, rawdb)
 	data.pagedPrint(buf)
 end
 
-local function isCraftingPossible(item, amount, craftingdb, rawdb)
-	print(string.format("Check %d %s.", amount, item))
+local function isCraftingPossible(item, amount)
+	data.quickAppend('crafting.log', string.format('[Info] Check if crafting %d %s is possible.\n', amount, item))
 	if rawdb[item] == true then return false end
-	if getCraftableItemName(item, craftingdb) == nil then return false end
-	local craftingIterations = math.ceil(amount / craftingdb[getCraftableItemName(item, craftingdb)].result.size)
-	for k, v in pairs(getItemsUsed(craftingdb[getCraftableItemName(item, craftingdb)])) do
-		if inv.count(v.name) < (v.size * craftingIterations) then
-			return isCraftingPossible(v.name , v.size * craftingIterations, craftingdb, rawdb)
+	if getCraftableItemName(item) == nil then return false end
+	local craftingIterations = math.ceil(amount / craftingdb[getCraftableItemName(item)].result.size)
+	data.quickAppend('crafting.log', string.format('[Info] Crafting Iterations: %d.\n', craftingIterations))
+	for k, v in pairs(getItemsUsed(craftingdb[getCraftableItemName(item)])) do
+		local realname = v.name
+		if v.damage ~= nil then realname = realname .. '|' .. tostring(v.damage) end
+		data.quickAppend('crafting.log', string.format('[Info] Realname: %s.\n', realname))
+		if inv.count(realname) < (v.size * craftingIterations) then
+			data.quickAppend('crafting.log', string.format('[Info] Need %d more.\n', v.size * craftingIterations - inv.count(realname)))
+			return isCraftingPossible(realname , v.size * craftingIterations - inv.count(realname))
 		end
 	end
+	data.quickAppend('crafting.log', string.format('[Info] Crafting %d %s is possible.\n', amount, item))
 	return true
 end
 
-local function craft(item, amount, craftingdb, rawdb)
-	if not isCraftingPossible(item, amount, craftingdb, rawdb) then
+local function craft(item, amount)
+	if not isCraftingPossible(item, amount) then
+		data.quickAppend('crafting.log', string.format('[Fatal] Crafting impossible.\n'))
 		return false
 	end
-	
+
 	local function moveAndCraft(tb)
-		print(string.format("Craft %s.", tb.result.name))
+		data.quickAppend('crafting.log', string.format('[Info] Crafting %d %s.\n', tb.result.size, tb.result.name))
 		if not clearCraftingArea() then return false end
 		local craftingGrid = {{1, 2, 3}, {5, 6, 7}, {9, 10, 11}}
 		local i = 1
-		for y = 1, tb.height do
-			for x = 1, tb.width do
-				if tb[i].name ~= nil then
-					inv.select(craftingGrid[y][x])
-					local name = tb[i].name
-					if tb[i].damage ~= nil then name = name .. '|' .. tostring(tb[i].damage) end
-					inv.pull(name, 1, true)
+		if tb.shaped then
+			for y = 1, tb.height do
+				for x = 1, tb.width do
+					if tb[i].name ~= nil then
+						inv.select(craftingGrid[y][x])
+						local name = tb[i].name
+						if tb[i].damage ~= nil then name = name .. '|' .. tostring(tb[i].damage) end
+						inv.pull(name, 1, true)
+					end
+					i = i + 1
 				end
-				i = i + 1
+			end
+		else
+			for y = 1, 3 do
+				for x = 1, 3 do
+					if tb[i] ~= nil then
+						inv.select(craftingGrid[y][x])
+						local name = tb[i].name
+						if tb[i].damage ~= nil then name = name .. '|' .. tostring(tb[i].damage) end
+						inv.pull(name, 1, true)
+					end
+					i = i + 1
+				end
 			end
 		end
 		inv.select(8)
 		return crafting.craft(1)
 	end
-	
+
 	local function recursiveCraft(item, amount)
-		local craftingIterations = math.ceil(amount / craftingdb[getCraftableItemName(item, craftingdb)].result.size)
-		for k, v in pairs(getItemsUsed(craftingdb[getCraftableItemName(item, craftingdb)])) do
+		data.quickAppend('crafting.log', string.format('[Info] Recursive crafting %d %s.\n', amount, item))
+		local craftingIterations = math.ceil(amount / craftingdb[getCraftableItemName(item)].result.size)
+		data.quickAppend('crafting.log', string.format('[Info] Crafting iterations: %d.\n', craftingIterations))
+		for k, v in pairs(getItemsUsed(craftingdb[getCraftableItemName(item)])) do
 			if inv.count(v.name) < (v.size * craftingIterations) then
+				data.quickAppend('crafting.log', string.format('[Info] Need %d more.\n', (v.size * craftingIterations) - inv.count(v.name)))
 				recursiveCraft(v.name, (v.size * craftingIterations) - inv.count(v.name))
 			end
 		end
 		local res = true
 		for i = 1, craftingIterations do
-			res = res and moveAndCraft(craftingdb[getCraftableItemName(item, craftingdb)])
+			data.quickAppend('crafting.log', string.format('[Info] Crafting #%d.\n', i))
+			res = res and moveAndCraft(craftingdb[getCraftableItemName(item)])
 		end
 		return res
 	end
-	
+
 	return recursiveCraft(item, amount)
 end
 
-local function test(name, craftingdb, rawdb)
+local function test(name)
 	---------------------------------------------------------------------
 	-- Function being tested
 	---------------------------------------------------------------------
-	local function traceIngredientsdbg(item, craftingdb, rawdb)
+	local function traceIngredientsdbg(item)
 		local itemsAvailable = {}
 		local itemsAdded = {}
 
@@ -693,9 +719,9 @@ local function test(name, craftingdb, rawdb)
 			--data.debugWaitSpace(string.format('[Function call] craftItem(%s, %d)', item, amount))
 			if rawdb[name] == true then
 				addItem(item, amount)
-			elseif getCraftableItemName(item, craftingdb) ~= nil then
-				for i = 1, math.ceil(amount / craftingdb[getCraftableItemName(item, craftingdb)].result.size) do
-					local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item, craftingdb)])
+			elseif getCraftableItemName(item) ~= nil then
+				for i = 1, math.ceil(amount / craftingdb[getCraftableItemName(item)].result.size) do
+					local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item)])
 					for k, v in pairs(itemsNeeded) do
 						local realname = v.name
 						if v.damage ~= nil then realname = realname .. '|' .. tostring(v.damage) end
@@ -721,7 +747,7 @@ local function test(name, craftingdb, rawdb)
 	---------------------------------------------------------------------
 	-- Function being outputted
 	---------------------------------------------------------------------
-	local function saveTracedIngredients(ti, rawdb, filename)
+	local function saveTracedIngredients(ti, filename)
 		local buf = ''
 		if rawdb ~= nil then
 			buf = buf .. '[+] In raw, [-] Not in raw.\n'
@@ -744,7 +770,7 @@ local function test(name, craftingdb, rawdb)
 	-- [END]Function being outputted
 	---------------------------------------------------------------------
 	
-	local ia, iav = traceIngredientsdbg(name, craftingdb, rawdb)
+	local ia, iav = traceIngredientsdbg(name)
 	io.write('itemAdded = ')
 	data.printTable(ia)
 	io.write('itemAvailable = ')
@@ -753,6 +779,8 @@ end
 
 
 return {
+	craftingdb = craftingdb,
+	rawdb = rawdb,
 	clearCraftingArea = clearCraftingArea,
 	analyzeCrafting = analyzeCrafting,
 	craftingInfo = craftingInfo,

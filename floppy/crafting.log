@@ -1,0 +1,33 @@
+[Info] Check if crafting 1 opencomputers:case2 is possible.
+[Info] Crafting Iterations: 1.
+[Info] Realname: minecraft:gold_ingot.
+[Info] Realname: opencomputers:material|8.
+[Info] Need 1 more.
+[Info] Check if crafting 1 opencomputers:material|8 is possible.
+[Info] Crafting Iterations: 1.
+[Info] Realname: minecraft:gold_nugget.
+[Info] Need 6 more.
+[Info] Check if crafting 6 minecraft:gold_nugget is possible.
+[Info] Crafting Iterations: 1.
+[Info] Realname: minecraft:gold_ingot.
+[Info] Crafting 6 minecraft:gold_nugget is possible.
+[Info] Recursive crafting 1 opencomputers:case2.
+[Info] Crafting iterations: 1.
+[Info] Need 2 more.
+[Info] Recursive crafting 2 minecraft:iron_bars.
+[Info] Crafting iterations: 1.
+[Info] Crafting #1.
+[Info] Crafting 16 minecraft:iron_bars.
+[Info] Need 1 more.
+[Info] Recursive crafting 1 minecraft:chest.
+[Info] Crafting iterations: 1.
+[Info] Need 8 more.
+[Info] Recursive crafting 8 minecraft:planks.
+[Info] Crafting iterations: 2.
+[Info] Crafting #1.
+[Info] Crafting 4 minecraft:planks.
+[Info] Crafting #2.
+[Info] Crafting #1.
+[Info] Crafting 1 minecraft:chest.
+[Info] Crafting #1.
+[Info] Crafting 1 opencomputers:case2.

@@ -3,6 +3,9 @@ local robot = require('robot')
 local importdir = (...):match("(.-)[^%.]+$")
 local data = require(importdir .. 'data')
 
+-- Speeds up most of the functions! (UwU)
+local invData = {}
+
 local function select(slot)
 	return robot.select(slot)
 end
@@ -22,6 +25,19 @@ local function getInfo(slot)
 		end
 	end
 	return t
+end
+
+local function scanInventory()
+	for i = 1, getInventorySize() do
+		invData[i] = getInfo(i)
+	end
+end
+
+local function transfer(slotDest, amount)
+	local res = robot.transferTo(slotDest, amount)
+	invData[robot.select()] = getInfo(robot.select())
+	invData[slotDest] = getInfo(slotDest)
+	return res
 end
 
 local function getExInfo(slot)
@@ -54,7 +70,7 @@ end
 local function find(name)
 	local itemPos = {}
 	for slot = 1, getInventorySize() do
-		local itemInfo = getInfo(slot)
+		local itemInfo = invData[slot]
 		if itemInfo ~= nil then
 			if data.strSplit(name, '|')[2] == nil then
 				if itemInfo.name == name then
@@ -75,7 +91,7 @@ local function count(name)
 	local c = 0
 	local items = find(name)
 	for k, v in pairs(items) do
-		c = c + getInfo(v).size
+		c = c + invData[v].size
 	end
 	return c
 end
@@ -85,25 +101,25 @@ local function pull(name, amount, excludeCraftingArea)
 	local amount = amount or 1
 	local destSlot = select()
 	if count(name) >= amount then
-		local realname = getInfo(find(name)[1]).name .. '|' .. tostring(getInfo(find(name)[1]).damage)
+		local realname = invData[find(name)[1]].name .. '|' .. tostring(invData[find(name)[1]].damage)
 		local items = find(realname)
 		local pulled = 0
 		for k, v in pairs(items) do
 			if not (excludeCraftingArea and data.dataInTable(v, craftingAreaSlots)) then
-				local itemInfo = getInfo(v)
+				local itemInfo = invData[v]
 				if itemInfo.size > (amount - pulled) then
 					select(v)
-					robot.transferTo(destSlot, amount - pulled)
+					transfer(destSlot, amount - pulled)
 					select(destSlot)
 					return true
 				elseif itemInfo.size == (amount - pulled) then
 					select(v)
-					robot.transferTo(destSlot, amount - pulled)
+					transfer(destSlot, amount - pulled)
 					select(destSlot)
 					return true
 				else
 					select(v)
-					robot.transferTo(destSlot)
+					transfer(destSlot)
 					pulled = pulled + itemInfo.size
 				end
 			end
@@ -114,10 +130,10 @@ local function pull(name, amount, excludeCraftingArea)
 end
 
 local function move(amount, ignoreCraftingArea)
-	if getInfo(select()) == nil then return false end
+	if invData[select()] == nil then return false end
 	local slot = select()
 	local craftingAreaSlots = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
-	local itemInfo = getInfo(slot)
+	local itemInfo = invData[slot]
 	local amount = amount or itemInfo.size
 	if amount > itemInfo.size then
 		amount = itemInfo.size
@@ -125,10 +141,10 @@ local function move(amount, ignoreCraftingArea)
 	-- Fill items first
 	for k, v in pairs(find(itemInfo.name .. '|' .. tostring(itemInfo.damage))) do
 		if (not data.dataInTable(v, craftingAreaSlots)) and (not ignoreCraftingArea) then
-			local curSlot = getInfo(v)
+			local curSlot = invData[v]
 			if curSlot.size < curSlot.maxSize then
 				local moveSize = math.min(curSlot.maxSize - curSlot.size, amount)
-				robot.transferTo(v, moveSize)
+				transfer(v, moveSize)
 				amount = amount - moveSize
 				if amount == 0 then
 					return true
@@ -139,8 +155,8 @@ local function move(amount, ignoreCraftingArea)
 	-- Lastly, fill empty slots
 	for curSlot = 1, getInventorySize() do
 		if (not data.dataInTable(curSlot, craftingAreaSlots)) and (not ignoreCraftingArea) then
-			if getInfo(curSlot) == nil then
-				robot.transferTo(curSlot, amount)
+			if invData[curSlot] == nil then
+				transfer(curSlot, amount)
 				return true
 			end
 		end
@@ -170,6 +186,8 @@ return {
 	select = select,
 	getInventorySize = getInventorySize,
 	getInfo = getInfo,
+	scanInventory = scanInventory,
+	transfer = transfer,
 	getMinInfo = getMinInfo,
 	find = find,
 	count = count,

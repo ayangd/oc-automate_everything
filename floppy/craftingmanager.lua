@@ -3,9 +3,10 @@ local data = require('util.data')
 local inv = require('util.inventory')
 
 local running = true
+local slot = {}
+
 local craftingdb = {}
 local rawdb = {}
-local slot = {}
 
 local commandUsages = {
 	help = 'Usage: help',
@@ -60,14 +61,14 @@ local commandCallbacks = {
 	end,
 	save = function(args)
 		if args[1] == 'crafting' then
-			crafting.saveCraftingRecipes(craftingdb)
+			crafting.saveCraftingRecipes()
 			print('Crafting recipes saved.')
 		elseif args[1] == 'raw' then
-			crafting.saveRawItems(rawdb)
+			crafting.saveRawItems()
 			print('Raw items saved.')
 		elseif args[1] == 'all' then
-			crafting.saveCraftingRecipes(craftingdb)
-			crafting.saveRawItems(rawdb)
+			crafting.saveCraftingRecipes()
+			crafting.saveRawItems()
 			print('Crafting recipes and raw items saved.')
 		else
 			wrongUsage('save')
@@ -126,7 +127,7 @@ local commandCallbacks = {
 			if slot.result == nil then
 				print('Slot is empty!')
 			else
-				crafting.addToDatabase(slot, craftingdb)
+				crafting.addToDatabase(slot)
 				print('Added to the database.')
 			end
 		end
@@ -143,14 +144,14 @@ local commandCallbacks = {
 		if craftingdb[args[1]] == nil then
 			print('Not in database.')
 		else
-			crafting.removeFromDatabase(args[1], craftingdb)
+			crafting.removeFromDatabase(args[1])
 		end
 	end,
 	list = function(args)
 		if args[1] == 'crafting' then
-			crafting.listDatabase(craftingdb)
+			crafting.listDatabase()
 		elseif args[1] == 'raw' then
-			crafting.listRaw(rawdb)
+			crafting.listRaw()
 		else
 			wrongUsage('list')
 		end
@@ -173,7 +174,7 @@ local commandCallbacks = {
 			wrongUsage('addraw')
 			return
 		end
-		crafting.addRaw(args[1], rawdb)
+		crafting.addRaw(args[1])
 		print('Item added to raw database.')
 	end,
 	removeraw = function(args)
@@ -184,7 +185,7 @@ local commandCallbacks = {
 		if rawdb[args[1]] == nil then
 			print('Item is not in the raw database.')
 		else
-			crafting.removeRaw(args[1], rawdb)
+			crafting.removeRaw(args[1])
 			print('Item removed from the database.')
 		end
 	end,
@@ -193,7 +194,7 @@ local commandCallbacks = {
 			wrongUsage('trace')
 			return
 		end
-		crafting.printTracedIngredients(crafting.traceIngredients(args[1], craftingdb, rawdb), rawdb)
+		crafting.printTracedIngredients(crafting.traceIngredients(args[1]))
 	end,
 	craft = function(args)
 		local amount = 1
@@ -204,13 +205,14 @@ local commandCallbacks = {
 		if tonumber(args[2]) ~= nil then
 			amount = tonumber(args[2])
 		end
-		if crafting.craft(args[1], amount, craftingdb, rawdb) then
+		inv.scanInventory()
+		if crafting.craft(args[1], amount) then
 			print('Crafted successfully.')
 		else
 			print('Crafting failed.')
 		end
 	end
-	, test = function(args) crafting.test(args[1], craftingdb, rawdb); print('tested') end
+	, test = function(args) crafting.test(args[1]); print('tested') end
 }
 
 while running do
