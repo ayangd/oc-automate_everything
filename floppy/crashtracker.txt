@@ -1,8 +1,9 @@
-/mnt/875/util/crafting.lua:741: attempt to call a nil value (field 'debug2String')
+/mnt/875/util/data.lua:26: attempt to perform arithmetic on a string value (local 'b')
 stack traceback:
-	machine:796: in field 'debug2String'
-	/mnt/875/util/crafting.lua:741: in field 'craft'
-	/mnt/875/craftingmanager.lua:210: in field '?'
+	machine:796: in metamethod '__div'
+	/mnt/875/util/data.lua:26: in field 'mod'
+	/mnt/875/util/crafting.lua:629: in field 'isCraftingPossible'
+	/mnt/875/craftingmanager.lua:209: in field '?'
 	/mnt/875/craftingmanager.lua:230: in main chunk
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

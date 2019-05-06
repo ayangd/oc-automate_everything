@@ -22,6 +22,10 @@ local function strSplit(s, delim)
 	return t
 end
 
+local function mod(a, b)
+	return a - math.floor(a / b) * b
+end
+
 local function pagedPrint(s)
 	local screenWidth, screenHeight = gpu.getResolution()
 	local function lineCount(str)
@@ -50,7 +54,6 @@ local function pagedPrint(s)
 		if l ~= '' then t[#t+1] = l end
 		return t
 	end
-	local function modulo(a, b) return a - math.floor(a / b) * b end
 
 	local stay = true
 	local brokenTableBuffer = brokeLines(s)
@@ -62,7 +65,7 @@ local function pagedPrint(s)
 			io.write('\n' .. v)
 			if (#v == screenWidth) then stay = true end
 		end
-		if modulo(k, screenHeight) == 0 then
+		if mod(k, screenHeight) == 0 then
 			local evt, _, key, __ = event.pull()
 			while ((evt ~= 'key_down') or (key ~= 32.0)) do evt,_,key,__=event.pull() end
 		end
@@ -169,6 +172,7 @@ return {
 	quickSave = quickSave,
 	quickAppend = quickAppend,
 	strSplit = strSplit,
+	mod = mod,
 	pagedPrint = pagedPrint,
 	table2String = table2String,
 	printTable = printTable,

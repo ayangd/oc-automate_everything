@@ -594,12 +594,13 @@ end
 local function isCraftingPossible(item, amount)
 	local itemUnsatisfied = {[item] = (amount or 1)}
 	local itemSatisfied = {}
-	
+	local itemSpare = {}
+
 	-- Try to empty itemUnsatisfied
 	while next(itemUnsatisfied) ~= nil do
 		-- Get the first element
 		local itemname, itemamount = next(itemUnsatisfied)
-		
+
 		-- Try to satisfy some item
 		if inv.count(itemname) >= itemUnsatisfied[itemname] + (itemSatisfied[itemname] or 0) then
 			itemUnsatisfied[itemname], itemSatisfied[itemname] = nil, itemUnsatisfied[itemname]
@@ -612,19 +613,30 @@ local function isCraftingPossible(item, amount)
 				print('Not enough ' .. itemname .. '.')
 				return false
 			end
-			
+
 			-- If item is craftable, exchange unsatisfied item with its recipes, amplified by the size
-			local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(itemname)])
-			local amplification = math.ceil(itemamount / craftingdb[getCraftableItemName(itemname)].result.size)
-			itemUnsatisfied[itemname] = nil
-			for i, a in pairs(itemsNeeded) do
-				local addedItemName = a.name
-				if a.damage ~= nil then addedItemName = addedItemName .. '|' .. tostring(a.damage) end
-				itemUnsatisfied[addedItemName] = (itemUnsatisfied[addedItemName] or 0) + a.size * amplification
+			-- Empty item spare first
+			if itemSpare[itemname] ~= nil then
+				if itemSpare[itemname] < itemamount then
+					itemSpare[itemname] = nil
+				else
+					itemSpare[itemname] = itemSpare[itemname] - itemamount
+				end
+			end
+			if itemSpare[itemname] == nil then
+				local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(itemname)])
+				local amplification = math.ceil(itemamount / craftingdb[getCraftableItemName(itemname)].result.size)
+				itemSpare[itemname] = (itemSpare[itemname] or 0) + data.mod(itemamount, craftingdb[getCraftableItemName(itemname)].result.size)
+				itemUnsatisfied[itemname] = nil
+				for i, a in pairs(itemsNeeded) do
+					local addedItemName = a.name
+					if a.damage ~= nil then addedItemName = addedItemName .. '|' .. tostring(a.damage) end
+					itemUnsatisfied[addedItemName] = (itemUnsatisfied[addedItemName] or 0) + a.size * amplification
+				end
 			end
 		end
 	end
-	
+
 	-- itemUnsatisfied is empty. YAY :)
 	return true
 end
@@ -694,13 +706,12 @@ end
 
 local function craft(item)
 	if (rawdb[item] == true) or (getCraftableItemName(item) == nil) then return false end
-	local craftingUnsatisfied = {craftingdb[getCraftableItemName(item)]}
-	local craftingSatisfied = {}
-	
-	local function print(buf)
-		data.quickAppend('crafting.log', buf .. '\n')
-	end
-	
+	local itemUnsatisfied = {item}
+	local itemSatisfied = {}
+
+	------------------------------------------------------------------------------------
+	-- TODO stacked crafting
+	------------------------------------------------------------------------------------
 	local function moveAndCraft(tb)
 		if not clearCraftingArea() then return false end
 		local craftingGrid = {{1, 2, 3}, {5, 6, 7}, {9, 10, 11}}
@@ -735,62 +746,53 @@ local function craft(item)
 		inv.scanCraftingArea()
 		return res
 	end
-	
+
 	-- Try empty craftingUnsatisfied
-	while craftingUnsatisfied[#craftingUnsatisfied] ~= nil do
-		print(data.table2String(craftingUnsatisfied))
-		local crafting = craftingUnsatisfied[#craftingUnsatisfied]
-		print(string.format('Trying to craft %s.', crafting.result.name))
-		
-		-- Try to craft item
-		if not moveAndCraft(crafting) then
-			print('=>Can\'t craft. Trying to test ingredients.')
-			local itemsNeeded = getItemsUsed(crafting)
-			
-			-- Test every ingredients
-			for i, ia in pairs(itemsNeeded) do
-				local realname = ia.name
-				if ia.damage ~= nil then realname = realname .. '|' .. tostring(ia.damage) end
-				print(string.format('==>Testing %d %s.', ia.size, realname))
-				
-				-- If not enough items, try to craft
-				if inv.count(realname) < ia.size then
-					if (rawdb[realname] == true) or (getCraftableItemName(realname) == nil) then
-						if inv.count(realname) < ia.size then
-							-- Can't go further, impossible without complete ingredients
-							print('===>X Stuck. Incomplete ingredients.')
-							return false
+	while itemUnsatisfied[#itemUnsatisfied] ~= nil do
+		local item = itemUnsatisfied[#itemUnsatisfied]
+		local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(item)])
+
+		local mayCraft = true
+		-- Test every ingredients
+		for i, ia in pairs(itemsNeeded) do
+			local realname = ia.name
+			if ia.damage ~= nil then realname = realname .. '|' .. tostring(ia.damage) end
+
+			-- If not enough items, try to craft
+			if inv.count(realname) < ia.size then
+				mayCraft = false
+				if (rawdb[realname] == true) or (getCraftableItemName(realname) == nil) then
+					if inv.count(realname) < ia.size then
+						-- Can't go further, impossible without complete ingredients
+						return false
+					end
+				else
+					print(string.format('==>%s can be crafted.', realname))
+					-- If item can be crafted, add more unsatisfied crafting
+					local found = false
+					for k, v in pairs(itemUnsatisfied) do
+						if getCraftableItemName(v) == getCraftableItemName(realname) then
+							-- Move to the lowest for priority.
+							table.insert(itemUnsatisfied, table.remove(itemUnsatisfied, k))
+							found = true
+							break
 						end
-					else
-						print(string.format('==>%s can be crafted.', realname))
-						-- If item can be crafted, add more unsatisfied crafting
-						local found = false
-						for k, v in pairs(craftingUnsatisfied) do
-							if v == craftingdb[getCraftableItemName(realname)] then
-								-- Move to the lowest for priority.
-								table.insert(craftingUnsatisfied, table.remove(craftingUnsatisfied, k))
-								found = true
-								break
-							end
-						end
-						if not found then
-							craftingUnsatisfied[#craftingUnsatisfied + 1] = craftingdb[getCraftableItemName(realname)]
-						end
+					end
+					if not found then
+						itemUnsatisfied[#itemUnsatisfied + 1] = realname
 					end
 				end
 			end
-		else
-			-- Move unsatisfied crafting to satisfied crafting by 1
-			craftingUnsatisfied[#craftingUnsatisfied] = nil
-			if craftingSatisfied[#craftingSatisfied] ~= nil then
-				craftingSatisfied[#craftingSatisfied][2] = craftingSatisfied[#craftingSatisfied][2] + 1
-			else
-				craftingSatisfied[#craftingSatisfied] = {crafting, 1}
+		end
+
+		-- Try to craft item
+		if mayCraft then
+			if moveAndCraft(craftingdb[getCraftableItemName(item)]) then
+				itemUnsatisfied[#itemUnsatisfied] = nil
 			end
 		end
 	end
-	
-	print('Crafting succeed! Phew!')
+
 	return true
 end
 

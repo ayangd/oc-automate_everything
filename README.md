@@ -5,18 +5,18 @@ Starting from a robot and a computer, then they expand themselves into an unlimi
 ## Why a robot and a computer?
 Because a robot cannot eject a floppy disk from itself, also cannot start the assembler machine alone.
 
-![Minimal computer](computer.png)
-**Image** - Minimal computer.
+![Replication Station](computer.png)
+**Image** - Replication Station.
 
 ## Progress
 ### Libraries/Utilities
-- Robot navigation system [Gradually Building Up]
-- Crafting system [Currently WIP]
-- Smelting system [Not yet]
-- Inventory system [Gradually Building Up]
-- Logistic system [Not yet]
-- Communication system [Not yet]
-- Chest communication system [WIP]
+- Robot navigation library [Gradually Building Up]
+- Crafting library [Currently WIP]
+- Smelting library [Not yet]
+- Inventory library [Gradually Building Up]
+- Logistic library [Not yet]
+- Communication library [Not yet]
+- Chest communication library [Not yet or never]
 
 ### Subsystems
 - Mining system [Not yet]
@@ -47,10 +47,9 @@ show slot
 keep
 save crafting
 list crafting
-trace minecraft:diamond_pickaxe
-trace minecraft:chest
-	Not a code: Put two logs in the robot's inventory
-craft minecraft:chest
+trace opencomputers:case2
+    Not a code: Put all raw ingredients into the robot's inventory
+craft opencomputers:case2
 exit
 ```
 >Note: If you struggle reading errors, please use `crashtracker <lua file>` and check `crashtracker.txt` for errors.
