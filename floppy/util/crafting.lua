@@ -568,6 +568,7 @@ local function printTracedIngredients(ti)
 	data.pagedPrint(buf)
 end
 
+--[[
 local function isCraftingPossible(item, amount)
 	data.quickAppend('crafting.log', string.format('[Info] Check if crafting %d %s is possible.\n', amount, item))
 	if rawdb[item] == true then return false end
@@ -584,6 +585,44 @@ local function isCraftingPossible(item, amount)
 		end
 	end
 	data.quickAppend('crafting.log', string.format('[Info] Crafting %d %s is possible.\n', amount, item))
+	return true
+end
+]]--
+
+local function isCraftingPossible(item, amount)
+	local itemUnsatisfied = {[item] = (amount or 1)}
+	local itemSatisfied = {}
+	
+	-- Try to empty itemUnsatisfied
+	while next(itemUnsatisfied) ~= nil do
+		-- Get the first element
+		local itemname, itemamount = next(itemUnsatisfied)
+		
+		-- Try to satisfy item
+		if inv.count(itemname) >= itemUnsatisfied[itemname] + (itemSatisfied[itemname] or 0) then
+			itemUnsatisfied[itemname], itemSatisfied[itemname] = nil, itemUnsatisfied[itemname]
+		end
+
+		-- If item is uncraftable
+		if (rawdb[itemname] == true) or (getCraftableItemName(itemname) == nil) then
+			-- If item in inventory is not enough
+			if inv.count(itemname) < itemUnsatisfied[itemname] + (itemSatisfied[itemname] or 0) then
+				return false
+			end
+		end
+		
+		-- If item is craftable, exchange unsatisfied item with its recipes, amplified by the size
+		local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(itemname)])
+		local amplification = itemamount
+		itemUnsatisfied[itemname] = nil
+		for i, a in pairs(itemsNeeded) do
+			local addedItemName = i.name
+			if i.damage ~= nil then addedItemName = addedItemName .. '|' .. tostring(i.damage)
+			itemUnsatisfied[addedItemName] = (itemUnsatisfied[addedItemName] or 0) + a * amplification
+		end
+	end
+	
+	-- itemUnsatisfied is empty. YAY :)
 	return true
 end
 
@@ -646,6 +685,10 @@ local function craft(item, amount)
 	end
 
 	return recursiveCraft(item, amount)
+end
+
+local function craft(item, amount)
+	
 end
 
 local function test(name)
