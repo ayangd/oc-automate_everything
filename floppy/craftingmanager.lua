@@ -206,10 +206,14 @@ local commandCallbacks = {
 			amount = tonumber(args[2])
 		end
 		inv.scanInventory()
-		if crafting.craft(args[1], amount) then
-			print('Crafted successfully.')
+		if crafting.isCraftingPossible(args[1], amount) then
+			if crafting.craft(args[1], amount) then
+				print('Crafted successfully.')
+			else
+				print('Crafting failed.')
+			end
 		else
-			print('Crafting failed.')
+			print('Lack of ingredients.')
 		end
 	end
 	, test = function(args) crafting.test(args[1]); print('tested') end

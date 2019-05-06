@@ -13,7 +13,9 @@ local function clearCraftingArea()
 	for k, v in pairs(craftingArea) do
 		if inv.getInfo(v) ~= nil then
 			inv.select(v)
-			if not inv.move(inv.getInfo(v).size, false) then return false end
+			if not inv.move(inv.getInfo(v).size, false) then 
+				return false
+			end
 		end
 	end
 	return true
@@ -598,27 +600,28 @@ local function isCraftingPossible(item, amount)
 		-- Get the first element
 		local itemname, itemamount = next(itemUnsatisfied)
 		
-		-- Try to satisfy item
+		-- Try to satisfy some item
 		if inv.count(itemname) >= itemUnsatisfied[itemname] + (itemSatisfied[itemname] or 0) then
 			itemUnsatisfied[itemname], itemSatisfied[itemname] = nil, itemUnsatisfied[itemname]
-		end
-
-		-- If item is uncraftable
-		if (rawdb[itemname] == true) or (getCraftableItemName(itemname) == nil) then
-			-- If item in inventory is not enough
-			if inv.count(itemname) < itemUnsatisfied[itemname] + (itemSatisfied[itemname] or 0) then
+		elseif inv.count(itemname) > (itemSatisfied[itemname] or 0) then
+			itemUnsatisfied[itemname] = itemUnsatisfied[itemname] - inv.count(itemname)
+			itemSatisfied[itemname] = (itemSatisfied[itemname] or 0) + inv.count(itemname)
+		else
+			-- If item can't be crafted
+			if (rawdb[itemname] == true) or (getCraftableItemName(itemname) == nil) then
+				print('Not enough ' .. itemname .. '.')
 				return false
 			end
-		end
-		
-		-- If item is craftable, exchange unsatisfied item with its recipes, amplified by the size
-		local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(itemname)])
-		local amplification = itemamount
-		itemUnsatisfied[itemname] = nil
-		for i, a in pairs(itemsNeeded) do
-			local addedItemName = i.name
-			if i.damage ~= nil then addedItemName = addedItemName .. '|' .. tostring(i.damage)
-			itemUnsatisfied[addedItemName] = (itemUnsatisfied[addedItemName] or 0) + a * amplification
+			
+			-- If item is craftable, exchange unsatisfied item with its recipes, amplified by the size
+			local itemsNeeded = getItemsUsed(craftingdb[getCraftableItemName(itemname)])
+			local amplification = math.ceil(itemamount / craftingdb[getCraftableItemName(itemname)].result.size)
+			itemUnsatisfied[itemname] = nil
+			for i, a in pairs(itemsNeeded) do
+				local addedItemName = a.name
+				if a.damage ~= nil then addedItemName = addedItemName .. '|' .. tostring(a.damage) end
+				itemUnsatisfied[addedItemName] = (itemUnsatisfied[addedItemName] or 0) + a.size * amplification
+			end
 		end
 	end
 	
@@ -626,6 +629,7 @@ local function isCraftingPossible(item, amount)
 	return true
 end
 
+--[[
 local function craft(item, amount)
 	if not isCraftingPossible(item, amount) then
 		data.quickAppend('crafting.log', string.format('[Fatal] Crafting impossible.\n'))
@@ -686,9 +690,108 @@ local function craft(item, amount)
 
 	return recursiveCraft(item, amount)
 end
+]]--
 
-local function craft(item, amount)
+local function craft(item)
+	if (rawdb[item] == true) or (getCraftableItemName(item) == nil) then return false end
+	local craftingUnsatisfied = {craftingdb[getCraftableItemName(item)]}
+	local craftingSatisfied = {}
 	
+	local function print(buf)
+		data.quickAppend('crafting.log', buf .. '\n')
+	end
+	
+	local function moveAndCraft(tb)
+		if not clearCraftingArea() then return false end
+		local craftingGrid = {{1, 2, 3}, {5, 6, 7}, {9, 10, 11}}
+		local i = 1
+		if tb.shaped then
+			for y = 1, tb.height do
+				for x = 1, tb.width do
+					if tb[i].name ~= nil then
+						inv.select(craftingGrid[y][x])
+						local name = tb[i].name
+						if tb[i].damage ~= nil then name = name .. '|' .. tostring(tb[i].damage) end
+						if not inv.pull(name, 1, true) then return false end
+					end
+					i = i + 1
+				end
+			end
+		else
+			for y = 1, 3 do
+				for x = 1, 3 do
+					if tb[i] ~= nil then
+						inv.select(craftingGrid[y][x])
+						local name = tb[i].name
+						if tb[i].damage ~= nil then name = name .. '|' .. tostring(tb[i].damage) end
+						if not inv.pull(name, 1, true) then return false end
+					end
+					i = i + 1
+				end
+			end
+		end
+		inv.select(8)
+		local res = crafting.craft(1)
+		inv.scanCraftingArea()
+		return res
+	end
+	
+	-- Try empty craftingUnsatisfied
+	while craftingUnsatisfied[#craftingUnsatisfied] ~= nil do
+		print(data.table2String(craftingUnsatisfied))
+		local crafting = craftingUnsatisfied[#craftingUnsatisfied]
+		print(string.format('Trying to craft %s.', crafting.result.name))
+		
+		-- Try to craft item
+		if not moveAndCraft(crafting) then
+			print('=>Can\'t craft. Trying to test ingredients.')
+			local itemsNeeded = getItemsUsed(crafting)
+			
+			-- Test every ingredients
+			for i, ia in pairs(itemsNeeded) do
+				local realname = ia.name
+				if ia.damage ~= nil then realname = realname .. '|' .. tostring(ia.damage) end
+				print(string.format('==>Testing %d %s.', ia.size, realname))
+				
+				-- If not enough items, try to craft
+				if inv.count(realname) < ia.size then
+					if (rawdb[realname] == true) or (getCraftableItemName(realname) == nil) then
+						if inv.count(realname) < ia.size then
+							-- Can't go further, impossible without complete ingredients
+							print('===>X Stuck. Incomplete ingredients.')
+							return false
+						end
+					else
+						print(string.format('==>%s can be crafted.', realname))
+						-- If item can be crafted, add more unsatisfied crafting
+						local found = false
+						for k, v in pairs(craftingUnsatisfied) do
+							if v == craftingdb[getCraftableItemName(realname)] then
+								-- Move to the lowest for priority.
+								table.insert(craftingUnsatisfied, table.remove(craftingUnsatisfied, k))
+								found = true
+								break
+							end
+						end
+						if not found then
+							craftingUnsatisfied[#craftingUnsatisfied + 1] = craftingdb[getCraftableItemName(realname)]
+						end
+					end
+				end
+			end
+		else
+			-- Move unsatisfied crafting to satisfied crafting by 1
+			craftingUnsatisfied[#craftingUnsatisfied] = nil
+			if craftingSatisfied[#craftingSatisfied] ~= nil then
+				craftingSatisfied[#craftingSatisfied][2] = craftingSatisfied[#craftingSatisfied][2] + 1
+			else
+				craftingSatisfied[#craftingSatisfied] = {crafting, 1}
+			end
+		end
+	end
+	
+	print('Crafting succeed! Phew!')
+	return true
 end
 
 local function test(name)

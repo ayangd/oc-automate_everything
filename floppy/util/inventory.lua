@@ -33,6 +33,13 @@ local function scanInventory()
 	end
 end
 
+local function scanCraftingArea()
+	local craftingArea = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
+	for i = 1, #craftingArea do
+		invData[craftingArea[i]] = getInfo(craftingArea[i])
+	end
+end
+
 local function transfer(slotDest, amount)
 	local res = robot.transferTo(slotDest, amount)
 	invData[robot.select()] = getInfo(robot.select())
@@ -187,6 +194,7 @@ return {
 	getInventorySize = getInventorySize,
 	getInfo = getInfo,
 	scanInventory = scanInventory,
+	scanCraftingArea = scanCraftingArea,
 	transfer = transfer,
 	getMinInfo = getMinInfo,
 	find = find,

@@ -1,11 +1,9 @@
-/mnt/875/util/crafting.lua:572: bad argument #2 to 'format' (number expected, got string)
+/mnt/875/util/crafting.lua:741: attempt to call a nil value (field 'debug2String')
 stack traceback:
-	machine:796: in function <machine:791>
-	[C]: in function 'string.format'
-	/mnt/875/util/crafting.lua:572: in upvalue 'isCraftingPossible'
-	/mnt/875/util/crafting.lua:585: in field 'craft'
-	/mnt/875/craftingmanager.lua:209: in field '?'
-	/mnt/875/craftingmanager.lua:226: in main chunk
+	machine:796: in field 'debug2String'
+	/mnt/875/util/crafting.lua:741: in field 'craft'
+	/mnt/875/craftingmanager.lua:210: in field '?'
+	/mnt/875/craftingmanager.lua:230: in main chunk
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
 	/mnt/875/crashtracker.lua:16: in main chunk
