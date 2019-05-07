@@ -29,7 +29,6 @@ end
 --	 On success: A table containing array 1-9 and has result (which contains name and damage if not ignored).
 --	 On failure: nil.
 local function analyzeCrafting(shaped, ignoreMetadata)
-	if not clearCraftingArea() then return nil end
 	inv.select(8)
 	if inv.getInfo() ~= nil then return nil end
 	local itemTable = {}
