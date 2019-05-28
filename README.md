@@ -10,6 +10,7 @@ Because a robot cannot eject a floppy disk from itself, also cannot start the as
 
 ## Quick installation
 ```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/installer.lua autoAllInst.lua```
+>Note: Running it will extract files directly around it (Current directory).
 
 ## Progress
 ### Libraries/Utilities
