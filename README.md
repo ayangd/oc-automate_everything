@@ -8,6 +8,9 @@ Because a robot cannot eject a floppy disk from itself, also cannot start the as
 ![Replication Station](computer.png)
 **Image** - Replication Station.
 
+## Quick installation
+```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/installer.lua autoAllInst.lua```
+
 ## Progress
 ### Libraries/Utilities
 - Robot navigation library [Gradually Building Up]
