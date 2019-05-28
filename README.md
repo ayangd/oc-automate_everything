@@ -31,11 +31,7 @@ Because a robot cannot eject a floppy disk from itself, also cannot start the as
 - Extra: Infrastructure building system [Not yet]
 
 ## How to try?
-External: Retrieve this repository's content.  
-Ingame: Put a `Creatix` on the ground and insert an empty floppy disk into the robot's slot.  
-External: Copy all of the 'floppy' folder content from the repository into the floppy disk folder inside your minecraft save world.  
-Ingame: You pull the empty floppy disk and then put it back again.  
-Ingame: You need to be in the floppy's root directory before executing any of the programs, e.g: `/mnt/875/`
+You'll need a `Creatix` and an empty floppy disk. Change directory to the empty floppy disk, then follow the [Quick Installation](#quick-installation).
 
 ## What can I try?
 You can try running `craftingmanager` and run these lines of code slowly:
