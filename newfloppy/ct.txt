@@ -1,0 +1,10 @@
+attempt to call a nil value
+stack traceback:
+	machine:796: in function <machine:791>
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/mnt/cf4/ct.lua:17: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>
