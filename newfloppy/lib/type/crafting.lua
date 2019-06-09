@@ -16,11 +16,8 @@ function Crafting.new(dimension, pattern, shaped, result)
 	if (dimension == nil) or (pattern == nil) or (result == nil) then
 		error('Can\'t make nil crafting.')
 	end
-	if (dimension.width == 0) or (dimension.height == 0) then
+	if (dimension.width == nil) or (dimension.height == nil) then
 		error('Crafting needs dimension!')
-	end
-	if (#pattern == 0) then
-		error('Crafting needs pattern!')
 	end
 	if (getmetatable(result) ~= item) then
 		error('Can\'t craft anything else beside item!')
@@ -28,6 +25,7 @@ function Crafting.new(dimension, pattern, shaped, result)
 	
 	local o = {}
 	setmetatable(o, Crafting)
+	Crafting.__index = Crafting
 	o.dimension = dimension
 	o.pattern = pattern
 	o.shaped = shaped

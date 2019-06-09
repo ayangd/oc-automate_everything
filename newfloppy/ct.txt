@@ -1,9 +1,17 @@
-attempt to call a nil value
+/mnt/cf4/lib/type/item.lua:104: attempt to index a nil value (local 'a')
 stack traceback:
-	machine:796: in function <machine:791>
+	machine:796: in metamethod '__index'
+	/mnt/cf4/lib/type/item.lua:104: in metamethod '__add'
+	/mnt/cf4/lib/type/crafting.lua:40: in function </mnt/cf4/lib/type/crafting.lua:36>
+	(...tail calls...)
+	/mnt/cf4/lib/resproc.lua:55: in local 'processItem'
+	/mnt/cf4/lib/resproc.lua:66: in field 'traceraw'
+	/mnt/cf4/craftmgr.lua:331: in field 'func'
+	/mnt/cf4/craftmgr.lua:361: in main chunk
+	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
-	/mnt/cf4/ct.lua:17: in main chunk
+	/mnt/cf4/ct.lua:16: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

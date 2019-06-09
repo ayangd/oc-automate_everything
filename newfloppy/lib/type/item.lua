@@ -16,13 +16,18 @@ function Item.new(...)
 	Item.__index = Item
 	
 	if type(args[1]) == 'string' then
-		i.name = stringlib.strSplit(args[1])[1]
-		i.damage = tonumber(stringlib.strSplit(args[1])[2])
+		if args[1] == '' then
+			error('Empty item name.')
+		end
+		i.name = stringlib.split(args[1])[1]
+		i.damage = tonumber(stringlib.split(args[1])[2])
 		i.size = 1
 		i.maxSize = 1
 	elseif type(args[1]) == 'table' then
 		i.name = args[1].name
-		i.damage = math.floor(args[1].damage)
+		if args[1].damage ~= nil then
+			i.damage = math.floor(args[1].damage)
+		end
 		i.size = math.floor(args[1].size) or 1
 		i.maxSize = math.floor(args[1].maxSize) or 1
 	else
@@ -44,7 +49,7 @@ function Item:singleItem()
 end
 
 function Item:clone()
-	return Item:new(self)
+	return Item.new(self)
 end
 
 function Item:compareTo(i)

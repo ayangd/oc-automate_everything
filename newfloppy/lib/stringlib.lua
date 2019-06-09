@@ -1,3 +1,4 @@
+local event = require('event')
 local component = require('component')
 if component.gpu == nil then
 	print('Missing gpu!')
@@ -12,7 +13,7 @@ local stringlib = {}
 function stringlib.split(s, delim)
 	delim = delim or '%s'
 	local t = {}
-	for str in string.gmatch(s, '([^'..delim..']*)('..delim..'?)') do
+	for str in string.gmatch(s, '([^'..delim..']+)') do
 		table.insert(t, str)
 	end
 	return t
@@ -46,6 +47,9 @@ function stringlib.pagedPrint(s)
 		if l ~= '' then t[#t+1] = l end
 		return t
 	end
+	local function mod(a, b)
+		return a - math.floor(a / b) * b
+	end
 
 	local stay = true
 	local brokenTableBuffer = brokeLines(s)
@@ -58,8 +62,7 @@ function stringlib.pagedPrint(s)
 			if (#v == screenWidth) then stay = true end
 		end
 		if mod(k, screenHeight) == 0 then
-			local evt, _, key, __ = event.pull()
-			while ((evt ~= 'key_down') or (key ~= 32.0)) do evt,_,key,__=event.pull() end
+			event.pull('key_down', nil, 32.0)
 		end
 	end
 	io.write('\n')

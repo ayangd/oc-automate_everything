@@ -47,24 +47,36 @@ commands.help.func = function(command)
 	if command ~= nil then
 		if commands[command] ~= nil then
 			print(commands[command].usage)
+			return
 		else
 			print('No such command.')
 		end
 	end
+	local cmdlist = {}
 	for k, v in pairs(commands) do
-		print(v.usage)
+		table.insert(cmdlist, v.usage)
 	end
+	table.sort(cmdlist)
+	local printbuffer = ''
+	for k, v in ipairs(cmdlist) do
+		printbuffer = printbuffer .. v .. '\n'
+	end
+	stringlib.pagedPrint(printbuffer)
 end
 
 commands.exit = Command.new()
 commands.exit.usage = 'exit'
 commands.exit.func = function()
-	io.stdout:write('Changes has been made. Would you like to save all before exiting? [y/n/C]')
-	local userInput = io.stdin:read('*l')
-	if string.lower(userInput) == 'y' then
-		commands.save.func()
-		running = false
-	elseif string.lower(userInput) == 'n' then
+	if changed then
+		io.stdout:write('Changes has been made. Would you like to save all before exiting? [y/n/C]')
+		local userInput = io.stdin:read('*l')
+		if string.lower(userInput) == 'y' then
+			commands.save.func()
+			running = false
+		elseif string.lower(userInput) == 'n' then
+			running = false
+		end
+	else
 		running = false
 	end
 end
@@ -245,6 +257,7 @@ commands.keep.func = function(it)
 		end
 	else
 		resproc.keep(~item.new(it))
+		changed = true
 		print('Item keep')
 	end
 end
@@ -261,8 +274,10 @@ commands.remove.usage = 'remove <item>'
 commands.remove.func = function(it)
 	local processing = resproc.remove(it)
 	if getmetatable(processing) == crafting then
+		changed = true
 		print('Removed crafting.')
 	elseif getmetatable(processing) == item then
+		changed = true
 		print('Raw removed.')
 	else
 		print('Nothing removed.')
@@ -274,13 +289,18 @@ commands.list.usage = 'list <raw/crafting>'
 commands.list.func = function(processor)
 	local printbuffer = ''
 	if processor == 'raw' then
+		printbuffer = 'List of raw:\n'
 		for k, v in ipairs(rawdb.db) do
-			printbuffer = printbuffer .. tostring(v)
+			printbuffer = printbuffer .. tostring(v) .. '\n'
 		end
 	elseif processor == 'crafting' then
-		for k, v in ipairs(craftingdb.db) do
-			printbuffer = printbuffer .. tostring(~k)
+		printbuffer = 'List of crafting:\n'
+		for k, v in craftingdb.sortedCraftingPairs() do
+			printbuffer = printbuffer .. tostring(~k) .. '\n'
 		end
+	else
+		commands.help.func('list')
+		return
 	end
 	stringlib.pagedPrint(printbuffer)
 end
@@ -336,10 +356,9 @@ end
 while running do
 	io.stdout:write('craftmgr>')
 	local commandstr = stringlib.split(io.stdin:read('*l'))
-	for k, v in pairs(commandstr) do print(k, v) end
 	local commandname = string.lower(table.remove(commandstr, 1))
 	if commands[commandname] ~= nil then
-		commands[commandname](table.unpack(commandstr))
+		commands[commandname].func(table.unpack(commandstr))
 	else
 		print('Command unrecognized.')
 	end

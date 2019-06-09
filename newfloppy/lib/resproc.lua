@@ -109,6 +109,10 @@ function ResProc.remove(it)
 	end
 end
 
+function ResProc.isCraftable(item, externalItem)
+	-- TODO: is item craftable
+end
+
 function ResProc.make(item)
 	-- TODO: make item
 end

@@ -7,6 +7,7 @@ local ItemArray = {}
 function ItemArray.new()
 	local o = {}
 	setmetatable(o, ItemArray)
+	ItemArray.__index = ItemArray
 	return o
 end
 
@@ -58,7 +59,7 @@ function ItemArray:add(i)
 			return self[k]
 		end
 	end
-	table.insert(i:clone())
+	table.insert(self, i:clone())
 	return i
 end
 
@@ -127,8 +128,8 @@ end
 -- Metamethods
 function ItemArray.__add(a, b)
 	-- Safety check. Reduces headache.
-	if (getmetatable(a) ~= ItemArray) or (getmetatable(b) ~= ItemArray) or (getmetatable(a) ~= item) or (getmetatable(b) ~= item) then
-		error('Attempting to add incompatible types other than ItemArray and Item.')
+	if not ((getmetatable(a) == ItemArray) or (getmetatable(a) == item)) or not ((getmetatable(b) == ItemArray) or (getmetatable(b) == item)) then
+		error('Attempting to add incompatible types other than ItemArray and Item. [' .. type(b) .. ']')
 	end
 	
 	local o = ItemArray.new()
@@ -142,7 +143,7 @@ function ItemArray.__add(a, b)
 			end
 		end
 		if not added then
-			o:insert(a:clone())
+			o:add(a:clone())
 		end
 	else
 		for ks, vs in ipairs(a) do
@@ -164,7 +165,7 @@ function ItemArray.__add(a, b)
 			end
 		end
 		if not added then
-			o:insert(b:clone())
+			o:add(b:clone())
 		end
 	else
 		for ks, vs in pairs(b) do

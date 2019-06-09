@@ -10,15 +10,29 @@ local rawdb = {
 
 -- Class Init
 local rawdbpath = 'db/raw.db'
+
+function rawdb.sort()
+	table.sort(rawdb.db, function(a, b) return a.name < b.name end)
+end
+
 function rawdb.load()
+	rawdb.db = {}
 	local f = io.open(rawdbpath, 'r')
 	local l = f:read('*l')
 	while l ~= nil do
 		table.insert(rawdb.db, ~item.new(l))
 		l = f:read('*l')
 	end
+	rawdb.sort()
 	f:close()
 end
+print('Loading rawdb...')
+rawdb.load()
+local rawCount = 0
+for k, v in ipairs(rawdb.db) do
+	rawCount = rawCount + 1
+end
+print(string.format('Loaded %d raw.', rawCount))
 
 function rawdb.save()
 	rawdb.db:sort()
@@ -41,6 +55,7 @@ end
 
 function rawdb.add(i)
 	table.insert(rawdb.db, i)
+	rawdb.sort()
 	return i
 end
 

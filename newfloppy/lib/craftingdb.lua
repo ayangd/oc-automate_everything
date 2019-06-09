@@ -15,8 +15,8 @@ function craftingdb.load()
 	local f = io.open(craftingdbpath, 'r')
 	local l = f:read('*l')
 	while l ~= nil do
-		if (l:sub(1,1) ~= '#') or (l ~= '') then
-			local dimension = {}
+		if (l:sub(1,1) ~= '#') and (l ~= '') then
+			local dimension = {width = 0, height = 0}
 			local pattern = {}
 			local shaped = true
 			local result = {}
@@ -33,17 +33,43 @@ function craftingdb.load()
 			for npat = 1, #pat do
 				pattern[npat] = items[tonumber(pat:sub(npat, npat))]
 			end
-			craftingdb.db[result:clone()] = crafting.new(dimension, pattern, shaped, result)
+			craftingdb.db[result] = crafting.new(dimension, pattern, shaped, result)
 		end
 		l = f:read('*l')
 	end
 	f:close()
 end
+print('Loading craftingdb...')
+craftingdb.load()
+local craftingCount = 0
+for k, v in pairs(craftingdb.db) do
+	craftingCount = craftingCount + 1
+end
+print(string.format('Loaded %d crafting.', craftingCount))
+
+function craftingdb.sortedCraftingPairs()
+	local a = {}
+	for n in pairs(craftingdb.db) do table.insert(a, n) end
+	table.sort(a, function(a, b) return a.name < b.name end)
+	local i = 0
+	return function()
+		i = i + 1
+		if a[i] == nil then
+			return nil
+		else
+			return a[i], craftingdb.db[a[i]]
+		end
+	end
+end
 
 function craftingdb.save()
 	-- Format: 'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item shape' 'item recipe array|metadata'
 	local f = io.open(craftingdbpath, 'w')
-	for k, v in pairs(craftingdb.db) do
+	f:write("#Format:\n#'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'\n")
+	function sortedCraftingPairs(t, f)
+		
+	end
+	for k, v in craftingdb.sortedCraftingPairs() do
 		local itemoutput = tostring(~v)
 		local itemoutputq = v.size
 		local itemshape = v and 'sd' or 'sl'
