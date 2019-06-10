@@ -1905,7 +1905,7 @@ local function extractFiles(foldername, filetable)
 	end
 	
 	for filename, filecontent in pairs(filetable) do
-		if type(filecontents) == 'table' then
+		if type(filecontent) == 'table' then
 			extractFiles(foldername .. '/' .. filename, filecontent)
 		else
 			print('extract "' .. filename .. '"')
