@@ -13,10 +13,8 @@ end
 
 function ItemArray:has(i)
 	for k, v in ipairs(self) do
-		if v == i then
-			if v.size >= i.size then
-				return true
-			end
+		if i == v then
+			return (i.size == 0) or (i.size <= v.size)
 		end
 	end
 	return false
@@ -25,9 +23,7 @@ end
 function ItemArray:hasDamage(i)
 	for k, v in ipairs(self) do
 		if v:compareDamage(i) then
-			if v.size >= i.size then
-				return true
-			end
+			return v.size >= i.size
 		end
 	end
 	return false
@@ -61,6 +57,21 @@ function ItemArray:add(i)
 	end
 	table.insert(self, i:clone())
 	return i
+end
+
+function ItemArray:addAll(ia)
+	if type(ia) == 'table' then
+		if getmetatable(ia) ~= ItemArray then
+			error('Can\'t add non-itemarray object.')
+		end
+	else
+		error('Can\'t add ' .. type(ia) .. '.')
+	end
+	
+	for k, v in ipairs(ia) do
+		self:add(v)
+	end
+	return ia
 end
 
 function ItemArray:remove(i)
@@ -177,17 +188,18 @@ function ItemArray.__add(a, b)
 			end
 		end
 	end
+	return o
 end
 
 function ItemArray.__mul(a, b)
 	-- Safety check. Reduces headache.
-	if (getmetatable(a) ~= ItemArray) and (type(b) ~= 'number') then
+	if (getmetatable(a) ~= ItemArray) or (type(b) ~= 'number') then
 		error(string.format('Incompatible itemarray size scaling: %s * %s.', type(a), type(b)))
 	end
 	
 	local o = ItemArray.new()
-	for k, v in ipairs(self) do
-		o[k] = self[k] * b
+	for k, v in ipairs(a) do
+		o[k] = a[k] * b
 	end
 	return o
 end

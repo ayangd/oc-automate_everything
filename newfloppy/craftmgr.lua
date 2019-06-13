@@ -316,7 +316,7 @@ commands.traceraw.usage = 'traceraw <item>'
 commands.traceraw.func = function(it)
 	local sit
 	if it ~= nil then
-		sit = ~item.new(it)
+		sit = item.new(it)
 	else
 		commands.help.func('traceraw')
 		return
@@ -326,7 +326,7 @@ commands.traceraw.func = function(it)
 		if getmetatable(resproc.lookup(sit)) ~= item then
 			local printbuffer
 			if getmetatable(resproc.lookup(sit)) == crafting then
-				printbuffer = 'Crafting: ' .. tostring(resproc.lookup(sit).result.size) .. '\n'
+				printbuffer = 'Crafting: ' .. tostring(resproc.lookup(sit).result) .. '\n'
 			end
 			local itemAdded, itemAvailable = resproc.traceraw(sit)
 			for k, v in ipairs(itemAdded) do

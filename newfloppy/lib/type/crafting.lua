@@ -37,7 +37,7 @@ function Crafting:itemsNeeded()
 	local itemsneeded = itemarray.new()
 	for k, v in pairs(self.pattern) do
 		if v ~= nil then
-			itemsneeded = itemsneeded + v
+			itemsneeded:add(v:singleItem())
 		end
 	end
 	return itemsneeded

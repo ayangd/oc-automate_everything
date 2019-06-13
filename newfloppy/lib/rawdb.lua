@@ -45,15 +45,25 @@ end
 
 -- Class Functions
 function rawdb.get(i)
+	if getmetatable(i) ~= item then
+		error('Can\'t find ' .. type(item) .. ' from rawdb.')
+	end
 	for k, v in ipairs(rawdb.db) do
-		if i.compareDamage(v) then
+		if i:compareDamage(v) then
 			return v
 		end
 	end
 	return nil
 end
 
+function rawdb.has(i)
+	return rawdb.get(i) ~= nil
+end
+
 function rawdb.add(i)
+	if getmetatable(i) ~= item then
+		error('Can\'t add ' .. type(item) .. ' to rawdb.')
+	end
 	table.insert(rawdb.db, i)
 	rawdb.sort()
 	return i

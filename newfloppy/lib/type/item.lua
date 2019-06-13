@@ -19,8 +19,8 @@ function Item.new(...)
 		if args[1] == '' then
 			error('Empty item name.')
 		end
-		i.name = stringlib.split(args[1])[1]
-		i.damage = tonumber(stringlib.split(args[1])[2])
+		i.name = stringlib.split(args[1], '|')[1]
+		i.damage = tonumber(stringlib.split(args[1], '|')[2])
 		i.size = 1
 		i.maxSize = 1
 	elseif type(args[1]) == 'table' then
@@ -55,34 +55,23 @@ end
 function Item:compareTo(i)
 	-- Safety check. Reduces headache.
 	if getmetatable(i) ~= Item then
-		error('Attempting to compare with non-item object.')
+		error('Attempting to compare with ' .. type(i) .. '.')
 	end
 
 	if self.damage == nil then
-		if self.name == i.name then
-			return true
-		else
-			return false
-		end
+		return self.name == i.name
 	else
-		if (self.name == i.name) and (self.damage == i.damage) then
-			return true
-		else
-			return false
-		end
+		return (self.name == i.name) and (self.damage == i.damage)
 	end
 end
 
 function Item:compareDamage(i)
 	-- Safety check. Reduces headache.
 	if getmetatable(i) ~= Item then
-		error('Attempting to compare with non-item object.')
+		error('Attempting to compare with ' .. type(i) .. '.')
 	end
 	
-	if (self.name == i.name) and (self.damage == i.damage) then
-		return true
-	end
-	return false
+	return (self.name == i.name) and (self.damage == i.damage)
 end
 
 -- Metamethods
@@ -97,7 +86,7 @@ end
 
 function Item.__add(a, b)
 	-- Safety check. Reduces headache.
-	if (getmetatable(a) ~= Item) and (getmetatable(b) ~= Item) then
+	if (getmetatable(a) ~= Item) or (getmetatable(b) ~= Item) then
 		error('Attempting to do comparison operation with different object type.')
 	end
 
@@ -131,7 +120,7 @@ function Item.__mul(a, b)
 		error(string.format('Incompatible item size scaling: %s * %s.', type(a), type(b)))
 	end
 	
-	local n = a.clone()
+	local n = a:clone()
 	n.size = n.size * b
 	return n
 end

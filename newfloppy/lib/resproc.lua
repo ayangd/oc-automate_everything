@@ -25,9 +25,10 @@ function ResProc.save()
 	craftingdb.save()
 end
 
-function ResProc.traceraw(i)
+function ResProc.trace(it)
 	local itemAvailable = itemarray.new()
 	local itemAdded = itemarray.new()
+	local instructions = {}
 	
 	local function addItem(i)
 		itemAvailable:add(i)
@@ -37,9 +38,13 @@ function ResProc.traceraw(i)
 	-- Check for item recipe
 	local function getItemRecipe(i)
 		if craftingdb.get(i) ~= nil then
-			return craftingdb.get(i):itemsNeeded()
+			return craftingdb.get(i)
 		end
 		return nil
+	end
+	
+	local function createdItem(i)
+		itemAvailable:add(i)
 	end
 	
 	local function tryTakeItem(i)
@@ -51,19 +56,85 @@ function ResProc.traceraw(i)
 	end
 	
 	local function processItem(i)
-		if not tryTakeItem(i) then
-			if getItemRecipe(i) == nil then
-				addItem(i)
-				processItem(i)
-			else
-				for k, v in (getItemRecipe(i) * i.size) do
-					processItem(v)
+		if rawdb.has(i) then
+			addItem(i)
+		elseif getItemRecipe(i) ~= nil then
+			for ite = 1, math.ceil(i.size / getItemRecipe(i).result.size) do
+				for k, v in pairs(getItemRecipe(i):itemsNeeded()) do
+					while not tryTakeItem(v) do
+						processItem(v)
+					end
 				end
+				createdItem(getItemRecipe(i).result)
+				table.insert(instructions, getItemRecipe(i))
 			end
+		else
+			addItem(i)
 		end
 	end
 	
-	processItem(i)
+	processItem(it)
+	return instructions
+end
+
+function ResProc.traceraw(it)
+	-- TODO: use traced process to calculate raws
+	if type(it) == 'table' then
+		if getmetatable(it) ~= item then
+			error('Can\'t trace non-item object.')
+		end
+	else
+		error('Can\'t trace ' .. type(it) .. '.')
+	end
+
+	local itemAvailable = itemarray.new()
+	local itemAdded = itemarray.new()
+	
+	local function addItem(i)
+		itemAvailable:add(i)
+		itemAdded:add(i)
+	end
+	
+	-- Check for item recipe
+	local function getItemRecipe(i)
+		if craftingdb.get(i) ~= nil then
+			return craftingdb.get(i)
+		end
+		return nil
+	end
+	
+	local function createdItem(i)
+		itemAvailable:add(i)
+	end
+	
+	local function tryTakeItem(i)
+		if itemAvailable:has(i) then
+			itemAvailable:minus(i)
+			return true
+		end
+		return false
+	end
+	
+	local function processItem(i)
+		if rawdb.has(i) then
+			addItem(i)
+		elseif getItemRecipe(i) ~= nil then
+			for ite = 1, math.ceil(i.size / getItemRecipe(i).result.size) do
+				for k, v in pairs(getItemRecipe(i):itemsNeeded()) do
+					while not tryTakeItem(v) do
+						processItem(v)
+					end
+				end
+				createdItem(getItemRecipe(i).result)
+			end
+		else
+			addItem(i)
+		end
+	end
+	
+	processItem(it)
+	table.sort(itemAdded)
+	table.sort(itemAvailable)
 	return itemAdded, itemAvailable
 end
 
