@@ -1,16 +1,8 @@
-too long without yielding
+attempt to index a number value
 stack traceback:
 	machine:796: in function <machine:791>
-	[C]: in function 'error'
-	machine:51: in hook '?'
-	machine:726: in global 'getmetatable'
-	/mnt/cf4/lib/type/item.lua:57: in method 'compareTo'
-	/mnt/cf4/lib/craftingdb.lua:95: in field 'get'
-	/mnt/cf4/lib/resproc.lua:47: in upvalue 'getItemRecipe'
-	/mnt/cf4/lib/resproc.lua:75: in upvalue 'processItem'
-	/mnt/cf4/lib/resproc.lua:79: in upvalue 'processItem'
-	/mnt/cf4/lib/resproc.lua:79: in local 'processItem'
-	/mnt/cf4/lib/resproc.lua:88: in field 'traceraw'
+	[C]: in for iterator 'for iterator'
+	/mnt/cf4/lib/resproc.lua:107: in field 'traceraw'
 	/mnt/cf4/craftmgr.lua:331: in field 'func'
 	/mnt/cf4/craftmgr.lua:361: in main chunk
 	(...tail calls...)

@@ -44,9 +44,9 @@ function inventory.scanInventory()
 		inventory.updateSlot(i)
 	end
 end
-print('Scanning inventory...')
+io.write('Scanning inventory... ')
 inventory.scanInventory()
-print('Inventory scanned.')
+io.write('Done.\n')
 
 function inventory.scanCraftingArea()
 	local craftingArea = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}

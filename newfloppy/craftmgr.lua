@@ -88,6 +88,13 @@ commands.reload.func = function()
 	print('Resources loaded successfully.')
 end
 
+commands.rescan = Command.new()
+commands.rescan.usage = 'rescan'
+commands.rescan.func = function()
+	inventory.scanInventory()
+	print('Inventory scanned.')
+end
+
 commands.save = Command.new()
 commands.save.usage = 'save'
 commands.save.func = function()

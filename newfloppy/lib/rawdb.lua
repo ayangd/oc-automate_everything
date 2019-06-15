@@ -26,13 +26,13 @@ function rawdb.load()
 	rawdb.sort()
 	f:close()
 end
-print('Loading rawdb...')
+io.write('Loading rawdb... ')
 rawdb.load()
 local rawCount = 0
 for k, v in ipairs(rawdb.db) do
 	rawCount = rawCount + 1
 end
-print(string.format('Loaded %d raw.', rawCount))
+io.write(string.format('%d loaded.\n', rawCount))
 
 function rawdb.save()
 	rawdb.db:sort()

@@ -39,13 +39,13 @@ function craftingdb.load()
 	end
 	f:close()
 end
-print('Loading craftingdb...')
+io.write('Loading craftingdb... ')
 craftingdb.load()
 local craftingCount = 0
 for k, v in pairs(craftingdb.db) do
 	craftingCount = craftingCount + 1
 end
-print(string.format('Loaded %d crafting.', craftingCount))
+io.write (string.format('%d loaded.\n', craftingCount))
 
 function craftingdb.sortedCraftingPairs()
 	local a = {}
