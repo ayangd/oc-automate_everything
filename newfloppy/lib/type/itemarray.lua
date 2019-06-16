@@ -38,6 +38,15 @@ function ItemArray:hasAll(ia)
 	return true
 end
 
+function ItemArray:hasAllDamage(ia)
+	for k, v in ipairs(ia) do
+		if not self:hasDamage(v) then
+			return false
+		end
+	end
+	return true
+end
+
 function ItemArray:count(i)
 	local c = 0
 	for k, v in ipairs(self) do

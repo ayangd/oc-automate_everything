@@ -1,10 +1,10 @@
-attempt to index a number value
+attempt to compare two table values
 stack traceback:
 	machine:796: in function <machine:791>
-	[C]: in for iterator 'for iterator'
-	/mnt/cf4/lib/resproc.lua:107: in field 'traceraw'
-	/mnt/cf4/craftmgr.lua:331: in field 'func'
-	/mnt/cf4/craftmgr.lua:361: in main chunk
+	[C]: in function 'table.sort'
+	/mnt/cf4/lib/resproc.lua:83: in field 'traceraw'
+	/mnt/cf4/craftmgr.lua:338: in field 'func'
+	/mnt/cf4/craftmgr.lua:368: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
