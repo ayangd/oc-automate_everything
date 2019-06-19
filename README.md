@@ -48,6 +48,8 @@ You'll need a `Creatix` and an empty floppy disk.
 Change directory to the empty floppy disk, then follow the [Quick Installation](#quick-installation).
 
 ## What can I try?
+
+### floppy
 You can try running `craftingmanager` and run these lines of code slowly:
 ```
 help
@@ -67,6 +69,16 @@ craft opencomputers:case2
 exit
 ```
 >Note: If you struggle reading errors, please use `crashtracker <lua file>` and check `crashtracker.txt` for errors.
+
+### newfloppy
+You can try running `craftmgr` and run these lines of code slowly:
+```
+help
+    Not a code: Press the space key to scroll down.
+trace opencomputers:case2
+exit
+```
+>Note: If you struggle reading errors, please use `ct <lua file>` and check `ct.txt` for errors.
 
 ## Suggestions Welcome
 If you want to help me improve, let me know by opening an issue :)
