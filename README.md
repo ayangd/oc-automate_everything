@@ -9,29 +9,43 @@ Because a robot cannot eject a floppy disk from itself, also cannot start the as
 **Image** - Replication Station.
 
 ## Quick installation
+For floppy (current stable and recommended):
+
 ```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/installer.lua autoAllInst.lua```
->Note: Running the command will extract files directly around it (Current directory).
+
+For newfloppy (unstable yet, future replacement):
+
+```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/newinstaller.lua autoAllInst.lua```
+
+>Note: Running these commands will extract files directly around it (Current directory).
 
 ## Progress
 ### Libraries/Utilities
-- Robot navigation library [Gradually Building Up]
-- Crafting library [Currently WIP]
-- Smelting library [Not yet]
-- Inventory library [Gradually Building Up]
-- Logistic library [Not yet]
-- Communication library [Not yet]
-- Chest communication library [Not yet or never]
+|Library Name|Status|
+|-|-|
+|Robot navigation library|Gradually building up|
+|Crafting library|Currently WIP|
+|Smelting library|Not yet|
+|Inventory library|Gradually building up|
+|Logistic library|Not yet|
+|Communication library|Not yet|
+|Chest communication library|Not yet or never|
 
 ### Subsystems
-- Mining system [Not yet]
-- Logging system [Not yet]
-- Replication system [Not yet] [Planned Next]
-- Storage system [Not yet]
-- Player interface [Not yet]
-- Extra: Infrastructure building system [Not yet]
+|System Name|Status|
+|-|-|
+|Mining system|Not yet|
+|Logging system|Not yet|
+|Replication system|Not yet|
+|Storage system|Not yet|
+|Integrated GUI system|Not yet|
+|Extra: Infrastructure building system|Not yet|
+
+**Gradually building up* - will get improvement overtime
 
 ## How to try?
-You'll need a `Creatix` and an empty floppy disk. Change directory to the empty floppy disk, then follow the [Quick Installation](#quick-installation).
+You'll need a `Creatix` and an empty floppy disk.
+Change directory to the empty floppy disk, then follow the [Quick Installation](#quick-installation).
 
 ## What can I try?
 You can try running `craftingmanager` and run these lines of code slowly:
