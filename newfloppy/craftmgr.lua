@@ -91,7 +91,7 @@ end
 commands.rescan = Command.new()
 commands.rescan.usage = 'rescan'
 commands.rescan.func = function()
-	inventory.scanInventory()
+	inventory.scan()
 	print('Inventory scanned.')
 end
 
@@ -348,14 +348,30 @@ commands.traceraw.func = function(it)
 	end
 end
 
-commands.make = Command.new()
-commands.make.usage = 'make <item>'
-commands.make.func = function(...)
-	print('TODO: make things good :)')
+commands.craft = Command.new()
+commands.craft.usage = 'craft <item>'
+commands.craft.func = function(it)
+	local sit
+	if it ~= nil then
+		sit = item.new(it)
+	else
+		commands.help.func('craft')
+		return
+	end
+	
+	if resproc.isCraftable(sit) then
+		if resproc.craft(sit) then
+			print('Crafted successfully.')
+		else
+			print('Crafting failed.')
+		end
+	else
+		print('Not enough items to craft.')
+	end
 end
 
 commands.clear = Command.new()
-commands.make.usage = 'clear'
+commands.clear.usage = 'clear'
 commands.clear.func = function(...)
 	print('TODO: clear processing area')
 end

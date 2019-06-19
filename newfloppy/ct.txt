@@ -1,10 +1,14 @@
-attempt to compare two table values
+attempt to index a nil value
 stack traceback:
 	machine:796: in function <machine:791>
-	[C]: in function 'table.sort'
-	/mnt/cf4/lib/resproc.lua:83: in field 'traceraw'
-	/mnt/cf4/craftmgr.lua:338: in field 'func'
-	/mnt/cf4/craftmgr.lua:368: in main chunk
+	[C]: in for iterator 'for iterator'
+	/mnt/cf4/lib/inventory.lua:59: in function </mnt/cf4/lib/inventory.lua:58>
+	(...tail calls...)
+	/mnt/cf4/lib/inventory.lua:143: in field 'throw'
+	/mnt/cf4/lib/inventory.lua:179: in field 'clearCraftingArea'
+	/mnt/cf4/lib/resproc.lua:223: in field 'craft'
+	/mnt/cf4/craftmgr.lua:363: in field 'func'
+	/mnt/cf4/craftmgr.lua:384: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

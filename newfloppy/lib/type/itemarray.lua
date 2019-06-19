@@ -122,6 +122,15 @@ function ItemArray:pop()
 	return table.remove(self)
 end
 
+function ItemArray:popSingle()
+	if self[#self].size <= 1 then
+		return table.remove(self)
+	else
+		self[#self].size = self[#self].size - 1
+		return self[#self]:singleItem()
+	end
+end
+
 function ItemArray:index(i)
 	for k, v in ipairs(self) do
 		if i == v then
@@ -129,6 +138,10 @@ function ItemArray:index(i)
 		end
 	end
 	return nil
+end
+
+function ItemArray:get(i)
+	return self[self:index(i)]
 end
 
 function ItemArray:indexDamage(i)

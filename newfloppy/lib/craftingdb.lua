@@ -92,7 +92,7 @@ end
 -- Class Functions
 function craftingdb.get(i)
 	for k, v in pairs(craftingdb.db) do
-		if i:compareTo(k) then
+		if i == k then
 			return v
 		end
 	end

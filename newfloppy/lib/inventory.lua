@@ -15,18 +15,18 @@ local item = require('lib.type.item')
 local itemarray = require('lib.type.itemarray')
 
 -- Class Meta
-local inventory = {
+local Inventory = {
 	slots = {},
 	size = math.floor(robot.inventorySize()),
 	ex = {}
 }
 
 -- Class Functions
-function inventory.select(slot)
+function Inventory.select(slot)
 	return robot.select(slot)
 end
 
-function inventory.scanSlot(slot)
+function Inventory.scanSlot(slot)
 	local t = invctrl.getStackInInternalSlot(slot)
 	if t == nil then
 		return nil
@@ -34,28 +34,28 @@ function inventory.scanSlot(slot)
 	return item.new(t)
 end
 
-function inventory.updateSlot(slot)
-	inventory.slots[slot] = inventory.scanSlot(slot)
-	return inventory.slots[slot]
+function Inventory.updateSlot(slot)
+	Inventory.slots[slot] = Inventory.scanSlot(slot)
+	return Inventory.slots[slot]
 end
 
-function inventory.scanInventory()
-	for i = 1, inventory.size do
-		inventory.updateSlot(i)
+function Inventory.scan()
+	for i = 1, Inventory.size do
+		Inventory.updateSlot(i)
 	end
 end
 io.write('Scanning inventory... ')
-inventory.scanInventory()
+Inventory.scan()
 io.write('Done.\n')
 
-function inventory.scanCraftingArea()
+function Inventory.scanCraftingArea()
 	local craftingArea = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
 	for i = 1, #craftingArea do
-		inventory.updateSlot(i)
+		Inventory.updateSlot(i)
 	end
 end
 
-function inventory.isInExcludedSlot(slot, excludedSlots)
+function Inventory.isInExcludedSlot(slot, excludedSlots)
 	for k, v in ipairs(excludedSlots) do
 		if slot == v then
 			return true
@@ -64,59 +64,61 @@ function inventory.isInExcludedSlot(slot, excludedSlots)
 	return false
 end
 
-function inventory.isInCraftingArea(slot)
-	return inventory.isInExcludedSlot({1, 2, 3, 5, 6, 7, 8, 9, 10, 11})
+function Inventory.isInCraftingArea(slot)
+	return Inventory.isInExcludedSlot({1, 2, 3, 5, 6, 7, 8, 9, 10, 11})
 end
 
-function inventory.transfer(slotDest, amount)
-	local slotSize = inventory.slots[inventory.select()].size
+function Inventory.transfer(slotDest, amount)
+	local slotSize = Inventory.slots[Inventory.select()].size
 	local amount = (amount < slotSize) and slotSize or amount
 	local res = robot.transferTo(slotDest, amount)
-	inventory.updateSlot(inventory.select())
-	inventory.updateSlot(slotDest)
+	Inventory.updateSlot(Inventory.select())
+	Inventory.updateSlot(slotDest)
 	return res
 end
 
-function inventory.find(i)
+function Inventory.find(i)
 	local itemSlots = {}
-	for slot = 1, inventory.size do
-		if inventory.slots[slot] ~= nil then
-			if i == inventory.slots[slot] then
-				table.insert(slot)
+	for slot = 1, Inventory.size do
+		if Inventory.slots[slot] ~= nil then
+			if i == Inventory.slots[slot] then
+				table.insert(itemSlots, slot)
 			end
 		end
 	end
 	return itemSlots
 end
 
-function inventory.count(i)
+function Inventory.count(i)
 	local c = 0
-	for k, v in ipairs(inventory.find(i)) do
-		c = c + inventory.slots[v].size
+	for k, v in ipairs(Inventory.find(i)) do
+		c = c + Inventory.slots[v].size
 	end
 	return c
 end
 
-function inventory.pull(i, amount, ignoreCraftingArea)
-	local amount = amount or 1
-	local destSlot = inventory.select()
+function Inventory.pull(i, ignoreCraftingArea)
+	local amount = i.size
+	local ignoreCraftingArea = ignoreCraftingArea
+	if ignoreCraftingArea == nil then ignoreCraftingArea = true end
+	local destSlot = Inventory.select()
 	local itemTypes = itemarray.new()
-	for k, v in pairs(inventory.find(i)) do
-		itemTypes:add(inventory.slots[v])
+	for k, v in pairs(Inventory.find(i)) do
+		itemTypes:add(Inventory.slots[v])
 	end
 	for k, v in ipairs(itemTypes) do
-		if inventory.count(v) >= amount then
-			for kf, vf in ipairs(inventory.find(v)) do
-				 if not (ignoreCraftingArea and inventory.isInCraftingArea(vf)) then
+		if Inventory.count(v) >= amount then
+			for kf, vf in ipairs(Inventory.find(v)) do
+				 if not (ignoreCraftingArea and Inventory.isInCraftingArea(vf)) then
 					if amount > 0 then
-						inventory.select(vf)
-						local pulled = inventory.slots[vf].size
-						if not inventory.transfer(destSlot, amount) then
+						Inventory.select(vf)
+						local pulled = Inventory.slots[vf].size
+						if not Inventory.transfer(destSlot, amount) then
 							return false
 						end
 						amount = amount - pulled
 					else
-						inventory.select(destSlot)
+						Inventory.select(destSlot)
 						return true
 					end
 				 end
@@ -124,21 +126,25 @@ function inventory.pull(i, amount, ignoreCraftingArea)
 			break
 		end
 	end
-	inventory.select(destSlot)
+	Inventory.select(destSlot)
 	return false
 end
 
-function inventory.throw(amount, ignoreCraftingArea, excludedSlots)
-	local srcSlot = inventory.select()
-	local amount = amount or inventory.slots[srcSlot].size
+function Inventory.throw(amount, ignoreCraftingArea, excludedSlots)
+	local srcSlot = Inventory.select()
+	local amount = amount or Inventory.slots[srcSlot].size
+	local ignoreCraftingArea = ignoreCraftingArea
+	if ignoreCraftingArea == nil then ignoreCraftingArea = true end
+	local excludedSlots = excludedSlots or {}
 	
 	-- Fill items first
-	for k, v in pairs(inventory.find(inventory.slots[srcSlot])) do
-		if not (ignoreCraftingArea and inventory.isInCraftingArea(v)) or not inventory.isInExcludedSlot(v, excludedSlots) then
-			local curSlot = inventory.slots[v]
+	for k, v in pairs(Inventory.find(Inventory.slots[srcSlot])) do
+		if not ((not ignoreCraftingArea and Inventory.isInCraftingArea(v))) and not Inventory.isInExcludedSlot(v, excludedSlots) then
+			local curSlot = Inventory.slots[v]
 			if curSlot.size < curSlot.maxSize then
 				local moveSize = math.min(curSlot.maxSize - curSlot.size, amount)
-				if not inventory.transfer(v, moveSize) then
+				print('fill')
+				if not Inventory.transfer(v, moveSize) then
 					return false
 				end
 				amount = amount - moveSize
@@ -150,10 +156,11 @@ function inventory.throw(amount, ignoreCraftingArea, excludedSlots)
 	end
 	
 	-- Lastly, fill empty slots
-	for curSlot = 1, inventory.size do
-		if not (ignoreCraftingArea and inventory.isInCraftingArea(v)) or not inventory.isInExcludedSlot(v, excludedSlots) then
-			if inventory.slots[curSlot] == nil then
-				if not inventory.transfer(curSlot, amount) then
+	for curSlot = 1, Inventory.size do
+		if not (ignoreCraftingArea and Inventory.isInCraftingArea(v)) or not Inventory.isInExcludedSlot(v, excludedSlots) then
+			if Inventory.slots[curSlot] == nil then
+				print('add')
+				if not Inventory.transfer(curSlot, amount) then
 					return false
 				end
 				return true
@@ -164,15 +171,35 @@ function inventory.throw(amount, ignoreCraftingArea, excludedSlots)
 	return false
 end
 
-function inventory.ex.isAvailable()
-	-- TODO: check front inventory availability
+function Inventory.clearCraftingArea()
+	for k, v in ipairs({1, 2, 3, 5, 6, 7, 8, 9, 10, 11}) do
+		if Inventory.slots[v] ~= nil then
+			Inventory.select(v)
+			if Inventory.throw(Inventory.slots[v].size, false) == false then
+				return false
+			end
+		end
+	end
+	return true
 end
 
-function inventory.ex.getInventorySize()
-	return invctrl.getInventorySize(3)
+function Inventory.ex.isAvailable()
+	return Inventory.ex.getinventorySize() ~= nil
 end
 
-function inventory.ex.scanSlot(slot)
+function Inventory.ex.isUpAvailable()
+	return Inventory.ex.getUpinventorySize() ~= nil
+end
+
+function Inventory.ex.getinventorySize()
+	return invctrl.getinventorySize(3)
+end
+
+function Inventory.ex.getUpinventorySize()
+	return invctrl.getinventorySize(1)
+end
+
+function Inventory.ex.scanSlot(slot)
 	local t = invctrl.getStackInInternalSlot(3, slot)
 	if t == nil then
 		return nil
@@ -180,24 +207,24 @@ function inventory.ex.scanSlot(slot)
 	return item.new(t)
 end
 
-function inventory.ex.request(i, amount)
+function Inventory.ex.request(i, amount)
 	-- TODO: pull external item
 end
 
-function inventory.ex.send(i, amount)
+function Inventory.ex.send(i, amount)
 	-- TODO: deposit item to inventory in front
 end
 
-function inventory.ex.throw(slot, amount)
+function Inventory.ex.throw(slot, amount)
 	-- TODO: throw specific amount of selected slot in front
 end
 
-function inventory.ex.transferOut(exSlot, amount)
+function Inventory.ex.transferOut(exSlot, amount)
 	return invctrl.dropIntoSlot(3, exSlot, amount)
 end
 
-function inventory.ex.transferIn(exSlot, amount)
+function Inventory.ex.transferIn(exSlot, amount)
 	return invctrl.suckFromSlot(3, exSlot, amount)
 end
 
-return inventory
+return Inventory
