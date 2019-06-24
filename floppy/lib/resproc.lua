@@ -4,17 +4,11 @@ if not isRobotAcquired then
 	return
 end
 
-local component = require('component')
-if component.crafting == nil then
-	print('Can\'t load crafting component.')
-	return
-end
-local crafting = component.crafting
-
 local item = require('lib.type.item')
 local itemarray = require('lib.type.itemarray')
 local rawdb = require('lib.rawdb')
 local craftingdb = require('lib.craftingdb')
+local crafting = require('lib.type.crafting')
 local inventory = require('lib.inventory')
 
 -- Class Meta
@@ -126,7 +120,7 @@ function ResProc.remove(it)
 	if craftingdb.get(it) ~= nil then
 		return craftingdb.remove(it)
 	elseif rawdb.get(it) ~= nil then
-		return rawdb(it)
+		return rawdb.remove(it)
 	else
 		return nil
 	end
@@ -192,48 +186,66 @@ function ResProc.isCraftable(item, externalItem)
 end
 
 function ResProc.craft(item)
-	-- Unsatisfied items
-	local unsatisfiedItems = itemarray.new()
-	unsatisfiedItems:add(item)
+	if craftingdb.get(item) == nil then
+		error('Can\'t craft ' .. tostring(item) .. '.')
+	end
 	
-	-- Drain and populate unsatisfied items until it's empty
-	while #unsatisfiedItems ~= 0 do
-		local unsatisfiedItem = table.remove(unsatisfiedItems, 1)
+	-- Unsatisfied craftings
+	local unsatisfiedCraftings = {}
+	table.insert(unsatisfiedCraftings, craftingdb.get(item))
+	
+	while #unsatisfiedCraftings ~= 0 do
+		local unsatisfiedCrafting = unsatisfiedCraftings[#unsatisfiedCraftings]
 		
 		-- Check ingredients availability
 		local allAvailable = true
-		for k, v in ipairs(craftingdb.get(unsatisfiedItem):itemsNeeded()) do
+		for k, v in ipairs(unsatisfiedCrafting:itemsNeeded()) do
 			if inventory.count(v) < v.size then
 				allAvailable = false
 				if (craftingdb.get(v) == nil) or rawdb.has(v) then
+					print('this 1')
 					return false
 				else
-					if unsatisfiedItems:has(~v) then
-						local addedItem = unsatisfiedItems:get(v)
-						unsatisfiedItems:minus(addedItem)
-						unsatisfiedItems:add(addedItem + v)
-					else
-						unsatisfiedItems:add(v)
+					for kc, vc in ipairs(unsatisfiedCraftings) do
+						if vc == craftingdb.get(v) then
+							table.remove(unsatisfiedCraftings, kc)
+						end
 					end
+					table.insert(unsatisfiedCraftings, craftingdb.get(v))
 				end
 			end
 		end
 		
 		if allAvailable then
 			if not inventory.clearCraftingArea() then
+				print('this 2')
 				return false
 			end
-			local craftingArea = {{1, 2, 3}, {5, 6, 7}, {9, 10, 11}}
-			local icraft = craftingdb.get(unsatisfiedItem)
-			for y = 1, icraft.dimension.height do
-				for x = 1, icraft.dimension.width do
-					inventory.select(craftingArea[y][x])
-					inventory.pull(icraft.pattern[(y - 1) * icraft.dimension.height + x]:singleItem(), false)
+			print('cleared')
+			if unsatisfiedCrafting.shaped then
+				local craftingArea = {{1, 2, 3}, {5, 6, 7}, {9, 10, 11}}
+				for y = 1, unsatisfiedCrafting.dimension.height do
+					for x = 1, unsatisfiedCrafting.dimension.width do
+						if unsatisfiedCrafting.pattern[(y - 1) * unsatisfiedCrafting.dimension.width + x] ~= nil then
+							inventory.select(craftingArea[y][x])
+							inventory.pull(unsatisfiedCrafting.pattern[(y - 1) * unsatisfiedCrafting.dimension.width + x]:singleItem(), false)
+						end
+					end
+				end
+			else
+				local craftingArea = {1, 2, 3, 5, 6, 7, 9, 10, 11}
+				for k = 1, #unsatisfiedCrafting.pattern do
+					inventory.select(craftingArea[k])
+					inventory.pull(unsatisfiedCrafting.pattern[k]:singleItem(), false)
 				end
 			end
-			if not crafting.craft(1) then
+			inventory.select(8)
+			if not component.crafting.craft(1) then
+				print('this 3')
 				return false
 			end
+			inventory.scanCraftingArea()
+			table.remove(unsatisfiedCraftings)
 		end
 	end
 	

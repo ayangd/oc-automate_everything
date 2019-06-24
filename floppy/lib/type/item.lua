@@ -30,6 +30,8 @@ function Item.new(...)
 		end
 		i.size = math.floor(args[1].size) or 1
 		i.maxSize = math.floor(args[1].maxSize) or 1
+	elseif #args == 0 then
+		error('Not expecting nil or empty argument.')
 	else
 		error('Invalid construction argument.')
 	end
@@ -77,8 +79,8 @@ end
 -- Metamethods
 function Item.__eq(a, b)
 	-- Safety check. Reduces headache.
-	if (getmetatable(a) ~= Item) and (getmetatable(b) ~= Item) then
-		error('Attempting to do comparison operation with different object type.')
+	if (getmetatable(a) ~= Item) or (getmetatable(b) ~= Item) then
+		error(string.format('Attempting to do comparison operation with different object type. (%s, %s)', type(a), type(b)))
 	end
 
 	return a:compareTo(b)
@@ -94,7 +96,7 @@ function Item.__add(a, b)
 	if (a.name == b.name) and (a.damage == b.damage) and (a.maxSize == b.maxSize) then
 		n.size = a.size + b.size
 	else
-		error('Can\'t add different items.')
+		error(string.format('Can\'t add different items.'))
 	end
 	return n
 end

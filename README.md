@@ -9,13 +9,14 @@ Because a robot cannot eject a floppy disk from itself, also cannot start the as
 **Image** - Replication Station.
 
 ## Quick installation
-For floppy (current stable and recommended):
+>Notice: After recent update, floppy is now oldfloppy, and newfloppy is now floppy.
+For floppy:
 
 ```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/installer.lua autoAllInst.lua```
 
-For newfloppy (unstable yet, future replacement):
+For oldfloppy (deprecated):
 
-```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/newinstaller.lua autoAllInst.lua```
+```wget https://raw.githubusercontent.com/ayangd/oc-automate_everything/master/oldinstaller.lua autoAllInst.lua```
 
 >Note: Running these commands will extract files directly around it (Current directory).
 
@@ -23,11 +24,9 @@ For newfloppy (unstable yet, future replacement):
 ### Libraries/Utilities
 |Library Name|Status|
 |-|-|
-|Robot navigation library|Gradually building up|
-|Crafting library|Currently WIP|
-|Smelting library|Not yet|
+|Robot navigation library|Not yet|
+|Resource library|Currently WIP|
 |Inventory library|Gradually building up|
-|Logistic library|Not yet|
 |Communication library|Not yet|
 |Chest communication library|Not yet or never|
 
@@ -38,6 +37,7 @@ For newfloppy (unstable yet, future replacement):
 |Logging system|Not yet|
 |Replication system|Not yet|
 |Storage system|Not yet|
+|Logistic transportation system|Not yet|
 |Integrated GUI system|Not yet|
 |Extra: Infrastructure building system|Not yet|
 
@@ -50,12 +50,32 @@ Change directory to the empty floppy disk, then follow the [Quick Installation](
 ## What can I try?
 
 ### floppy
+You can try running `craftmgr` and run these lines of code slowly:
+```
+help
+    Not a code: Press the space key to scroll down.
+select 8
+	Not a code: Put down cobblestone slab recipe into the robot's crafting grid
+analyze crafting shaped
+see slot
+keep slot
+keep minecraft:sand
+save
+traceraw opencomputers:case2
+	Not a code: Put all raw ingredients into the robot's inventory
+rescan
+craft opencomputers:case2
+exit
+```
+>Note: If you struggle reading errors, please use `ct <lua file>` and check `ct.txt` for errors.
+
+### oldfloppy
 You can try running `craftingmanager` and run these lines of code slowly:
 ```
 help
-    Not a code: You scroll down by pressing the `space` key until it finishes printing.
+    Not a code: Scroll down by pressing the `space` key until it finishes printing.
 load all
-    Not a code: You put a cobblestone stairs' recipe into the robot's crafting grid
+    Not a code: Put a cobblestone stairs' recipe into the robot's crafting grid
     Not a code: Empty slot 8
 select 8
 analyze shaped true
@@ -69,16 +89,6 @@ craft opencomputers:case2
 exit
 ```
 >Note: If you struggle reading errors, please use `crashtracker <lua file>` and check `crashtracker.txt` for errors.
-
-### newfloppy
-You can try running `craftmgr` and run these lines of code slowly:
-```
-help
-    Not a code: Press the space key to scroll down.
-trace opencomputers:case2
-exit
-```
->Note: If you struggle reading errors, please use `ct <lua file>` and check `ct.txt` for errors.
 
 ## Suggestions Welcome
 If you want to help me improve, let me know by opening an issue :)

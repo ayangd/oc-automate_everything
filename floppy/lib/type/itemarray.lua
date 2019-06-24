@@ -60,7 +60,7 @@ end
 function ItemArray:add(i)
 	for k, v in ipairs(self) do
 		if v:compareDamage(i) then
-			self[k] = self[k] + i
+			self[k].size = self[k].size + i.size
 			return self[k]
 		end
 	end
@@ -146,7 +146,7 @@ end
 
 function ItemArray:indexDamage(i)
 	for k, v in ipairs(self) do
-		if i.compareDamage(v) then
+		if i:compareDamage(v) then
 			return k
 		end
 	end

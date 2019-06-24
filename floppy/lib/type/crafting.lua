@@ -20,7 +20,10 @@ function Crafting.new(dimension, pattern, shaped, result)
 		error('Crafting needs dimension!')
 	end
 	if (getmetatable(result) ~= item) then
-		error('Can\'t craft anything else beside item!')
+		error('Can\'t put anything else into result beside item!')
+	end
+	if (result.size == 0) then
+		error('Can\'t make zero item!')
 	end
 	
 	local o = {}
@@ -41,6 +44,24 @@ function Crafting:itemsNeeded()
 		end
 	end
 	return itemsneeded
+end
+
+-- Metamethods
+function Crafting.__tostring(cr)
+	local buff = string.format('(%dx%d) ', cr.dimension.width, cr.dimension.height) .. (cr.shaped and 'shaped ' or 'shapeless ') .. tostring(cr.result) .. ':\n'
+	
+	if cr.shaped then
+		for c = 1, cr.dimension.width * cr.dimension.height do
+			buff = buff .. string.format('[%d] %s\n', c, cr.pattern[c])
+		end
+	else
+		for c = 1, #cr.pattern do
+			buff = buff .. string.format('[%d] %s\n', c, cr.pattern[c])
+		end
+	end
+	buff = buff:sub(1, #buff - 1)
+	
+	return buff
 end
 
 return Crafting

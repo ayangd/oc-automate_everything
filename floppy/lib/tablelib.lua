@@ -7,7 +7,7 @@ function tablelib.clone(t)
 	end
 
 	local newtable = {}
-	for k, v in pairs(t)
+	for k, v in pairs(t) do
 		newtable[k] = v
 	end
 	
@@ -21,7 +21,7 @@ function tablelib.cloneAll(t)
 	end
 
 	local newtable = {}
-	for k, v in pairs(t)
+	for k, v in pairs(t) do
 		if type(v) == 'table' then
 			newtable[k] = tablelib.cloneAll(v)
 		else
@@ -30,6 +30,17 @@ function tablelib.cloneAll(t)
 	end
 	
 	return newtable
+end
+
+function tablelib.concat(t, splitter)
+	local buf = ''
+	for k, v in ipairs(t) do
+		buf = buf .. tostring(v)
+		if next(t, k) ~= nil then
+			buf = buf .. splitter
+		end
+	end
+	return buf
 end
 
 return tablelib

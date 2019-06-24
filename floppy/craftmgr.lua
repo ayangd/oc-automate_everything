@@ -105,13 +105,17 @@ end
 commands.analyze = Command.new()
 commands.analyze.usage = 'analyze <crafting> <shaped/shapeless> [ignoreMetadata]'
 commands.analyze.func = function(processor, ...)
+	if processor == nil then
+		commands.help.func('analyze')
+		return
+	end
 
 	local processors = {}
 	processors.crafting = function(shape, ignoreMetadata)
 		if shape == nil then
 			commands.help.func('analyze')
 			return
-		elseif (shape ~= 'shaped') or (shape ~= 'shapeless') then
+		elseif (shape ~= 'shaped') and (shape ~= 'shapeless') then
 			commands.help.func('analyze')
 			return
 		end
@@ -130,34 +134,39 @@ commands.analyze.func = function(processor, ...)
 		local craftingArea = {1, 2, 3, 5, 6, 7, 9, 10, 11}
 		local scanPattern = {}
 		for k, v in ipairs(craftingArea) do
-			scanPattern[k] = ~inventory.scanSlot(v)
-			if ignoreMetadata == true then
-				scanPattern[k]:ignoreDamage()
-			elseif ignoreMetadata == nil then
-				if scanPattern[k].damage == 0 then
+			local slotScan = inventory.scanSlot(v)
+			if slotScan ~= nil then
+				scanPattern[k] = ~slotScan
+				if ignoreMetadata == true then
 					scanPattern[k]:ignoreDamage()
+				elseif ignoreMetadata == nil then
+					if scanPattern[k].damage == 0 then
+						scanPattern[k]:ignoreDamage()
+					end
 				end
 			end
 		end
 		
-		local pattern
+		local pattern = {}
+		local w, h, ox, oy
 		if shaped then
 			-- Shrink pattern
-			local w, h, ox, oy = 3, 3, 0, 0
+			w, h, ox, oy = 3, 3, 0, 0
 			local function r(n)
-				local d
+				local d = false
 				for i = (n-1)*3+1, n*3 do
-					d = d or (pattern[i] ~= nil)
+					d = d or (scanPattern[i] ~= nil)
 				end
 				return d
 			end
 			local function c(n)
-				local d
+				local d = false
 				for i = 0, 2 do
-					d = d or (pattern[(i*3)+n] ~= nil)
+					d = d or (scanPattern[(i*3)+n] ~= nil)
 				end
 				return d
 			end
+			
 			if c(1) and c(3) then
 				w, ox = 3, 0
 			elseif (c(1) and c(2)) or (c(2) and c(3)) then
@@ -167,6 +176,7 @@ commands.analyze.func = function(processor, ...)
 			else
 				w, ox = 0, 0
 			end
+			
 			if r(1) and r(3) then
 				h, oy = 3, 0
 			elseif (r(1) and r(2)) or (r(2) and r(3)) then
@@ -176,29 +186,31 @@ commands.analyze.func = function(processor, ...)
 			else
 				h, oy = 0, 0
 			end
+			
 			local function xy(x, y, w, h)
 				return x + y * w
 			end
 			for y = 1, h do
 				for x = 1, w do
-					pattern[xy(x-1, y-1, w, h)+1] = scanPattern[xy(x+ox-2, y+oy-2, 3, 3)+1]
+					pattern[xy(x-1, y-1, w, h)+1] = scanPattern[xy(x+ox-2, y+oy-2, 3, 3)+2]
 				end
 			end
 		else
+			w, h = 0, 0
 			for k, v in pairs(scanPattern) do
 				pattern[#pattern+1] = v
 			end
 		end
 		
 		-- Craft item
-		if not robot.craft(1) then
+		if not component.crafting.craft(1) then
 			print('Can\'t craft!')
 			return
 		end
 		local result = inventory.scanSlot(8)
 		
 		-- Put crafting in slot
-		slot = Crafting.new({width = w, height = h}, pattern, shaped, result)
+		slot = crafting.new({width = w, height = h}, pattern, shaped, result)
 		print('Put crafting in slot.')
 	end
 	
@@ -208,6 +220,8 @@ commands.analyze.func = function(processor, ...)
 	else
 		processors[string.lower(processor)](...)
 	end
+	
+	inventory.scanCraftingArea()
 end
 
 commands.show = Command.new()
@@ -225,16 +239,9 @@ commands.show.func = function(it)
 		sit = resproc.lookup(~item.new(it))
 	end
 	
-	processors = {}
+	local processors = {}
 	processors.crafting = function(ii)
-		local printbuffer = 'Crafting: ' .. '(' .. tostring(ii.dimension.width) .. 'x' .. tostring(ii.dimension.height) .. ') '
-		printbuffer = printbuffer .. ii.shaped and 'shaped' or 'shapeless' .. ' '
-		printbuffer = printbuffer .. tostring(ii.result) .. '\n'
-		for k, v in ipairs(ii.pattern) do
-			printbuffer = printbuffer .. '[' .. tostring(k) .. '] ' .. tostring(v) .. '\n'
-		end
-		
-		print(printbuffer)
+		print(ii)
 	end
 	
 	if sit == nil then
@@ -252,20 +259,24 @@ commands.look = commands.show
 commands.keep = Command.new()
 commands.keep.usage = 'keep <slot/item>'
 commands.keep.func = function(it)
-	if it == 'slot' then
+	if it == nil then
+		commands.help.func('keep')
+		return
+	elseif it == 'slot' then
 		if slot == nil then
-			print('Nothing to keep')
+			print('Nothing to keep.')
 			return
 		else
 			resproc.keep(slot)
 			if getmetatable(slot) == crafting then
+				changed = true
 				print('Crafting keep.')
 			end
 		end
 	else
 		resproc.keep(~item.new(it))
 		changed = true
-		print('Item keep')
+		print('Item keep to raw.')
 	end
 end
 
@@ -279,7 +290,12 @@ end
 commands.remove = Command.new()
 commands.remove.usage = 'remove <item>'
 commands.remove.func = function(it)
-	local processing = resproc.remove(it)
+	if it == nil then
+		commands.help.func('remove')
+		return
+	end
+
+	local processing = resproc.remove(item.new(it))
 	if getmetatable(processing) == crafting then
 		changed = true
 		print('Removed crafting.')
@@ -373,7 +389,11 @@ end
 commands.clear = Command.new()
 commands.clear.usage = 'clear'
 commands.clear.func = function(...)
-	print('TODO: clear processing area')
+	if inventory.clearCraftingArea() then
+		print('Cleared.')
+	else
+		print('Can\'t clear!')
+	end
 end
 
 while running do

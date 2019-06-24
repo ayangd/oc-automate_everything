@@ -35,7 +35,7 @@ end
 io.write(string.format('%d loaded.\n', rawCount))
 
 function rawdb.save()
-	rawdb.db:sort()
+	rawdb.sort()
 	local f = io.open(rawdbpath, 'w')
 	for k, v in ipairs(rawdb.db) do
 		f:write(tostring(v) .. '\n')
@@ -64,6 +64,11 @@ function rawdb.add(i)
 	if getmetatable(i) ~= item then
 		error('Can\'t add ' .. type(item) .. ' to rawdb.')
 	end
+	for k, v in ipairs(rawdb.db) do
+		if i:compareDamage(v) then
+			return i
+		end
+	end
 	table.insert(rawdb.db, i)
 	rawdb.sort()
 	return i
@@ -71,8 +76,8 @@ end
 
 function rawdb.remove(i)
 	for k, v in ipairs(rawdb.db) do
-		if compareDamage(v) then
-			return table.remove(k)
+		if i:compareDamage(v) then
+			return table.remove(rawdb.db, k)
 		end
 	end
 	return nil

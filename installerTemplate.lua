@@ -2,10 +2,12 @@ local fs = require('filesystem')
 local sh = require('shell')
 local cd = sh.getWorkingDirectory()
 
+local dict = {}
+
 local files = {
-	file = 'filecontent',
+	file = [==[filecontent]==],
 	folder = {
-		file = 'filecontent'
+		file = [==[filecontent]==]
 	}
 }
 
@@ -21,7 +23,19 @@ local function extractFiles(foldername, filetable)
 		else
 			print('extract "' .. filename .. '"')
 			local f = io.open(foldername .. '/' .. filename, 'w')
-			f:write(filecontent)
+			local filebuf = ''
+			i = 1
+			while i <= #filecontent do
+				if string.byte(filecontent:sub(i,i)) >= 0x80 then
+					local dictnum = (string.byte(filecontent:sub(i,i)) - 0x80) * 0x100 + string.byte(filecontent:sub(i+1,i+1)) - 0x80
+					filebuf = filebuf .. dict[dictnum + 1]
+					i = i + 1
+				else
+					filebuf = filebuf .. filecontent:sub(i,i)
+				end
+				i = i + 1
+			end
+			f:write(filebuf)
 			f:close()
 		end
 	end

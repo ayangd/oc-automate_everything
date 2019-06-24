@@ -30,7 +30,7 @@ extractFiles(cd, files)
 
 print('Done.')"""
 
-floppy = 'newfloppy'
+floppy = 'oldfloppy'
 
 def storeContent(filePath):
     fs = os.listdir(filePath)
@@ -56,5 +56,5 @@ def makeFileCompound(filecontentset):
     fc += '}'
     return fc
 
-with open('newinstaller.lua', 'w') as inst:
+with open('oldinstaller.lua', 'w') as inst:
     inst.write(header + makeFileCompound(storeContent(floppy)) + footer)

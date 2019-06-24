@@ -50,7 +50,7 @@ io.write (string.format('%d loaded.\n', craftingCount))
 function craftingdb.sortedCraftingPairs()
 	local a = {}
 	for n in pairs(craftingdb.db) do table.insert(a, n) end
-	table.sort(a, function(a, b) return a.name < b.name end)
+	table.sort(a, function(a, b) if a.name == nil or b.name == nil then print(a,b) end; return a.name < b.name end)
 	local i = 0
 	return function()
 		i = i + 1
@@ -65,23 +65,20 @@ end
 function craftingdb.save()
 	-- Format: 'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item shape' 'item recipe array|metadata'
 	local f = io.open(craftingdbpath, 'w')
-	f:write("#Format:\n#'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item recipe array|metadata' 'item shape'\n")
-	function sortedCraftingPairs(t, f)
-		
-	end
+	f:write("#Format:\n#'Item output name' 'item output quantity' 'sd=shaped/sl=shapeless' 'wh' 'item shape' 'item recipe array|metadata'\n")
 	for k, v in craftingdb.sortedCraftingPairs() do
-		local itemoutput = tostring(~v)
-		local itemoutputq = v.size
+		local itemoutput = tostring(~k)
+		local itemoutputq = tostring(k.size)
 		local itemshape = v and 'sd' or 'sl'
 		local dim = tostring(v.dimension.width) .. tostring(v.dimension.height)
 		local itemUsed = v:itemsNeeded()
 		local itemPattern = ''
 		for k, v in pairs(v.pattern) do
-			itemPattern = itemPattern + itemUsed:indexDamage(v) or '0'
+			itemPattern = itemPattern .. itemUsed:indexDamage(v) or '0'
 		end
 		local allitems = ''
 		for k, v in ipairs(itemUsed) do
-			allitems = allitems + tostring(v) + ' '
+			allitems = allitems .. tostring(~v) .. ' '
 		end
 		allitems = allitems:sub(1, #allitems)
 		f:write(itemoutput .. ' ' .. itemoutputq .. ' ' .. itemshape .. ' ' .. dim .. ' ' .. itemPattern .. ' ' .. allitems .. '\n')
@@ -100,8 +97,11 @@ function craftingdb.get(i)
 end
 
 function craftingdb.set(crafting)
-	craftingdb.db[crafting.result.name] = crafting
-	return craftingdb.db[crafting.result.name]
+	if crafting == nil then
+		error('Can\'t add nil to craftingdb!')
+	end
+	craftingdb.db[crafting.result] = crafting
+	return craftingdb.db[crafting.result]
 end
 
 function craftingdb.remove(i)

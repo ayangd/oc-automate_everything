@@ -44,14 +44,17 @@ function Inventory.scan()
 		Inventory.updateSlot(i)
 	end
 end
-io.write('Scanning inventory... ')
-Inventory.scan()
-io.write('Done.\n')
+io.write('Scanning inventory... 00')
+for i = 1, Inventory.size do
+	Inventory.updateSlot(i)
+	io.write('\8\8' .. string.format('%02d', i))
+end
+io.write(' Done.\n')
 
 function Inventory.scanCraftingArea()
 	local craftingArea = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
-	for i = 1, #craftingArea do
-		Inventory.updateSlot(i)
+	for k, v in ipairs(craftingArea) do
+		Inventory.updateSlot(v)
 	end
 end
 
@@ -65,12 +68,10 @@ function Inventory.isInExcludedSlot(slot, excludedSlots)
 end
 
 function Inventory.isInCraftingArea(slot)
-	return Inventory.isInExcludedSlot({1, 2, 3, 5, 6, 7, 8, 9, 10, 11})
+	return Inventory.isInExcludedSlot(slot, {1, 2, 3, 5, 6, 7, 8, 9, 10, 11})
 end
 
 function Inventory.transfer(slotDest, amount)
-	local slotSize = Inventory.slots[Inventory.select()].size
-	local amount = (amount < slotSize) and slotSize or amount
 	local res = robot.transferTo(slotDest, amount)
 	Inventory.updateSlot(Inventory.select())
 	Inventory.updateSlot(slotDest)
@@ -109,7 +110,7 @@ function Inventory.pull(i, ignoreCraftingArea)
 	for k, v in ipairs(itemTypes) do
 		if Inventory.count(v) >= amount then
 			for kf, vf in ipairs(Inventory.find(v)) do
-				 if not (ignoreCraftingArea and Inventory.isInCraftingArea(vf)) then
+				 if not (ignoreCraftingArea or Inventory.isInCraftingArea(vf)) then
 					if amount > 0 then
 						Inventory.select(vf)
 						local pulled = Inventory.slots[vf].size
@@ -127,7 +128,7 @@ function Inventory.pull(i, ignoreCraftingArea)
 		end
 	end
 	Inventory.select(destSlot)
-	return false
+	return true
 end
 
 function Inventory.throw(amount, ignoreCraftingArea, excludedSlots)
@@ -139,11 +140,10 @@ function Inventory.throw(amount, ignoreCraftingArea, excludedSlots)
 	
 	-- Fill items first
 	for k, v in pairs(Inventory.find(Inventory.slots[srcSlot])) do
-		if not ((not ignoreCraftingArea and Inventory.isInCraftingArea(v))) and not Inventory.isInExcludedSlot(v, excludedSlots) then
+		if not (ignoreCraftingArea or Inventory.isInCraftingArea(v)) and not Inventory.isInExcludedSlot(v, excludedSlots) then
 			local curSlot = Inventory.slots[v]
 			if curSlot.size < curSlot.maxSize then
 				local moveSize = math.min(curSlot.maxSize - curSlot.size, amount)
-				print('fill')
 				if not Inventory.transfer(v, moveSize) then
 					return false
 				end
@@ -157,9 +157,8 @@ function Inventory.throw(amount, ignoreCraftingArea, excludedSlots)
 	
 	-- Lastly, fill empty slots
 	for curSlot = 1, Inventory.size do
-		if not (ignoreCraftingArea and Inventory.isInCraftingArea(v)) or not Inventory.isInExcludedSlot(v, excludedSlots) then
+		if not (ignoreCraftingArea or Inventory.isInCraftingArea(curSlot)) and not Inventory.isInExcludedSlot(curSlot, excludedSlots) then
 			if Inventory.slots[curSlot] == nil then
-				print('add')
 				if not Inventory.transfer(curSlot, amount) then
 					return false
 				end
@@ -168,14 +167,14 @@ function Inventory.throw(amount, ignoreCraftingArea, excludedSlots)
 		end
 	end
 	
-	return false
+	return true
 end
 
 function Inventory.clearCraftingArea()
 	for k, v in ipairs({1, 2, 3, 5, 6, 7, 8, 9, 10, 11}) do
 		if Inventory.slots[v] ~= nil then
 			Inventory.select(v)
-			if Inventory.throw(Inventory.slots[v].size, false) == false then
+			if not Inventory.throw(Inventory.slots[v].size, false) then
 				return false
 			end
 		end
