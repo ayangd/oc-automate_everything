@@ -93,3 +93,5 @@ exit
 
 ## Suggestions Welcome
 If you want to help me improve, let me know by opening an issue :)
+
+But, if you want to give quick suggestion, come join the [Discord Server](https://discord.gg/YxHGxVs).
