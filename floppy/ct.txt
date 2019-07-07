@@ -1,15 +1,25 @@
-/mnt/cf4/lib/rawdb.lua:75: bad argument #1 to 'remove' (table expected)
+/mnt/cf4/ct.lua:5: bad argument #1 (string expected, got nil)
 stack traceback:
 	machine:796: in function <machine:791>
-	[C]: in function 'table.remove'
-	/mnt/cf4/lib/rawdb.lua:75: in function </mnt/cf4/lib/rawdb.lua:72>
-	(...tail calls...)
-	/mnt/cf4/craftmgr.lua:297: in field 'func'
-	/mnt/cf4/craftmgr.lua:403: in main chunk
+	[C]: in function 'error'
+	machine:69: in global 'checkArg'
+	/lib/shell.lua:77: in field 'resolve'
+	/mnt/cf4/ct.lua:5: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
 	/mnt/cf4/ct.lua:16: in main chunk
+	[C]: in function 'pcall'
+	machine:742: in global 'pcall'
+	...
+	/lib/core/lua_shell.lua:14: in metamethod '__index'
+	stdin:1: in main chunk
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/lib/core/lua_shell.lua:110: in main chunk
+	[C]: in function 'pcall'
+	machine:742: in global 'pcall'
+	/bin/lua.lua:23: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

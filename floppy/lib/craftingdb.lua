@@ -1,6 +1,8 @@
 local item = require('lib.type.item')
 local itemarray = require('lib.type.itemarray')
 local crafting = require('lib.type.crafting')
+local ingredient = require('lib.type.ingredient')
+local ingredientarray = require('lib.type.ingredientarray')
 
 local stringlib = require('lib.stringlib')
 
@@ -26,12 +28,12 @@ function craftingdb.load()
 			shaped = (craftingParams[3] == 'sd')
 			dimension.width, dimension.height = tonumber(craftingParams[4]:sub(1,1)), tonumber(craftingParams[4]:sub(2,2))
 			local pat = craftingParams[5]
-			local items = itemarray.new()
+			local ingredients = ingredientarray.new()
 			for i = 6, #craftingParams do
-				items:add(~item.new(craftingParams[i]))
+				ingredients:add(ingredient.parse(craftingParams[i]))
 			end
 			for npat = 1, #pat do
-				pattern[npat] = items[tonumber(pat:sub(npat, npat))]
+				pattern[npat] = ingredients[tonumber(pat:sub(npat, npat))]
 			end
 			craftingdb.db[result] = crafting.new(dimension, pattern, shaped, result)
 		end
