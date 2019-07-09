@@ -51,6 +51,8 @@ Change directory to the empty floppy disk, then follow the [Quick Installation](
 ## What can I try?
 
 ### floppy
+
+#### craftmgr
 You can try running `craftmgr` and run these lines of code slowly:
 ```
 help
@@ -68,6 +70,12 @@ rescan
 craft opencomputers:case2
 exit
 ```
+
+#### filter
+You can try running `filter`. Basically, it reads crafttweaker.log and spits out crafting.db, oredict.db, and failure.txt.
+This is for processing crafttweaker.log, spat from the CraftTweaker mod (recipeStealer.zs is fed in).
+This is the beast of the project. I'm so happy I made this thing.
+
 >Note: If you struggle reading errors, please use `ct <lua file>` and check `ct.txt` for errors.
 
 ### oldfloppy

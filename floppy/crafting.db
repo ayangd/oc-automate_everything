@@ -1,0 +1,677 @@
+minecraft:map 1 sd 33 111121111 minecraft:paper minecraft:filled_map|*
+minecraft:wool|4 1 sl 00 12 ore:dyeYellow minecraft:wool
+minecraft:stained_hardened_clay|4 8 sd 33 111121111 minecraft:hardened_clay ore:dyeYellow
+minecraft:stained_glass_pane|4 16 sd 32 111111 ore:blockGlassYellow
+minecraft:stained_glass|4 8 sd 33 111121111 ore:blockGlassColorless ore:dyeYellow
+minecraft:dye|11 2 sl 00 1 minecraft:double_plant
+minecraft:dye|11 1 sl 00 1 minecraft:yellow_flower
+minecraft:concrete_powder|4 8 sl 00 122223333 ore:dyeYellow minecraft:sand minecraft:gravel
+minecraft:carpet|4 3 sd 21 11 minecraft:wool|4
+minecraft:bed|4 1 sl 00 12 minecraft:bed ore:dyeYellow
+minecraft:bed|4 1 sd 32 111222 minecraft:wool|4 ore:plankWood
+minecraft:banner|11 1 sd 33 111111020 minecraft:wool|4 ore:stickWood
+minecraft:writable_book 1 sl 00 123 minecraft:book ore:dyeBlack ore:feather
+minecraft:wooden_sword 1 sd 13 112 ore:plankWood ore:stickWood
+minecraft:wooden_shovel 1 sd 13 122 ore:plankWood ore:stickWood
+minecraft:wooden_pressure_plate 1 sd 21 11 ore:plankWood
+minecraft:wooden_pickaxe 1 sd 33 111020020 ore:plankWood ore:stickWood
+minecraft:wooden_hoe 1 sd 23 110202 ore:plankWood ore:stickWood
+minecraft:wooden_door 3 sd 23 111111 minecraft:planks
+minecraft:wooden_button 1 sd 11 1 ore:plankWood
+minecraft:wooden_axe 1 sd 23 111202 ore:plankWood ore:stickWood
+minecraft:stained_hardened_clay 8 sd 33 111121111 minecraft:hardened_clay ore:dyeWhite
+minecraft:stained_glass_pane 16 sd 32 111111 ore:blockGlassWhite
+minecraft:stained_glass 8 sd 33 111121111 ore:blockGlassColorless ore:dyeWhite
+minecraft:concrete_powder 8 sl 00 122223333 ore:dyeWhite minecraft:sand minecraft:gravel
+minecraft:carpet 3 sd 21 11 minecraft:wool
+minecraft:bed 1 sd 32 111222 minecraft:wool ore:plankWood
+minecraft:banner|15 1 sd 33 111111020 minecraft:wool ore:stickWood
+minecraft:wheat 9 sd 11 1 minecraft:hay_block
+minecraft:tripwire_hook 2 sd 13 123 ore:ingotIron ore:stickWood ore:plankWood
+minecraft:trapped_chest 1 sl 00 12 ore:chestWood minecraft:tripwire_hook
+minecraft:trapdoor 2 sd 32 111111 ore:plankWood
+minecraft:torch 4 sd 12 12 minecraft:coal,minecraft:coal|1 ore:stickWood
+minecraft:tnt_minecart 1 sd 12 12 minecraft:tnt minecraft:minecart
+minecraft:tnt 1 sd 33 121212121 ore:gunpowder minecraft:sand,minecraft:sand|1
+minecraft:sugar 1 sd 11 1 ore:sugarcane
+minecraft:wool 1 sd 22 1111 ore:string
+minecraft:stonebrick 4 sd 22 1111 minecraft:stone
+minecraft:stone_sword 1 sd 13 112 ore:cobblestone ore:stickWood
+minecraft:stone_stairs 4 sd 33 100110111 minecraft:cobblestone
+minecraft:stone_slab 6 sd 31 111 minecraft:stone
+minecraft:stone_shovel 1 sd 13 122 ore:cobblestone ore:stickWood
+minecraft:stone_pressure_plate 1 sd 21 11 ore:stone
+minecraft:stone_pickaxe 1 sd 33 111020020 ore:cobblestone ore:stickWood
+minecraft:stone_hoe 1 sd 23 110202 ore:cobblestone ore:stickWood
+minecraft:stone_button 1 sd 11 1 ore:stone
+minecraft:stone_brick_stairs 4 sd 33 100110111 minecraft:stonebrick,minecraft:stonebrick|1,minecraft:stonebrick|2,minecraft:stonebrick|3
+minecraft:stone_slab|5 6 sd 31 111 minecraft:stonebrick,minecraft:stonebrick|1,minecraft:stonebrick|2,minecraft:stonebrick|3
+minecraft:stone_axe 1 sd 23 111202 ore:cobblestone ore:stickWood
+minecraft:sticky_piston 1 sd 12 12 ore:slimeball minecraft:piston
+minecraft:stick 4 sd 12 11 ore:plankWood
+minecraft:wooden_slab|1 6 sd 31 111 minecraft:planks|1
+minecraft:spruce_stairs 4 sd 33 100110111 minecraft:planks|1
+minecraft:planks|1 4 sd 11 1 minecraft:log|1
+minecraft:spruce_fence_gate 1 sd 32 121121 minecraft:stick minecraft:planks|1
+minecraft:spruce_fence 3 sd 32 121121 minecraft:planks|1 minecraft:stick
+minecraft:spruce_door 3 sd 23 111111 minecraft:planks|1
+minecraft:spruce_boat 1 sd 32 101111 minecraft:planks|1
+minecraft:spectral_arrow 2 sd 33 010121010 ore:dustGlowstone minecraft:arrow
+minecraft:speckled_melon 1 sd 33 111121111 minecraft:gold_nugget minecraft:melon
+minecraft:snow_layer 6 sd 31 111 minecraft:snow
+minecraft:snow 1 sd 22 1111 minecraft:snowball
+minecraft:sandstone|2 4 sd 22 1111 minecraft:sandstone
+minecraft:red_sandstone|2 4 sd 22 1111 minecraft:red_sandstone
+minecraft:slime_ball 9 sd 11 1 minecraft:slime
+minecraft:slime 1 sd 33 111111111 ore:slimeball
+minecraft:sign 3 sd 33 111111020 ore:plankWood ore:stickWood
+minecraft:shield 1 sd 33 121111010 ore:plankWood ore:ingotIron
+minecraft:shears 1 sd 22 0110 ore:ingotIron
+minecraft:sea_lantern 1 sd 33 121222121 ore:gemPrismarine ore:dustPrismarine
+minecraft:sandstone_stairs 4 sd 33 100110111 minecraft:sandstone,minecraft:sandstone|1,minecraft:sandstone|2
+minecraft:stone_slab|1 6 sd 31 111 minecraft:sandstone,minecraft:sandstone|1,minecraft:sandstone|2
+minecraft:sandstone 1 sd 22 1111 minecraft:sand
+minecraft:repeater 1 sd 32 121333 minecraft:redstone_torch ore:dustRedstone ore:stone
+minecraft:redstone_torch 1 sd 12 12 ore:dustRedstone ore:stickWood
+minecraft:redstone_lamp 1 sd 33 010121010 ore:dustRedstone ore:glowstone
+minecraft:redstone_block 1 sd 33 111111111 ore:dustRedstone
+minecraft:redstone 9 sd 11 1 minecraft:redstone_block
+minecraft:wool|14 1 sl 00 12 ore:dyeRed minecraft:wool
+minecraft:stained_hardened_clay|14 8 sd 33 111121111 minecraft:hardened_clay ore:dyeRed
+minecraft:stained_glass_pane|14 16 sd 32 111111 ore:blockGlassRed
+minecraft:stained_glass|14 8 sd 33 111121111 ore:blockGlassColorless ore:dyeRed
+minecraft:red_sandstone_stairs 4 sd 33 100110111 minecraft:red_sandstone,minecraft:red_sandstone|1,minecraft:red_sandstone|2
+minecraft:stone_slab2 6 sd 31 111 minecraft:red_sandstone,minecraft:red_sandstone|1,minecraft:red_sandstone|2
+minecraft:red_sandstone 1 sd 22 1111 minecraft:sand|1
+minecraft:red_nether_brick 1 sd 22 1221 minecraft:netherbrick minecraft:nether_wart
+minecraft:dye|1 1 sl 00 1 minecraft:red_flower|4
+minecraft:dye|1 2 sl 00 1 minecraft:double_plant|4
+minecraft:dye|1 1 sl 00 1 minecraft:red_flower
+minecraft:dye|1 1 sl 00 1 minecraft:beetroot
+minecraft:concrete_powder|14 8 sl 00 122223333 ore:dyeRed minecraft:sand minecraft:gravel
+minecraft:carpet|14 3 sd 21 11 minecraft:wool|14
+minecraft:bed|14 1 sl 00 12 minecraft:bed ore:dyeRed
+minecraft:bed|14 1 sd 32 111222 minecraft:wool|14 ore:plankWood
+minecraft:banner|1 1 sd 33 111111020 minecraft:wool|14 ore:stickWood
+minecraft:rail 16 sd 33 101121101 ore:ingotIron ore:stickWood
+minecraft:rabbit_stew 1 sd 33 010234050 minecraft:cooked_rabbit minecraft:carrot minecraft:baked_potato minecraft:red_mushroom minecraft:bowl
+minecraft:rabbit_stew 1 sd 33 010234050 minecraft:cooked_rabbit minecraft:carrot minecraft:baked_potato minecraft:brown_mushroom minecraft:bowl
+minecraft:quartz_stairs 4 sd 33 100110111 minecraft:quartz_block,minecraft:quartz_block|1,minecraft:quartz_block|2
+minecraft:stone_slab|7 6 sd 31 111 minecraft:quartz_block,minecraft:quartz_block|1,minecraft:quartz_block|2
+minecraft:quartz_block 1 sd 22 1111 minecraft:quartz
+minecraft:purpur_stairs 4 sd 33 100110111 minecraft:purpur_block
+minecraft:purpur_slab 6 sd 31 111 minecraft:purpur_block
+minecraft:purpur_pillar 1 sd 12 11 minecraft:purpur_slab
+minecraft:purpur_block 4 sd 22 1111 minecraft:chorus_fruit_popped
+minecraft:wool|10 1 sl 00 12 ore:dyePurple minecraft:wool
+minecraft:stained_hardened_clay|10 8 sd 33 111121111 minecraft:hardened_clay ore:dyePurple
+minecraft:stained_glass_pane|10 16 sd 32 111111 ore:blockGlassPurple
+minecraft:stained_glass|10 8 sd 33 111121111 ore:blockGlassColorless ore:dyePurple
+minecraft:purple_shulker_box 1 sd 13 121 minecraft:shulker_shell ore:chestWood
+minecraft:dye|5 2 sl 00 12 ore:dyeBlue ore:dyeRed
+minecraft:concrete_powder|10 8 sl 00 122223333 ore:dyePurple minecraft:sand minecraft:gravel
+minecraft:carpet|10 3 sd 21 11 minecraft:wool|10
+minecraft:bed|10 1 sl 00 12 minecraft:bed ore:dyePurple
+minecraft:bed|10 1 sd 32 111222 minecraft:wool|10 ore:plankWood
+minecraft:banner|5 1 sd 33 111111020 minecraft:wool|10 ore:stickWood
+minecraft:pumpkin_seeds 4 sd 11 1 minecraft:pumpkin
+minecraft:pumpkin_pie 1 sl 00 123 minecraft:pumpkin minecraft:sugar ore:egg
+minecraft:prismarine|1 1 sd 33 111111111 ore:gemPrismarine
+minecraft:prismarine 1 sd 22 1111 ore:gemPrismarine
+minecraft:stone|2 4 sd 22 1111 ore:stoneGranite
+minecraft:stone|4 4 sd 22 1111 ore:stoneDiorite
+minecraft:stone|6 4 sd 22 1111 ore:stoneAndesite
+minecraft:piston 1 sd 33 111232242 ore:plankWood ore:cobblestone ore:ingotIron ore:dustRedstone
+minecraft:wool|6 1 sl 00 12 ore:dyePink minecraft:wool
+minecraft:stained_hardened_clay|6 8 sd 33 111121111 minecraft:hardened_clay ore:dyePink
+minecraft:stained_glass_pane|6 16 sd 32 111111 ore:blockGlassPink
+minecraft:stained_glass|6 8 sd 33 111121111 ore:blockGlassColorless ore:dyePink
+minecraft:dye|9 2 sl 00 12 ore:dyeRed ore:dyeWhite
+minecraft:dye|9 1 sl 00 1 minecraft:red_flower|7
+minecraft:dye|9 2 sl 00 1 minecraft:double_plant|5
+minecraft:concrete_powder|6 8 sl 00 122223333 ore:dyePink minecraft:sand minecraft:gravel
+minecraft:carpet|6 3 sd 21 11 minecraft:wool|6
+minecraft:bed|6 1 sl 00 12 minecraft:bed ore:dyePink
+minecraft:bed|6 1 sd 32 111222 minecraft:wool|6 ore:plankWood
+minecraft:banner|9 1 sd 33 111111020 minecraft:wool|6 ore:stickWood
+minecraft:quartz_block|2 2 sd 12 11 minecraft:quartz_block
+minecraft:paper 3 sd 31 111 ore:sugarcane
+minecraft:painting 1 sd 33 111121111 ore:stickWood minecraft:wool,minecraft:wool|1,minecraft:wool|2,minecraft:wool|3,minecraft:wool|4,minecraft:wool|5,minecraft:wool|6,minecraft:wool|7,minecraft:wool|8,minecraft:wool|9,minecraft:wool|10,minecraft:wool|11,minecraft:wool|12,minecraft:wool|13,minecraft:wool|14,minecraft:wool|15
+minecraft:wool|1 1 sl 00 12 ore:dyeOrange minecraft:wool
+minecraft:stained_hardened_clay|1 8 sd 33 111121111 minecraft:hardened_clay ore:dyeOrange
+minecraft:stained_glass_pane|1 16 sd 32 111111 ore:blockGlassOrange
+minecraft:stained_glass|1 8 sd 33 111121111 ore:blockGlassColorless ore:dyeOrange
+minecraft:dye|14 2 sl 00 12 ore:dyeRed ore:dyeYellow
+minecraft:dye|14 1 sl 00 1 minecraft:red_flower|5
+minecraft:concrete_powder|1 8 sl 00 122223333 ore:dyeOrange minecraft:sand minecraft:gravel
+minecraft:carpet|1 3 sd 21 11 minecraft:wool|1
+minecraft:bed|1 1 sl 00 12 minecraft:bed ore:dyeOrange
+minecraft:bed|1 1 sd 32 111222 minecraft:wool|1 ore:plankWood
+minecraft:banner|14 1 sd 33 111111020 minecraft:wool|1 ore:stickWood
+minecraft:observer 1 sd 33 111223111 ore:cobblestone ore:dustRedstone minecraft:quartz
+minecraft:wooden_slab 6 sd 31 111 minecraft:planks
+minecraft:oak_stairs 4 sd 33 100110111 minecraft:planks
+minecraft:planks 4 sd 11 1 minecraft:log
+minecraft:noteblock 1 sd 33 111121111 ore:plankWood ore:dustRedstone
+minecraft:nether_wart_block 1 sd 33 111111111 minecraft:nether_wart
+minecraft:nether_brick_stairs 4 sd 33 100110111 minecraft:nether_brick
+minecraft:stone_slab|6 6 sd 31 111 minecraft:nether_brick
+minecraft:nether_brick_fence 6 sd 32 111111 minecraft:nether_brick
+minecraft:nether_brick 1 sd 22 1111 minecraft:netherbrick
+minecraft:mushroom_stew 1 sl 00 123 minecraft:brown_mushroom minecraft:red_mushroom minecraft:bowl
+minecraft:stonebrick|1 1 sl 00 12 minecraft:stonebrick minecraft:vine
+minecraft:cobblestone_wall|1 6 sd 32 111111 minecraft:mossy_cobblestone
+minecraft:mossy_cobblestone 1 sl 00 12 ore:cobblestone minecraft:vine
+minecraft:minecart 1 sd 32 101111 ore:ingotIron
+minecraft:melon_seeds 1 sd 11 1 minecraft:melon
+minecraft:melon_block 1 sd 33 111111111 minecraft:melon
+minecraft:map 1 sd 33 111121111 ore:paper minecraft:compass
+minecraft:magma_cream 1 sl 00 12 minecraft:blaze_powder ore:slimeball
+minecraft:magma 1 sd 22 1111 minecraft:magma_cream
+minecraft:wool|2 1 sl 00 12 ore:dyeMagenta minecraft:wool
+minecraft:stained_hardened_clay|2 8 sd 33 111121111 minecraft:hardened_clay ore:dyeMagenta
+minecraft:stained_glass_pane|2 16 sd 32 111111 ore:blockGlassMagenta
+minecraft:stained_glass|2 8 sd 33 111121111 ore:blockGlassColorless ore:dyeMagenta
+minecraft:dye|13 2 sl 00 12 ore:dyePurple ore:dyePink
+minecraft:dye|13 2 sl 00 1 minecraft:double_plant|1
+minecraft:dye|13 3 sl 00 123 ore:dyeBlue ore:dyeRed ore:dyePink
+minecraft:dye|13 4 sl 00 1223 ore:dyeBlue ore:dyeRed ore:dyeWhite
+minecraft:dye|13 1 sl 00 1 minecraft:red_flower|2
+minecraft:concrete_powder|2 8 sl 00 122223333 ore:dyeMagenta minecraft:sand minecraft:gravel
+minecraft:carpet|2 3 sd 21 11 minecraft:wool|2
+minecraft:bed|2 1 sl 00 12 minecraft:bed ore:dyeMagenta
+minecraft:bed|2 1 sd 32 111222 minecraft:wool|2 ore:plankWood
+minecraft:banner|13 1 sd 33 111111020 minecraft:wool|2 ore:stickWood
+minecraft:lit_pumpkin 1 sd 12 12 minecraft:pumpkin minecraft:torch
+minecraft:wool|5 1 sl 00 12 ore:dyeLime minecraft:wool
+minecraft:stained_hardened_clay|5 8 sd 33 111121111 minecraft:hardened_clay ore:dyeLime
+minecraft:stained_glass_pane|5 16 sd 32 111111 ore:blockGlassLime
+minecraft:stained_glass|5 8 sd 33 111121111 ore:blockGlassColorless ore:dyeLime
+minecraft:dye|10 2 sl 00 12 ore:dyeGreen ore:dyeWhite
+minecraft:concrete_powder|5 8 sl 00 122223333 ore:dyeLime minecraft:sand minecraft:gravel
+minecraft:carpet|5 3 sd 21 11 minecraft:wool|5
+minecraft:bed|5 1 sl 00 12 minecraft:bed ore:dyeLime
+minecraft:bed|5 1 sd 32 111222 minecraft:wool|5 ore:plankWood
+minecraft:banner|10 1 sd 33 111111020 minecraft:wool|5 ore:stickWood
+minecraft:light_weighted_pressure_plate 1 sd 21 11 ore:ingotGold
+minecraft:wool|8 1 sl 00 12 ore:dyeLightGray minecraft:wool
+minecraft:stained_hardened_clay|8 8 sd 33 111121111 minecraft:hardened_clay ore:dyeLightGray
+minecraft:stained_glass_pane|8 16 sd 32 111111 ore:blockGlassLightGray
+minecraft:stained_glass|8 8 sd 33 111121111 ore:blockGlassColorless ore:dyeLightGray
+minecraft:dye|7 1 sl 00 1 minecraft:red_flower|6
+minecraft:dye|7 1 sl 00 1 minecraft:red_flower|8
+minecraft:dye|7 3 sl 00 122 ore:dyeBlack ore:dyeWhite
+minecraft:dye|7 2 sl 00 12 ore:dyeGray ore:dyeWhite
+minecraft:dye|7 1 sl 00 1 minecraft:red_flower|3
+minecraft:concrete_powder|8 8 sl 00 122223333 ore:dyeLightGray minecraft:sand minecraft:gravel
+minecraft:carpet|8 3 sd 21 11 minecraft:wool|8
+minecraft:bed|8 1 sl 00 12 minecraft:bed ore:dyeLightGray
+minecraft:bed|8 1 sd 32 111222 minecraft:wool|8 ore:plankWood
+minecraft:banner|7 1 sd 33 111111020 minecraft:wool|8 ore:stickWood
+minecraft:wool|3 1 sl 00 12 ore:dyeLightBlue minecraft:wool
+minecraft:stained_hardened_clay|3 8 sd 33 111121111 minecraft:hardened_clay ore:dyeLightBlue
+minecraft:stained_glass_pane|3 16 sd 32 111111 ore:blockGlassLightBlue
+minecraft:stained_glass|3 8 sd 33 111121111 ore:blockGlassColorless ore:dyeLightBlue
+minecraft:dye|12 2 sl 00 12 ore:dyeBlue ore:dyeWhite
+minecraft:dye|12 1 sl 00 1 minecraft:red_flower|1
+minecraft:concrete_powder|3 8 sl 00 122223333 ore:dyeLightBlue minecraft:sand minecraft:gravel
+minecraft:carpet|3 3 sd 21 11 minecraft:wool|3
+minecraft:bed|3 1 sl 00 12 minecraft:bed ore:dyeLightBlue
+minecraft:bed|3 1 sd 32 111222 minecraft:wool|3 ore:plankWood
+minecraft:banner|12 1 sd 33 111111020 minecraft:wool|3 ore:stickWood
+minecraft:lever 1 sd 12 12 ore:stickWood ore:cobblestone
+minecraft:leather_leggings 1 sd 33 111101101 ore:leather
+minecraft:leather_helmet 1 sd 32 111101 ore:leather
+minecraft:leather_chestplate 1 sd 33 101111111 ore:leather
+minecraft:leather_boots 1 sd 32 101101 ore:leather
+minecraft:leather 1 sd 22 1111 minecraft:rabbit_hide
+minecraft:lead 2 sd 33 110120001 ore:string ore:slimeball
+minecraft:dye|4 9 sd 11 1 minecraft:lapis_block
+minecraft:lapis_block 1 sd 33 111111111 minecraft:dye|4
+minecraft:ladder 3 sd 33 101111101 ore:stickWood
+minecraft:wooden_slab|3 6 sd 31 111 minecraft:planks|3
+minecraft:jungle_stairs 4 sd 33 100110111 minecraft:planks|3
+minecraft:planks|3 4 sd 11 1 minecraft:log|3
+minecraft:jungle_fence_gate 1 sd 32 121121 minecraft:stick minecraft:planks|3
+minecraft:jungle_fence 3 sd 32 121121 minecraft:planks|3 minecraft:stick
+minecraft:jungle_door 3 sd 23 111111 minecraft:planks|3
+minecraft:jungle_boat 1 sd 32 101111 minecraft:planks|3
+minecraft:jukebox 1 sd 33 111121111 ore:plankWood ore:gemDiamond
+minecraft:item_frame 1 sd 33 111121111 ore:stickWood ore:leather
+minecraft:iron_trapdoor 1 sd 22 1111 ore:ingotIron
+minecraft:iron_sword 1 sd 13 112 ore:ingotIron ore:stickWood
+minecraft:iron_shovel 1 sd 13 122 ore:ingotIron ore:stickWood
+minecraft:iron_pickaxe 1 sd 33 111020020 ore:ingotIron ore:stickWood
+minecraft:iron_nugget 9 sd 11 1 ore:ingotIron
+minecraft:iron_leggings 1 sd 33 111101101 ore:ingotIron
+minecraft:iron_ingot 1 sd 33 111111111 minecraft:iron_nugget
+minecraft:iron_ingot 9 sd 11 1 minecraft:iron_block
+minecraft:iron_hoe 1 sd 23 110202 ore:ingotIron ore:stickWood
+minecraft:iron_helmet 1 sd 32 111101 ore:ingotIron
+minecraft:iron_door 3 sd 23 111111 ore:ingotIron
+minecraft:iron_chestplate 1 sd 33 101111111 ore:ingotIron
+minecraft:iron_boots 1 sd 32 101101 ore:ingotIron
+minecraft:iron_block 1 sd 33 111111111 ore:ingotIron
+minecraft:iron_bars 16 sd 32 111111 ore:ingotIron
+minecraft:iron_axe 1 sd 23 111202 ore:ingotIron ore:stickWood
+minecraft:hopper_minecart 1 sd 12 12 minecraft:hopper minecraft:minecart
+minecraft:hopper 1 sd 33 101121010 ore:ingotIron ore:chestWood
+minecraft:heavy_weighted_pressure_plate 1 sd 21 11 ore:ingotIron
+minecraft:hay_block 1 sd 33 111111111 minecraft:wheat
+minecraft:wool|13 1 sl 00 12 ore:dyeGreen minecraft:wool
+minecraft:stained_hardened_clay|13 8 sd 33 111121111 minecraft:hardened_clay ore:dyeGreen
+minecraft:stained_glass_pane|13 16 sd 32 111111 ore:blockGlassGreen
+minecraft:stained_glass|13 8 sd 33 111121111 ore:blockGlassColorless ore:dyeGreen
+minecraft:concrete_powder|13 8 sl 00 122223333 ore:dyeGreen minecraft:sand minecraft:gravel
+minecraft:carpet|13 3 sd 21 11 minecraft:wool|13
+minecraft:bed|13 1 sl 00 12 minecraft:bed ore:dyeGreen
+minecraft:bed|13 1 sd 32 111222 minecraft:wool|13 ore:plankWood
+minecraft:banner|2 1 sd 33 111111020 minecraft:wool|13 ore:stickWood
+minecraft:wool|7 1 sl 00 12 ore:dyeGray minecraft:wool
+minecraft:stained_hardened_clay|7 8 sd 33 111121111 minecraft:hardened_clay ore:dyeGray
+minecraft:stained_glass_pane|7 16 sd 32 111111 ore:blockGlassGray
+minecraft:stained_glass|7 8 sd 33 111121111 ore:blockGlassColorless ore:dyeGray
+minecraft:dye|8 2 sl 00 12 ore:dyeBlack ore:dyeWhite
+minecraft:concrete_powder|7 8 sl 00 122223333 ore:dyeGray minecraft:sand minecraft:gravel
+minecraft:carpet|7 3 sd 21 11 minecraft:wool|7
+minecraft:bed|7 1 sl 00 12 minecraft:bed ore:dyeGray
+minecraft:bed|7 1 sd 32 111222 minecraft:wool|7 ore:plankWood
+minecraft:banner|8 1 sd 33 111111020 minecraft:wool|7 ore:stickWood
+minecraft:stone|1 1 sl 00 12 ore:stoneDiorite minecraft:quartz
+minecraft:golden_sword 1 sd 13 112 ore:ingotGold ore:stickWood
+minecraft:golden_shovel 1 sd 13 122 ore:ingotGold ore:stickWood
+minecraft:golden_rail 6 sd 33 101121131 ore:ingotGold ore:stickWood ore:dustRedstone
+minecraft:golden_pickaxe 1 sd 33 111020020 ore:ingotGold ore:stickWood
+minecraft:golden_leggings 1 sd 33 111101101 ore:ingotGold
+minecraft:golden_hoe 1 sd 23 110202 ore:ingotGold ore:stickWood
+minecraft:golden_helmet 1 sd 32 111101 ore:ingotGold
+minecraft:golden_chestplate 1 sd 33 101111111 ore:ingotGold
+minecraft:golden_carrot 1 sd 33 111121111 minecraft:gold_nugget minecraft:carrot
+minecraft:golden_boots 1 sd 32 101101 ore:ingotGold
+minecraft:golden_axe 1 sd 23 111202 ore:ingotGold ore:stickWood
+minecraft:golden_apple 1 sd 33 111121111 ore:ingotGold minecraft:apple
+minecraft:gold_nugget 9 sd 11 1 ore:ingotGold
+minecraft:gold_ingot 1 sd 33 111111111 minecraft:gold_nugget
+minecraft:gold_ingot 9 sd 11 1 minecraft:gold_block
+minecraft:gold_block 1 sd 33 111111111 ore:ingotGold
+minecraft:glowstone 1 sd 22 1111 ore:dustGlowstone
+minecraft:glass_pane 16 sd 32 111111 minecraft:glass
+minecraft:glass_bottle 3 sd 32 101010 ore:blockGlassColorless
+minecraft:furnace_minecart 1 sd 12 12 minecraft:furnace minecraft:minecart
+minecraft:furnace 1 sd 33 111101111 ore:cobblestone
+minecraft:flower_pot 1 sd 32 101010 minecraft:brick
+minecraft:flint_and_steel 1 sl 00 12 ore:ingotIron minecraft:flint
+minecraft:fishing_rod 1 sd 33 001012102 ore:stickWood ore:string
+minecraft:fire_charge 3 sl 00 123 ore:gunpowder minecraft:blaze_powder minecraft:coal,minecraft:coal|1
+minecraft:fermented_spider_eye 1 sl 00 123 minecraft:spider_eye minecraft:brown_mushroom minecraft:sugar
+minecraft:fence_gate 1 sd 32 121121 minecraft:stick minecraft:planks
+minecraft:fence 3 sd 32 121121 minecraft:planks minecraft:stick
+minecraft:ender_eye 1 sl 00 12 ore:enderpearl minecraft:blaze_powder
+minecraft:ender_chest 1 sd 33 111121111 minecraft:obsidian minecraft:ender_eye
+minecraft:end_rod 4 sd 12 12 minecraft:blaze_rod minecraft:chorus_fruit_popped
+minecraft:end_crystal 1 sd 33 111121131 ore:blockGlassColorless minecraft:ender_eye minecraft:ghast_tear
+minecraft:end_bricks 4 sd 22 1111 minecraft:end_stone
+minecraft:enchanting_table 1 sd 33 010232333 minecraft:book ore:gemDiamond minecraft:obsidian
+minecraft:emerald_block 1 sd 33 111111111 ore:gemEmerald
+minecraft:emerald 9 sd 11 1 minecraft:emerald_block
+minecraft:dropper 1 sd 33 111101121 ore:cobblestone ore:dustRedstone
+minecraft:dispenser 1 sd 33 111121131 ore:cobblestone minecraft:bow ore:dustRedstone
+minecraft:stone|3 2 sd 22 1221 ore:cobblestone minecraft:quartz
+minecraft:diamond_sword 1 sd 13 112 ore:gemDiamond ore:stickWood
+minecraft:diamond_shovel 1 sd 13 122 ore:gemDiamond ore:stickWood
+minecraft:diamond_pickaxe 1 sd 33 111020020 ore:gemDiamond ore:stickWood
+minecraft:diamond_leggings 1 sd 33 111101101 ore:gemDiamond
+minecraft:diamond_hoe 1 sd 23 110202 ore:gemDiamond ore:stickWood
+minecraft:diamond_helmet 1 sd 32 111101 ore:gemDiamond
+minecraft:diamond_chestplate 1 sd 33 101111111 ore:gemDiamond
+minecraft:diamond_boots 1 sd 32 101101 ore:gemDiamond
+minecraft:diamond_block 1 sd 33 111111111 ore:gemDiamond
+minecraft:diamond_axe 1 sd 23 111202 ore:gemDiamond ore:stickWood
+minecraft:diamond 9 sd 11 1 minecraft:diamond_block
+minecraft:detector_rail 6 sd 33 101121131 ore:ingotIron minecraft:stone_pressure_plate ore:dustRedstone
+minecraft:daylight_detector 1 sd 33 111222333 ore:blockGlassColorless minecraft:quartz minecraft:wooden_slab,minecraft:wooden_slab|1,minecraft:wooden_slab|2,minecraft:wooden_slab|3,minecraft:wooden_slab|4,minecraft:wooden_slab|5
+minecraft:prismarine|2 1 sd 33 111121111 ore:gemPrismarine ore:dyeBlack
+minecraft:wooden_slab|5 6 sd 31 111 minecraft:planks|5
+minecraft:dark_oak_stairs 4 sd 33 100110111 minecraft:planks|5
+minecraft:planks|5 4 sd 11 1 minecraft:log2|1
+minecraft:dark_oak_fence_gate 1 sd 32 121121 minecraft:stick minecraft:planks|5
+minecraft:dark_oak_fence 3 sd 32 121121 minecraft:planks|5 minecraft:stick
+minecraft:dark_oak_door 3 sd 23 111111 minecraft:planks|5
+minecraft:dark_oak_boat 1 sd 32 101111 minecraft:planks|5
+minecraft:wool|9 1 sl 00 12 ore:dyeCyan minecraft:wool
+minecraft:stained_hardened_clay|9 8 sd 33 111121111 minecraft:hardened_clay ore:dyeCyan
+minecraft:stained_glass_pane|9 16 sd 32 111111 ore:blockGlassCyan
+minecraft:stained_glass|9 8 sd 33 111121111 ore:blockGlassColorless ore:dyeCyan
+minecraft:dye|6 2 sl 00 12 ore:dyeBlue ore:dyeGreen
+minecraft:concrete_powder|9 8 sl 00 122223333 ore:dyeCyan minecraft:sand minecraft:gravel
+minecraft:carpet|9 3 sd 21 11 minecraft:wool|9
+minecraft:bed|9 1 sl 00 12 minecraft:bed ore:dyeCyan
+minecraft:bed|9 1 sd 32 111222 minecraft:wool|9 ore:plankWood
+minecraft:banner|6 1 sd 33 111111020 minecraft:wool|9 ore:stickWood
+minecraft:crafting_table 1 sd 22 1111 ore:plankWood
+minecraft:cookie 8 sd 31 121 minecraft:wheat minecraft:dye|3
+minecraft:compass 1 sd 33 010121010 ore:ingotIron ore:dustRedstone
+minecraft:comparator 1 sd 33 010121333 minecraft:redstone_torch minecraft:quartz ore:stone
+minecraft:cobblestone_wall 6 sd 32 111111 minecraft:cobblestone
+minecraft:stone_slab|3 6 sd 31 111 minecraft:cobblestone
+minecraft:dirt|1 4 sd 22 1221 minecraft:dirt minecraft:gravel
+minecraft:coal_block 1 sd 33 111111111 minecraft:coal
+minecraft:coal 9 sd 11 1 minecraft:coal_block
+minecraft:clock 1 sd 33 010121010 ore:ingotGold ore:dustRedstone
+minecraft:clay 1 sd 22 1111 minecraft:clay_ball
+minecraft:stonebrick|3 1 sd 12 11 minecraft:stone_slab|5
+minecraft:sandstone|1 1 sd 12 11 minecraft:stone_slab|1
+minecraft:red_sandstone|1 1 sd 12 11 minecraft:stone_slab2
+minecraft:quartz_block|1 1 sd 12 11 minecraft:stone_slab|7
+minecraft:chest_minecart 1 sd 12 12 ore:chestWood minecraft:minecart
+minecraft:chest 1 sd 33 111101111 ore:plankWood
+minecraft:cauldron 1 sd 33 101101111 ore:ingotIron
+minecraft:carrot_on_a_stick 1 sd 22 1002 minecraft:fishing_rod minecraft:carrot
+minecraft:cake 1 sd 33 111232444 minecraft:milk_bucket minecraft:sugar ore:egg minecraft:wheat
+minecraft:bucket 1 sd 32 101010 ore:ingotIron
+minecraft:wool|12 1 sl 00 12 ore:dyeBrown minecraft:wool
+minecraft:stained_hardened_clay|12 8 sd 33 111121111 minecraft:hardened_clay ore:dyeBrown
+minecraft:stained_glass_pane|12 16 sd 32 111111 ore:blockGlassBrown
+minecraft:stained_glass|12 8 sd 33 111121111 ore:blockGlassColorless ore:dyeBrown
+minecraft:concrete_powder|12 8 sl 00 122223333 ore:dyeBrown minecraft:sand minecraft:gravel
+minecraft:carpet|12 3 sd 21 11 minecraft:wool|12
+minecraft:bed|12 1 sl 00 12 minecraft:bed ore:dyeBrown
+minecraft:bed|12 1 sd 32 111222 minecraft:wool|12 ore:plankWood
+minecraft:banner|3 1 sd 33 111111020 minecraft:wool|12 ore:stickWood
+minecraft:brick_stairs 4 sd 33 100110111 minecraft:brick_block
+minecraft:stone_slab|4 6 sd 31 111 minecraft:brick_block
+minecraft:brick_block 1 sd 22 1111 minecraft:brick
+minecraft:brewing_stand 1 sd 32 010222 minecraft:blaze_rod ore:cobblestone
+minecraft:bread 1 sd 31 111 minecraft:wheat
+minecraft:bowl 4 sd 32 101010 ore:plankWood
+minecraft:bow 1 sd 33 012102012 ore:stickWood ore:string
+minecraft:bookshelf 1 sd 33 111222111 ore:plankWood minecraft:book
+minecraft:book 1 sl 00 1112 ore:paper ore:leather
+minecraft:dye|15 3 sl 00 1 ore:bone
+minecraft:dye|15 9 sl 00 1 minecraft:bone_block
+minecraft:bone_block 1 sd 33 111111111 minecraft:dye|15
+minecraft:boat 1 sd 32 101111 minecraft:planks
+minecraft:wool|11 1 sl 00 12 ore:dyeBlue minecraft:wool
+minecraft:stained_hardened_clay|11 8 sd 33 111121111 minecraft:hardened_clay ore:dyeBlue
+minecraft:stained_glass_pane|11 16 sd 32 111111 ore:blockGlassBlue
+minecraft:stained_glass|11 8 sd 33 111121111 ore:blockGlassColorless ore:dyeBlue
+minecraft:concrete_powder|11 8 sl 00 122223333 ore:dyeBlue minecraft:sand minecraft:gravel
+minecraft:carpet|11 3 sd 21 11 minecraft:wool|11
+minecraft:bed|11 1 sl 00 12 minecraft:bed ore:dyeBlue
+minecraft:bed|11 1 sd 32 111222 minecraft:wool|11 ore:plankWood
+minecraft:banner|4 1 sd 33 111111020 minecraft:wool|11 ore:stickWood
+minecraft:blaze_powder 2 sl 00 1 minecraft:blaze_rod
+minecraft:wool|15 1 sl 00 12 ore:dyeBlack minecraft:wool
+minecraft:stained_hardened_clay|15 8 sd 33 111121111 minecraft:hardened_clay ore:dyeBlack
+minecraft:stained_glass_pane|15 16 sd 32 111111 ore:blockGlassBlack
+minecraft:stained_glass|15 8 sd 33 111121111 ore:blockGlassColorless ore:dyeBlack
+minecraft:concrete_powder|15 8 sl 00 122223333 ore:dyeBlack minecraft:sand minecraft:gravel
+minecraft:carpet|15 3 sd 21 11 minecraft:wool|15
+minecraft:bed|15 1 sl 00 12 minecraft:bed ore:dyeBlack
+minecraft:bed|15 1 sd 32 111222 minecraft:wool|15 ore:plankWood
+minecraft:banner 1 sd 33 111111020 minecraft:wool|15 ore:stickWood
+minecraft:wooden_slab|2 6 sd 31 111 minecraft:planks|2
+minecraft:birch_stairs 4 sd 33 100110111 minecraft:planks|2
+minecraft:planks|2 4 sd 11 1 minecraft:log|2
+minecraft:birch_fence_gate 1 sd 32 121121 minecraft:stick minecraft:planks|2
+minecraft:birch_fence 3 sd 32 121121 minecraft:planks|2 minecraft:stick
+minecraft:birch_door 3 sd 23 111111 minecraft:planks|2
+minecraft:birch_boat 1 sd 32 101111 minecraft:planks|2
+minecraft:beetroot_soup 1 sd 33 111111020 minecraft:beetroot minecraft:bowl
+minecraft:beacon 1 sd 33 111121333 ore:blockGlassColorless ore:netherStar minecraft:obsidian
+minecraft:arrow 4 sd 13 123 minecraft:flint ore:stickWood ore:feather
+minecraft:armor_stand 1 sd 33 111010121 ore:stickWood minecraft:stone_slab
+minecraft:anvil 1 sd 33 111020222 minecraft:iron_block ore:ingotIron
+minecraft:stone|5 2 sl 00 12 ore:stoneDiorite ore:cobblestone
+minecraft:activator_rail 6 sd 33 121131121 ore:ingotIron ore:stickWood minecraft:redstone_torch
+minecraft:wooden_slab|4 6 sd 31 111 minecraft:planks|4
+minecraft:acacia_stairs 4 sd 33 100110111 minecraft:planks|4
+minecraft:planks|4 4 sd 11 1 minecraft:log2
+minecraft:acacia_fence_gate 1 sd 32 121121 minecraft:stick minecraft:planks|4
+minecraft:acacia_fence 3 sd 32 121121 minecraft:planks|4 minecraft:stick
+minecraft:acacia_door 3 sd 23 111111 minecraft:planks|4
+minecraft:acacia_boat 1 sd 32 101111 minecraft:planks|4
+extrautils2:snowglobe 1 sl 00 12345678 ore:blockGlass ore:treeSapling minecraft:snowball|* ore:doorWood ore:logWood ore:grass minecraft:ender_pearl|* ore:netherStar
+extrautils2:wateringcan|1000 1 sd 33 100121010 minecraft:stone|* minecraft:bowl|*
+extrautils2:unstableingots|1 1 sd 13 123 ore:nuggetIron ore:stickWood ore:gemDiamond
+extrautils2:unstableingots|2 1 sd 33 111111111 extrautils2:unstableingots|1
+extrautils2:unstableingots|1 9 sl 00 1 extrautils2:unstableingots|2
+extrautils2:itembuilderswand 1 sd 33 001020200 ore:ingotGold extrautils2:decorativesolidwood|1
+extrautils2:itemdestructionwand 1 sd 33 011021200 ore:ingotGold extrautils2:decorativesolidwood|1
+extrautils2:soundmuffler 1 sl 00 12 minecraft:wool|* minecraft:noteblock|*
+extrautils2:decorativesolidwood 4 sl 00 1 extrautils2:decorativesolidwood|1
+extrautils2:decorativesolidwood|2 5 sd 22 1221 ore:stairWood ore:plankWood
+extrautils2:trashcan 1 sd 33 111232222 ore:stone ore:cobblestone ore:chestWood
+extrautils2:trashcanfluid 1 sd 33 111232222 ore:stone ore:cobblestone minecraft:bucket|*
+extrautils2:trashcanenergy 1 sd 33 111232222 ore:stone ore:cobblestone ore:blockRedstone
+extrautils2:angelblock 1 sd 32 010232 ore:ingotGold minecraft:feather|* minecraft:obsidian|*
+extrautils2:passivegenerator 3 sd 32 111232 ore:gemLapis extrautils2:decorativesolid|2 extrautils2:ingredients
+extrautils2:passivegenerator|1 3 sd 32 111232 extrautils2:ingredients|3 extrautils2:decorativesolid|2 extrautils2:ingredients
+extrautils2:passivegenerator|2 1 sd 33 111121131 extrautils2:decorativesolid|3 extrautils2:ingredients ore:ingotGold
+extrautils2:passivegenerator|3 1 sd 33 111232111 extrautils2:decorativesolid|3 extrautils2:ingredients|1 extrautils2:ingredients
+extrautils2:passivegenerator|4 1 sd 33 111023111 extrautils2:decorativesolid|3 extrautils2:ingredients|1 extrautils2:ingredients
+extrautils2:passivegenerator|5 1 sd 33 121131141 extrautils2:decorativesolid|3 extrautils2:ingredients extrautils2:ingredients|1 minecraft:nether_brick_fence|*
+extrautils2:passivegenerator|7 1 sd 32 010232 extrautils2:ingredients|1 extrautils2:decorativesolid|2 extrautils2:ingredients
+extrautils2:passivegenerator|8 1 sd 33 121343151 extrautils2:decorativesolid|3 minecraft:ender_pearl|* minecraft:nether_star|* extrautils2:ingredients|1 extrautils2:ingredients|2
+extrautils2:redstoneclock 1 sd 33 121232121 ore:stone ore:dustRedstone minecraft:redstone_torch|*
+extrautils2:compressedcobblestone 1 sd 33 111111111 minecraft:cobblestone
+minecraft:cobblestone 9 sl 00 1 extrautils2:compressedcobblestone
+extrautils2:compressedcobblestone|1 1 sd 33 111111111 extrautils2:compressedcobblestone
+extrautils2:compressedcobblestone 9 sl 00 1 extrautils2:compressedcobblestone|1
+extrautils2:compressedcobblestone|2 1 sd 33 111111111 extrautils2:compressedcobblestone|1
+extrautils2:compressedcobblestone|1 9 sl 00 1 extrautils2:compressedcobblestone|2
+extrautils2:compressedcobblestone|3 1 sd 33 111111111 extrautils2:compressedcobblestone|2
+extrautils2:compressedcobblestone|2 9 sl 00 1 extrautils2:compressedcobblestone|3
+extrautils2:compressedcobblestone|4 1 sd 33 111111111 extrautils2:compressedcobblestone|3
+extrautils2:compressedcobblestone|3 9 sl 00 1 extrautils2:compressedcobblestone|4
+extrautils2:compressedcobblestone|5 1 sd 33 111111111 extrautils2:compressedcobblestone|4
+extrautils2:compressedcobblestone|4 9 sl 00 1 extrautils2:compressedcobblestone|5
+extrautils2:compressedcobblestone|6 1 sd 33 111111111 extrautils2:compressedcobblestone|5
+extrautils2:compressedcobblestone|5 9 sl 00 1 extrautils2:compressedcobblestone|6
+extrautils2:compressedcobblestone|7 1 sd 33 111111111 extrautils2:compressedcobblestone|6
+extrautils2:compressedcobblestone|6 9 sl 00 1 extrautils2:compressedcobblestone|7
+extrautils2:compresseddirt 1 sd 33 111111111 minecraft:dirt
+minecraft:dirt 9 sl 00 1 extrautils2:compresseddirt
+extrautils2:compresseddirt|1 1 sd 33 111111111 extrautils2:compresseddirt
+extrautils2:compresseddirt 9 sl 00 1 extrautils2:compresseddirt|1
+extrautils2:compresseddirt|2 1 sd 33 111111111 extrautils2:compresseddirt|1
+extrautils2:compresseddirt|1 9 sl 00 1 extrautils2:compresseddirt|2
+extrautils2:compresseddirt|3 1 sd 33 111111111 extrautils2:compresseddirt|2
+extrautils2:compresseddirt|2 9 sl 00 1 extrautils2:compresseddirt|3
+extrautils2:compressedsand 1 sd 33 111111111 minecraft:sand
+minecraft:sand 9 sl 00 1 extrautils2:compressedsand
+extrautils2:compressedsand|1 1 sd 33 111111111 extrautils2:compressedsand
+extrautils2:compressedsand 9 sl 00 1 extrautils2:compressedsand|1
+extrautils2:compressedgravel 1 sd 33 111111111 minecraft:gravel
+minecraft:gravel 9 sl 00 1 extrautils2:compressedgravel
+extrautils2:compressedgravel|1 1 sd 33 111111111 extrautils2:compressedgravel
+extrautils2:compressedgravel 9 sl 00 1 extrautils2:compressedgravel|1
+extrautils2:compressednetherrack 1 sd 33 111111111 minecraft:netherrack
+minecraft:netherrack 9 sl 00 1 extrautils2:compressednetherrack
+extrautils2:compressednetherrack|1 1 sd 33 111111111 extrautils2:compressednetherrack
+extrautils2:compressednetherrack 9 sl 00 1 extrautils2:compressednetherrack|1
+extrautils2:compressednetherrack|2 1 sd 33 111111111 extrautils2:compressednetherrack|1
+extrautils2:compressednetherrack|1 9 sl 00 1 extrautils2:compressednetherrack|2
+extrautils2:compressednetherrack|3 1 sd 33 111111111 extrautils2:compressednetherrack|2
+extrautils2:compressednetherrack|2 9 sl 00 1 extrautils2:compressednetherrack|3
+extrautils2:compressednetherrack|4 1 sd 33 111111111 extrautils2:compressednetherrack|3
+extrautils2:compressednetherrack|3 9 sl 00 1 extrautils2:compressednetherrack|4
+extrautils2:compressednetherrack|5 1 sd 33 111111111 extrautils2:compressednetherrack|4
+extrautils2:compressednetherrack|4 9 sl 00 1 extrautils2:compressednetherrack|5
+extrautils2:glasscutter 1 sd 33 001021100 ore:ingotIron ore:stickWood
+extrautils2:endershard 8 sl 00 12 minecraft:ender_pearl|* extrautils2:glasscutter|*
+minecraft:chest 4 sd 33 111101111 ore:logWood
+minecraft:stick 16 sd 12 11 ore:logWood
+minecraft:hopper 1 sd 33 121121010 ore:ingotIron ore:logWood
+extrautils2:sickle_wood 1 sd 33 011001211 ore:plankWood ore:stickWood
+extrautils2:sickle_stone 1 sd 33 011001211 ore:cobblestone ore:stickWood
+extrautils2:sickle_iron 1 sd 33 011001211 ore:ingotIron ore:stickWood
+extrautils2:sickle_gold 1 sd 33 011001211 ore:ingotGold ore:stickWood
+extrautils2:sickle_diamond 1 sd 33 011001211 ore:gemDiamond ore:stickWood
+extrautils2:resonator 1 sd 33 121343333 ore:dustRedstone ore:blockCoal ore:ingotIron extrautils2:ingredients
+extrautils2:suncrystal|250 1 sl 00 12222 ore:gemDiamond ore:dustGlowstone
+extrautils2:screen 1 sd 32 111232 extrautils2:decorativesolid|3 extrautils2:endershard extrautils2:ingredients
+extrautils2:decorativesolid 4 sl 00 1212 ore:stone ore:bricksStone
+extrautils2:decorativesolid|1 4 sl 00 1111 extrautils2:decorativesolid
+extrautils2:decorativesolid|2 4 sd 22 1111 minecraft:stonebrick|*
+extrautils2:decorativesolid|4 4 sl 00 1212 ore:sand ore:blockGlassColorless
+extrautils2:decorativesolid|5 4 sl 00 1212 extrautils2:decorativesolid|2 extrautils2:decorativesolid
+extrautils2:ingredients 1 sl 00 12222 extrautils2:endershard|* ore:dustRedstone
+extrautils2:ingredients|1 1 sd 33 010121010 minecraft:redstone_torch|* ore:plankWood
+extrautils2:ingredients|2 1 sl 00 123 minecraft:ender_pearl|* ore:dustRedstone extrautils2:ingredients
+extrautils2:ingredients|5 1 sd 33 111121111 extrautils2:ingredients|3 ore:gemDiamond
+extrautils2:ingredients|5 9 sd 33 111121111 extrautils2:ingredients|3 ore:ingotUnstable
+extrautils2:ingredients|6 1 sl 00 123 extrautils2:ingredients|9 ore:ingotGold ore:blockRedstone
+extrautils2:ingredients|7 1 sl 00 123 extrautils2:ingredients|9 ore:ingotGold minecraft:diamond|*
+extrautils2:ingredients|8 1 sl 00 12 extrautils2:ingredients|9 minecraft:golden_pickaxe
+extrautils2:simpledecorative|1 1 sd 33 111111111 extrautils2:ingredients|11
+extrautils2:ingredients|11 9 sl 00 1 extrautils2:simpledecorative|1
+extrautils2:simpledecorative 1 sd 33 111111111 extrautils2:ingredients|12
+extrautils2:ingredients|12 9 sl 00 1 extrautils2:simpledecorative
+extrautils2:ingredients|15 1 sd 33 121232121 extrautils2:magicapple extrautils2:ingredients|12 extrautils2:ingredients|6
+extrautils2:ingredients|16 1 sd 33 121232121 extrautils2:ingredients|10 extrautils2:ingredients|17 extrautils2:ingredients|15
+extrautils2:simpledecorative|2 1 sd 33 111111111 extrautils2:ingredients|17
+extrautils2:ingredients|17 9 sl 00 1 extrautils2:simpledecorative|2
+extrautils2:goldenlasso|1 1 sl 00 12 extrautils2:goldenlasso extrautils2:ingredients|10
+extrautils2:angelring 1 sl 00 121 ore:blockGlass extrautils2:angelring|*
+extrautils2:angelring|1 1 sl 00 121 minecraft:feather|* extrautils2:angelring|*
+extrautils2:angelring|2 1 sl 00 123 ore:dyePurple extrautils2:angelring|* ore:dyePink
+extrautils2:angelring|3 1 sl 00 121 minecraft:leather|* extrautils2:angelring|*
+extrautils2:angelring|4 1 sl 00 121 ore:nuggetGold extrautils2:angelring|*
+extrautils2:angelring|5 1 sl 00 123 minecraft:coal extrautils2:angelring|* minecraft:coal|1
+extrautils2:powermanager 1 sd 23 012222 extrautils2:ingredients ore:stone
+extrautils2:bagofholding 1 sd 33 111232111 ore:ingotGold ore:chestWood extrautils2:decorativesolidwood|1
+extrautils2:decorativeglass|1 4 sd 22 1111 extrautils2:decorativeglass
+extrautils2:decorativeglass|2 4 sd 22 1111 extrautils2:decorativeglass|1
+extrautils2:decorativeglass|3 2 sl 00 121 extrautils2:decorativeglass ore:dyeBlack
+extrautils2:decorativeglass|4 2 sl 00 121 extrautils2:decorativeglass ore:dustGlowstone
+extrautils2:ineffableglass 8 sd 33 111121111 ore:blockGlass extrautils2:ingredients|5
+extrautils2:ineffableglass|1 1 sl 00 12 extrautils2:ineffableglass minecraft:redstone_torch|*
+extrautils2:ineffableglass|2 8 sd 33 111121111 extrautils2:decorativeglass extrautils2:ingredients|5
+extrautils2:ineffableglass|3 8 sd 33 111121111 extrautils2:decorativeglass|3 extrautils2:ingredients|5
+extrautils2:pipe 64 sd 33 111232111 minecraft:stone_slab ore:blockGlass ore:dustRedstone
+extrautils2:playerchest 1 sd 33 111121131 extrautils2:decorativesolid|3 minecraft:ender_chest|* extrautils2:ingredients
+extrautils2:wrench 1 sd 33 012023200 ore:dyeRed ore:ingotIron ore:dustRedstone
+extrautils2:boomerang 1 sd 32 010101 extrautils2:decorativesolidwood|1
+extrautils2:book 1 sl 00 123 minecraft:book|*,minecraft:writable_book|*,minecraft:written_book|* ore:ingotGold minecraft:obsidian|*
+extrautils2:contract 1 sl 00 1234 minecraft:feather|* minecraft:paper|* minecraft:glass_bottle|* ore:dyeBlack
+extrautils2:filter 1 sd 33 121232121 ore:dustRedstone ore:stickWood ore:string
+extrautils2:filterfluids 1 sd 33 121232121 ore:gemLapis ore:stickWood ore:string
+extrautils2:grocket 4 sd 32 121343 ore:dustRedstone extrautils2:pipe ore:stone ore:chestWood
+extrautils2:grocket|1 4 sd 32 121343 ore:dustRedstone extrautils2:filter ore:stone extrautils2:pipe
+extrautils2:grocket|5 4 sl 00 123 extrautils2:pipe extrautils2:filter ore:dustRedstone
+extrautils2:grocket|2 4 sd 32 121343 ore:dustRedstone extrautils2:pipe ore:stone minecraft:bucket|*
+extrautils2:grocket|3 2 sd 33 010232010 minecraft:ender_pearl|* extrautils2:grocket ore:gemEmerald
+extrautils2:grocket|4 2 sd 33 010232010 minecraft:ender_pearl|* extrautils2:grocket|2 ore:gemDiamond
+extrautils2:grocket|6 1 sd 32 121343 ore:dustRedstone extrautils2:pipe ore:ingotGold minecraft:redstone_block|*
+extrautils2:indexer 1 sd 33 121131121 extrautils2:decorativesolid|3 extrautils2:ingredients extrautils2:screen
+extrautils2:indexerremote 1 sd 33 121131121 ore:stone extrautils2:ingredients|2 extrautils2:screen
+extrautils2:crafter 1 sl 00 123 minecraft:dropper|* extrautils2:ingredients minecraft:crafting_table|*
+extrautils2:scanner 1 sl 00 123 minecraft:dropper|* ore:dustRedstone minecraft:spider_eye|*
+extrautils2:miner 1 sl 00 123 minecraft:dropper|* extrautils2:ingredients minecraft:iron_pickaxe|*
+extrautils2:user 1 sl 00 123 minecraft:dropper|* extrautils2:ingredients minecraft:lever|*
+extrautils2:klein 1 sl 00 122 minecraft:glass_bottle|* minecraft:ender_pearl|*
+extrautils2:drum 1 sd 33 121131121 ore:cobblestone minecraft:stone_slab|3,minecraft:stone_slab minecraft:bowl|*
+extrautils2:drum|1 1 sd 33 121131121 ore:ingotIron minecraft:heavy_weighted_pressure_plate|* minecraft:cauldron|*
+extrautils2:drum|2 1 sd 33 121131121 ore:gemDiamond minecraft:light_weighted_pressure_plate|* extrautils2:drum|1
+extrautils2:drum|3 1 sd 33 121131121 ore:ingotDemonicMetal extrautils2:klein extrautils2:drum|2
+extrautils2:drum 1 sl 00 1 extrautils2:drum
+extrautils2:drum|1 1 sl 00 1 extrautils2:drum|1
+extrautils2:drum|2 1 sl 00 1 extrautils2:drum|2
+extrautils2:drum|3 1 sl 00 1 extrautils2:drum|3
+extrautils2:drum|4 1 sl 00 1 extrautils2:drum|4
+extrautils2:machine 4 sd 33 121232121 ore:ingotIron ore:dustRedstone ore:chestWood
+extrautils2:teleporter|1 1 sd 33 111101111 extrautils2:compressedcobblestone
+extrautils2:powertransmitter 4 sd 12 12 extrautils2:ingredients extrautils2:decorativesolid|3
+extrautils2:powerbattery 1 sd 33 111232111 extrautils2:decorativesolid|3 ore:blockRedstone extrautils2:ingredients
+extrautils2:quarryproxy 1 sd 33 121131444 minecraft:end_stone|* minecraft:end_rod|* minecraft:diamond_pickaxe|* extrautils2:decorativesolid|3
+extrautils2:quarry 1 sd 33 121232121 minecraft:end_stone|* extrautils2:decorativesolid|3 ore:magic_snow_globe
+extrautils2:spike_wood 4 sd 33 010121232 minecraft:wooden_sword|* minecraft:planks minecraft:log
+extrautils2:spike_stone 4 sd 33 010121232 minecraft:stone_sword|* ore:cobblestone ore:compressed1xCobblestone
+extrautils2:spike_iron 4 sd 33 010121232 minecraft:iron_sword|* ore:ingotIron ore:blockIron
+extrautils2:spike_gold 4 sd 33 010121232 minecraft:golden_sword|* ore:ingotGold ore:blockGold
+extrautils2:spike_diamond 4 sd 33 010121232 minecraft:diamond_sword|* ore:gemDiamond ore:blockDiamond
+extrautils2:redstonelantern 1 sd 33 121232141 ore:dustRedstone extrautils2:decorativesolid|2 minecraft:coal|* minecraft:comparator|*
+extrautils2:largishchest 1 sd 33 111121111 minecraft:stick|* minecraft:chest|*
+extrautils2:minichest 9 sl 00 1 minecraft:chest|*
+minecraft:chest 1 sd 33 111111111 extrautils2:minichest
+extrautils2:rainbowgenerator 1 sl 00 12 extrautils2:rainbowgenerator|1 extrautils2:rainbowgenerator|2
+extrautils2:magicapple 8 sd 33 111121111 minecraft:apple|* extrautils2:decorativesolidwood|1
+extrautils2:trowel 1 sd 33 001020300 ore:ingotIron minecraft:stone_button|* ore:stickWood
+extrautils2:biomemarker 1 sd 33 121232121 minecraft:dye|13,extrautils2:ingredients|3,minecraft:dye|5 ore:ingotIron ore:treeSapling
+extrautils2:terraformer|9 1 sd 33 121343121 ore:ingotIron ore:gemDiamond ore:treeSapling extrautils2:machine
+extrautils2:terraformer 1 sd 32 121343 minecraft:ender_pearl|* extrautils2:terraformer|9 ore:dustRedstone minecraft:comparator|*
+extrautils2:terraformer|1 1 sd 33 101232020 minecraft:end_rod|* ore:ingotIron ore:treeSapling
+extrautils2:terraformer|4 1 sl 00 122 extrautils2:terraformer|9 minecraft:lava_bucket|*
+extrautils2:terraformer|5 1 sl 00 122 extrautils2:terraformer|9 minecraft:snowball|*
+extrautils2:terraformer|2 1 sl 00 122 extrautils2:terraformer|9 minecraft:water_bucket|*
+extrautils2:terraformer|3 1 sl 00 122 extrautils2:terraformer|9 ore:sand
+extrautils2:terraformer|7 1 sl 00 122 extrautils2:terraformer|9 minecraft:anvil|*
+extrautils2:terraformer|8 1 sl 00 122 extrautils2:terraformer|9 minecraft:enchanting_table|*
+extrautils2:terraformer|6 1 sl 00 122 extrautils2:terraformer|9 minecraft:mycelium|*
+extrautils2:trashchest 1 sl 00 123 ore:chestWood extrautils2:trashcan ore:dustRedstone
+extrautils2:opinium 1 sd 33 010121010 extrautils2:ingredients|4 minecraft:iron_block
+extrautils2:opinium|1 1 sd 33 010232010 extrautils2:opinium minecraft:iron_block minecraft:gold_block
+extrautils2:opinium|2 1 sd 33 010232010 extrautils2:opinium|1 minecraft:gold_block minecraft:diamond_block
+extrautils2:opinium|3 1 sd 33 010232010 extrautils2:opinium|2 minecraft:diamond_block minecraft:emerald_block
+extrautils2:opinium|4 1 sd 33 010232010 extrautils2:opinium|3 minecraft:emerald_block minecraft:chorus_flower
+extrautils2:opinium|5 1 sd 33 010232010 extrautils2:opinium|4 minecraft:chorus_flower minecraft:experience_bottle
+extrautils2:opinium|6 1 sd 33 010232010 extrautils2:opinium|5 minecraft:experience_bottle minecraft:elytra
+extrautils2:opinium|7 1 sd 33 010232010 extrautils2:opinium|6 minecraft:elytra minecraft:nether_star
+extrautils2:opinium|8 1 sd 33 010232010 extrautils2:opinium|7 minecraft:nether_star minecraft:iron_ingot
+extrautils2:lawsword 1 sd 13 112 extrautils2:opinium|8 minecraft:stick|*
+extrautils2:flattransfernode 8 sd 13 102 minecraft:anvil|* extrautils2:grocket
+extrautils2:flattransfernode|1 8 sd 13 102 minecraft:anvil|* extrautils2:grocket|2
+extrautils2:analogcrafter 1 sl 00 123 minecraft:crafting_table|* ore:chestWood minecraft:lever|*
+extrautils2:compoundbow 1 sd 33 012302012 extrautils2:opinium|8 ore:string ore:ingotIron
+extrautils2:fireaxe 1 sd 23 111202 extrautils2:opinium|8 minecraft:stick|*
+extrautils2:interactionproxy 1 sd 33 121232121 ore:string minecraft:ender_pearl|* extrautils2:powermanager
+extrautils2:luxsaber 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassBlue extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|1 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassPink extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|2 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassRed extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|3 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassYellow extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|4 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassGreen extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|5 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassCyan extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|6 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassWhite extrautils2:suncrystal extrautils2:ingredients
+extrautils2:luxsaber|7 1 sd 33 121131141 extrautils2:ingredients|17 ore:blockGlassBlack extrautils2:suncrystal extrautils2:ingredients
+extrautils2:ironwood_planks 4 sl 00 1 extrautils2:ironwood_log
+extrautils2:ironwood_planks|1 4 sl 00 1 extrautils2:ironwood_log|1
+storagedrawers:upgrade_void 1 sd 33 111121111 minecraft:obsidian storagedrawers:upgrade_template
+storagedrawers:upgrade_template 2 sd 33 111121111 ore:stickWood ore:drawerBasic
+storagedrawers:upgrade_storage 1 sd 33 111232111 ore:stickWood minecraft:obsidian storagedrawers:upgrade_template
+storagedrawers:upgrade_storage|1 1 sd 33 111232111 ore:stickWood minecraft:iron_ingot storagedrawers:upgrade_template
+storagedrawers:upgrade_storage|2 1 sd 33 111232111 ore:stickWood minecraft:gold_ingot storagedrawers:upgrade_template
+storagedrawers:upgrade_storage|4 1 sd 33 111232111 ore:stickWood minecraft:emerald storagedrawers:upgrade_template
+storagedrawers:upgrade_storage|3 1 sd 33 111232111 ore:stickWood minecraft:diamond storagedrawers:upgrade_template
+storagedrawers:upgrade_status|1 1 sd 33 121232424 minecraft:comparator ore:stickWood storagedrawers:upgrade_template minecraft:redstone
+storagedrawers:upgrade_status 1 sd 33 121232424 minecraft:redstone_torch ore:stickWood storagedrawers:upgrade_template minecraft:redstone
+storagedrawers:upgrade_redstone|2 1 sd 33 111121333 ore:stickWood storagedrawers:upgrade_template minecraft:redstone
+storagedrawers:upgrade_redstone|1 1 sd 33 111232222 minecraft:redstone ore:stickWood storagedrawers:upgrade_template
+storagedrawers:upgrade_redstone 1 sd 33 121232121 minecraft:redstone ore:stickWood storagedrawers:upgrade_template
+storagedrawers:upgrade_one_stack 1 sd 33 111232111 ore:stickWood minecraft:flint storagedrawers:upgrade_template
+storagedrawers:upgrade_conversion 1 sd 33 121232121 minecraft:dye|4 ore:stickWood storagedrawers:upgrade_template
+storagedrawers:tape 1 sd 32 010222 ore:slimeball minecraft:paper
+storagedrawers:quantify_key 1 sl 00 12 storagedrawers:drawer_key minecraft:writable_book
+storagedrawers:personal_key 1 sl 00 12 storagedrawers:drawer_key minecraft:name_tag
+storagedrawers:drawer_key 1 sd 23 120203 ore:nuggetGold ore:ingotGold storagedrawers:upgrade_template
+storagedrawers:shroud_key 1 sl 00 12 storagedrawers:drawer_key minecraft:ender_eye
+storagedrawers:keybutton|3 1 sl 00 12 storagedrawers:quantify_key minecraft:stone_button
+storagedrawers:keybutton|2 1 sl 00 12 storagedrawers:personal_key minecraft:stone_button
+storagedrawers:keybutton 1 sl 00 12 storagedrawers:drawer_key minecraft:stone_button
+storagedrawers:keybutton|1 1 sl 00 12 storagedrawers:shroud_key minecraft:stone_button
+storagedrawers:framingtable 1 sd 32 111101 ore:drawerTrim
+storagedrawers:customtrim 4 sd 33 121212121 ore:plankWood ore:stickWood
+storagedrawers:customdrawers|4 4 sd 33 121232121 ore:chestWood ore:stickWood ore:slabWood
+storagedrawers:customdrawers|3 2 sd 33 121131121 ore:stickWood ore:chestWood ore:slabWood
+storagedrawers:customdrawers|2 4 sd 33 121232121 ore:chestWood ore:stickWood ore:plankWood
+storagedrawers:customdrawers|1 2 sd 33 121131121 ore:stickWood ore:chestWood ore:plankWood
+storagedrawers:customdrawers 1 sd 33 111020111 ore:stickWood ore:chestWood
+storagedrawers:controllerslave 1 sd 33 111232141 minecraft:stone minecraft:comparator ore:drawerBasic ore:ingotGold
+storagedrawers:controller 1 sd 33 111232141 minecraft:stone minecraft:comparator ore:drawerBasic ore:gemDiamond
+storagedrawers:compdrawers 1 sd 33 111232141 minecraft:stone minecraft:piston ore:drawerBasic ore:ingotIron
+storagedrawers:trim 4 sd 33 121222121 ore:stickWood minecraft:planks
+storagedrawers:trim|1 4 sd 33 121222121 ore:stickWood minecraft:planks|1
+storagedrawers:trim|2 4 sd 33 121222121 ore:stickWood minecraft:planks|2
+storagedrawers:trim|3 4 sd 33 121222121 ore:stickWood minecraft:planks|3
+storagedrawers:trim|4 4 sd 33 121222121 ore:stickWood minecraft:planks|4
+storagedrawers:trim|5 4 sd 33 121222121 ore:stickWood minecraft:planks|5

@@ -109,6 +109,9 @@ local function craftingConvert(srec)
 	local c = srec:match('recipes%..-%(.+%);'):match('%(.-,.-,.+%)')
 	local c = '(' .. tableConcat(arrRange(bracketContent(c), 2, 3), ', ') .. ')'
 	local args = bracketContent(c)
+	if bracketContent(args[2])[1] == '' then
+		return false, srec
+	end
 	if notContains(c, conditionalFilter) and args[1] ~= "null" then
 		local itemc = allMatch(args[1]:gsub(' * ','*'), '[^%*]+')
 		local item = iNormalize(itemc[1])
@@ -161,6 +164,7 @@ local function oredictConvert(sod)
 		return false, sod
 	end
 	local ore = sod:match('<ore:.->=.+')
+	local ore = ore:sub(1, #ore - 1)
 	local orename = iNormalize(allMatch(ore, '[^=]+')[1])
 	local oredef = iNormExt(allMatch(ore, '[^=]+')[2])
 	return true, string.format('%s=%s', orename, oredef)
@@ -169,23 +173,31 @@ end
 local craftingdbf = io.open('crafting.db', 'w')
 local oredictdbf = io.open('oredict.db', 'w')
 local failedf = io.open('failed.txt', 'w')
+local crafttweakerlog = io.open('crafttweaker.log', 'r')
 local userInput = ''
-while userInput ~= '!end' do
+local craftingCount, oredictCount, failedCount = 0, 0, 0
+while userInput ~= nil do
 	if userInput:find('=%[crafting%]=>') ~= nil then
 		local converted, result = craftingConvert(userInput)
 		if converted then
 			craftingdbf:write(result .. '\n')
+			craftingCount = craftingCount + 1
 		else
 			failedf:write(result .. '\n')
+			failedCount = failedCount + 1
 		end
 	elseif userInput:find('=%[ore%]=>') then
 		local converted, result = oredictConvert(userInput)
 		if converted then
 			oredictdbf:write(result .. '\n')
+			oredictCount = oredictCount + 1
 		else
 			failedf:write(result .. '\n')
+			failedCount = failedCount + 1
 		end
 	end
-	io.write('crafttweaker filter>')
-	userInput = io.read('*l')
+	userInput = crafttweakerlog:read('*l')
+	--print(userInput)
+	io.write('\x1b[160D' .. string.format('craftingdb: %d, oredictdb: %d, fails: %d.', craftingCount, oredictCount, failedCount))
 end
+print('\x1b[160D' .. string.format('Wrote %d lines of craftingdb, %d lines of oredictdb, and %d lines failed to be parsed.', craftingCount, oredictCount, failedCount))
