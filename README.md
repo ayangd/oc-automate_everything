@@ -49,10 +49,11 @@ You'll need a `Creatix` and an empty floppy disk.
 Change directory to the empty floppy disk, then follow the [Quick Installation](#quick-installation).
 
 ## What can I try?
+>Note: These programs need to be run directly from the disk.
 
 ### floppy
 
-#### craftmgr
+#### craftmgr.lua
 You can try running `craftmgr` and run these lines of code slowly:
 ```
 help
@@ -71,7 +72,7 @@ craft opencomputers:case2
 exit
 ```
 
-#### filter
+#### filter.lua
 You can try running `filter`. Basically, it reads crafttweaker.log and spits out crafting.db, oredict.db, and failure.txt.
 This is for processing crafttweaker.log, spat from the CraftTweaker mod (recipeStealer.zs is fed in).
 This is the beast of the project. I'm so happy I made this thing.
