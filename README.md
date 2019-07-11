@@ -1,4 +1,4 @@
-[![Discord](https://img.shields.io/discord/593706016156286979.svg?color=%237289da&logo=discord&logoColor=white)](https://discord.gg/YxHGxVs)
+[![Discord](https://img.shields.io/discord/593706016156286979.svg?color=%237289da&logo=discord&logoColor=white)](https://discord.gg/YxHGxVs) ![Minecraft Version](https://img.shields.io/badge/minecraft%20version-1.12.2-green.svg)
 
 # oc-automate_everything
 Minecraft opencomputers project. Aimed for automating everything in a system.\
