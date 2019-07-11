@@ -7,10 +7,10 @@ Starting from a robot and a computer, then they expand themselves into an unlimi
 ## Why a robot and a computer?
 Because a robot cannot eject a floppy disk from itself, also cannot start the assembler machine alone.
 
-![Replication Station](computer_minimum.png)
+![Replication Station](computer_minimal.png)\
 **Image 1** - Replication Station.
 
-![Full Station](computer_with_storage.png)
+![Full Station](computer_with_storage.png)\
 **Image 2** - Replication Station with Storage and Crafting Station.
 
 ## Dependencies
