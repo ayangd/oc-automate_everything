@@ -68,6 +68,8 @@ Change directory to the empty floppy disk, then follow the [Quick Installation](
 ### floppy
 
 #### craftmgr.lua
+Just a crafting manager program.
+
 You can try running `craftmgr` and run these lines of code slowly:
 ```
 help
@@ -87,18 +89,24 @@ exit
 ```
 
 #### filter.lua
+A program that filters `crafttweaker.log` to automatically create databases, crafting too!
+
 Before you can run `filter`, you will need `crafttweaker.log` in your current working directory.\
-If it's not there yet, you can do the following:
-1. Go to %appdata%\.minecraft\scripts and put recipeStealer.zs into it.
-2. Start up Minecraft 1.12.2. If you're running it, then restart.
-3. Copy %appdata%\.minecraft\crafttweaker.log into %appdata%\.minecraft\saves\<Your save world name>\opencomputers\<Your floppy id containing this project>
+If it's not there yet, you can type these in the chat to make it:
+```
+/ct recipes
+/ct oredict
+```
+Then copy `%appdata%\.minecraft\crafttweaker.log` into `%appdata%\.minecraft\saves\<Your save world name>\opencomputers\<Your floppy id containing this project>`.
 
 Run `filter`. You'll see crafting.db, ordict.db, and failure.txt being spit out.\
-This is the beast of the project. I'm so happy I made this thing, while nobody made it (in my perspective).
+This is the beast of the project. I'm so happy I made this thing, while nobody made it before this (in my perspective).
 
 >Note: If you struggle reading errors, please use `ct <lua file>` and check `ct.txt` for errors.
 
 ### oldfloppy
+Just a crafting manager program.
+
 You can try running `craftingmanager` and run these lines of code slowly:
 ```
 help

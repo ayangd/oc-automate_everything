@@ -2,7 +2,7 @@ local fs = require('filesystem')
 local sh = require('shell')
 local cd = sh.getWorkingDirectory()
 
-local dict = {'opencomputers','card','123040','nuggetGold','cpu1','circuitChip3','materialCard','chipDiamond','cpu2','ram5','minecraft','iron','nugget','materialALU','circuitChip2','yellow','flower','golden','rail','101121131','ingotGold','stickWood','dustRedstone','wool','dyeRed','rabbit','stew','010234050','cooked','carrot','baked','potato','brown','mushroom','bowl','stick','logWood','123045','materialInterweb','torchRedstoneActive','obsidian','101232404','ender','lanCard','120030','cable','circuitChip1','materialEnderPearl','relay','121232141','ingotIron','materialCircuitBoardPrinted','bone','block','111111111','extrautils2','ingredients','diamond','ram1','filter','121232121','string','blockRedstone','ram3','birch','fence','121121','planks','passivegenerator','121131141','decorativesolid','nether','brick','storagedrawers','upgrade','template','111121111','drawerBasic','wart','minichest','chest','banner','111111020','cobblestone','wall','111111','dyeMagenta','stained','glass','pane','blockGlassLime','dyeBlack','dyeWhite','coal','dyeCyan','hardened','clay','spike','stone','010121232','sword','compressed1xCobblestone','slime','ball','spruce','gate','leather','chestplate','101111111','010232','111222','plankWood','slimeball','unstableingots','dark','door','writable','book','feather','helmet','111101','apple','emerald','gemEmerald','101010','pickaxe','111020020','gemDiamond','1212','redstone','111232222','blockGlassMagenta','raid','121343151','cpu3','diskDrive','stairs','100110111','trim','121222121','dyePurple','decorativeglass','1111','dyeBrown','hologram2','121343565','blockGlass','blaze','powder','blockGlassColorless','dyeGreen','pumpkin','torch','rack','121343567','wlanCard2','bars','powerDistributor','compressedcobblestone','gold','blockGold','dyeOrange','filterfluids','gemLapis','111101111','terraformer','enchanting','table','dirt','compresseddirt','redstoneCard1','dyeYellow','boots','101101','acacia','ineffableglass','grocket','121343','pipe','concrete','122223333','sand','gravel','mycelium','sticky','piston','110202','fire','charge','gunpowder','luxsaber','blockGlassYellow','suncrystal','wooden','drum','121131121','ingotDemonicMetal','klein','glasscutter','001021100','button','stonebrick','dyeBlue','lava','bucket','netsplitter','craftingPiston','carpetedcapacitor','carpet','capacitor','indexerremote','screen','sandstone','jungle','ingot','comparator','010121333','quartz','repeater','121333','slab','written','purpur','chorus','fruit','popped','water','fishing','001012102','leggings','111101101','boat','101111','noteblock','dyeGray','miner','dropper','dyeLightBlue','screen1','121234121','microcontroller','storage','itembuilderswand','001020200','decorativesolidwood','beetroot','drawer','120203','beacon','111121333','netherStar','121212121','flint','steel','dyePink','compressednetherrack','blockGlassBlack','prismarine','gemPrismarine','crafter','crafting','111232111','paper','filled','1221','netherbrick','keyboard','111123','materialButtonGroup','materialArrowKey','materialNumPad','dyeLightGray','blockGlassWhite','111202','blockGlassLightBlue','111232','double','plant','personal','name','flattransfernode','anvil','quarry','magic','snow','globe','bricks','1223','snowball','clock','010121010','speckled','melon','sickle','011001211','powertransmitter','fireaxe','opinium','goldenlasso','resonator','121343333','blockCoal','compressedsand','chameliumblock','chamelium','ladder','101111101','biomemarker','treeSapling','quantify','furnace','minecart','pressure','plate','cake','111232444','milk','sugar','wheat','111023111','armor','stand','111010121','quarryproxy','121131444','blockGlassPink','dyeLime','blockGlassRed','keybutton','shroud','vine','redstoneclock','bottle','pearl','1112','shovel','simpledecorative','cauldron','101101111','status','121232424','soundmuffler','stairWood','disassembler','123405676','materialCU','paneGlass','analyzer','analogcrafter','chestWood','lever','purple','shulker','shell','screen3','glowstone','dust','101121101','light','weighted','material','framingtable','drawerTrim','trashcanfluid','case1','nuggetIron','star','printer','hopper','case3','blockGlassGreen','endershard','powerconverter','powerbattery','case2','blockGlassLightGray','spectral','arrow','dustGlowstone','log2','ingotUnstable','rainbowgenerator','sugarcane','111232242','materialTransistor','crystal','111121131','ghast','tear','blockIron','dispenser','blockGlassCyan','daylight','detector','111222333','angelring','indexer','tripwire','hook','trapped','101121010','component','blockDiamond','compressedgravel','010232010','121345121','componentBus2','graphicsCard2','121234151','wlanCard','121030','soup','trapdoor','geolyzer','compass','ram6','componentBus3','componentBus1','graphicsCard1','ram2','ram4','stoneEndstone','microcontrollerCase2','controller','111232141','microcontrollerCase1','12345','inkCartridgeEmpty','magma','cream','12222','stoneDiorite','121340151','121343121','experience','elytra','teleporter','largishchest','trashchest','trashcan','robot','compdrawers','itemdestructionwand','011021200','mossy','pillar','heavy','controllerslave','hologram1','angelblock','111101121','lamp','materialCuttingWire','powerdistributor','stack','magicapple','bread','scanner','spider','121121010','shield','121111010','screen2','121345161','snowglobe','12345678','doorWood','grass','painting','sign','misc','interactionproxy','powermanager','111020222','playerchest','compoundbow','012302012','endstone','chameliumBlock','user','assembler','workbench','machine','trowel','001020300','11250603','1002','123425123','materialDisk','121343131','cookie','lapis','shears','0110','ironwood','blockGlassOrange','motionsensor','012102012','wood','customdrawers','slabWood','blockGlassBlue','item','frame','012222','wrench','101020010','lead','potion','111232454','blockLapis','seeds','contract','1234','linkedCard','adapter','slab2','blockGlassGray','tool','100230430','solarGeneratorUpgrade','123456789','tape','010222','brewing','materialAcid','transposer','inventoryControllerUpgrade','tankControllerUpgrade','lawsword','charger','bookshelf','111222111','blockGlassBrown','enderpearl','101232141','jukebox','trashcanenergy','hdd2','lantern','dustPrismarine','hdd1','hdd3','fermented','101232020','layer','bricksStone','blockGlassPurple','stoneGranite','wateringcan','1000','100121010','111020111','hide','bagofholding','waypoint','netherrack','conversion','diskdrive','activator','hoverboots','hoverUpgrade2','droneCase1','012023200','111232040','100120130','redstonelantern','customtrim','boomerang','010101','123456173','010111','010101010','010232333','110120001','void','observer','111223111','stoneAndesite','local','isRobotAcquired','xpcall','require','debug','traceback','then','print','load','module','return','stringlib','resproc','rawdb','oredictdb','craftingdb','inventory','type','Command','class','start','usage','func','function','setmetatable','index','running','true','slot','changed','false','wrongUsage','command','Invalid','arguments','commands','help','else','such','cmdlist','pairs','insert','sort','printbuffer','ipairs','pagedPrint','exit','stdout','write','Changes','been','made','Would','like','save','before','exiting','userInput','stdin','read','lower','elseif','reload','Resources','loaded','successfully','rescan','scan','Inventory','scanned','saved','analyze','shaped','shapeless','ignoreMetadata','processor','processors','shape','Check','result','scanSlot','select','throw','Crafting','obstructed','Scan','pattern','craftingArea','scanPattern','slotScan','ignoreDamage','damage','Shrink','Craft','craft','width','height','scanCraftingArea','show','peek','look','lookup','Nothing','getmetatable','keep','Item','discard','Slot','cleared','remove','processing','Removed','removed','list','List','tostring','sortedCraftingPairs','traceraw','itemAdded','itemAvailable','trace','isCraftable','Crafted','failed','enough','items','clear','clearCraftingArea','Cleared','while','craftmgr','commandstr','split','commandname','unpack','unrecognized','PREINITIALIZATION','CLIENT','INFO','Current','loaders','after','merging','preinit','Loading','scripts','loader','with','names','Completed','script','loading','INITIALIZATION','CraftTweaker','Building','registry','Successfully','built','recipeevent','crafttweaker','POSTINITIALIZATION','Removing','recipes','various','outputs','AVAILABLE','Fixed','RecipeBook','Recipes','addShaped','card91','null','card92','card90','addShapeless','from','dandelion','shortcut','card88','card89','card86','card87','relay21','card81','card84','card85','card82','card83','mill','basicdrawers','halfdrawers4','withTag','mini','magenta','white','lime','gray','cyan','enchanter','Type','enchanted','black','meal','fulldrawers2','manual','lootcycling','tippedarrow','unstable','blue','oxeye','daisy','truchet','raid19','border','hologram213','green','rack25','compressed','bonemeal','chunk','chunkloader','Animal','ForgeData','Contracted','byte','villager','Place','generator','netherstar','skull','orange','fluids','infuser','uncompress','redstone20','ineffable','transfer','node','energy','stable','dehostilifier','rainbow','bottom','overclock','pink','survival','saber','65536','cutter','stoneslab','heater','netsplitter28','carpetedcapacitor30','remote','card184','humidifier','dehumidifier','fulldrawers4','screen122','microcontroller151','tulip','builders','wand','culinary','death','dragonsbreath','enchant','sandy','mapextending','keyboard14','solar','sunflower','survivalist','diorite','flatnode','base','cooler','absorbtion','transmitter','lasso','evil','shulkerboxcoloring','nuggets','chiseled','chameliumblock7','allium','biome','marker','normal','wind','proxy','stonecross','concealment','halfdrawers2','flash','demon','level1','level2','poppy','sound','muffler','diagonal','disassembler9','analog','screen323','fulldrawers1','print182','lightLevel','noclipOff','isBeaconBase','pressurePlate','noclipOn','isButtonMode','stateOn','redstoneLevel','stateOff','print183','4096','material156','framing','colorizeboots','print173','print174','print175','print176','trash','fluid','shielddecoration','case14','smooth','dragon','repairitem','printer18','speed','super','colorizecable','azure','bluet','case35','reverse','pipes','powerconverter16','battery','case26','armordye','moon','bannerduplicate','10000','capacitor3','angel','ring','convert','component80','component78','component79','component72','component73','component70','component71','geolyzer11','component76','material54','component77','component74','component75','material51','material50','material53','material52','component69','polished','component67','component68','upgrade94','component62','upgrade93','upgrade96','upgrade95','component65','upgrade98','component66','upgrade97','component63','component64','upgrade99','lilac','largist','robot154','compacting','squid','chickenring','destruction','lunar','slave','hologram112','material131','powerdistributor17','combined','orchid','shard','chicken','screen224','misc152','misc155','porcupine','ingotBrick','player','gear','compound','endstone27','assembler1','cable2','storage129','storage128','storage127','storage126','storage125','chameliumblock158','chameliumblock159','lazuli','chameliumblock157','chameliumblock161','chameliumblock162','chameliumblock160','chameliumblock165','chameliumblock166','chameliumblock163','chameliumblock164','burnt','banneraddpattern','diamonds','motionsensor15','chameliumblock169','chameliumblock167','chameliumblock168','crusher','chameliumblock172','chameliumblock170','chameliumblock171','framed','half2','storage153','storage150','color','half4','upgrade111','upgrade110','power','manager','upgrade117','wrench59','upgrade116','upgrade119','upgrade118','upgrade113','upgrade112','upgrade115','upgrade114','upgrade120','upgrade122','granite','upgrade121','upgrade124','upgrade123','storage132','data','label','openos','display','Name','OpenOS','Operating','System','lootFactory','floppy','storage130','readonly','eeprom','EEPROM','BIOS','retrieve','storage139','tool55','storage138','tool56','storage137','tool57','storage136','tool58','storage135','storage133','oppm','OPPM','Package','Manager','andesite','mapcloning','packing','upgrade134','storage143','storage142','storage141','storage140','tool61','storage149','storage148','storage147','transposer29','storage146','fireworks','storage145','storage144','decolorizecable','kikoku','charger8','storage179','storage178','storage177','upgrade109','storage181','storage180','upgrade100','coarse','upgrade106','decolorizeboots','upgrade105','upgrade108','upgrade107','upgrade102','upgrade101','upgrade104','upgrade103','rose','bush','antenna','rotten','flesh','borderstone','mining','porkchop','beef','mutton','fish','watering','full1','adapter0','full2','full4','holding','waypoint26','diskdrive10','hoverboots60','material37','material36','material39','material38','material33','material32','material35','material34','material31','material48','material47','material49','material44','material43','material46','material45','material40','material42','material41','bookcloning','peony','entries','fenceWood','fenceGateWood','sapling','treeLeaves','leaves','leaves2','oreGold','oreIron','oreLapis','oreDiamond','oreRedstone','oreEmerald','oreQuartz','oreCoal','ingotBrickNether','gemQuartz','crystals','blockEmerald','blockQuartz','cropWheat','cropPotato','cropCarrot','cropNetherWart','reeds','blockCactus','cactus','record','blocks','chirp','mall','mellohi','stal','strad','ward','wait','blockSlime','blockPrismarine','blockPrismarineBrick','blockPrismarineDark','stoneGranitePolished','stoneDioritePolished','stoneAndesitePolished','paneGlassColorless','chestEnder','chestTrapped','paneGlassBlack','paneGlassRed','paneGlassGreen','paneGlassBrown','paneGlassBlue','paneGlassPurple','paneGlassCyan','paneGlassLightGray','paneGlassGray','paneGlassPink','paneGlassLime','paneGlassYellow','paneGlassLightBlue','paneGlassMagenta','paneGlassOrange','paneGlassWhite','nuggetUnstable','compressed2xCobblestone','compressed3xCobblestone','compressed4xCobblestone','compressed5xCobblestone','compressed6xCobblestone','compressed7xCobblestone','compressed8xCobblestone','compressed1xDirt','compressed2xDirt','compressed3xDirt','compressed4xDirt','compressed1xSand','compressed2xSand','compressed1xGravel','compressed2xGravel','compressed1xNetherrack','compressed2xNetherrack','compressed3xNetherrack','compressed4xNetherrack','compressed5xNetherrack','compressed6xNetherrack','gemRedstone','gearRedstone','eyeofredstone','dustLunar','coalPowered','gemMoon','xuUpgradeSpeed','xuUpgradeStack','xuUpgradeMining','xuUpgradeBlank','dropofevil','ingotEnchantedMetal','xuRedstoneCoil','xuUpgradeSpeedEnchanted','ingotEvilMetal','blockEnchantedMetal','blockDemonicMetal','blockEvilMetal','doorIron','blockMagicalWood','motionSensor','powerConverter','netSplitter','carpetedCapacitor','materialCircuitBoardRaw','materialCircuitBoard','tabletCase1','tabletCase2','droneCase2','inkCartridge','terminal','texturePicker','hoverBoots','nanomachines','server1','server2','server3','apu1','apu2','terminalServer','diskDriveMountable','graphicsCard3','redstoneCard2','internetCard','dataCard1','dataCard2','dataCard3','angelUpgrade','batteryUpgrade1','batteryUpgrade2','batteryUpgrade3','chunkloaderUpgrade','cardContainer1','cardContainer2','cardContainer3','upgradeContainer1','upgradeContainer2','upgradeContainer3','craftingUpgrade','databaseUpgrade1','databaseUpgrade2','databaseUpgrade3','experienceUpgrade','generatorUpgrade','inventoryUpgrade','navigationUpgrade','pistonUpgrade','signUpgrade','tankUpgrade','tractorBeamUpgrade','leashUpgrade','hoverUpgrade1','tradingUpgrade','wlanCard1','filesystem','args','path','resolve','exists','File','found','executable','loadfile','open','close','Crash','collected','attempt','concatenate','value','metamethod','concat','field','main','global','tail','calls','process','Format','output','quantity','recipe','array','metadata','121212','11111111','11122','1111111','1213','1112324','method','compareDamage','processItem','Fire','Forget','debugging','Automatically','unloads','library','package','find','allMatch','gmatch','notContains','bracketContent','bracket','stripped','gsub','bracketLevel','indexStart','childs','arrRange','tableConcat','next','foreach','useful','Normalize','converting','format','database','iNormalize','iname','match','check','more','than','fits','Note','delimiter','iNormExt','tableIndex','inTable','conditionalFilter','onlyDamaged','onlyWithTag','onlyStack','liquid','craftingConvert','srec','Shapeless','shapedstr','itemc','itemAmount','tonumber','itemstr','itemArrangement','oredictConvert','Removes','orename','oredef','craftingdbf','oredictdbf','oredict','failedf','crafttweakerlog','curOre','oreContent','craftingCount','oredictCount','failedCount','convertOredict','converted','sentries','160D','fails','Wrote','lines','parsed','criteria','itemarray','ingredient','ingredientarray','Class','Meta','Init','craftingdbpath','dimension','craftingParams','size','parse','npat','itemoutput','itemoutputq','itemshape','itemUsed','itemsNeeded','itemPattern','indexDamage','allitems','Functions','error','first','Override','original','otype','Missing','invctrl','slots','math','floor','inventorySize','getStackInInternalSlot','updateSlot','Scanning','Done','isInExcludedSlot','excludedSlots','isInCraftingArea','slotDest','amount','transferTo','itemSlots','count','pull','ignoreCraftingArea','destSlot','itemTypes','pulled','break','srcSlot','Fill','curSlot','maxSize','moveSize','Lastly','fill','empty','isAvailable','getinventorySize','isUpAvailable','getUpinventorySize','request','TODO','external','send','deposit','front','specific','selected','transferOut','exSlot','dropIntoSlot','transferIn','suckFromSlot','itemcompound','oredictdbpath','sorted','splitted','rawdbpath','rawCount','tablelib','ResProc','getItemRecipe','object','addItem','createdItem','tryTakeItem','minus','ceil','satisfiable','externalItem','Merge','allItems','addAll','Unsatisfied','unsatisfiedItems','Drain','populate','unsatisfied','until','unsatisfiedItem','popSingle','craftings','unsatisfiedCraftings','unsatisfiedCrafting','availability','allAvailable','this','singleItem','event','delim','Splitting','screenWidth','screenHeight','getResolution','lineCount','brokeLines','stay','brokenTableBuffer','down','clone','Safety','Reduces','headache','Attempting','thing','other','newtable','cloneAll','splitter','tabulation','tableLength','createTable','make','needs','anything','into','beside','zero','itemsneeded','self','Metamethods','buff','Ingredient','content','Error','parsing','Ingredients','doesn','comparison','operation','different','IngredientArray','Empty','splits','expecting','argument','construction','compareTo','compare','Deprecated','deprecatrace','errors','here','Craftingdb','will','freak','number','Incompatible','scaling','completename','bnot','ItemArray','hasDamage','hasAll','hasAllDamage','removeDamage','unresolvedItem','incompatible','types','added','ItemCompound','itemCompoundString','itemCompound','OreDict','iComp','create'}
+local dict = {'opencomputers','card','123040','nuggetGold','cpu1','circuitChip3','materialCard','chipDiamond','cpu2','ram5','minecraft','iron','nugget','materialALU','circuitChip2','yellow','flower','golden','rail','101121131','ingotGold','stickWood','dustRedstone','wool','dyeRed','rabbit','stew','010234050','cooked','carrot','baked','potato','brown','mushroom','bowl','stick','logWood','123045','materialInterweb','torchRedstoneActive','obsidian','101232404','ender','lanCard','120030','cable','circuitChip1','materialEnderPearl','relay','121232141','ingotIron','materialCircuitBoardPrinted','bone','block','111111111','extrautils2','ingredients','diamond','ram1','filter','121232121','string','blockRedstone','ram3','birch','fence','121121','planks','passivegenerator','121131141','decorativesolid','nether','brick','storagedrawers','upgrade','template','111121111','drawerBasic','wart','minichest','chest','banner','111111020','cobblestone','wall','111111','dyeMagenta','stained','glass','pane','blockGlassLime','dyeBlack','dyeWhite','coal','dyeCyan','hardened','clay','spike','stone','010121232','sword','compressed1xCobblestone','slime','ball','spruce','gate','leather','chestplate','101111111','010232','111222','plankWood','slimeball','unstableingots','dark','door','writable','book','feather','helmet','111101','apple','emerald','gemEmerald','101010','pickaxe','111020020','gemDiamond','1212','redstone','111232222','blockGlassMagenta','raid','121343151','cpu3','diskDrive','stairs','100110111','trim','121222121','dyePurple','decorativeglass','1111','dyeBrown','hologram2','121343565','blockGlass','blaze','powder','blockGlassColorless','dyeGreen','pumpkin','torch','rack','121343567','wlanCard2','bars','powerDistributor','compressedcobblestone','gold','blockGold','dyeOrange','filterfluids','gemLapis','111101111','terraformer','enchanting','table','dirt','compresseddirt','redstoneCard1','dyeYellow','boots','101101','acacia','ineffableglass','grocket','121343','pipe','concrete','122223333','sand','gravel','mycelium','sticky','piston','110202','fire','charge','gunpowder','luxsaber','blockGlassYellow','suncrystal','wooden','drum','121131121','ingotDemonicMetal','klein','glasscutter','001021100','button','stonebrick','dyeBlue','lava','bucket','netsplitter','craftingPiston','carpetedcapacitor','carpet','capacitor','indexerremote','screen','sandstone','jungle','ingot','comparator','010121333','quartz','repeater','121333','slab','written','purpur','chorus','fruit','popped','water','fishing','001012102','leggings','111101101','boat','101111','noteblock','dyeGray','miner','dropper','dyeLightBlue','screen1','121234121','microcontroller','storage','itembuilderswand','001020200','decorativesolidwood','beetroot','drawer','120203','beacon','111121333','netherStar','121212121','flint','steel','dyePink','compressednetherrack','blockGlassBlack','prismarine','gemPrismarine','crafter','crafting','111232111','paper','filled','1221','netherbrick','keyboard','111123','materialButtonGroup','materialArrowKey','materialNumPad','dyeLightGray','blockGlassWhite','111202','blockGlassLightBlue','111232','double','plant','personal','name','flattransfernode','anvil','quarry','magic','snow','globe','bricks','1223','snowball','clock','010121010','speckled','melon','sickle','011001211','powertransmitter','fireaxe','opinium','goldenlasso','resonator','121343333','blockCoal','compressedsand','chameliumblock','chamelium','ladder','101111101','biomemarker','treeSapling','quantify','furnace','minecart','pressure','plate','cake','111232444','milk','sugar','wheat','111023111','armor','stand','111010121','quarryproxy','121131444','blockGlassPink','dyeLime','blockGlassRed','keybutton','shroud','vine','redstoneclock','bottle','pearl','1112','shovel','simpledecorative','cauldron','101101111','status','121232424','soundmuffler','stairWood','disassembler','123405676','materialCU','paneGlass','analyzer','analogcrafter','chestWood','lever','purple','shulker','shell','screen3','glowstone','dust','101121101','light','weighted','material','framingtable','drawerTrim','trashcanfluid','case1','nuggetIron','star','printer','hopper','case3','blockGlassGreen','endershard','powerconverter','powerbattery','case2','blockGlassLightGray','spectral','arrow','dustGlowstone','log2','ingotUnstable','rainbowgenerator','sugarcane','111232242','materialTransistor','crystal','111121131','ghast','tear','blockIron','dispenser','blockGlassCyan','daylight','detector','111222333','angelring','indexer','tripwire','hook','trapped','101121010','component','blockDiamond','compressedgravel','010232010','121345121','componentBus2','graphicsCard2','121234151','wlanCard','121030','soup','trapdoor','geolyzer','compass','ram6','componentBus3','componentBus1','graphicsCard1','ram2','ram4','stoneEndstone','microcontrollerCase2','controller','111232141','microcontrollerCase1','12345','inkCartridgeEmpty','magma','cream','12222','stoneDiorite','121340151','121343121','experience','elytra','teleporter','largishchest','trashchest','trashcan','robot','compdrawers','itemdestructionwand','011021200','mossy','pillar','heavy','controllerslave','hologram1','angelblock','111101121','lamp','materialCuttingWire','powerdistributor','stack','magicapple','bread','scanner','spider','121121010','shield','121111010','screen2','121345161','snowglobe','12345678','doorWood','grass','painting','sign','misc','interactionproxy','powermanager','111020222','playerchest','compoundbow','012302012','endstone','chameliumBlock','user','assembler','workbench','machine','trowel','001020300','11250603','1002','123425123','materialDisk','121343131','cookie','lapis','shears','0110','ironwood','blockGlassOrange','motionsensor','012102012','wood','customdrawers','slabWood','blockGlassBlue','item','frame','012222','wrench','101020010','lead','potion','111232454','blockLapis','seeds','contract','1234','linkedCard','adapter','slab2','blockGlassGray','tool','100230430','solarGeneratorUpgrade','123456789','tape','010222','brewing','materialAcid','transposer','inventoryControllerUpgrade','tankControllerUpgrade','lawsword','charger','bookshelf','111222111','blockGlassBrown','enderpearl','101232141','jukebox','trashcanenergy','hdd2','lantern','dustPrismarine','hdd1','hdd3','fermented','101232020','layer','bricksStone','blockGlassPurple','stoneGranite','wateringcan','1000','100121010','111020111','hide','bagofholding','waypoint','netherrack','conversion','diskdrive','activator','hoverboots','hoverUpgrade2','droneCase1','012023200','111232040','100120130','redstonelantern','customtrim','boomerang','010101','123456173','010111','010101010','010232333','110120001','void','observer','111223111','stoneAndesite','local','isRobotAcquired','xpcall','require','debug','traceback','then','print','load','module','return','stringlib','resproc','rawdb','oredictdb','craftingdb','inventory','type','Command','class','start','usage','func','function','setmetatable','index','running','true','slot','changed','false','wrongUsage','command','Invalid','arguments','commands','help','else','such','cmdlist','pairs','insert','sort','printbuffer','ipairs','pagedPrint','exit','stdout','write','Changes','been','made','Would','like','save','before','exiting','userInput','stdin','read','lower','elseif','reload','Resources','loaded','successfully','rescan','scan','Inventory','scanned','saved','analyze','shaped','shapeless','ignoreMetadata','processor','processors','shape','Check','result','scanSlot','select','throw','Crafting','obstructed','Scan','pattern','craftingArea','scanPattern','slotScan','ignoreDamage','damage','Shrink','Craft','craft','width','height','scanCraftingArea','show','peek','look','lookup','Nothing','getmetatable','keep','Item','discard','Slot','cleared','remove','processing','Removed','removed','list','List','tostring','sortedCraftingPairs','traceraw','itemAdded','itemAvailable','trace','isCraftable','Crafted','failed','enough','items','clear','clearCraftingArea','Cleared','while','craftmgr','commandstr','split','commandname','unpack','unrecognized','PREINITIALIZATION','CLIENT','INFO','Current','loaders','after','merging','preinit','Loading','scripts','loader','with','names','Completed','script','loading','INITIALIZATION','CraftTweaker','Building','registry','Successfully','built','recipeevent','crafttweaker','POSTINITIALIZATION','Removing','recipes','various','outputs','AVAILABLE','Fixed','RecipeBook','Recipes','addShaped','card91','null','card92','card90','addShapeless','from','dandelion','shortcut','card88','card89','card86','card87','relay21','card81','card84','card85','card82','card83','mill','basicdrawers','halfdrawers4','withTag','mini','magenta','white','lime','gray','cyan','enchanter','Type','enchanted','black','meal','fulldrawers2','manual','lootcycling','tippedarrow','unstable','blue','oxeye','daisy','truchet','raid19','border','hologram213','green','rack25','compressed','bonemeal','chunk','chunkloader','Animal','ForgeData','Contracted','byte','villager','Place','generator','netherstar','skull','orange','fluids','infuser','uncompress','redstone20','ineffable','transfer','node','energy','stable','dehostilifier','rainbow','bottom','overclock','pink','survival','saber','65536','cutter','stoneslab','heater','netsplitter28','carpetedcapacitor30','remote','card184','humidifier','dehumidifier','fulldrawers4','screen122','microcontroller151','tulip','builders','wand','culinary','death','dragonsbreath','enchant','sandy','mapextending','keyboard14','solar','sunflower','survivalist','diorite','flatnode','base','cooler','absorbtion','transmitter','lasso','evil','shulkerboxcoloring','nuggets','chiseled','chameliumblock7','allium','biome','marker','normal','wind','proxy','stonecross','concealment','halfdrawers2','flash','demon','level1','level2','poppy','sound','muffler','diagonal','disassembler9','analog','screen323','fulldrawers1','print182','lightLevel','noclipOff','isBeaconBase','pressurePlate','noclipOn','isButtonMode','stateOn','redstoneLevel','stateOff','print183','4096','material156','framing','colorizeboots','print173','print174','print175','print176','trash','fluid','shielddecoration','case14','smooth','dragon','repairitem','printer18','speed','super','colorizecable','azure','bluet','case35','reverse','pipes','powerconverter16','battery','case26','armordye','moon','bannerduplicate','10000','capacitor3','angel','ring','convert','component80','component78','component79','component72','component73','component70','component71','geolyzer11','component76','material54','component77','component74','component75','material51','material50','material53','material52','component69','polished','component67','component68','upgrade94','component62','upgrade93','upgrade96','upgrade95','component65','upgrade98','component66','upgrade97','component63','component64','upgrade99','lilac','largist','robot154','compacting','squid','chickenring','destruction','lunar','slave','hologram112','material131','powerdistributor17','combined','orchid','shard','chicken','screen224','misc152','misc155','porcupine','ingotBrick','player','gear','compound','endstone27','assembler1','cable2','storage129','storage128','storage127','storage126','storage125','chameliumblock158','chameliumblock159','lazuli','chameliumblock157','chameliumblock161','chameliumblock162','chameliumblock160','chameliumblock165','chameliumblock166','chameliumblock163','chameliumblock164','burnt','banneraddpattern','diamonds','motionsensor15','chameliumblock169','chameliumblock167','chameliumblock168','crusher','chameliumblock172','chameliumblock170','chameliumblock171','framed','half2','storage153','storage150','color','half4','upgrade111','upgrade110','power','manager','upgrade117','wrench59','upgrade116','upgrade119','upgrade118','upgrade113','upgrade112','upgrade115','upgrade114','upgrade120','upgrade122','granite','upgrade121','upgrade124','upgrade123','storage132','data','label','openos','display','Name','OpenOS','Operating','System','lootFactory','floppy','storage130','readonly','eeprom','EEPROM','BIOS','retrieve','storage139','tool55','storage138','tool56','storage137','tool57','storage136','tool58','storage135','storage133','oppm','OPPM','Package','Manager','andesite','mapcloning','packing','upgrade134','storage143','storage142','storage141','storage140','tool61','storage149','storage148','storage147','transposer29','storage146','fireworks','storage145','storage144','decolorizecable','kikoku','charger8','storage179','storage178','storage177','upgrade109','storage181','storage180','upgrade100','coarse','upgrade106','decolorizeboots','upgrade105','upgrade108','upgrade107','upgrade102','upgrade101','upgrade104','upgrade103','rose','bush','antenna','rotten','flesh','borderstone','mining','porkchop','beef','mutton','fish','watering','full1','adapter0','full2','full4','holding','waypoint26','diskdrive10','hoverboots60','material37','material36','material39','material38','material33','material32','material35','material34','material31','material48','material47','material49','material44','material43','material46','material45','material40','material42','material41','bookcloning','peony','entries','fenceWood','fenceGateWood','sapling','treeLeaves','leaves','leaves2','oreGold','oreIron','oreLapis','oreDiamond','oreRedstone','oreEmerald','oreQuartz','oreCoal','ingotBrickNether','gemQuartz','crystals','blockEmerald','blockQuartz','cropWheat','cropPotato','cropCarrot','cropNetherWart','reeds','blockCactus','cactus','record','blocks','chirp','mall','mellohi','stal','strad','ward','wait','blockSlime','blockPrismarine','blockPrismarineBrick','blockPrismarineDark','stoneGranitePolished','stoneDioritePolished','stoneAndesitePolished','paneGlassColorless','chestEnder','chestTrapped','paneGlassBlack','paneGlassRed','paneGlassGreen','paneGlassBrown','paneGlassBlue','paneGlassPurple','paneGlassCyan','paneGlassLightGray','paneGlassGray','paneGlassPink','paneGlassLime','paneGlassYellow','paneGlassLightBlue','paneGlassMagenta','paneGlassOrange','paneGlassWhite','nuggetUnstable','compressed2xCobblestone','compressed3xCobblestone','compressed4xCobblestone','compressed5xCobblestone','compressed6xCobblestone','compressed7xCobblestone','compressed8xCobblestone','compressed1xDirt','compressed2xDirt','compressed3xDirt','compressed4xDirt','compressed1xSand','compressed2xSand','compressed1xGravel','compressed2xGravel','compressed1xNetherrack','compressed2xNetherrack','compressed3xNetherrack','compressed4xNetherrack','compressed5xNetherrack','compressed6xNetherrack','gemRedstone','gearRedstone','eyeofredstone','dustLunar','coalPowered','gemMoon','xuUpgradeSpeed','xuUpgradeStack','xuUpgradeMining','xuUpgradeBlank','dropofevil','ingotEnchantedMetal','xuRedstoneCoil','xuUpgradeSpeedEnchanted','ingotEvilMetal','blockEnchantedMetal','blockDemonicMetal','blockEvilMetal','doorIron','blockMagicalWood','motionSensor','powerConverter','netSplitter','carpetedCapacitor','materialCircuitBoardRaw','materialCircuitBoard','tabletCase1','tabletCase2','droneCase2','inkCartridge','terminal','texturePicker','hoverBoots','nanomachines','server1','server2','server3','apu1','apu2','terminalServer','diskDriveMountable','graphicsCard3','redstoneCard2','internetCard','dataCard1','dataCard2','dataCard3','angelUpgrade','batteryUpgrade1','batteryUpgrade2','batteryUpgrade3','chunkloaderUpgrade','cardContainer1','cardContainer2','cardContainer3','upgradeContainer1','upgradeContainer2','upgradeContainer3','craftingUpgrade','databaseUpgrade1','databaseUpgrade2','databaseUpgrade3','experienceUpgrade','generatorUpgrade','inventoryUpgrade','navigationUpgrade','pistonUpgrade','signUpgrade','tankUpgrade','tractorBeamUpgrade','leashUpgrade','hoverUpgrade1','tradingUpgrade','wlanCard1','filesystem','args','path','resolve','exists','File','found','executable','loadfile','open','close','Crash','collected','attempt','call','value','method','itemsNeeded','processItem','field','main','global','tail','calls','process','Format','output','quantity','recipe','array','metadata','1231','123212','11122','1211','12321','11211','11212','11123111','111211','1121232','11111111','112322','12232','11111','1112222','1111121','1111112','121212','1121','1111111','1121333','11121131','1122','11111121','1232333','12212','1211211','11112','1112111','1211111','1123244','12134151','1213','12345676','1112324','11213','12343','11232141','compareDamage','Fire','Forget','debugging','Automatically','unloads','library','package','find','allMatch','gmatch','notContains','bracketContent','bracket','stripped','gsub','bracketLevel','indexStart','childs','arrRange','tableConcat','next','foreach','useful','Normalize','converting','format','database','iNormalize','iname','match','check','more','than','fits','Note','delimiter','iNormExt','tableIndex','inTable','conditionalFilter','onlyDamaged','onlyWithTag','onlyStack','liquid','craftingConvert','srec','Shapeless','shapedstr','itemc','itemAmount','tonumber','itemstr','itemArrangement','oredictConvert','Removes','orename','oredef','craftingdbf','oredictdbf','oredict','failedf','crafttweakerlog','curOre','oreContent','craftingCount','oredictCount','failedCount','convertOredict','converted','sentries','160D','fails','Wrote','lines','parsed','criteria','itemarray','ingredient','ingredientarray','Class','Meta','Init','craftingdbpath','dimension','craftingParams','size','parse','npat','itemoutput','itemoutputq','itemshape','itemUsed','ingredientsNeeded','itemPattern','allitems','Functions','error','first','Override','original','otype','Missing','invctrl','slots','math','floor','inventorySize','getStackInInternalSlot','updateSlot','Scanning','Done','isInExcludedSlot','excludedSlots','isInCraftingArea','slotDest','amount','transferTo','itemSlots','count','pull','ignoreCraftingArea','destSlot','itemTypes','pulled','break','srcSlot','Fill','curSlot','maxSize','moveSize','Lastly','fill','empty','isAvailable','getinventorySize','isUpAvailable','getUpinventorySize','request','TODO','external','send','deposit','front','specific','selected','transferOut','exSlot','dropIntoSlot','transferIn','suckFromSlot','itemcompound','oredictdbpath','sorted','splitted','iComp','rawdbpath','rawCount','tablelib','ResProc','getItemRecipe','object','addItem','createdItem','tryTakeItem','minus','ceil','satisfiable','externalItem','Merge','allItems','addAll','Unsatisfied','unsatisfiedItems','Drain','populate','unsatisfied','until','unsatisfiedItem','popSingle','craftings','unsatisfiedCraftings','unsatisfiedCrafting','availability','allAvailable','this','singleItem','event','delim','Splitting','screenWidth','screenHeight','getResolution','lineCount','brokeLines','stay','brokenTableBuffer','down','clone','Safety','Reduces','headache','Attempting','thing','other','newtable','cloneAll','concat','splitter','tabulation','tableLength','createTable','make','needs','anything','into','beside','zero','ingredientsneeded','self','Metamethods','buff','Ingredient','content','Error','parsing','Ingredients','doesn','comparison','operation','different','ingr','IngredientArray','Empty','splits','expecting','argument','construction','compareTo','compare','Deprecated','deprecatrace','errors','here','Craftingdb','will','freak','number','Incompatible','scaling','completename','bnot','ItemArray','hasDamage','hasAll','hasAllDamage','removeDamage','unresolvedItem','indexDamage','incompatible','types','added','ItemCompound','itemCompoundString','itemCompound','OreDict','create'}
 
 local files = {['a.txt']= [==[]==],['crafting.db']= [==[€€:€|11 1 sd 32 €‚ ore:€ƒ ore:oc:€„ ore:oc:€… ore:oc:€†
 €€:€|12 1 sd 32 €‚ ore:€‡ ore:oc:€ˆ ore:oc:€‰ ore:oc:€†
@@ -2953,888 +2953,890 @@ if not a ‚É
 	f:‚ó(b)
 	f:…¨()
 	‚Ê('…© …ª.')
-end]==],['ct.txt']= [==[/mnt/cf4/lib/‚Ñ.lua:54: …« to …¬ a nil …­
+end]==],['ct.txt']= [==[/mnt/cf4/lib/‚Ï.lua:72: …« to …¬ a nil …­ (…® '…¯')
 ‚F ‚È:
-	‚b:796: in …® '__…¯'
-	/mnt/cf4/lib/‚Ñ.lua:54: in …° '‚ù'
-	/mnt/cf4/lib/‚Ï.lua:27: in …° '‚ù'
-	/mnt/cf4/ƒE.lua:102: in …° '‚Ù'
-	/mnt/cf4/ƒE.lua:405: in …± ƒ
+	‚b:796: in …® '…¯'
+	/mnt/cf4/lib/‚Ï.lua:72: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
 	[C]: in ‚Ú '‚Å'
-	‚b:791: in …² '‚Å'
-	/mnt/cf4/ct.lua:17: in …± ƒ
-	/mnt/cf4/faf.lua:19: in …± ƒ
-	(...…³ …´...)
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
 	[C]: in ‚Ú '‚Å'
-	‚b:791: in …² '‚Å'
-	/lib/…µ.lua:63: in ‚Ú </lib/…µ.lua:59>]==],['db']={['crafting.db']= [==[€€:€|11 1 sd 32 €‚ ore:€ƒ ore:oc:€„ ore:oc:€… ore:oc:€†
-€€:€|12 1 sd 32 €‚ ore:€‡ ore:oc:€ˆ ore:oc:€‰ ore:oc:€†
-€€:€|10 1 sd 32 €‚ €Š:€‹_€Œ ore:oc:€ ore:oc:€ ore:oc:€†
-€Š:dye|11 1 sl 00 1 €Š:€_€
-€Š:€‘_€’ 6 sd 33 €“ ore:€” ore:€• ore:€–
-€Š:€—|14 1 sl 00 12 ore:€˜ €Š:€—
-€Š:€™_€š 1 sd 33 €› €Š:€œ_€™ €Š:€ €Š:€_€Ÿ €Š:€ _€¡ €Š:€¢
-€Š:€£ 16 sd 12 11 ore:€¤
-€€:€|8 1 sd 32 €¥ ore:oc:€¦ ore:oc:€ ore:€§ ore:oc:€† ore:€¨
-€€:€|9 2 sd 33 €© €Š:€ª_eye ore:oc:€« ore:oc:€¦ ore:oc:€…
-€€:€|6 1 sd 32 €¬ ore:oc:€­ ore:oc:€® ore:oc:€†
-€€:€|7 1 sd 32 €¬ ore:€¯ ore:oc:€ ore:oc:€†
-€€:€° 1 sd 33 €± ore:€² ore:oc:€­ ore:oc:€« ore:oc:€³
-€Š:€´_€µ 1 sd 33 €¶ €Š:dye|15
-€·:€¸|7 1 sl 00 123 €·:€¸|9 ore:€” €Š:€¹|*
-€€:€|1 1 sd 32 €‚ ore:oc:€® ore:oc:€ ore:oc:€º ore:oc:€†
-€€:€|4 1 sd 32 €¬ ore:€§ ore:oc:€® ore:oc:€†
-€·:€» 1 sd 33 €¼ ore:€– ore:€• ore:€½
-€€:€|5 1 sd 32 €‚ ore:€¾ ore:oc:€ ore:€¯ ore:oc:€†
-€Š:€‹_€Œ 9 sd 11 1 ore:€²
-€€:€|2 1 sd 32 €‚ ore:oc:€ ore:oc:€ ore:oc:€¿ ore:oc:€†
-€€:€|3 1 sd 32 €‚ ore:oc:€… ore:oc:€ ore:oc:€‰ ore:oc:€†
-€Š:€À_€Á 3 sd 32 €Â €Š:€Ã|2 €Š:€£
-€·:€Ä|5 1 sd 33 €Å €·:€Æ|3 €·:€¸ €·:€¸|1 €Š:€Ç_€È_€Á|*
-€É:€Ê_€Ë 2 sd 33 €Ì ore:€• ore:€Í
-€Š:€Ç_€Î_€µ 1 sd 33 €¶ €Š:€Ç_€Î
-€·:€Ï 9 sl 00 1 €Š:€Ğ|*
-€Š:€Ñ|13 1 sd 33 €Ò €Š:€—|2 ore:€•
-€Š:bed|14 1 sl 00 12 €Š:bed ore:€˜
-€Š:€Ó_€Ô 6 sd 32 €Õ €Š:€Ó
-€Š:€—|2 1 sl 00 12 ore:€Ö €Š:€—
-€Š:€×_€Ø_€Ù|5 16 sd 32 €Õ ore:€Ú
-€Š:dye|8 2 sl 00 12 ore:€Û ore:€Ü
-€Š:€İ_€µ 1 sd 33 €¶ €Š:€İ
-€Š:bed|9 1 sl 00 12 €Š:bed ore:€Ş
-€Š:€×_€ß_€à|2 8 sd 33 €Ì €Š:€ß_€à ore:€Ö
-€·:€á_€â 4 sd 33 €ã €Š:€â_€ä|* ore:€Ó ore:€å
-€Š:€—|15 1 sl 00 12 ore:€Û €Š:€—
-€Š:€æ_€ç 9 sd 11 1 €Š:€æ
-€Š:dye|15 9 sl 00 1 €Š:€´_€µ
-€Š:€è_€Á_€é 1 sd 32 €Â €Š:€£ €Š:€Ã|1
-€Š:€ê_€ë 1 sd 33 €ì ore:€ê
-€·:€Ä|7 1 sd 32 €í €·:€¸|1 €·:€Æ|2 €·:€¸
-€Š:bed|4 1 sd 32 €î €Š:€—|4 ore:€ï
-€Š:€æ 1 sd 33 €¶ ore:€ğ
-€Š:€‹_€µ 1 sd 33 €¶ ore:€²
-€·:€ñ|1 9 sl 00 1 €·:€ñ|2
-€Š:€ò_oak_€ó 3 sd 23 €Õ €Š:€Ã|5
-€Š:€ô_€õ 1 sl 00 123 €Š:€õ ore:€Û ore:€ö
-€Š:€ê_€÷ 1 sd 32 €ø ore:€ê
-€Š:bed|3 1 sd 32 €î €Š:€—|3 ore:€ï
-€Š:€‘_€ù 1 sd 33 €Ì ore:€” €Š:€ù
-€Š:€ú_€µ 1 sd 33 €¶ ore:€û
-€Š:€_pot 1 sd 32 €ü €Š:€È
-€Š:€¹_€ı 1 sd 33 €ş ore:€ÿ ore:€•
-€Š:dye|7 1 sl 00 1 €Š:red_€|8
-€·:€Æ|5 4 sl 00   €·:€Æ|2 €·:€Æ
-€É:€Ê_|1 1 sd 33  €Š: ore:€• €É:€Ê_€Ë
-€Š:€×_€Ø_€Ù|2 16 sd 32 €Õ ore:
-€€: 1 sd 33  €Š:€‹_€Œ ore:oc: ore:oc:€º ore:oc: ore:oc:€
-€Š:€Ç_€È_ 4 sd 33 	 €Š:€Ç_€È
-€É:
-|5 4 sd 33  ore:€• €Š:€Ã|5
-€Š:€—|10 1 sl 00 12 ore: €Š:€—
-€·:|1 4 sd 22  €·:
-€Š:€×_€ß_€à|12 8 sd 33 €Ì €Š:€ß_€à ore:
-€€: 1 sd 33  ore:oc:€… ore: ore:oc:€³ ore:€ÿ ore:€¨ €Š:_
-€Š:bed|2 1 sd 32 €î €Š:€—|2 ore:€ï
-€Š:€‹_€ä 1 sd 13 112 ore:€² ore:€•
-€Š:€è_€Á 3 sd 32 €Â €Š:€Ã|1 €Š:€£
-€Š:€×_€Ø|13 8 sd 33 €Ì ore: ore:
-€Š:lit_ 1 sd 12 12 €Š: €Š:
-€€: 1 sd 33  ore:€ÿ ore:oc: €Š:€‹_ ore:€Ğ ore:oc:€° ore:oc:€³ ore:oc:
-€·:|7 1 sd 33 €¶ €·:|6
-€·:|6 1 sd 33 €¶ €·:|5
-€·:€á_ 4 sd 33 €ã €Š:€‘_€ä|* ore:€” ore: 
-€Š:dye|7 3 sl 00 122 ore:€Û ore:€Ü
-€·:|1 1 sd 33 €¶ €·:
-€·:|5 1 sd 33 €¶ €·:|4
-€·:|4 1 sd 33 €¶ €·:|3
-€·:|3 1 sd 33 €¶ €·:|2
-€·:|2 1 sd 33 €¶ €·:|1
-€Š:€×_€Ø|1 8 sd 33 €Ì ore: ore:!
-€·:" 1 sd 33 €¼ ore:# ore:€• ore:€½
-€Š:€Ğ 4 sd 33 $ ore:€¤
-€·:%|8 1 sl 00 122 €·:%|9 €Š:&_'|*
-€Š:( 9 sl 00 1 €·:)
-€·:|1 9 sl 00 1 €·:|2
-€€: 1 sd 33  ore:€² ore:oc:€… ore:€¾ ore:oc:* ore:oc:€³
-€Š:bed|4 1 sl 00 12 €Š:bed ore:+
-€Š:€‘_, 1 sd 32 - ore:€”
-€Š:._€ó 3 sd 23 €Õ €Š:€Ã|4
-€·:/|3 8 sd 33 €Ì €·:|3 €·:€¸|5
-€·:0|6 1 sd 32 1 ore:€– €·:2 ore:€” €Š:_€µ|*
-€·:€ñ|2 1 sd 33 €¶ €·:€ñ|1
-€Š:3_|9 8 sl 00 4 ore:€Ş €Š:5 €Š:6
-€·:%|6 1 sl 00 122 €·:%|9 €Š:7|*
-€Š:8_9 1 sd 12 12 ore:€ğ €Š:9
-€Š:€‘_hoe 1 sd 23 : ore:€” ore:€•
-€Š:;_< 3 sl 00 123 ore:= €Š:_ €Š:€İ,€Š:€İ|1
-€Š:€×_€ß_€à|15 8 sd 33 €Ì €Š:€ß_€à ore:€Û
-€Š: 9 sd 11 1 €Š:_€µ
-€Š:€ú 9 sd 11 1 €Š:€ú_€µ
-€·:>|3 1 sd 33 €Å €·:€¸|17 ore:? €·:@ €·:€¸
-€Š:A_€ı 1 sd 33 €ş ore:€ï ore:€•
-€·:B|3 1 sd 33 C ore:D €·:E €·:B|2
-€·:F 1 sd 33 G ore:€² ore:€•
-€Š:3_|13 8 sl 00 4 ore: €Š:5 €Š:6
-€Š:oak_ 4 sd 33 	 €Š:€Ã
-€Š:€â_H 1 sd 11 1 ore:€â
-€·:€Æ|2 4 sd 22  €Š:I|*
-€Š:dye|12 2 sl 00 12 ore:J ore:€Ü
-€Š:€×_€Ø|12 8 sd 33 €Ì ore: ore:
-€·:%|4 1 sl 00 122 €·:%|9 €Š:K_L|*
-€€:M 1 sd 33 €± ore:€² ore:oc:€­ ore:N ore:oc:€³
-€€:O 1 sl 00 12 €Š:P ore:oc:Q
-€·:R 1 sd 33 C ore:€â €·:€¸|2 €·:S
-€Š:T 1 sd 22  €Š:5
-€Š:3_|4 8 sl 00 4 ore:+ €Š:5 €Š:6
-€Š:U_€Á_€é 1 sd 32 €Â €Š:€£ €Š:€Ã|3
-€Š:_V 9 sd 11 1 €Š:_€µ
-€€:€|9 2 sl 00 11 €€:€|9
-€Š:W 1 sd 33 X €Š:_ €Š:Y ore:€â
-€Š:Z 1 sd 32 [ €Š:_ ore:€– ore:€â
-€Š:3_|14 8 sl 00 4 ore:€˜ €Š:5 €Š:6
-€·:)|2 9 sl 00 1 €·:)|3
-€Š:A_\|2 6 sd 31 111 €Š:€Ã|2
-€·:€õ 1 sl 00 123 €Š:€õ|*,€Š:€ô_€õ|*,€Š:]_€õ|* ore:€” €Š:€¨|*
-€Š:^_€µ 4 sd 22  €Š:__`_a
-€·:%|2 1 sl 00 122 €·:%|9 €Š:b_L|*
-€Š:A_H 1 sd 11 1 ore:€ï
-€Š:€â_ 4 sd 33 	 €Š:€Ó
-€Š:c_rod 1 sd 33 d ore:€• ore:€½
-€Š:€‹_e 1 sd 33 f ore:€²
-€·:%|3 1 sl 00 122 €·:%|9 ore:5
-€Š:g 1 sd 32 h €Š:€Ã
-€Š:P|9 3 sd 21 11 €Š:€—|9
-€Š:dye|9 2 sl 00 12 ore:€˜ ore:€Ü
-€Š:i 1 sd 33 €Ì ore:€ï ore:€–
-€·:) 1 sd 33 €¶ €Š:(
-€Š:3_|7 8 sl 00 4 ore:j €Š:5 €Š:6
-€·:k 1 sl 00 123 €Š:l|* €·:€¸ €Š:€‹_€ı|*
-€Š:3_|3 8 sl 00 4 ore:m €Š:5 €Š:6
-€€:n 1 sd 33 o ore:€² €Š: ore:oc:€® ore:
-€€:p 1 sl 00 12 €€:p €€:q
-€Š:A_\|4 6 sd 31 111 €Š:€Ã|4
-€Š:bed|7 1 sl 00 12 €Š:bed ore:j
-€Š:€¡_€š 1 sl 00 123 €Š:€ _€¡ €Š:red_€¡ €Š:€¢
-€Š:dye|1 1 sl 00 1 €Š:red_€|4
-€·:r 1 sd 33 s ore:€” €·:t|1
-€Š:dye|1 1 sl 00 1 €Š:u
-€É:v_key 1 sd 23 w ore:€ƒ ore:€” €É:€Ê_€Ë
-€Š:x 1 sd 33 y ore: ore:z €Š:€¨
-€Š:tnt 1 sd 33 { ore:= €Š:5,€Š:5|1
-€Š:bed|8 1 sd 32 €î €Š:€—|8 ore:€ï
-€Š:|_and_} 1 sl 00 12 ore:€² €Š:|
-€Š:dye|14 1 sl 00 1 €Š:red_€|5
-€Š:bed|6 1 sl 00 12 €Š:bed ore:~
-€É:€Ê_|2 1 sd 33 y ore:€• €É:€Ê_€Ë €Š:
-€Š:P|12 3 sd 21 11 €Š:€—|12
-€Š:U_€ó 3 sd 23 €Õ €Š:€Ã|3
-€·:|3 9 sl 00 1 €·:|4
-€Š:€×_€Ø_€Ù|15 16 sd 32 €Õ ore:€
-€·:€Æ|4 4 sl 00   ore:5 ore:
-€Š:|1 1 sd 33 €¶ ore:‚
-€Š:P|11 3 sd 21 11 €Š:€—|11
-€Š:€‹_€ë 1 sd 33 €ì ore:€²
-€·:ƒ 1 sl 00 123 €Š:l|* €·:€¸ €Š:„_'|*
-€·: 9 sl 00 1 €·:|1
-€É:€Ê_q 1 sd 33 … ore:€• €Š:€¨ €É:€Ê_€Ë
-€Š:map 1 sd 33 €Ì €Š:† €Š:‡_map|*
-€Š:red_€Ç_€È 1 sd 22 ˆ €Š:‰ €Š:€Ç_€Î
-€€:Š 1 sd 32 ‹ ore:oc:Œ ore:oc: ore:oc:
-€Š:€À_ 4 sd 33 	 €Š:€Ã|2
-€Š:€×_€Ø|8 8 sd 33 €Ì ore: ore:
-€Š:€×_€Ø_€Ù 16 sd 32 €Õ ore:
-€Š:€‘_axe 1 sd 23 ‘ ore:€” ore:€•
-€Š:€×_€Ø_€Ù|3 16 sd 32 €Õ ore:’
-€Š:3_|12 8 sl 00 4 ore: €Š:5 €Š:6
-€Š:€×_€Ø|9 8 sd 33 €Ì ore: ore:€Ş
-€·:€Ä 3 sd 32 “ ore:# €·:€Æ|2 €·:€¸
-€Š:dye|11 2 sl 00 1 €Š:”_•
-€Š:€â_€ä 1 sd 13 112 ore:€Ó ore:€•
-€Š:€â_€È_ 4 sd 33 	 €Š:I,€Š:I|1,€Š:I|2,€Š:I|3
-€É:–_key 1 sl 00 12 €É:v_key €Š:—_tag
-€Š:€â|3 2 sd 22 ˆ ore:€Ó €Š:Y
-€Š:._€Á 3 sd 32 €Â €Š:€Ã|4 €Š:€£
-€·:˜|1 8 sd 13 102 €Š:™|* €·:0|2
-€·:š 1 sd 33 €¼ €Š:end_€â|* €·:€Æ|3 ore:›_œ_
-€Š:end_ 4 sd 22  €Š:end_€â
-€Š:bed|1 1 sl 00 12 €Š:bed ore:!
-€Š:€Ñ|6 1 sd 33 €Ò €Š:€—|9 ore:€•
-€·:|4 9 sl 00 1 €·:|5
-€Š:dye|13 4 sl 00 Ÿ ore:J ore:€˜ ore:€Ü
-€Š:€‹_hoe 1 sd 23 : ore:€² ore:€•
-€Š:œ 1 sd 22  €Š: 
-€Š:€Ã|3 4 sd 11 1 €Š:log|3
-€Š:._€Á_€é 1 sd 32 €Â €Š:€£ €Š:€Ã|4
-€Š:¡ 1 sd 33 ¢ ore:€” ore:€–
-€Š:P|2 3 sd 21 11 €Š:€—|2
-€·:%|5 1 sl 00 122 €·:%|9 €Š: |*
-€·:%|7 1 sl 00 122 €·:%|9 €Š:™|*
-€Š:€—|4 1 sl 00 12 ore:+ €Š:€—
-€Š:€×_€ß_€à|13 8 sd 33 €Ì €Š:€ß_€à ore:
-€Š:£_¤ 1 sd 33 €Ì €Š:_€Œ €Š:¤
-€·:¥_ 1 sd 33 ¦ ore:€” ore:€•
-€·:§ 4 sd 12 12 €·:€¸ €·:€Æ|3
-€·:¨ 1 sd 23 ‘ €·:©|8 €Š:€£|*
-€Š:€Ø_€Ù 16 sd 32 €Õ €Š:€Ø
-€Š:€¹_e 1 sd 33 f ore:€ÿ
-€·:ª|1 1 sl 00 12 €·:ª €·:€¸|10
-€Š: 1 sd 22  ore:‚
-€·:« 1 sd 33 ¬ ore:€– ore:­ ore:€² €·:€¸
-€Š:€‘_€ä 1 sd 13 112 ore:€” ore:€•
-€Š:€×_€Ø|10 8 sd 33 €Ì ore: ore:
-€Š:€‹_V 1 sd 33 €¶ €Š:€‹_€Œ
-€Š:T|1 1 sd 12 11 €Š:€â_\|1
-€·:® 9 sl 00 1 €·:®|1
-€Š:€‘_€ı 1 sd 33 €ş ore:€” ore:€•
-€Š:€à 1 sd 22  €Š:€à_€ç
-€Š:€Á_€é 1 sd 32 €Â €Š:€£ €Š:€Ã
-€€:¯ 1 sd 33 €¶ ore:oc:°
-€Š:dye|13 1 sl 00 1 €Š:red_€|2
-€Š:A_\|1 6 sd 31 111 €Š:€Ã|1
-€Š:± 3 sd 33 ² ore:€•
-€·:³ 1 sd 33 €¼ €Š:dye|13,€·:€¸|3,€Š:dye|5 ore:€² ore:´
-€É:µ_key 1 sl 00 12 €É:v_key €Š:€ô_€õ
-€Š:_ 1 sd 12 12 ore:€– ore:€•
-€Š:¶_· 1 sd 12 12 €Š:¶ €Š:·
-€Š:A_¸_¹ 1 sd 21 11 ore:€ï
-€Š:3_ 8 sl 00 4 ore:€Ü €Š:5 €Š:6
-€Š:€—|7 1 sl 00 12 ore:j €Š:€—
-€·:/ 8 sd 33 €Ì ore: €·:€¸|5
-€Š:P|1 3 sd 21 11 €Š:€—|1
-€·:) 9 sl 00 1 €·:)|1
-€Š:bed|7 1 sd 32 €î €Š:€—|7 ore:€ï
-€Š:º 1 sd 33 » €Š:¼_L €Š:½ ore:egg €Š:¾
-€·:¥_€â 1 sd 33 ¦ ore:€Ó ore:€•
-€Š:€Ñ|14 1 sd 33 €Ò €Š:€—|1 ore:€•
-€Š:€ê_, 1 sd 32 - ore:€ê
-€·:€Ä|4 1 sd 33 ¿ €·:€Æ|3 €·:€¸|1 €·:€¸
-€Š:À_Á 1 sd 33 Â ore:€• €Š:€â_\
-€·:t 4 sl 00 1 €·:t|1
-€·:Ã 1 sd 33 Ä €Š:end_€â|* €Š:end_rod|* €Š:€¹_€ı|* €·:€Æ|3
-€Š:€×_€Ø_€Ù|6 16 sd 32 €Õ ore:Å
-€Š:3_|5 8 sl 00 4 ore:Æ €Š:5 €Š:6
-€·:˜ 8 sd 13 102 €Š:™|* €·:0
-€Š:€ê_e 1 sd 33 f ore:€ê
-€Š:A_\|3 6 sd 31 111 €Š:€Ã|3
-€·:€Æ|1 4 sl 00  €·:€Æ
-€·:>|2 1 sd 33 €Å €·:€¸|17 ore:Ç €·:@ €·:€¸
-€É:È|1 1 sl 00 12 €É:É_key €Š:€â_H
-€Š:€Ñ|3 1 sd 33 €Ò €Š:€—|12 ore:€•
-€Š:€×_€ß_€à|4 8 sd 33 €Ì €Š:€ß_€à ore:+
-€Š:I|1 1 sl 00 12 €Š:I €Š:Ê
-€·:Ë 1 sd 33 €¼ ore:€â ore:€– €Š:_|*
-€·:E 1 sl 00 122 €Š:€Ø_Ì|* €Š:€ª_Í|*
-€Š:€õ 1 sl 00 Î ore:† ore:€ê
-€Š:A_Ï 1 sd 13 122 ore:€ï ore:€•
-€Š:bed|13 1 sd 32 €î €Š:€—|13 ore:€ï
-€·:€¸|11 9 sl 00 1 €·:Ğ|1
-€É:È|3 1 sl 00 12 €É:µ_key €Š:€â_H
-€Š:3_|6 8 sl 00 4 ore:~ €Š:5 €Š:6
-€Š:Ñ 1 sd 33 Ò ore:€²
-€É:€Ê_Ó 1 sd 33 Ô €Š:_ ore:€• €É:€Ê_€Ë €Š:
-€É:€Ê_Ó|1 1 sd 33 Ô €Š:W ore:€• €É:€Ê_€Ë €Š:
-€Š:dye|1 1 sl 00 1 €Š:red_€
-€Š:3_|2 8 sl 00 4 ore:€Ö €Š:5 €Š:6
-€·:Õ 1 sl 00 12 €Š:€—|* €Š:i|*
-€·:t|2 5 sd 22 ˆ ore:Ö ore:€ï
-€Š:€¹_Ï 1 sd 13 122 ore:€ÿ ore:€•
-€€:× 1 sd 33 Ø ore:oc:Ù ore:Ú ore:oc:Û ore:N ore:€¨ ore:€² €Š:K_L
-€Š:€â_\|1 6 sd 31 111 €Š:T,€Š:T|1,€Š:T|2
-€Š:hay_€µ 1 sd 33 €¶ €Š:¾
-€Š:€â_\|3 6 sd 31 111 €Š:€Ó
-€·:Ü 1 sl 00 123 €Š:„_'|* ore:İ €Š:Ş|*
-€Š:ß_à_box 1 sd 13 121 €Š:à_á ore:İ
-€Š:€Ñ|8 1 sd 33 €Ò €Š:€—|7 ore:€•
-€Š:€×_€ß_€à|3 8 sd 33 €Ì €Š:€ß_€à ore:m
-€·:¥_€¹ 1 sd 33 ¦ ore:€ÿ ore:€•
-€€:â 1 sd 33 o ore:€¨ €Š:ã_ä ore:oc:€… ore:
-€·:|4 9 sl 00 1 €·:|5
-€Š:· 1 sd 32 h ore:€²
-€·:|3 9 sl 00 1 €·:|4
-€Š:€Ğ 1 sd 33 $ ore:€ï
-€Š:€×_€Ø|7 8 sd 33 €Ì ore: ore:j
-€Š:€’ 16 sd 33 å ore:€² ore:€•
-€Š:€×_€ß_€à|5 8 sd 33 €Ì €Š:€ß_€à ore:Æ
-€Š:€¹_€ä 1 sd 13 112 ore:€ÿ ore:€•
-€Š:€Ñ|11 1 sd 33 €Ò €Š:€—|4 ore:€•
-€·:B|2 1 sd 33 C ore:€ÿ €Š:æ_ç_¸_¹|* €·:B|1
-€Š:bed|14 1 sd 32 €î €Š:€—|14 ore:€ï
-€Š:€ò_oak_€Á 3 sd 32 €Â €Š:€Ã|5 €Š:€£
-€€:è|28 9 sl 00 1 €€:¯
-€Š:€‘_Ï 1 sd 13 122 ore:€” ore:€•
-€É:é 1 sd 32 €ø ore:ê
-€·:ë 1 sd 33  ore:€â ore:€Ó €Š:L|*
-€É:€Ê_q|1 1 sd 33 … ore:€• €Š:€‹_V €É:€Ê_€Ë
-€Š:€×_€ß_€à|14 8 sd 33 €Ì €Š:€ß_€à ore:€˜
-€Š:¤_€µ 1 sd 33 €¶ €Š:¤
-€É:È 1 sl 00 12 €É:v_key €Š:€â_H
-€Š:_ 2 sl 00 1 €Š:_rod
-€Š:3_|11 8 sl 00 4 ore:J €Š:5 €Š:6
-€Š:€×_€Ø|11 8 sd 33 €Ì ore: ore:J
-€Š:€™_€š 1 sd 33 €› €Š:€œ_€™ €Š:€ €Š:€_€Ÿ €Š:red_€¡ €Š:€¢
-€Š:€‹_, 1 sd 32 - ore:€²
-€Š:€¹_€ë 1 sd 33 €ì ore:€ÿ
-€Š:€‘_€ë 1 sd 33 €ì ore:€”
-€€:ì 1 sd 33  ore:€² ore:oc:€® €Š:€‹_ ore:€Ğ ore:oc:€³
-€Š:red_T|2 4 sd 22  €Š:red_T
-€·:€ñ|1 1 sd 13 123 ore:í ore:€• ore:€ÿ
-€·:0|5 4 sl 00 123 €·:2 €·:€» ore:€–
-€Š:bed|2 1 sl 00 12 €Š:bed ore:€Ö
-€·:€Ä|8 1 sd 33  €·:€Æ|3 €Š:€ª_Í|* €Š:€Ç_î|* €·:€¸|1 €·:€¸|2
-€€:ï 1 sd 33  ore:€² €Š:ğ ore:N ore:oc:€… ore:oc:€³
-€·:€¸|16 1 sd 33 €¼ €·:€¸|10 €·:€¸|17 €·:€¸|15
-€Š:dye|14 2 sl 00 12 ore:€˜ ore:+
-€Š:€è_ 4 sd 33 	 €Š:€Ã|1
-€Š:bed|15 1 sd 32 €î €Š:€—|15 ore:€ï
-€Š:dye|7 1 sl 00 1 €Š:red_€|3
-€€:ñ 1 sd 33  ore:€ÿ ore:oc:€… €Š:€‹_ ore:€Ğ ore:oc:€³
-€Š:dye|7 1 sl 00 1 €Š:red_€|6
-€·:/|1 1 sl 00 12 €·:/ €Š:_|*
-€Š:€È_€µ 1 sd 22  €Š:€È
-€·:2 64 sd 33 … €Š:€â_\ ore: ore:€–
-€Š:€¢ 4 sd 32 €ü ore:€ï
-€Š:€— 1 sd 22  ore:€½
-€Š:€¹ 9 sd 11 1 €Š:€¹_€µ
-€Š:€×_€Ø_€Ù|13 16 sd 32 €Õ ore:ò
-€Š:bed|13 1 sl 00 12 €Š:bed ore:
-€·:S 1 sd 32 “ €·:€Æ|3 €·:ó €·:€¸
-€€:ô 1 sd 33  ore:€² ore:oc:€­ ore:€” ore:oc:€® ore:oc:€³
-€Š:3_|15 8 sl 00 4 ore:€Û €Š:5 €Š:6
-€·:õ 1 sd 33 … €·:€Æ|3 ore:€¾ €·:€¸
-€Š:3_|10 8 sl 00 4 ore: €Š:5 €Š:6
-€Š:€Ñ|5 1 sd 33 €Ò €Š:€—|10 ore:€•
-€Š:P|5 3 sd 21 11 €Š:€—|5
-€€:ö 1 sd 33  ore:€” ore:oc:€ €Š:€‹_ ore:€Ğ ore:oc:€³
-€Š:€Ã|2 4 sd 11 1 €Š:log|2
-€Š:€×_€Ø_€Ù|8 16 sd 32 €Õ ore:÷
-€Š:ø_ù 2 sd 33 ¢ ore:ú €Š:ù
-€Š:tnt_· 1 sd 12 12 €Š:tnt €Š:·
-€Š:€×_€Ø 8 sd 33 €Ì ore: ore:€Ü
-€Š:P|14 3 sd 21 11 €Š:€—|14
-€Š:€Ã|4 4 sd 11 1 €Š:û
-€Š:A_hoe 1 sd 23 : ore:€ï ore:€•
-€·:€¸|5 9 sd 33 €Ì €·:€¸|3 ore:ü
-€·:|6 9 sl 00 1 €·:|7
-€·:€¸|6 1 sl 00 123 €·:€¸|9 ore:€” ore:€¾
-€Š:bed|8 1 sl 00 12 €Š:bed ore:
-€Š:^_ 4 sd 33 	 €Š:^_€µ
-€·:B|1 1 sl 00 1 €·:B|1
-€·:B|4 1 sl 00 1 €·:B|4
-€Š:€—|11 1 sl 00 12 ore:J €Š:€—
-€·:Ğ 1 sd 33 €¶ €·:€¸|12
-€·:ı 1 sl 00 12 €·:ı|1 €·:ı|2
-€Š:½ 1 sd 11 1 ore:ş
-€Š:9 1 sd 33 ÿ ore:€ï ore:€Ó ore:€² ore:€–
-€€:Q 1 sd 33  ore:€² ore:oc:‚  ore:€ƒ ore:† ore:oc:€³
-€Š:bed|12 1 sd 32 €î €Š:€—|12 ore:€ï
-€Š:bed|11 1 sd 32 €î €Š:€—|11 ore:€ï
-€Š:P|8 3 sd 21 11 €Š:€—|8
-€Š:€Ñ|15 1 sd 33 €Ò €Š:€— ore:€•
-€Š:T|2 4 sd 22  €Š:T
-€Š:end_‚ 1 sd 33 ‚ ore: €Š:€ª_eye €Š:‚_‚
-€Š:€Ñ|7 1 sd 33 €Ò €Š:€—|8 ore:€•
-€Š:€â_€ı 1 sd 33 €ş ore:€Ó ore:€•
-€·:€á_€‹ 4 sd 33 €ã €Š:€‹_€ä|* ore:€² ore:‚
-€Š:A_axe 1 sd 23 ‘ ore:€ï ore:€•
-€Š:‚ 1 sd 33 ‚ ore:€Ó €Š:bow ore:€–
-€·:®|1 1 sd 33 €¶ €·:®
-€Š:€×_€Ø_€Ù|9 16 sd 32 €Õ ore:‚
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>]==],['db']={['crafting.db']= [==[#…·:
+#'ƒ, …¸ —' '‚v …¸ …¹' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …º …»|…¼'
+€·:Ü 1 sd 00 123 1 1 1 €Š:„_'|* ore:İ 
+€·:‚A 1 sd 32 …½ 1 1 1 €Š:€ö|* 1 €Š:€¨|* 
+€·:‚ 1 sd 00 121 ore: 1 1 
+€·:‚|3 1 sd 00 121 1 1 1 €Š:€ê|* 
+€·:‚|2 1 sd 00 123 ore: 1 1 1 €·:‚|* 
+€·:‚|4 1 sd 00 121 ore:€ƒ 1 1 
+€·:‚|5 1 sd 00 123 1 1 1 €Š:€İ 1 €·:‚|* 
+€·:‚|1 1 sd 00 121 1 1 1 €Š:€ö|* 
+€·:‚ª 1 sd 33 … ore:€” ore:İ 1 1 
+€·:³ 1 sd 33 €¼ €·:€¸|3,€Š:dye|13,€Š:dye|5 ore:€² ore:´ 
+€·:€õ 1 sd 00 123 €Š:€õ|*,€Š:€ô_€õ|*,€Š:]_€õ|* ore:€” 1 1 
+€·:‚¸ 1 sd 32 111 1 1 
+€·:‚[ 1 sd 33 …¾ 1 1 1 €·:©|8 ore:€½ 
+€·:|3 9 sd 00 1 1 1 
+€·:|6 9 sd 00 1 1 1 
+€·:|2 9 sd 00 1 1 1 
+€·:|5 1 sd 33 €¶ 1 1 
+€·: 1 sd 33 €¶ 1 1 
+€·:|6 1 sd 33 €¶ 1 1 
+€·:|4 1 sd 33 €¶ 1 1 
+€·:|1 9 sd 00 1 1 1 
+€·: 9 sd 00 1 1 1 
+€·:|1 1 sd 33 €¶ 1 1 
+€·:|7 1 sd 33 €¶ 1 1 
+€·:|2 1 sd 33 €¶ 1 1 
+€·:|5 9 sd 00 1 1 1 
+€·:|3 1 sd 33 €¶ 1 1 
+€·:|4 9 sd 00 1 1 1 
+€·:)|1 9 sd 00 1 1 1 
+€·:) 1 sd 33 €¶ 1 1 
+€·:)|2 1 sd 33 €¶ 1 1 
+€·:)|2 9 sd 00 1 1 1 
+€·:)|3 1 sd 33 €¶ 1 1 
+€·:)|1 1 sd 33 €¶ 1 1 
+€·:) 9 sd 00 1 1 1 
+€·:‚ 1 sd 33 €¶ 1 1 
+€·:‚ 9 sd 00 1 1 1 
+€·:‚|1 1 sd 33 €¶ 1 1 
+€·: 1 sd 33 €¶ 1 1 
+€·:|2 1 sd 33 €¶ 1 1 
+€·:|5 1 sd 33 €¶ 1 1 
+€·:|4 1 sd 33 €¶ 1 1 
+€·:|2 9 sd 00 1 1 1 
+€·: 9 sd 00 1 1 1 
+€·:|1 1 sd 33 €¶ 1 1 
+€·:|1 9 sd 00 1 1 1 
+€·:|3 9 sd 00 1 1 1 
+€·:|3 1 sd 33 €¶ 1 1 
+€·:|4 9 sd 00 1 1 1 
+€·:® 9 sd 00 1 1 1 
+€·:® 1 sd 33 €¶ 1 1 
+€·:®|1 1 sd 33 €¶ 1 1 
+€·:‚€ 1 sd 00 ‚ 1 1 1 €Š:€ö|* 1 €Š:†|* 1 €Š:€Ø_Ì|* 
+€·:ƒ 1 sd 00 123 1 1 1 €Š:l|* 1 €·:€¸ 
+€·:|2 4 sd 22  1 1 
+€·:|4 2 sd 00 121 1 1 1 €·: 
+€·:|3 2 sd 00 121 1 1 1 €·: 
+€·:|1 4 sd 22  1 1 
+€·:€Æ|4 4 sd 00   ore:5 ore: 
+€·:€Æ|2 4 sd 22  1 1 
+€·:€Æ|1 4 sd 00  1 1 
+€·:€Æ 4 sd 00   ore:€â ore:‚¢ 
+€·:€Æ|5 4 sd 00   1 1 1 €·:€Æ|2 
+€·:t|2 5 sd 22 ˆ ore:Ö ore:€ï 
+€·:t 4 sd 00 1 1 1 
+€·:B|1 1 sd 00 1 1 1 
+€·:B|3 1 sd 00 1 1 1 
+€·:B 1 sd 00 1 1 1 
+€·:B|3 1 sd 33 C ore:D 1 1 1 €·:E 
+€·:B|4 1 sd 00 1 1 1 
+€·:B 1 sd 33 C ore:€Ó €Š:€â_\|3,€Š:€â_\ 1 1 
+€·:B|1 1 sd 33 C ore:€² 1 1 1 €Š:‚>_ç_¸_¹|* 
+€·:B|2 1 sd 00 1 1 1 
+€·:B|2 1 sd 33 C ore:€ÿ 1 1 1 €Š:æ_ç_¸_¹|* 
+€·:ó 8 sd 00 12 1 1 1 €Š:€ª_Í|* 
+€·:€» 1 sd 33 €¼ ore:€– ore:€• ore:€½ 
+€·:" 1 sd 33 €¼ ore:# ore:€• ore:€½ 
+€·:¨ 1 sd 23 …¿ 1 1 1 €·:©|8 
+€·:˜ 8 sd 13 12 1 1 1 €Š:™|* 
+€·:˜|1 8 sd 13 12 1 1 1 €Š:™|* 
+€·:F 1 sd 33 …À ore:€² ore:€• 
+€·:ª|1 1 sd 00 12 1 1 1 €·:ª 
+€·:0 4 sd 32 1 ore:€– 1 1 1 €·:2 ore:€â 
+€·:0|6 1 sd 32 1 ore:€– 1 1 1 €·:2 ore:€” 
+€·:0|2 4 sd 32 1 ore:€– 1 1 1 €·:2 ore:€â 
+€·:0|1 4 sd 32 1 ore:€– 1 1 1 €·:€» ore:€â 
+€·:0|3 2 sd 33 …Á 1 1 1 €Š:€ª_Í|* 1 €·:0 
+€·:0|5 4 sd 00 123 1 1 1 €·:2 1 €·:€» 
+€·:0|4 2 sd 33 …Á 1 1 1 €Š:€ª_Í|* 1 €·:0|2 
+€·:‚ 1 sd 33 C 1 1 1 €·:€Æ|3 1 €·:€¸ 
+€·:R 1 sd 33 C ore:€â 1 1 1 €·:€¸|2 
+€·:/ 8 sd 33 €Ì ore: 1 1 
+€·:/|2 8 sd 33 €Ì 1 1 1 €·: 
+€·:/|3 8 sd 33 €Ì 1 1 1 €·:|3 
+€·:/|1 1 sd 00 12 1 1 1 €·:/ 
+€·:€¸|12 9 sd 00 1 1 1 
+€·:€¸|16 1 sd 33 €¼ 1 1 1 €·:€¸|10 1 €·:€¸|17 
+€·:€¸|8 1 sd 00 12 1 1 1 €·:€¸|9 
+€·:€¸|15 1 sd 33 €¼ 1 1 1 €·:‚G 1 €·:€¸|12 
+€·:€¸|5 9 sd 33 €Ì 1 1 1 €·:€¸|3 
+€·:€¸|11 9 sd 00 1 1 1 
+€·:€¸|2 1 sd 00 123 1 1 1 €Š:€ª_Í|* ore:€– 
+€·:€¸|5 1 sd 33 €Ì 1 1 1 €·:€¸|3 
+€·:€¸ 1 sd 00 ‚. 1 1 1 €·:ó|* 
+€·:€¸|6 1 sd 00 123 1 1 1 €·:€¸|9 ore:€” 
+€·:€¸|17 9 sd 00 1 1 1 
+€·:€¸|1 1 sd 33 …Â 1 1 1 €Š:_|* 
+€·:€¸|7 1 sd 00 123 1 1 1 €·:€¸|9 ore:€” 
+€·:‚W 1 sd 33 €¼ ore:€½ 1 1 1 €Š:€ª_Í|* 
+€·:‚n_€Ã|1 4 sd 00 1 1 1 
+€·:‚n_€Ã 4 sd 00 1 1 1 
+€·:r 1 sd 33 112 1 1 1 €·:t|1 
+€·:‚: 1 sd 33 …Ã ore:€” 1 1 
+€·:E 1 sd 00 122 1 1 1 €Š:€Ø_Ì|* 
+€·:‚5 1 sd 33 €Ì 1 1 1 €Š:€£|* 
+€·:‚‘ 1 sd 13 112 1 1 1 €·:©|8 
+€·:> 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:‚u 1 €·:@ 
+€·:>|3 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:? 1 €·:@ 
+€·:>|7 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:€ 1 €·:@ 
+€·:>|4 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:ò 1 €·:@ 
+€·:>|1 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:Å 1 €·:@ 
+€·:>|5 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:‚ 1 €·:@ 
+€·:>|2 1 sd 33 €Å 1 1 1 €·:€¸|17 ore:Ç 1 €·:@ 
+€·:>|6 1 sd 33 €Å 1 1 1 €·:€¸|17 ore: 1 €·:@ 
+€·:‚b 4 sd 33 €¼ ore:€² ore:€– ore:İ 
+€·:‚G 8 sd 33 €Ì 1 1 1 €Š:€ù|* 
+€·:k 1 sd 00 123 1 1 1 €Š:l|* 1 €·:€¸ 
+€·:€Ï 9 sd 00 1 1 1 
+€·:©|4 1 sd 33 …Á 1 1 1 €·:©|3 1 €Š:€ú_€µ 
+€·:©|1 1 sd 33 …Á 1 1 1 €·:© 1 €Š:€‹_€µ 
+€·:©|8 1 sd 33 …Á 1 1 1 €·:©|7 1 €Š:€Ç_î 
+€·:©|3 1 sd 33 …Á 1 1 1 €·:©|2 1 €Š:€¹_€µ 
+€·:©|7 1 sd 33 …Á 1 1 1 €·:©|6 1 €Š:‚3 
+€·:©|2 1 sd 33 …Á 1 1 1 €·:©|1 1 €Š:_€µ 
+€·:©|6 1 sd 33 …Á 1 1 1 €·:©|5 1 €Š:‚2_Ì 
+€·:© 1 sd 33 …Â 1 1 1 €·:€¸|4 
+€·:©|5 1 sd 33 …Á 1 1 1 €·:©|4 1 €Š:__€ 
+€·:€Ä|4 1 sd 33 …Ä 1 1 1 €·:€Æ|3 1 €·:€¸|1 
+€·:€Ä|5 1 sd 33 €Å 1 1 1 €·:€Æ|3 1 €·:€¸ 1 €·:€¸|1 
+€·:€Ä|3 1 sd 33 … 1 1 1 €·:€Æ|3 1 €·:€¸|1 
+€·:€Ä|2 1 sd 33 ‚ 1 1 1 €·:€Æ|3 1 €·:€¸ 
+€·:€Ä|7 1 sd 32 …½ 1 1 1 €·:€Æ|2 1 €·:€¸ 
+€·:€Ä 3 sd 32 “ ore:# 1 1 1 €·:€Æ|2 
+€·:€Ä|8 1 sd 33  1 1 1 €·:€Æ|3 1 €Š:€ª_Í|* 1 €Š:€Ç_î|* 1 €·:€¸|1 
+€·:€Ä|1 3 sd 32 “ 1 1 1 €·:€¸|3 1 €·:€Æ|2 
+€·:2 64 sd 33 … 1 1 1 €Š:€â_\ ore: 
+€·:‚Z 1 sd 33 ‚ 1 1 1 €·:€Æ|3 1 €Š:€ª_€Ğ|* 
+€·:õ 1 sd 33 … 1 1 1 €·:€Æ|3 ore:€¾ 
+€·:‚X 1 sd 23 ‚. 1 1 1 €·:€¸ 
+€·:§ 4 sd 12 12 1 1 1 €·:€¸ 
+€·:š 1 sd 33 €¼ 1 1 1 €Š:end_€â|* 1 €·:€Æ|3 
+€·:Ã 1 sd 33 Ä 1 1 1 €Š:end_€â|* 1 €Š:end_rod|* 1 €Š:€¹_€ı|* 
+€·:ı 1 sd 00 12 1 1 1 €·:ı|1 
+€·:Ë 1 sd 33 €¼ ore:€â ore:€– 1 1 
+€·:‚¶ 1 sd 33 €± ore:€– 1 1 1 €·:€Æ|2 1 €Š:€İ|* 
+€·:« 1 sd 33 ¬ ore:€– ore:­ ore:€² 1 1 
+€·:‚I 1 sd 00 123 1 1 1 €Š:l|* ore:€– 
+€·:S 1 sd 32 “ 1 1 1 €·:€Æ|3 1 €·:ó 
+€·:¥_€¹ 1 sd 33 …Å ore:€ÿ ore:€• 
+€·:¥_ 1 sd 33 …Å ore:€” ore:€• 
+€·:¥_€‹ 1 sd 33 …Å ore:€² ore:€• 
+€·:¥_€â 1 sd 33 …Å ore:€Ó ore:€• 
+€·:¥_‚r 1 sd 33 …Å ore:€ï ore:€• 
+€·:Ğ 1 sd 33 €¶ 1 1 
+€·:Ğ|2 1 sd 33 €¶ 1 1 
+€·:Ğ|1 1 sd 33 €¶ 1 1 
+€·:‚P 1 sd 00 ‚Q ore: ore:´ 1 1 1 €Š: |* ore:‚R ore:€¤ ore:‚S 1 €Š:€ª_Í|* 
+€·:Õ 1 sd 00 12 1 1 1 €Š:€—|* 
+€·:€á_€¹ 4 sd 33 …Æ 1 1 1 €Š:€¹_€ä|* ore:€ÿ 
+€·:€á_ 4 sd 33 …Æ 1 1 1 €Š:€‘_€ä|* ore:€” 
+€·:€á_€‹ 4 sd 33 …Æ 1 1 1 €Š:€‹_€ä|* ore:€² 
+€·:€á_€â 4 sd 33 …Æ 1 1 1 €Š:€â_€ä|* ore:€Ó 
+€·:€á_‚r 4 sd 33 …Æ 1 1 1 €Š:A_€ä|* 1 €Š:€Ã 
+€·:@|250 1 sd 00 ‚. ore:€ÿ ore:ú 
+€·:‚4|1 1 sd 33 …Ç 1 1 
+€·:%|7 1 sd 00 122 1 1 1 €·:%|9 
+€·:%|8 1 sd 00 122 1 1 1 €·:%|9 
+€·:%|9 1 sd 33 ‚1 ore:€² ore:€ÿ ore:´ 1 1 
+€·:% 1 sd 32 1 1 1 1 €Š:€ª_Í|* 1 €·:%|9 ore:€– 
+€·:%|2 1 sd 00 122 1 1 1 €·:%|9 
+€·:%|3 1 sd 00 122 1 1 1 €·:%|9 
+€·:%|1 1 sd 33 …È 1 1 1 €Š:end_rod|* ore:€² 
+€·:%|6 1 sd 00 122 1 1 1 €·:%|9 
+€·:%|5 1 sd 00 122 1 1 1 €·:%|9 
+€·:%|4 1 sd 00 122 1 1 1 €·:%|9 
+€·:‚7 1 sd 33  ore:€â ore:€Ó ore:İ 
+€·:‚™ 1 sd 33  ore:€â ore:€Ó ore:€¾ 
+€·:ë 1 sd 33  ore:€â ore:€Ó 1 1 
+€·:‚6 1 sd 00 123 ore:İ 1 1 1 €·:‚7 
+€·:‚c 1 sd 33 123 1 1 1 €Š:€â_H|* ore:€• 
+€·:€ñ|1 9 sd 00 1 1 1 
+€·:€ñ|1 1 sd 13 123 ore:í ore:€• ore:€ÿ 
+€·:€ñ|2 1 sd 33 €¶ 1 1 
+€·:‚_ 1 sd 00 123 1 1 1 €Š:l|* 1 €·:€¸ 
+€·:‚¥|‚¦ 1 sd 33 …Â 1 1 1 €Š:€â|* 
+€·:‚y 1 sd 33 …É ore:€˜ ore:€² ore:€– 
+€Š:._g 1 sd 32 …Ê 1 1 
+€Š:._€ó 3 sd 23 €Õ 1 1 
+€Š:._€Á 3 sd 32 €Â 1 1 1 €Š:€Ã|4 
+€Š:._€Á_€é 1 sd 32 €Â 1 1 1 €Š:€£ 
+€Š:._ 4 sd 33 €Õ 1 1 
+€Š:‚¯_€’ 6 sd 33 C ore:€² ore:€• 1 1 
+€Š:™ 1 sd 33 …Ë 1 1 1 €Š:€‹_€µ 
+€Š:À_Á 1 sd 33 …Ì ore:€• 1 1 
+€Š:ù 4 sd 13 123 1 1 1 €Š:| ore:€• 
+€Š:€Ñ|6 1 sd 33 …Í 1 1 1 €Š:€—|9 
+€Š:€Ñ|11 1 sd 33 …Í 1 1 1 €Š:€—|4 
+€Š:€Ñ|3 1 sd 33 …Í 1 1 1 €Š:€—|12 
+€Š:€Ñ|15 1 sd 33 …Í 1 1 1 €Š:€— 
+€Š:€Ñ|4 1 sd 33 …Í 1 1 1 €Š:€—|11 
+€Š:€Ñ|14 1 sd 33 …Í 1 1 1 €Š:€—|1 
+€Š:€Ñ 1 sd 33 …Í 1 1 1 €Š:€—|15 
+€Š:€Ñ|8 1 sd 33 …Í 1 1 1 €Š:€—|7 
+€Š:€Ñ|1 1 sd 33 …Í 1 1 1 €Š:€—|14 
+€Š:€Ñ|7 1 sd 33 …Í 1 1 1 €Š:€—|8 
+€Š:€Ñ|2 1 sd 33 …Í 1 1 1 €Š:€—|13 
+€Š:€Ñ|5 1 sd 33 …Í 1 1 1 €Š:€—|10 
+€Š:€Ñ|13 1 sd 33 …Í 1 1 1 €Š:€—|2 
+€Š:€Ñ|12 1 sd 33 …Í 1 1 1 €Š:€—|3 
+€Š:€Ñ|9 1 sd 33 …Í 1 1 1 €Š:€—|6 
+€Š:€Ñ|10 1 sd 33 …Í 1 1 1 €Š:€—|5 
+€Š:x 1 sd 33 y ore: ore:z 1 1 
+€Š:bed|7 1 sd 32 €î 1 1 1 €Š:€—|7 
+€Š:bed 1 sd 32 €î 1 1 1 €Š:€— 
+€Š:bed|14 1 sd 32 €î 1 1 1 €Š:€—|14 
+€Š:bed|8 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|6 1 sd 32 €î 1 1 1 €Š:€—|6 
+€Š:bed|12 1 sd 32 €î 1 1 1 €Š:€—|12 
+€Š:bed|7 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|6 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|10 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|13 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|2 1 sd 32 €î 1 1 1 €Š:€—|2 
+€Š:bed|15 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|11 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|9 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|8 1 sd 32 €î 1 1 1 €Š:€—|8 
+€Š:bed|5 1 sd 32 €î 1 1 1 €Š:€—|5 
+€Š:bed|5 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|2 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|3 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|14 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|4 1 sd 32 €î 1 1 1 €Š:€—|4 
+€Š:bed|9 1 sd 32 €î 1 1 1 €Š:€—|9 
+€Š:bed|13 1 sd 32 €î 1 1 1 €Š:€—|13 
+€Š:bed|11 1 sd 32 €î 1 1 1 €Š:€—|11 
+€Š:bed|3 1 sd 32 €î 1 1 1 €Š:€—|3 
+€Š:bed|1 1 sd 32 €î 1 1 1 €Š:€—|1 
+€Š:bed|12 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|15 1 sd 32 €î 1 1 1 €Š:€—|15 
+€Š:bed|4 1 sd 00 12 1 1 1 €Š:bed 
+€Š:bed|10 1 sd 32 €î 1 1 1 €Š:€—|10 
+€Š:bed|1 1 sd 00 12 1 1 1 €Š:bed 
+€Š:u_‚ 1 sd 33 …Í 1 1 1 €Š:u 
+€Š:€À_g 1 sd 32 …Ê 1 1 
+€Š:€À_€ó 3 sd 23 €Õ 1 1 
+€Š:€À_€Á 3 sd 32 €Â 1 1 1 €Š:€Ã|2 
+€Š:€À_€Á_€é 1 sd 32 €Â 1 1 1 €Š:€£ 
+€Š:€À_ 4 sd 33 €Õ 1 1 
+€Š:_ 2 sd 00 1 1 1 
+€Š:g 1 sd 32 …Ê 1 1 
+€Š:€´_€µ 1 sd 33 €¶ 1 1 
+€Š:€õ 1 sd 00 Î ore:† ore:€ê 
+€Š:‚“ 1 sd 33 ‚” ore:€ï 1 1 
+€Š:bow 1 sd 33 …Î ore:€• ore:€½ 
+€Š:€¢ 4 sd 32 111 ore:€ï 
+€Š:‚H 1 sd 31 111 1 1 
+€Š:‚Œ_Á 1 sd 32 …Ï ore:€Ó 1 1 
+€Š:€È_€µ 1 sd 22  1 1 
+€Š:€È_ 4 sd 33 €Õ 1 1 
+€Š:L 1 sd 32 111 ore:€² 
+€Š:º 1 sd 33 » 1 1 1 €Š:¼_L 1 €Š:½ ore:egg 
+€Š:P|10 3 sd 21 11 1 1 
+€Š:P|6 3 sd 21 11 1 1 
+€Š:P|14 3 sd 21 11 1 1 
+€Š:P|12 3 sd 21 11 1 1 
+€Š:P|15 3 sd 21 11 1 1 
+€Š:P|2 3 sd 21 11 1 1 
+€Š:P|13 3 sd 21 11 1 1 
+€Š:P|4 3 sd 21 11 1 1 
+€Š:P|1 3 sd 21 11 1 1 
+€Š:P|3 3 sd 21 11 1 1 
+€Š:P|8 3 sd 21 11 1 1 
+€Š:P|11 3 sd 21 11 1 1 
+€Š:P|7 3 sd 21 11 1 1 
+€Š:P|5 3 sd 21 11 1 1 
+€Š:P 3 sd 21 11 1 1 
+€Š:P|9 3 sd 21 11 1 1 
+€Š:€_on_a_€£ 1 sd 22 12 1 1 1 €Š:c_rod 
+€Š:Ñ 1 sd 33 …Ğ ore:€² 
+€Š:€Ğ 1 sd 33 …Ç ore:€ï 
+€Š:€Ğ 1 sd 33 €¶ 1 1 
+€Š:€Ğ 4 sd 33 …Ç ore:€¤ 
+€Š:€Ğ_· 1 sd 12 12 ore:İ 1 1 
+€Š:€à 1 sd 22  1 1 
+€Š:¡ 1 sd 33 …Â ore:€” ore:€– 
+€Š:€İ 9 sd 11 1 1 1 
+€Š:€İ_€µ 1 sd 33 €¶ 1 1 
+€Š:€Ó 9 sd 00 1 1 1 
+€Š:€Ó_€Ô|1 6 sd 32 €Õ 1 1 
+€Š:€Ó_€Ô 6 sd 32 €Õ 1 1 
+€Š:W 1 sd 33 …Ñ 1 1 1 €Š:_ 1 €Š:Y 
+€Š:‚ 1 sd 33 …Â ore:€² ore:€– 
+€Š:3_|12 8 sd 00 4 ore: 1 1 1 €Š:5 
+€Š:3_|8 8 sd 00 4 ore: 1 1 1 €Š:5 
+€Š:3_|11 8 sd 00 4 ore:J 1 1 1 €Š:5 
+€Š:3_|2 8 sd 00 4 ore:€Ö 1 1 1 €Š:5 
+€Š:3_|5 8 sd 00 4 ore:Æ 1 1 1 €Š:5 
+€Š:3_|10 8 sd 00 4 ore: 1 1 1 €Š:5 
+€Š:3_ 8 sd 00 4 ore:€Ü 1 1 1 €Š:5 
+€Š:3_|7 8 sd 00 4 ore:j 1 1 1 €Š:5 
+€Š:3_|15 8 sd 00 4 ore:€Û 1 1 1 €Š:5 
+€Š:3_|14 8 sd 00 4 ore:€˜ 1 1 1 €Š:5 
+€Š:3_|9 8 sd 00 4 ore:€Ş 1 1 1 €Š:5 
+€Š:3_|3 8 sd 00 4 ore:m 1 1 1 €Š:5 
+€Š:3_|4 8 sd 00 4 ore:+ 1 1 1 €Š:5 
+€Š:3_|6 8 sd 00 4 ore:~ 1 1 1 €Š:5 
+€Š:3_|13 8 sd 00 4 ore: 1 1 1 €Š:5 
+€Š:3_|1 8 sd 00 4 ore:! 1 1 1 €Š:5 
+€Š:‚j 8 sd 31 121 1 1 1 €Š:¾ 
+€Š:„_' 1 sd 22  ore:€ï 
+€Š:€ò_oak_g 1 sd 32 …Ê 1 1 
+€Š:€ò_oak_€ó 3 sd 23 €Õ 1 1 
+€Š:€ò_oak_€Á 3 sd 32 €Â 1 1 1 €Š:€Ã|5 
+€Š:€ò_oak_€Á_€é 1 sd 32 €Â 1 1 1 €Š:€£ 
+€Š:€ò_oak_ 4 sd 33 €Õ 1 1 
 €Š:‚_‚	 1 sd 33 ‚
- ore: €Š:Y €Š:A_\,€Š:A_\|1,€Š:A_\|2,€Š:A_\|3,€Š:A_\|4,€Š:A_\|5
-€Š:Y_ 4 sd 33 	 €Š:Y_€µ,€Š:Y_€µ|1,€Š:Y_€µ|2
-€Š:P 3 sd 21 11 €Š:€—
-€Š:€Ã|1 4 sd 11 1 €Š:log|1
-€·:B 1 sl 00 1 €·:B
-€Š:€×_€Ø|14 8 sd 33 €Ì ore: ore:€˜
-€·:/|2 8 sd 33 €Ì €·: €·:€¸|5
-€Š:^_\ 6 sd 31 111 €Š:^_€µ
-€Š:P|13 3 sd 21 11 €Š:€—|13
-€·:|1 9 sl 00 1 €·:|2
-€·:‚ 1 sl 00 121 ore: €·:‚|*
-€·:‚ 1 sd 33 C €·:€Æ|3 €·:€¸ €·:S
-€·:‚|1 1 sl 00 121 €Š:€ö|* €·:‚|*
-€Š:‚_‚ 2 sd 13 123 ore:€² ore:€• ore:€ï
-€Š:‚_€Ğ 1 sl 00 12 ore:İ €Š:‚_‚
-€·:‚|4 1 sl 00 121 ore:€ƒ €·:‚|*
-€Š:ğ 1 sd 33 ‚ ore:€² ore:İ
-€·:‚|5 1 sl 00 123 €Š:€İ €·:‚|* €Š:€İ|1
-€€:‚|20 1 sd 33  ore:€¨ ore:oc:€® €Š:€‹_ ore:oc: ore:oc:€³
-€·:‚|2 1 sl 00 123 ore: €·:‚|* ore:~
-€·:‚|3 1 sl 00 121 €Š:€ê|* €·:‚|*
-€·:€á_€¹ 4 sd 33 €ã €Š:€¹_€ä|* ore:€ÿ ore:‚
-€Š:6 9 sl 00 1 €·:‚
-€·:©|1 1 sd 33 ‚ €·:© €Š:€‹_€µ €Š:_€µ
-€Š:€Ñ|2 1 sd 33 €Ò €Š:€—|13 ore:€•
-€·:©|2 1 sd 33 ‚ €·:©|1 €Š:_€µ €Š:€¹_€µ
-€·:©|3 1 sd 33 ‚ €·:©|2 €Š:€¹_€µ €Š:€ú_€µ
-€€:‚|17 1 sd 33 ‚ ore:€‡ ore:oc:€ ore:oc: ore:oc:‚ ore:oc:‚
-€·:©|4 1 sd 33 ‚ €·:©|3 €Š:€ú_€µ €Š:__€
-€É:€Ê_q|3 1 sd 33 … ore:€• €Š:€¹ €É:€Ê_€Ë
-€€:‚|19 1 sd 33 ‚ ore:€¨ ore:oc:‚ ore:oc:€ ore:oc: ore:oc:€³
-€Š:€×_€Ø|2 8 sd 33 €Ì ore: ore:€Ö
-€Š:€ª_€Ğ 1 sd 33 €Ì €Š:€¨ €Š:€ª_eye
-€·:|1 1 sd 33 €¶ €·:
-€Š:_€Œ 9 sd 11 1 ore:€”
-€·:|2 1 sd 33 €¶ €·:|1
-€·:© 1 sd 33 ¢ €·:€¸|4 €Š:€‹_€µ
-€Š:€‹_ 16 sd 32 €Õ ore:€²
-€·:|3 1 sd 33 €¶ €·:|2
-€€:‚|10 1 sd 32 ‚ ore:oc:€… €Š:€‹_€Œ ore:oc:€³
-€Š:u_‚ 1 sd 33 €Ò €Š:u €Š:€¢
-€·:|4 1 sd 33 €¶ €·:|3
-€€:‚|11 1 sd 32 “ ore:oc:€… ore:oc:€ ore:oc:€³
-€·:|5 1 sd 33 €¶ €·:|4
-€€:‚|8 1 sd 32 ‚ ore:oc:€ €Š:€‹_€Œ ore:oc:€³
-€Š:€‹_‚ 1 sd 22  ore:€²
-€€:‚|9 1 sd 32 ‚ ore:oc:€ ore:oc:€… ore:oc:€³
-€€:‚ 1 sd 33  ore:€” €Š:‚ €Š:€ª_eye ore:oc:€ ore:oc:€³
-€€:‚|15 1 sd 33  ore:€ÿ ore:oc:‚ ore:oc:€… ore:oc:‚  ore:€¨ ore:oc:€³
-€€:è|28 16 sd 33 €± ore:6 €Š: €Š:€İ|1 €Š:b_L
-€€:‚|16 1 sd 33 ‚ ore:€ƒ ore:oc:€® ore:oc:€ˆ ore:oc:‚! ore:oc:‚"
-€€:‚|13 1 sd 33  ore:€² ore:oc:‚# ore:oc:€® ore:oc:‚! ore:€¨ ore:oc:€³
-€€:‚|14 1 sd 33  ore:€” ore:oc:‚$ ore:oc:€ ore:oc:‚ ore:€¨ ore:oc:€³
-€·:® 1 sd 33 €¶ €Š:5
-€€:è|24 1 sd 33  ore:oc:‚% €Š:‚ ore:oc:€ ore:oc:‚& ore:oc:‚ 
-€É:‚' 1 sd 33 ‚( €Š:€â €Š:W ore:€Í ore:€ÿ
-€€:è|23 1 sd 33  ore:oc:‚% €Š:‚ ore:oc:€® ore:oc:‚) ore:oc:‚
-€€:è|27 1 sl 00 ‚* ore:€Ş ore:€Ö ore:+ ore:€Û ore:oc:‚+
-€€:è|26 1 sd 33  €Š:€‹_€Œ €Š:‚ ore:oc:‚  €Š:L ore:oc:€³
-€Š:dye|13 3 sl 00 123 ore:J ore:€˜ ore:~
-€Š:€‹_€÷ 1 sd 32 €ø ore:€²
-€Š:€¹_axe 1 sd 23 ‘ ore:€ÿ ore:€•
-€Š:€×_€ß_€à|11 8 sd 33 €Ì €Š:€ß_€à ore:J
-€Š:‚, 1 sd 22  €Š:‚,_‚-
-€Š:bed|5 1 sl 00 12 €Š:bed ore:Æ
-€·:€¸ 1 sl 00 ‚. €·:ó|* ore:€–
-€€:‚|7 1 sd 32 ‚ ore:oc:€® ore:oc:€ ore:oc:€³
-€Š:€â|4 4 sd 22  ore:‚/
-€€:‚|5 1 sd 33 ‚0 ore:€‡ €Š: ore:oc:€… ore:oc:Ù ore:oc:€³
-€€:‚|6 1 sd 32 ‚ ore:oc:€® €Š:€‹_€Œ ore:oc:€³
-€Š:€â_\ 6 sd 31 111 €Š:€â
-€Š:bed|5 1 sd 32 €î €Š:€—|5 ore:€ï
-€€:€Ê|1 1 sd 33 ‚1 €Š:€‹_€Œ ore:€ƒ €Š:€‹_ ore:oc:Q
-€€:‚ 1 sd 33  €Š:€‹_€Œ €Š: ore:oc:€® ore:oc:Ù ore:oc:€
-€€:€Ê 1 sd 33 ‚1 ore:€² ore:€¯ ore:oc:€® €Š:8_9
-€€:€Ê|3 1 sd 33 €¼ €Š:€‹_€Œ ore:oc:Q ore:€‡
-€€:€Ê|2 1 sd 33 ‚1 €Š:€‹_€Œ ore:oc:Q €Š:€‹_ ore:€ƒ
-€·:©|5 1 sd 33 ‚ €·:©|4 €Š:__€ €Š:‚2_Ì
-€€:‚|3 1 sd 33 ‚0 €Š:€‹_€Œ €Š: ore:oc:€® ore:oc:Ù ore:oc:€³
-€€:€Ê|5 1 sd 33 ‚0 ore:€² ore:oc:€® ore:N ore:€Ğ ore:oc:€†
-€·:©|6 1 sd 33 ‚ €·:©|5 €Š:‚2_Ì €Š:‚3
-€€:‚|4 1 sd 33 ‚0 ore:€ƒ €Š: ore:oc:€ ore:oc:Ù ore:oc:€³
-€€:€Ê|4 1 sd 33  ore:€” ore: ore:oc:€… €Š:€ª_eye ore:€¨ ore:oc:€³
-€·:©|7 1 sd 33 ‚ €·:©|6 €Š:‚3 €Š:€Ç_î
-€€:‚|1 1 sd 33  ore:€ƒ €Š: ore:oc:€ ore:oc:Ù ore:oc:€
-€·:©|8 1 sd 33 ‚ €·:©|7 €Š:€Ç_î €Š:€‹_V
-€€:‚|2 1 sd 33  ore:€‡ €Š: ore:oc:€… ore:oc:Ù ore:oc:€
-€€:€Ê|6 1 sd 33 ‚0 ore:€² ore:oc:€ ore:N ore:€Ğ ore:oc:€†
-€Š:U_ 4 sd 33 	 €Š:€Ã|3
-€·:)|1 9 sl 00 1 €·:)|2
+ ore: 1 1 1 €Š:Y 
+€Š:‚	_€’ 6 sd 33 …Ò ore:€² 1 1 1 €Š:€â_¸_¹ 
+€Š:€¹ 9 sd 11 1 1 1 
+€Š:€¹_axe 1 sd 23 …¿ ore:€ÿ ore:€• 
+€Š:€¹_€µ 1 sd 33 €¶ ore:€ÿ 
+€Š:€¹_, 1 sd 32  ore:€ÿ 
+€Š:€¹_€ë 1 sd 33 …Ç ore:€ÿ 
+€Š:€¹_€÷ 1 sd 32 …Ê ore:€ÿ 
+€Š:€¹_hoe 1 sd 23 …Ó ore:€ÿ ore:€• 
+€Š:€¹_e 1 sd 33 …Ğ ore:€ÿ 
+€Š:€¹_€ı 1 sd 33 …¿ ore:€ÿ ore:€• 
+€Š:€¹_Ï 1 sd 13 122 ore:€ÿ ore:€• 
+€Š:€¹_€ä 1 sd 13 112 ore:€ÿ ore:€• 
+€Š:(|1 4 sd 22 ˆ 1 1 1 €Š:( 
+€Š:( 9 sd 00 1 1 1 
+€Š:‚ 1 sd 33 ‚ ore:€Ó 1 1 1 €Š:bow 
+€Š:l 1 sd 33 …Ô ore:€Ó ore:€– 
+€Š:dye|12 2 sd 00 12 ore:J ore:€Ü 
+€Š:dye|13 1 sd 00 1 1 1 
+€Š:dye|6 2 sd 00 12 ore:J ore: 
+€Š:dye|15 9 sd 00 1 1 1 
+€Š:dye|13 2 sd 00 1 1 1 
+€Š:dye|1 1 sd 00 1 1 1 
+€Š:dye|7 2 sd 00 12 ore:j ore:€Ü 
+€Š:dye|14 1 sd 00 1 1 1 
+€Š:dye|15 3 sd 00 1 ore:€´ 
+€Š:dye|8 2 sd 00 12 ore:€Û ore:€Ü 
+€Š:dye|14 2 sd 00 12 ore:€˜ ore:+ 
+€Š:dye|1 1 sd 00 1 1 1 
+€Š:dye|11 2 sd 00 1 1 1 
+€Š:dye|7 3 sd 00 122 ore:€Û ore:€Ü 
+€Š:dye|9 1 sd 00 1 1 1 
+€Š:dye|4 9 sd 11 1 1 1 
+€Š:dye|13 2 sd 00 12 ore: ore:~ 
+€Š:dye|7 1 sd 00 1 1 1 
+€Š:dye|9 2 sd 00 1 1 1 
+€Š:dye|1 1 sd 00 1 1 1 
+€Š:dye|7 1 sd 00 1 1 1 
+€Š:dye|5 2 sd 00 12 ore:J ore:€˜ 
+€Š:dye|13 4 sd 00 Ÿ ore:J ore:€˜ ore:€Ü 
+€Š:dye|1 2 sd 00 1 1 1 
+€Š:dye|13 3 sd 00 123 ore:J ore:€˜ ore:~ 
+€Š:dye|11 1 sd 00 1 1 1 
+€Š:dye|9 2 sd 00 12 ore:€˜ ore:€Ü 
+€Š:dye|7 1 sd 00 1 1 1 
+€Š:dye|10 2 sd 00 12 ore: ore:€Ü 
+€Š:dye|12 1 sd 00 1 1 1 
+€Š:€ú 9 sd 11 1 1 1 
+€Š:€ú_€µ 1 sd 33 €¶ ore:€û 
+€Š:&_' 1 sd 33 …Õ 1 1 1 €Š:€õ ore:€ÿ 
+€Š:end_ 4 sd 22  1 1 
+€Š:end_‚ 1 sd 33 ‚ ore: 1 1 1 €Š:€ª_eye 
+€Š:end_rod 4 sd 12 12 1 1 1 €Š:_rod 
+€Š:€ª_€Ğ 1 sd 33 €Ì 1 1 1 €Š:€¨ 
+€Š:€ª_eye 1 sd 00 12 ore:‚– 1 1 
+€Š:€Á 3 sd 32 €Â 1 1 1 €Š:€Ã 
+€Š:€Á_€é 1 sd 32 €Â 1 1 1 €Š:€£ 
+€Š:‚Ÿ_‚J_eye 1 sd 00 123 1 1 1 €Š:‚J_eye 1 €Š:€ _€¡ 
+€Š:;_< 3 sd 00 123 ore:= 1 1 1 €Š:_ 
+€Š:c_rod 1 sd 33 …Ö ore:€½ ore:€• 
+€Š:|_and_} 1 sd 00 12 ore:€² 1 1 
+€Š:€_pot 1 sd 32 111 1 1 
+€Š:¶ 1 sd 33 …Ç ore:€Ó 
+€Š:¶_· 1 sd 12 12 1 1 1 €Š:¶ 
+€Š:€Ø_Ì 3 sd 32 111 ore: 
+€Š:€Ø_€Ù 16 sd 32 €Õ 1 1 
+€Š:ã 1 sd 22  ore:ú 
+€Š:_€µ 1 sd 33 €¶ ore:€” 
+€Š:_V 9 sd 11 1 1 1 
+€Š:_V 1 sd 33 €¶ 1 1 
+€Š:_€Œ 9 sd 11 1 ore:€” 
+€Š:€‘_€ù 1 sd 33 €Ì ore:€” 1 1 
+€Š:€‘_axe 1 sd 23 …¿ ore:€” ore:€• 
+€Š:€‘_, 1 sd 32  ore:€” 
+€Š:€‘_€ 1 sd 33 €Ì 1 1 1 €Š:_€Œ 
+€Š:€‘_€ë 1 sd 33 …Ç ore:€” 
+€Š:€‘_€÷ 1 sd 32 …Ê ore:€” 
+€Š:€‘_hoe 1 sd 23 …Ó ore:€” ore:€• 
+€Š:€‘_e 1 sd 33 …Ğ ore:€” 
+€Š:€‘_€ı 1 sd 33 …¿ ore:€” ore:€• 
+€Š:€‘_€’ 6 sd 33 …Ò ore:€” ore:€• ore:€– 
+€Š:€‘_Ï 1 sd 13 122 ore:€” ore:€• 
+€Š:€‘_€ä 1 sd 13 112 ore:€” ore:€• 
+€Š:6 9 sd 00 1 1 1 
+€Š:hay_€µ 1 sd 33 €¶ 1 1 
+€Š:‚>_ç_¸_¹ 1 sd 21 11 ore:€² 
+€Š:ğ 1 sd 33 …Å ore:€² ore:İ 
+€Š:ğ 1 sd 33 …× ore:€² ore:€¤ 
+€Š:ğ_· 1 sd 12 12 1 1 1 €Š:ğ 
+€Š:€‹_axe 1 sd 23 …¿ ore:€² ore:€• 
+€Š:€‹_ 16 sd 32 €Õ ore:€² 
+€Š:€‹_€µ 1 sd 33 €¶ ore:€² 
+€Š:€‹_, 1 sd 32  ore:€² 
+€Š:€‹_€ë 1 sd 33 …Ç ore:€² 
+€Š:€‹_€ó 3 sd 23 €Õ ore:€² 
+€Š:€‹_€÷ 1 sd 32 …Ê ore:€² 
+€Š:€‹_hoe 1 sd 23 …Ó ore:€² ore:€• 
+€Š:€‹_V 1 sd 33 €¶ 1 1 
+€Š:€‹_V 9 sd 11 1 1 1 
+€Š:€‹_e 1 sd 33 …Ğ ore:€² 
+€Š:€‹_€Œ 9 sd 11 1 ore:€² 
+€Š:€‹_€ı 1 sd 33 …¿ ore:€² ore:€• 
+€Š:€‹_Ï 1 sd 13 122 ore:€² ore:€• 
+€Š:€‹_€ä 1 sd 13 112 ore:€² ore:€• 
+€Š:€‹_‚ 1 sd 22  ore:€² 
+€Š:‚v_‚w 1 sd 33 €Ì ore:€• ore:€ê 
+€Š:‚˜ 1 sd 33 €Ì ore:€ï ore:€ÿ 
+€Š:U_g 1 sd 32 …Ê 1 1 
+€Š:U_€ó 3 sd 23 €Õ 1 1 
+€Š:U_€Á 3 sd 32 €Â 1 1 1 €Š:€Ã|3 
+€Š:U_€Á_€é 1 sd 32 €Â 1 1 1 €Š:€£ 
+€Š:U_ 4 sd 33 €Õ 1 1 
+€Š:± 3 sd 33 …Ğ ore:€• 
+€Š:‚k_€µ 1 sd 33 €¶ 1 1 
+€Š:‚{ 2 sd 33 …Ø ore:€½ ore:€ğ 
+€Š:€ê 1 sd 22  1 1 
+€Š:€ê_, 1 sd 32  ore:€ê 
+€Š:€ê_€ë 1 sd 33 …Ç ore:€ê 
+€Š:€ê_€÷ 1 sd 32 …Ê ore:€ê 
+€Š:€ê_e 1 sd 33 …Ğ ore:€ê 
+€Š:Ş 1 sd 12 12 ore:€• ore:€Ó 
+€Š:æ_ç_¸_¹ 1 sd 21 11 ore:€” 
+€Š:lit_ 1 sd 12 12 1 1 1 €Š: 
+€Š:‚, 1 sd 22  1 1 
+€Š:‚,_‚- 1 sd 00 12 1 1 1 €Š:_ 
+€Š:map 1 sd 33 €Ì ore:† 1 1 
+€Š:map 1 sd 33 €Ì 1 1 1 €Š:† 
+€Š:¤_€µ 1 sd 33 €¶ 1 1 
+€Š:¤_‚ 1 sd 11 1 1 1 
+€Š:· 1 sd 32 …Ê ore:€² 
+€Š:‚<_€Ó 1 sd 00 12 ore:€Ó 1 1 
+€Š:€¡_€š 1 sd 00 123 1 1 1 €Š:€ _€¡ 1 €Š:red_€¡ 
+€Š:€Ç_€È 1 sd 22  1 1 
+€Š:€Ç_€È_€Á 6 sd 32 €Õ 1 1 
+€Š:€Ç_€È_ 4 sd 33 €Õ 1 1 
+€Š:€Ç_€Î_€µ 1 sd 33 €¶ 1 1 
+€Š:‚¬ 9 sd 00 1 1 1 
+€Š:i 1 sd 33 €Ì ore:€ï ore:€– 
+€Š:oak_ 4 sd 33 €Õ 1 1 
+€Š:‚À 1 sd 33 ‚Á ore:€Ó ore:€– 1 1 
+€Š:‚T 1 sd 33 €Ì ore:€• €Š:€—,€Š:€—|10,€Š:€—|13,€Š:€—|14,€Š:€—|12,€Š:€—|11,€Š:€—|9,€Š:€—|8,€Š:€—|3,€Š:€—|4,€Š:€—|1,€Š:€—|2,€Š:€—|5,€Š:€—|6,€Š:€—|7,€Š:€—|15 
+€Š:† 3 sd 31 111 ore:ş 
+€Š:9 1 sd 33 ÿ ore:€ï ore:€Ó ore:€² ore:€– 
+€Š:€Ã|5 4 sd 11 1 1 1 
+€Š:€Ã 4 sd 11 1 1 1 
+€Š:€Ã|2 4 sd 11 1 1 1 
+€Š:€Ã|4 4 sd 11 1 1 1 
+€Š:€Ã|3 4 sd 11 1 1 1 
+€Š:€Ã|1 4 sd 11 1 1 1 
+€Š:|2 1 sd 33 €Ì ore:‚ ore:€Û 
+€Š:|1 1 sd 33 €¶ ore:‚ 
+€Š: 1 sd 22  ore:‚ 
+€Š:_pie 1 sd 00 123 1 1 1 €Š: 1 €Š:½ 
+€Š:_‚ 4 sd 11 1 1 1 
+€Š:ß_à_box 1 sd 13 121 1 1 1 €Š:à_á 
+€Š:^_€µ 4 sd 22  1 1 
+€Š:^_‚= 1 sd 12 11 1 1 
+€Š:^_\ 6 sd 31 111 1 1 
+€Š:^_ 4 sd 33 €Õ 1 1 
+€Š:Y_€µ|2 2 sd 12 11 1 1 
+€Š:Y_€µ 1 sd 22  1 1 
+€Š:Y_€µ|1 1 sd 12 11 1 1 
+€Š:Y_ 4 sd 33 €Õ €Š:Y_€µ,€Š:Y_€µ|1,€Š:Y_€µ|2 
+€Š:€™_€š 1 sd 33 ‚* 1 1 1 €Š:€œ_€™ 1 €Š:€ 1 €Š:€_€Ÿ 1 €Š:red_€¡ 
+€Š:€™_€š 1 sd 33 ‚* 1 1 1 €Š:€œ_€™ 1 €Š:€ 1 €Š:€_€Ÿ 1 €Š:€ _€¡ 
+€Š:€’ 16 sd 33 …Ù ore:€² ore:€• 
+€Š:red_€Ç_€È 1 sd 22 ˆ 1 1 1 €Š:‰ 
+€Š:red_T|1 1 sd 12 11 1 1 
+€Š:red_T 1 sd 22  1 1 
+€Š:red_T|2 4 sd 22  1 1 
+€Š:red_T_ 4 sd 33 €Õ €Š:red_T,€Š:red_T|1,€Š:red_T|2 
+€Š: 9 sd 11 1 1 1 
+€Š:_€µ 1 sd 33 €¶ ore:€– 
+€Š:_‚C 1 sd 33 …Â ore:€– ore:ã 
+€Š:_ 1 sd 12 12 ore:€– ore:€• 
+€Š:Z 1 sd 32 [ 1 1 1 €Š:_ ore:€– 
+€Š:5 9 sd 00 1 1 1 
+€Š:T 1 sd 22  1 1 
+€Š:T|2 4 sd 22  1 1 
+€Š:T|1 1 sd 12 11 1 1 
+€Š:T_ 4 sd 33 €Õ €Š:T,€Š:T|1,€Š:T|2 
+€Š:sea_‚› 1 sd 33  ore:‚ ore:‚œ 
+€Š:‚l 1 sd 22 11 ore:€² 
+€Š:‚L 1 sd 33 …Ú ore:€ï ore:€² 
+€Š:‚U 3 sd 33 …Í ore:€ï ore:€• 
+€Š:€æ 1 sd 33 €¶ ore:€ğ 
+€Š:€æ_€ç 9 sd 11 1 1 1 
+€Š:œ 1 sd 22  1 1 
+€Š:œ_‚¡ 6 sd 31 111 1 1 
+€Š:£_¤ 1 sd 33 €Ì 1 1 1 €Š:_€Œ 
+€Š:ø_ù 2 sd 33 …Â ore:ú 1 1 
+€Š:€è_g 1 sd 32 …Ê 1 1 
+€Š:€è_€ó 3 sd 23 €Õ 1 1 
+€Š:€è_€Á 3 sd 32 €Â 1 1 1 €Š:€Ã|1 
+€Š:€è_€Á_€é 1 sd 32 €Â 1 1 1 €Š:€£ 
+€Š:€è_ 4 sd 33 €Õ 1 1 
+€Š:€×_€Ø|10 8 sd 33 €Ì ore: ore: 
+€Š:€×_€Ø|4 8 sd 33 €Ì ore: ore:+ 
+€Š:€×_€Ø|1 8 sd 33 €Ì ore: ore:! 
+€Š:€×_€Ø|11 8 sd 33 €Ì ore: ore:J 
+€Š:€×_€Ø|9 8 sd 33 €Ì ore: ore:€Ş 
+€Š:€×_€Ø|7 8 sd 33 €Ì ore: ore:j 
+€Š:€×_€Ø|6 8 sd 33 €Ì ore: ore:~ 
+€Š:€×_€Ø|8 8 sd 33 €Ì ore: ore: 
+€Š:€×_€Ø 8 sd 33 €Ì ore: ore:€Ü 
+€Š:€×_€Ø|2 8 sd 33 €Ì ore: ore:€Ö 
+€Š:€×_€Ø|14 8 sd 33 €Ì ore: ore:€˜ 
+€Š:€×_€Ø|3 8 sd 33 €Ì ore: ore:m 
+€Š:€×_€Ø|15 8 sd 33 €Ì ore: ore:€Û 
+€Š:€×_€Ø|13 8 sd 33 €Ì ore: ore: 
+€Š:€×_€Ø|5 8 sd 33 €Ì ore: ore:Æ 
+€Š:€×_€Ø|12 8 sd 33 €Ì ore: ore: 
+€Š:€×_€Ø_€Ù|8 16 sd 32 €Õ ore:÷ 
+€Š:€×_€Ø_€Ù|7 16 sd 32 €Õ ore:‚… 
+€Š:€×_€Ø_€Ù|5 16 sd 32 €Õ ore:€Ú 
+€Š:€×_€Ø_€Ù|6 16 sd 32 €Õ ore:Å 
+€Š:€×_€Ø_€Ù|2 16 sd 32 €Õ ore: 
+€Š:€×_€Ø_€Ù|12 16 sd 32 €Õ ore:‚• 
+€Š:€×_€Ø_€Ù|9 16 sd 32 €Õ ore:‚ 
+€Š:€×_€Ø_€Ù|1 16 sd 32 €Õ ore:‚o 
+€Š:€×_€Ø_€Ù|11 16 sd 32 €Õ ore:‚u 
+€Š:€×_€Ø_€Ù|3 16 sd 32 €Õ ore:’ 
+€Š:€×_€Ø_€Ù|10 16 sd 32 €Õ ore:‚£ 
+€Š:€×_€Ø_€Ù|15 16 sd 32 €Õ ore:€ 
+€Š:€×_€Ø_€Ù|13 16 sd 32 €Õ ore:ò 
+€Š:€×_€Ø_€Ù 16 sd 32 €Õ ore: 
+€Š:€×_€Ø_€Ù|4 16 sd 32 €Õ ore:? 
+€Š:€×_€Ø_€Ù|14 16 sd 32 €Õ ore:Ç 
+€Š:€×_€ß_€à|8 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|15 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|9 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|1 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|11 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|2 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|4 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|13 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|12 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|10 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|14 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|6 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|7 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|3 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€×_€ß_€à|5 8 sd 33 €Ì 1 1 1 €Š:€ß_€à 
+€Š:€£ 4 sd 12 11 ore:€ï 
+€Š:€£ 16 sd 12 11 ore:€¤ 
+€Š:8_9 1 sd 12 12 ore:€ğ 1 1 
+€Š:€â|1 1 sd 00 12 ore:‚/ 1 1 
+€Š:€â|3 2 sd 22 ˆ ore:€Ó 1 1 
+€Š:€â|5 2 sd 00 12 ore:‚/ ore:€Ó 
+€Š:€â|4 4 sd 22  ore:‚/ 
+€Š:€â|6 4 sd 22  ore:‚Â 
+€Š:€â|2 4 sd 22  ore:‚¤ 
+€Š:€â_axe 1 sd 23 …¿ ore:€Ó ore:€• 
+€Š:€â_€È_ 4 sd 33 €Õ €Š:I,€Š:I|2,€Š:I|1,€Š:I|3 
+€Š:€â_H 1 sd 11 1 ore:€â 
+€Š:€â_hoe 1 sd 23 …Ó ore:€Ó ore:€• 
+€Š:€â_€ı 1 sd 33 …¿ ore:€Ó ore:€• 
+€Š:€â_¸_¹ 1 sd 21 11 ore:€â 
+€Š:€â_Ï 1 sd 13 122 ore:€Ó ore:€• 
+€Š:€â_\|5 6 sd 31 111 €Š:I,€Š:I|2,€Š:I|1,€Š:I|3 
+€Š:€â_\|3 6 sd 31 111 1 1 
+€Š:€â_\|1 6 sd 31 111 €Š:T,€Š:T|1,€Š:T|2 
+€Š:€â_\|6 6 sd 31 111 1 1 
+€Š:€â_\ 6 sd 31 111 1 1 
+€Š:€â_\|7 6 sd 31 111 €Š:Y_€µ,€Š:Y_€µ|1,€Š:Y_€µ|2 
+€Š:€â_\|4 6 sd 31 111 1 1 
+€Š:€â_‚„ 6 sd 31 111 €Š:red_T,€Š:red_T|1,€Š:red_T|2 
+€Š:€â_ 4 sd 33 €Õ 1 1 
+€Š:€â_€ä 1 sd 13 112 ore:€Ó ore:€• 
+€Š:I|3 1 sd 12 11 1 1 
+€Š:I 4 sd 22  1 1 
+€Š:I|1 1 sd 00 12 1 1 1 €Š:I 
+€Š:½ 1 sd 11 1 ore:ş 
+€Š:tnt 1 sd 33 { ore:= €Š:5,€Š:5|1 
+€Š:tnt_· 1 sd 12 12 1 1 1 €Š:tnt 
+€Š: 4 sd 12 12 €Š:€İ,€Š:€İ|1 ore:€• 
+€Š:‚ 2 sd 32 €Õ ore:€ï 
+€Š:‚_€Ğ 1 sd 00 12 ore:İ 1 1 
+€Š:‚_‚ 2 sd 13 123 ore:€² ore:€• ore:€ï 
+€Š:¾ 9 sd 11 1 1 1 
+€Š:A_axe 1 sd 23 …¿ ore:€ï ore:€• 
+€Š:A_H 1 sd 11 1 ore:€ï 
+€Š:A_€ó 3 sd 23 €Õ 1 1 
+€Š:A_hoe 1 sd 23 …Ó ore:€ï ore:€• 
+€Š:A_€ı 1 sd 33 …¿ ore:€ï ore:€• 
+€Š:A_¸_¹ 1 sd 21 11 ore:€ï 
+€Š:A_Ï 1 sd 13 122 ore:€ï ore:€• 
+€Š:A_\|3 6 sd 31 111 1 1 
+€Š:A_\|4 6 sd 31 111 1 1 
+€Š:A_\|2 6 sd 31 111 1 1 
+€Š:A_\|1 6 sd 31 111 1 1 
+€Š:A_\ 6 sd 31 111 1 1 
+€Š:A_\|5 6 sd 31 111 1 1 
+€Š:A_€ä 1 sd 13 112 ore:€ï ore:€• 
+€Š:€—|9 1 sd 00 12 ore:€Ş 1 1 
+€Š:€—|4 1 sd 00 12 ore:+ 1 1 
+€Š:€—|8 1 sd 00 12 ore: 1 1 
+€Š:€—|10 1 sd 00 12 ore: 1 1 
+€Š:€—|14 1 sd 00 12 ore:€˜ 1 1 
+€Š:€—|11 1 sd 00 12 ore:J 1 1 
+€Š:€—|2 1 sd 00 12 ore:€Ö 1 1 
+€Š:€—|6 1 sd 00 12 ore:~ 1 1 
+€Š:€—|15 1 sd 00 12 ore:€Û 1 1 
+€Š:€—|5 1 sd 00 12 ore:Æ 1 1 
+€Š:€—|7 1 sd 00 12 ore:j 1 1 
+€Š:€—|13 1 sd 00 12 ore: 1 1 
+€Š:€— 1 sd 22  ore:€½ 
+€Š:€—|1 1 sd 00 12 ore:! 1 1 
+€Š:€—|12 1 sd 00 12 ore: 1 1 
+€Š:€—|3 1 sd 00 12 ore:m 1 1 
+€Š:€ô_€õ 1 sd 00 123 1 1 1 €Š:€õ ore:€Û 
+€€:‚ƒ 1 sd 33 €± ore:€² ore:oc:€­ ore:oc:€® ore:oc:€³ 
+€€:‚` 1 sd 33  ore:€² ore:‚a ore:N ore:oc:€ ore:oc:€³ 
+€€:€­|‚e 4 sd 33 …Â 1 1 1 €Š:€‹_€Œ 
+€€:Q 1 sd 33  ore:€² ore:oc:‚  ore:€ƒ ore:† ore:oc:€³ 
+€€:€|8 1 sd 32 ‚* ore:oc:€¦ ore:oc:€ ore:€§ ore:oc:€† ore:€¨ 
+€€:€|4 1 sd 32 123 ore:€§ ore:oc:€® ore:oc:€† 
+€€:€|12 1 sd 32 ‚ ore:€‡ ore:oc:€ˆ ore:oc:€‰ ore:oc:€† 
+€€:€|5 1 sd 32 ‚ ore:€¾ ore:oc:€ ore:€¯ ore:oc:€† 
+€€:€|1 1 sd 32 ‚ ore:oc:€® ore:oc:€ ore:oc:€º ore:oc:€† 
+€€:€|10 1 sd 32 ‚ 1 1 1 €Š:€‹_€Œ ore:oc:€ ore:oc:€ 
+€€:€|9 2 sd 00 11 1 1 
+€€:€|7 1 sd 32 123 ore:€¯ ore:oc:€ ore:oc:€† 
+€€:€|2 1 sd 32 ‚ ore:oc:€ ore:oc:€ ore:oc:€¿ ore:oc:€† 
+€€:€|3 1 sd 32 ‚ ore:oc:€… ore:oc:€ ore:oc:€‰ ore:oc:€† 
+€€:€|11 1 sd 32 ‚ ore:€ƒ ore:oc:€„ ore:oc:€… ore:oc:€† 
+€€:€|9 2 sd 33 …Û 1 1 1 €Š:€ª_eye ore:oc:€« ore:oc:€¦ 
+€€:€|6 1 sd 32 123 ore:oc:€­ ore:oc:€® ore:oc:€† 
+€€:O 1 sd 00 12 1 1 1 €Š:P 
+€€:ì 1 sd 33  ore:€² ore:oc:€® 1 1 1 €Š:€‹_ ore:€Ğ 
+€€:ö 1 sd 33  ore:€” ore:oc:€ 1 1 1 €Š:€‹_ ore:€Ğ 
+€€:ñ 1 sd 33  ore:€ÿ ore:oc:€… 1 1 1 €Š:€‹_ ore:€Ğ 
+€€:¯|11 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯ 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|2 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|12 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|3 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|13 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|5 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|1 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|10 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|7 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|4 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|14 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯ 1 sd 33 €¶ ore:oc:° 
+€€:¯|6 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|8 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|15 1 sd 00 12 1 1 1 €€:¯|* 
+€€:¯|9 1 sd 00 12 1 1 1 €€:¯|* 
+€€:‚’ 1 sd 33  ore:€² ore:€” ore:oc:Q ore:oc:€ ore:oc:€³ 
+€€:‚|3 1 sd 33 …Ü 1 1 1 €Š:€‹_€Œ 1 €Š: ore:oc:€® ore:oc:Ù 
+€€:‚|7 1 sd 32 …İ ore:oc:€® ore:oc:€ ore:oc:€³ 
+€€:‚|5 1 sd 33 …Ü ore:€‡ 1 1 1 €Š: ore:oc:€… ore:oc:Ù 
+€€:‚|15 1 sd 33  ore:€ÿ ore:oc:‚ ore:oc:€… ore:oc:‚  ore:€¨ ore:oc:€³ 
+€€:‚|11 1 sd 32 “ ore:oc:€… ore:oc:€ ore:oc:€³ 
+€€:‚|16 1 sd 33 ‚ ore:€ƒ ore:oc:€® ore:oc:€ˆ ore:oc:‚! ore:oc:‚" 
+€€:‚|20 1 sd 33  ore:€¨ ore:oc:€® 1 1 1 €Š:€‹_ ore:oc: 
+€€:‚|6 1 sd 32 …İ ore:oc:€® 1 1 1 €Š:€‹_€Œ 
+€€:‚|13 1 sd 33  ore:€² ore:oc:‚# ore:oc:€® ore:oc:‚! ore:€¨ ore:oc:€³ 
+€€:‚|14 1 sd 33  ore:€” ore:oc:‚$ ore:oc:€ ore:oc:‚ ore:€¨ ore:oc:€³ 
+€€:‚|19 1 sd 33 ‚ ore:€¨ ore:oc:‚ ore:oc:€ ore:oc: ore:oc:€³ 
+€€:‚|1 1 sd 33  ore:€ƒ 1 1 1 €Š: ore:oc:€ ore:oc:Ù 
+€€:‚ 1 sd 33  1 1 1 €Š:€‹_€Œ 1 €Š: ore:oc:€® ore:oc:Ù 
+€€:‚|8 1 sd 32 …İ ore:oc:€ 1 1 1 €Š:€‹_€Œ 
+€€:‚|2 1 sd 33  ore:€‡ 1 1 1 €Š: ore:oc:€… ore:oc:Ù 
+€€:‚|10 1 sd 32 …İ ore:oc:€… 1 1 1 €Š:€‹_€Œ 
+€€:‚|17 1 sd 33 ‚ ore:€‡ ore:oc:€ ore:oc: ore:oc:‚ ore:oc:‚ 
+€€:‚|4 1 sd 33 …Ü ore:€ƒ 1 1 1 €Š: ore:oc:€ ore:oc:Ù 
+€€:‚|9 1 sd 32 …İ ore:oc:€ ore:oc:€… ore:oc:€³ 
+€€:× 1 sd 33 …Ş ore:oc:Ù ore:Ú ore:oc:Û ore:N ore:€¨ ore:€² 1 1 
+€€:‚® 1 sd 33 …Ü ore:€² ore:oc:€® ore:N ore:€• ore:oc:€³ 
+€€:‚] 4 sd 33 { ore:€¯ ore:oc:‚^ 
+€€:‚ 1 sd 33  ore:€” 1 1 1 €Š:‚ 1 €Š:€ª_eye ore:oc:€ 
+€€:‚@ 1 sd 33  ore:oc:€ ore:Ú ore:oc:€³ ore:€‡ ore:€¨ 1 1 
+€€: 1 sd 33  ore:oc:€… ore: ore:oc:€³ ore:€ÿ ore:€¨ 1 1 
+€€:‚° 1 sd 33  1 1 1 €Š:€‹_€Œ ore:oc:‚± ore:€ê ore:oc:‚² 
+€€:Š 1 sd 32 ‹ ore:oc:Œ ore:oc: ore:oc: 
+€€:è|13 1 sd 33 €Ì ore:€½ ore:€¯ 
+€€:è|7 8 sd 33 … 1 1 1 €Š:€‹_€Œ 1 €Š: 
+€€:è|23 1 sd 33  ore:oc:‚% 1 1 1 €Š:‚ ore:oc:€® ore:oc:‚) 
+€€:è|20 1 sd 33  1 1 1 €Š:€‹_€Œ ore:oc:€® 1 €Š: ore:€Ğ 
+€€:è|6 8 sd 33 …ß ore:€² ore:€ƒ ore:† 1 1 
+€€:è|15 1 sd 32  1 1 
+€€:è|1 1 sd 00 ‚* 1 1 1 €Š:b_L 1 €Š:½ ore:€ğ 1 €Š:‚Ÿ_‚J_eye 
+€€:è|24 1 sd 33  ore:oc:‚% 1 1 1 €Š:‚ ore:oc:€ ore:oc:‚& 
+€€:è|11 1 sd 33 ‚i ore:€ƒ 1 1 1 €Š: ore:oc:‚  
+€€:è|10 1 sd 33 ‚i 1 1 1 €Š:€‹_€Œ 1 €Š: ore:oc:‚  
+€€:è|27 1 sd 00 ‚* ore:€Ş ore:€Ö ore:+ ore:€Û ore:oc:‚+ 
+€€:è|26 1 sd 33  1 1 1 €Š:€‹_€Œ 1 €Š:‚ ore:oc:‚  1 €Š:L 
+€€:è|21 1 sd 33  ore:€ƒ ore:oc:€… ore:€¾ ore:€Ğ ore:oc:€³ 
+€€:è|28 16 sd 33 €± ore:6 1 1 1 €Š: 1 €Š:€İ|1 
+€€:è|29 6 sd 00 12 ore:oc:‚D ore:€ÿ 
+€€:è 1 sd 31 121 ore:€• ore:í 
+€€:è|8 4 sd 33 … ore:€ƒ 1 1 1 €Š: 
+€€:è|17 1 sd 33 ‚O ore:€” 1 1 1 €Š:€â_H ore:oc:‚! ore:oc:‚N ore:oc:€… 
+€€:è|9 2 sd 33 … ore:€‡ 1 1 1 €Š: 
+€€:è|14 1 sd 32 €Õ 1 1 
+€€:è|16 1 sd 33 €¶ 1 1 
+€€:è|28 9 sd 00 1 1 1 
+€€:è|5 1 sd 33 …à 1 1 1 €Š:€‹_€Œ ore:oc:€³ 
+€€:è|12 1 sd 33  1 1 
+€€:è|2 8 sd 00 123 ore:€” 1 1 1 €Š:€à 
+€€:è|18 1 sd 33 ‚º ore:oc:€ 1 1 1 €Š:€â_H ore:€” ore:oc:‚  ore:oc:‚N ore:oc:€… 
+€€:p 1 sd 00 12 1 1 1 €€:p 
+€€:‚V|1 1 sd 00 12 1 1 1 €€:‚V|1 
+€€:‚V 1 sd 00 12 1 1 1 €€:‚V 
+€€:‚p 1 sd 33 €± ore:€” 1 1 1 €Š:‚_‚	 ore:oc:€ˆ 
+€€:M 1 sd 33 €± ore:€² ore:oc:€­ ore:N ore:oc:€³ 
+€€:ô 1 sd 33  ore:€² ore:oc:€­ ore:€” ore:oc:€® ore:oc:€³ 
+€€:‚E 1 sd 33  ore:€² ore:€” ore:oc:€­ ore:oc:€® ore:oc:€³ 
+€€:ï 1 sd 33  ore:€² 1 1 1 €Š:ğ ore:N ore:oc:€… 
+€€: 1 sd 33  ore:€ÿ ore:oc: 1 1 1 €Š:€‹_ ore:€Ğ ore:oc:€° ore:oc:€³ 
+€€: 1 sd 33  1 1 1 €Š:€‹_€Œ ore:oc: ore:oc:€º ore:oc: 
+€€: 1 sd 33  ore:€² ore:oc:€… ore:€¾ ore:oc:* ore:oc:€³ 
+€€:€° 1 sd 33 €± ore:€² ore:oc:€­ ore:oc:€« ore:oc:€³ 
+€€:‚8 1 sd 00 12 1 1 1 €€:‚8 
+€€:n 1 sd 33 o ore:€² 1 1 1 €Š: ore:oc:€® 
+€€:‚N 1 sd 33 ‚O ore:€” ore:€˜ ore: ore:oc:€ ore: ore:J 
+€€:â 1 sd 33 o ore:€¨ 1 1 1 €Š:ã_ä ore:oc:€… 
+€€:q|1 1 sd 33 ‚i 1 1 1 €Š:€‹_€Œ 1 €Š:Ş ore:† 
+€€:q 2 sd 00 11 1 1 
+€€:q 1 sd 00 1 1 1 
+€€:q|3 1 sd 00 1 1 1 
+€€:q|1 1 sd 00 1 1 1 
+€€:q|3 1 sd 33 ‚g ore:oc:€ ore:oc:‚h ore:€” ore:oc:€³ ore:N 
+€€:q|2 1 sd 33 ‚g ore:oc:€® ore:oc:‚h ore:€² ore:oc:€³ ore:N 
+€€:q|4 1 sd 00 1 1 1 
+€€:q|4 1 sd 33 ‚g ore:oc:€… ore:oc:‚h ore:€ÿ ore:oc:€³ ore:N 
+€€:q 1 sd 33  ore:€ƒ ore:oc:‚  ore:† ore:oc:€® ore:€§ 
+€€:q|2 1 sd 00 1 1 1 
+€€:‚†|4 1 sd 00 12 1 1 1 €Š:€õ 
+€€:‚†|3 1 sd 33 ‚‰ ore:€Û ore:€˜ ore: ore:J ore:oc:Û ore: ore:+ ore:€Ö ore:€Ü 
+€€:‚†|2 1 sd 33 ‚O 1 1 1 €Š:€‹_€Œ ore:oc:‚ˆ ore:oc:€… ore:oc:‚N ore:oc: 
+€€:‚† 1 sd 33 …á ore:€§ ore:oc:‚  ore:€ƒ ore:oc:€³ 
+€€:‚†|5 1 sd 33 ‚O ore:oc:° ore:oc: ore:oc:€ˆ ore:oc:‚ ore:oc:€º ore:oc:Q 
+€€:‚ 4 sd 33  ore:€² ore:oc:‚ 1 1 1 €Š:ğ 1 €Š:L 
+€€:€Ê|18 1 sd 33 ‚O ore:€” ore:oc:Û 1 1 1 €Š:l ore:oc:€ ore:N 
+€€:€Ê|13 1 sd 33  ore:€² ore:oc:Û ore:oc:€ ore:oc:‚š ore:oc:€³ 
+€€:€Ê|25 1 sd 33  ore:€” ore:N ore:€² ore:oc:Q ore:oc:€… 
+€€:€Ê|22 1 sd 33 ‚} ore: ore:oc:€… ore:‚~ ore:€² ore:oc:€³ 
+€€:€Ê|21 1 sd 33  ore:€² ore:€Û ore:oc:€® ore:€• 1 1 
+€€:€Ê|10 1 sd 33 …Ü ore:€” ore:oc:€ ore:N ore:€Ğ ore:oc:€³ 
+€€:€Ê|6 1 sd 33 …Ü ore:€² ore:oc:€ ore:N ore:€Ğ ore:oc:€† 
+€€:€Ê|1 1 sd 33 ‚1 1 1 1 €Š:€‹_€Œ ore:€ƒ 1 €Š:€‹_ 
+€€:€Ê|16 1 sd 33 …â ore:€² ore:oc:€® ore:N ore:oc:€³ 
+€€:€Ê|28 1 sd 33  ore:oc:‚% ore:oc:€ ore:€ƒ ore:€² ore:oc:€³ 
+€€:€Ê|15 1 sd 33 …â ore:€” ore:oc:€ 1 1 1 €Š:€ú 
+€€:€Ê|11 1 sd 33 …â ore:€² ore:oc:€® ore:‚a ore:oc:€³ 
+€€:€Ê|5 1 sd 33 …Ü ore:€² ore:oc:€® ore:N ore:€Ğ ore:oc:€† 
+€€:€Ê|7 1 sd 33 …Ü ore:€” ore:oc:€ ore:N ore:€Ğ ore:oc:€† 
+€€:€Ê|12 1 sd 33  ore:€² ore:oc:Û ore:oc:€® ore:oc:‚ ore:oc:€³ 
+€€:€Ê|29 1 sd 33  ore:€” ore:€Ğ 1 1 1 €Š:€ú ore:oc:€ 1 €Š:l ore:oc:€³ 
+€€:€Ê|30 1 sd 33 ‚1 ore:oc:° ore:# ore:oc:‚‚ ore:oc:‚ƒ 
+€€:€Ê|31 1 sd 32 …İ ore:€§ ore:oc:€® ore:oc:€† 
+€€:€Ê|19 1 sd 00 12 1 1 1 €€:€Ê|19 
+€€:€Ê|3 1 sd 33 €¼ 1 1 1 €Š:€‹_€Œ ore:oc:Q 
+€€:€Ê|8 1 sd 33 …Ü ore:€² ore:oc:€® ore:N ore:€Ğ ore:oc:€³ 
+€€:€Ê|2 1 sd 33 ‚1 1 1 1 €Š:€‹_€Œ ore:oc:Q 1 €Š:€‹_ 
+€€:€Ê|4 1 sd 33  ore:€” ore: ore:oc:€… 1 1 1 €Š:€ª_eye ore:€¨ 
+€€:€Ê|24 1 sd 33 ‚O ore:€” 1 1 1 €Š:€Ø_Ì 1 €Š:‚ ore:oc:€ ore:N 
+€€:€Ê|17 1 sd 33 ‚O ore:€ï 1 1 1 €Š:ğ 1 €Š:l ore:€Ğ ore:N 
+€€:€Ê 1 sd 33 ‚1 ore:€² ore:€¯ ore:oc:€® 1 1 
+€€:€Ê|19 1 sd 33  ore:€” 1 1 1 €Š:‚ ore:oc:€ 1 €Š:‡_map|* 
+€€:€Ê|9 1 sd 33 …Ü ore:€² ore:oc:€ ore:N ore:€Ğ ore:oc:€³ 
+€€:€Ê|14 1 sd 33  ore:€² ore:oc:Û ore:oc:€… ore:oc:‚ ore:oc:€³ 
+€€:€Ê|27 1 sd 33  ore:€ö ore:oc:€® 1 1 1 €Š:€‹_€Œ ore:€ê 
+€€:€Ê|20 1 sd 33  ore:€² ore:N ore:€• ore:oc:€® ore:oc:€³ 
+€€:€Ê|23 1 sd 33 ‚O ore:€ï 1 1 1 €Š:€‹_ 1 €Š:‚ 1 €Š:Ñ ore:N 
+€€:€Ê|26 1 sd 33 €¼ ore:€² 1 1 1 €Š:‚{ 
+€€:‚« 1 sd 33  ore:€² ore:oc:€® ore:oc:‚  ore:oc:€¦ ore:oc:€³ 
+€€:‚y 1 sd 33 …Ï ore:€² ore:oc:€ 
+€É:‚9 1 sd 33 ‚( 1 1 1 €Š:€â 1 €Š:9 ore:€Í 
+€É:‚' 1 sd 33 ‚( 1 1 1 €Š:€â 1 €Š:W ore:€Í 
+€É:‚? 1 sd 33 ‚( 1 1 1 €Š:€â 1 €Š:W ore:€Í 
+€É:‚s|3 2 sd 33 C ore:€• ore:İ ore:‚t 
+€É:‚s 1 sd 33 …Ù ore:€• ore:İ 
+€É:‚s|1 2 sd 33 C ore:€• ore:İ ore:€ï 
+€É:‚s|2 4 sd 33 €¼ ore:İ ore:€• ore:€ï 
+€É:‚s|4 4 sd 33 €¼ ore:İ ore:€• ore:‚t 
+€É:‚· 4 sd 33 { ore:€ï ore:€• 
+€É:v_key 1 sd 23 Ÿ ore:€ƒ ore:€” 1 1 
+€É:é 1 sd 32 …Ê ore:ê 
+€É:È|1 1 sd 00 12 1 1 1 €É:É_key 
+€É:È|3 1 sd 00 12 1 1 1 €É:µ_key 
+€É:È 1 sd 00 12 1 1 1 €É:v_key 
+€É:È|2 1 sd 00 12 1 1 1 €É:–_key 
+€É:–_key 1 sd 00 12 1 1 1 €É:v_key 
+€É:µ_key 1 sd 00 12 1 1 1 €É:v_key 
+€É:É_key 1 sd 00 12 1 1 1 €É:v_key 
+€É:‚Š 1 sd 32 …Ï 1 1 1 €Š:† 
 €É:
- 4 sd 33  ore:€• €Š:€Ã
-€·:Ğ|2 1 sd 33 €¶ €·:€¸|17
-€Š:dye|13 2 sl 00 1 €Š:”_•|1
-€·:‚4|1 1 sd 33 $ €·:
-€Š:bed|10 1 sl 00 12 €Š:bed ore:
-€Š:€—|5 1 sl 00 12 ore:Æ €Š:€—
-€Š:€—|8 1 sl 00 12 ore: €Š:€—
-€Š:P|3 3 sd 21 11 €Š:€—|3
-€·:‚5 1 sd 33 €Ì €Š:€£|* €Š:€Ğ|*
-€·:‚6 1 sl 00 123 ore:İ €·:‚7 ore:€–
-€€:‚8 1 sl 00 12 €€:‚8 €€:q
-€É:‚9 1 sd 33 ‚( €Š:€â €Š:9 ore:€Í ore:€²
-€·:B|3 1 sl 00 1 €·:B|3
-€Š:€Ñ|12 1 sd 33 €Ò €Š:€—|3 ore:€•
-€·:‚: 1 sd 33 ‚; ore:€” €·:t|1
-€Š:€Ó_€Ô|1 6 sd 32 €Õ €Š:‚<_€Ó
-€Š:dye|13 2 sl 00 12 ore: ore:~
-€·:€Ä|1 3 sd 32 “ €·:€¸|3 €·:€Æ|2 €·:€¸
-€Š:€Ñ|1 1 sd 33 €Ò €Š:€—|14 ore:€•
-€Š:^_‚= 1 sd 12 11 €Š:^_\
-€Š:‚>_ç_¸_¹ 1 sd 21 11 ore:€²
-€Š:€â_Ï 1 sd 13 122 ore:€Ó ore:€•
-€Š:€×_€Ø|6 8 sd 33 €Ì ore: ore:~
-€Š:€‘_e 1 sd 33 f ore:€”
-€É:‚? 1 sd 33 ‚( €Š:€â €Š:W ore:€Í ore:€”
-€€:‚@ 1 sd 33  ore:oc:€ ore:Ú ore:oc:€³ ore:€‡ ore:€¨ €Š:ã_ä
-€Š:€Ñ|10 1 sd 33 €Ò €Š:€—|5 ore:€•
-€·:‚A 1 sd 32 €í ore:€” €Š:€ö|* €Š:€¨|*
-€Š:€â_¸_¹ 1 sd 21 11 ore:€â
-€Š:l 1 sd 33 ‚B ore:€Ó ore:€–
-€Š:€×_€Ø_€Ù|4 16 sd 32 €Õ ore:?
-€Š:_‚C 1 sd 33 ¢ ore:€– ore:ã
-€Š:P|15 3 sd 21 11 €Š:€—|15
-€€:è|29 6 sl 00 12 ore:oc:‚D ore:€ÿ
-€Š:end_rod 4 sd 12 12 €Š:_rod €Š:__`_a
-€É:É_key 1 sl 00 12 €É:v_key €Š:€ª_eye
-€€:‚E 1 sd 33  ore:€² ore:€” ore:oc:€­ ore:oc:€® ore:oc:€³
-€É:€Ê_ 1 sd 33 €¼ €Š: ore:€• €É:€Ê_€Ë
-€·:% 1 sd 32 1 €Š:€ª_Í|* €·:%|9 ore:€– €Š:W|*
-€Š:‚<_€Ó 1 sl 00 12 ore:€Ó €Š:Ê
-€Š:€‘_€÷ 1 sd 32 €ø ore:€”
-€Š:‚ 2 sd 32 €Õ ore:€ï
-€Š:dye|12 1 sl 00 1 €Š:red_€|1
-€·:0 4 sd 32 1 ore:€– €·:2 ore:€â ore:İ
-€É:€Ê_one_‚F 1 sd 33 … ore:€• €Š:| €É:€Ê_€Ë
-€·:‚G 8 sd 33 €Ì €Š:€ù|* €·:t|1
-€Š:‚H 1 sd 31 111 €Š:¾
-€·:‚I 1 sl 00 123 €Š:l|* ore:€– €Š:‚J_eye|*
-€Š: 4 sd 12 12 €Š:€İ,€Š:€İ|1 ore:€•
-€Š:._g 1 sd 32 h €Š:€Ã|4
-€Š:Ş 1 sd 12 12 ore:€• ore:€Ó
-€·:ó 8 sl 00 12 €Š:€ª_Í|* €·:F|*
-€Š:ğ 1 sd 33 ‚K ore:€² ore:€¤
-€·:>|1 1 sd 33 €Å €·:€¸|17 ore:Å €·:@ €·:€¸
-€Š:dye|7 2 sl 00 12 ore:j ore:€Ü
-€Š:€×_€ß_€à 8 sd 33 €Ì €Š:€ß_€à ore:€Ü
-€Š:map 1 sd 33 €Ì ore:† €Š:‚
-€Š:‚	_€’ 6 sd 33 €“ ore:€² €Š:€â_¸_¹ ore:€–
-€Š:bed|6 1 sd 32 €î €Š:€—|6 ore:€ï
-€Š:‚L 1 sd 33 ‚M ore:€ï ore:€²
-€€:‚N 1 sd 33 ‚O ore:€” ore:€˜ ore: ore:oc:€ ore: ore:J
-€·:‚P 1 sl 00 ‚Q ore: ore:´ €Š: |* ore:‚R ore:€¤ ore:‚S €Š:€ª_Í|* ore:z
-€Š:€Ñ 1 sd 33 €Ò €Š:€—|15 ore:€•
-€Š:5 9 sl 00 1 €·:®
-€Š:‚T 1 sd 33 €Ì ore:€• €Š:€—,€Š:€—|1,€Š:€—|2,€Š:€—|3,€Š:€—|4,€Š:€—|5,€Š:€—|6,€Š:€—|7,€Š:€—|8,€Š:€—|9,€Š:€—|10,€Š:€—|11,€Š:€—|12,€Š:€—|13,€Š:€—|14,€Š:€—|15
-€Š:€‹_Ï 1 sd 13 122 ore:€² ore:€•
-€Š:€â_\|5 6 sd 31 111 €Š:I,€Š:I|1,€Š:I|2,€Š:I|3
-€Š:‚U 3 sd 33 €Ò ore:€ï ore:€•
-€Š:I 4 sd 22  €Š:€â
-€Š:dye|15 3 sl 00 1 ore:€´
-€·:>|5 1 sd 33 €Å €·:€¸|17 ore:‚ €·:@ €·:€¸
-€€:‚V|1 1 sl 00 12 €€:‚V|1 €€:q
-€Š:„_' 1 sd 22  ore:€ï
-€€:‚V 1 sl 00 12 €€:‚V €€:q
-€·:€Ä|2 1 sd 33 ‚ €·:€Æ|3 €·:€¸ ore:€”
-€Š:€—|3 1 sl 00 12 ore:m €Š:€—
-€·:B 1 sd 33 C ore:€Ó €Š:€â_\|3,€Š:€â_\ €Š:€¢|*
-€·:‚W 1 sd 33 €¼ ore:€½ €Š:€ª_Í|* €·:‚X
-€Š:€—|1 1 sl 00 12 ore:! €Š:€—
-€Š:bed|15 1 sl 00 12 €Š:bed ore:€Û
-€Š:P|6 3 sd 21 11 €Š:€—|6
-€Š:A_\|5 6 sd 31 111 €Š:€Ã|5
-€Š:€×_€ß_€à|1 8 sd 33 €Ì €Š:€ß_€à ore:!
-€Š:._ 4 sd 33 	 €Š:€Ã|4
-€Š:€À_€ó 3 sd 23 €Õ €Š:€Ã|2
-€Š:™ 1 sd 33 ‚Y €Š:€‹_€µ ore:€²
-€Š:_V 1 sd 33 €¶ €Š:_€Œ
-€Š:€‹_V 9 sd 11 1 €Š:€‹_€µ
-€·:‚Z 1 sd 33 ‚ €·:€Æ|3 €Š:€ª_€Ğ|* €·:€¸
-€·:‚ 9 sl 00 1 €·:‚|1
-€·:€¸|1 1 sd 33 ¢ €Š:_|* ore:€ï
-€·:‚[ 1 sd 33 ‚\ €·:©|8 ore:€½ ore:€²
-€Š:bed|1 1 sd 32 €î €Š:€—|1 ore:€ï
-€€:‚] 4 sd 33 { ore:€¯ ore:oc:‚^
-€·:‚_ 1 sl 00 123 €Š:l|* €·:€¸ €Š:Ş|*
-€Š:€Ç_€È 1 sd 22  €Š:‰
-€€:‚` 1 sd 33  ore:€² ore:‚a ore:N ore:oc:€ ore:oc:€³
-€Š:A_€ä 1 sd 13 112 ore:€ï ore:€•
-€Š:€À_€Á_€é 1 sd 32 €Â €Š:€£ €Š:€Ã|2
-€·:%|9 1 sd 33 ‚1 ore:€² ore:€ÿ ore:´ €·:‚b
-€·:‚c 1 sd 33 ‚d ore:€² €Š:€â_H|* ore:€•
-€€:€­|‚e 4 sd 33 ¢ €Š:€‹_€Œ €Š:
-€·:>|7 1 sd 33 €Å €·:€¸|17 ore:€ €·:@ €·:€¸
-€Š:€è_€ó 3 sd 23 €Õ €Š:€Ã|1
-€Š:bed|9 1 sd 32 €î €Š:€—|9 ore:€ï
-€Š:€_on_a_€£ 1 sd 22 ‚f €Š:c_rod €Š:€
-€Š:€×_€Ø_€Ù|14 16 sd 32 €Õ ore:Ç
-€Š:€—|12 1 sl 00 12 ore: €Š:€—
-€€:q|4 1 sd 33 ‚g ore:oc:€… ore:oc:‚h ore:€ÿ ore:oc:€³ ore:N
-€€:q|3 1 sd 33 ‚g ore:oc:€ ore:oc:‚h ore:€” ore:oc:€³ ore:N
-€€:q|2 1 sd 33 ‚g ore:oc:€® ore:oc:‚h ore:€² ore:oc:€³ ore:N
-€€:q|1 1 sd 33 ‚i €Š:€‹_€Œ €Š:Ş ore:† ore:oc:‚h
-€€:q 1 sd 33  ore:€ƒ ore:oc:‚  ore:† ore:oc:€® ore:€§
-€Š:bed|10 1 sd 32 €î €Š:€—|10 ore:€ï
+|3 4 sd 33  ore:€• 1 1 
 €É:
-|3 4 sd 33  ore:€• €Š:€Ã|3
-€Š:|2 1 sd 33 €Ì ore:‚ ore:€Û
-€Š:‚j 8 sd 31 121 €Š:¾ €Š:dye|3
-€·:€¸|2 1 sl 00 123 €Š:€ª_Í|* ore:€– €·:€¸
-€€:¯|1 1 sl 00 12 €€:¯|* ore:€˜
-€€:¯|2 1 sl 00 12 €€:¯|* ore:
-€Š:dye|4 9 sd 11 1 €Š:‚k_€µ
-€Š:€Ã|5 4 sd 11 1 €Š:û|1
-€€:¯ 1 sl 00 12 €€:¯|* ore:€Û
-€Š:3_|1 8 sl 00 4 ore:! €Š:5 €Š:6
-€Š:_€µ 1 sd 33 €¶ ore:€–
-€€:¯|4 1 sl 00 12 €€:¯|* ore:J
-€€:¯|5 1 sl 00 12 €€:¯|* ore:
-€Š:‚l 1 sd 22 ‚m ore:€²
-€€:¯|3 1 sl 00 12 €€:¯|* ore:
-€Š:¾ 9 sd 11 1 €Š:hay_€µ
-€€:¯|8 1 sl 00 12 €€:¯|* ore:j
-€€:¯|9 1 sl 00 12 €€:¯|* ore:~
-€€:¯|6 1 sl 00 12 €€:¯|* ore:€Ş
-€€:¯|7 1 sl 00 12 €€:¯|* ore:
-€·:‚n_€Ã|1 4 sl 00 1 €·:‚n_log|1
-€Š:€×_€Ø_€Ù|1 16 sd 32 €Õ ore:‚o
+|2 4 sd 33  ore:€• 1 1 
 €É:
-|1 4 sd 33  ore:€• €Š:€Ã|1
-€Š:Y_€µ 1 sd 22  €Š:Y
-€·:|2 4 sd 22  €·:|1
-€€:‚p 1 sd 33 €± ore:€” €Š:‚_‚	 ore:oc:€ˆ ore:oc:€³
-€·:0|2 4 sd 32 1 ore:€– €·:2 ore:€â €Š:L|*
-€€:¯|12 1 sl 00 12 €€:¯|* ore:m
-€€:¯|10 1 sl 00 12 €€:¯|* ore:Æ
-€Š:€¹_€÷ 1 sd 32 €ø ore:€ÿ
-€€:¯|11 1 sl 00 12 €€:¯|* ore:+
-€Š:bed|3 1 sl 00 12 €Š:bed ore:m
-€Š:bow 1 sd 33 ‚q ore:€• ore:€½
-€€:¯|15 1 sl 00 12 €€:¯|* ore:€Ü
-€€:¯|13 1 sl 00 12 €€:¯|* ore:€Ö
-€€:¯|14 1 sl 00 12 €€:¯|* ore:!
-€Š:€ò_oak_€Á_€é 1 sd 32 €Â €Š:€£ €Š:€Ã|5
-€Š:€İ 9 sd 11 1 €Š:€İ_€µ
-€·:¥_‚r 1 sd 33 ¦ ore:€ï ore:€•
-€Š:‚ 1 sd 33 ¢ ore:€² ore:€–
-€É:‚s|3 2 sd 33 C ore:€• ore:İ ore:‚t
-€€:q 2 sl 00 11 €€:q
-€Š:€×_€ß_€à|8 8 sd 33 €Ì €Š:€ß_€à ore:
-€É:‚s|4 4 sd 33 €¼ ore:İ ore:€• ore:‚t
-€·:> 1 sd 33 €Å €·:€¸|17 ore:‚u €·:@ €·:€¸
-€Š:‚v_‚w 1 sd 33 €Ì ore:€• ore:€ê
-€€:€Ê|18 1 sd 33 ‚O ore:€” ore:oc:Û €Š:l ore:oc:€ ore:N ore:oc:€³
-€€:€Ê|17 1 sd 33 ‚O ore:€ï €Š:ğ €Š:l ore:€Ğ ore:N ore:oc:€®
-€·:‚X 1 sd 23 ‚x €·:€¸ ore:€â
-€É:È|2 1 sl 00 12 €É:–_key €Š:€â_H
-€€:€Ê|24 1 sd 33 ‚O ore:€” €Š:€Ø_Ì €Š:‚ ore:oc:€ ore:N ore:oc:€³
-€€:‚y 1 sd 33 ‚z ore:€² ore:oc:€
-€€:€Ê|23 1 sd 33 ‚O ore:€ï €Š:€‹_ €Š:‚ €Š:Ñ ore:N ore:oc:€®
-€·:|5 9 sl 00 1 €·:|6
-€€:€Ê|26 1 sd 33 €¼ ore:€² €Š:‚{ ore:oc:Ù
-€€:€Ê|25 1 sd 33  ore:€” ore:N ore:€² ore:oc:Q ore:oc:€…
-€€:€Ê|20 1 sd 33  ore:€² ore:N ore:€• ore:oc:€® ore:oc:€³
-€€:€Ê|19 1 sd 33  ore:€” €Š:‚ ore:oc:€ €Š:‡_map|* €Š:‚|
-€Š:€ò_oak_g 1 sd 32 h €Š:€Ã|5
-€€:€Ê|22 1 sd 33 ‚} ore: ore:oc:€… ore:‚~ ore:€² ore:oc:€³
-€€:€Ê|21 1 sd 33  ore:€² ore:€Û ore:oc:€® ore:€• €Š:8_9
-€Š:dye|9 1 sl 00 1 €Š:red_€|7
-€Š:ù 4 sd 13 123 €Š:| ore:€• ore:€ö
-€Š:A_€ó 3 sd 23 €Õ €Š:€Ã
-€·:‚|1 1 sd 33 €¶ €·:‚
-€Š:€Ğ 1 sd 33 €¶ €·:€Ï
-€€:€Ê|27 1 sd 33  ore:€ö ore:oc:€® €Š:€‹_€Œ ore:€ê ore:oc:€³
-€€:€Ê|29 1 sd 33  ore:€” ore:€Ğ €Š:€ú ore:oc:€ €Š:l ore:oc:€³ ore:N
-€Š:¤_‚ 1 sd 11 1 €Š:¤
-€Š:€â|1 1 sl 00 12 ore:‚/ €Š:Y
-€€:€Ê|28 1 sd 33  ore:oc:‚% ore:oc:€ ore:€ƒ ore:€² ore:oc:€³
-€Š:€Ó 9 sl 00 1 €·:
-€·:‚€ 1 sl 00 ‚ €Š:€ö|* €Š:†|* €Š:€Ø_Ì|* ore:€Û
-€Š:€â_\|4 6 sd 31 111 €Š:€È_€µ
-€Š:€Á 3 sd 32 €Â €Š:€Ã €Š:€£
-€€:€Ê|31 1 sd 32 ‚ ore:€§ ore:oc:€® ore:oc:€†
-€€:€Ê|30 1 sd 33 ‚1 ore:oc:° ore:# ore:oc:‚‚ ore:oc:‚ƒ
-€Š:red_T_ 4 sd 33 	 €Š:red_T,€Š:red_T|1,€Š:red_T|2
-€Š:€×_€ß_€à|9 8 sd 33 €Ì €Š:€ß_€à ore:€Ş
-€Š:€×_€ß_€à|10 8 sd 33 €Ì €Š:€ß_€à ore:
-€Š:€â_‚„ 6 sd 31 111 €Š:red_T,€Š:red_T|1,€Š:red_T|2
-€·:0|4 2 sd 33 ‚ €Š:€ª_Í|* €·:0|2 ore:€ÿ
-€Š:€×_€Ø_€Ù|7 16 sd 32 €Õ ore:‚…
-€€:‚† 1 sd 33 ‚‡ ore:€§ ore:oc:‚  ore:€ƒ ore:oc:€³
-€Š:P|7 3 sd 21 11 €Š:€—|7
-€€:‚†|2 1 sd 33 ‚O €Š:€‹_€Œ ore:oc:‚ˆ ore:oc:€… ore:oc:‚N ore:oc: ore:oc:Š
-€€:‚†|3 1 sd 33 ‚‰ ore:€Û ore:€˜ ore: ore:J ore:oc:Û ore: ore:+ ore:€Ö ore:€Ü
-€€:‚†|4 1 sl 00 12 €Š:€õ ore:oc:€®
-€Š:€—|13 1 sl 00 12 ore: €Š:€—
-€Š:€¹_, 1 sd 32 - ore:€ÿ
-€Š:€â|5 2 sl 00 12 ore:‚/ ore:€Ó
-€É:‚Š 1 sd 32 ‚‹ ore:€ğ €Š:†
-€€:€Ê|19 1 sl 00 12 €€:€Ê|19 €Š:‡_map|*
-€Š:€£ 4 sd 12 11 ore:€ï
-€Š:I|3 1 sd 12 11 €Š:€â_\|5
-€·:B|2 1 sl 00 1 €·:B|2
-€Š:€ò_oak_ 4 sd 33 	 €Š:€Ã|5
-€Š:‚Œ_Á 1 sd 32 ‚‹ €Š:_rod ore:€Ó
-€€:‚†|5 1 sd 33 ‚O ore:oc:° ore:oc: ore:oc:€ˆ ore:oc:‚ ore:oc:€º ore:oc:Q
-€·:€á_‚r 4 sd 33 €ã €Š:A_€ä|* €Š:€Ã €Š:log
-€€:‚ 4 sd 33  ore:€² ore:oc:‚ €Š:ğ €Š:L ore:oc:‚
-€·:‚n_€Ã 4 sl 00 1 €·:‚n_log
-€·:€Ä|3 1 sd 33 … €·:€Æ|3 €·:€¸|1 €·:€¸
-€Š:€â_axe 1 sd 23 ‘ ore:€Ó ore:€•
-€Š:€‘_€ 1 sd 33 €Ì €Š:_€Œ €Š:€
-€·:@|250 1 sl 00 ‚. ore:€ÿ ore:ú
-€Š:€Ñ|4 1 sd 33 €Ò €Š:€—|11 ore:€•
-€·:‚‘ 1 sd 13 112 €·:©|8 €Š:€£|*
-€Š:€¹_€µ 1 sd 33 €¶ ore:€ÿ
-€·:‚7 1 sd 33  ore:€â ore:€Ó ore:İ
-€Š:€×_€Ø|4 8 sd 33 €Ì ore: ore:+
-€€:‚’ 1 sd 33  ore:€² ore:€” ore:oc:Q ore:oc:€ ore:oc:€³
-€Š:€×_€Ø|3 8 sd 33 €Ì ore: ore:m
-€Š:A_\ 6 sd 31 111 €Š:€Ã
-€·: 9 sl 00 1 €·:|1
-€Š:ã 1 sd 22  ore:ú
-€·:|4 2 sl 00 121 €·: ore:ú
-€Š:_‚ 4 sd 11 1 €Š:
+|4 4 sd 33  ore:€• 1 1 
 €É:
-|2 4 sd 33  ore:€• €Š:€Ã|2
-€Š:red_T|1 1 sd 12 11 €Š:€â_‚„
-€Š:€Ç_€È_€Á 6 sd 32 €Õ €Š:€Ç_€È
-€Š:‚,_‚- 1 sl 00 12 €Š:_ ore:€ğ
-€·:€¸|5 1 sd 33 €Ì €·:€¸|3 ore:€ÿ
-€Š:‚“ 1 sd 33 ‚” ore:€ï €Š:€õ
-€·:€¸|12 9 sl 00 1 €·:Ğ
-€·:|2 9 sl 00 1 €·:|3
-€Š:‚k_€µ 1 sd 33 €¶ €Š:dye|4
-€€:q|3 1 sl 00 1 €€:q|3
-€Š:P|10 3 sd 21 11 €Š:€—|10
-€€:q|2 1 sl 00 1 €€:q|2
-€€:q|1 1 sl 00 1 €€:q|1
-€Š:€×_€ß_€à|6 8 sd 33 €Ì €Š:€ß_€à ore:~
-€Š:€×_€Ø_€Ù|12 16 sd 32 €Õ ore:‚•
-€Š:bed|12 1 sl 00 12 €Š:bed ore:
-€Š:€‹_axe 1 sd 23 ‘ ore:€² ore:€•
-€Š:€—|9 1 sl 00 12 ore:€Ş €Š:€—
-€·:>|4 1 sd 33 €Å €·:€¸|17 ore:ò €·:@ €·:€¸
-€Š:T_ 4 sd 33 	 €Š:T,€Š:T|1,€Š:T|2
-€Š:€ª_eye 1 sl 00 12 ore:‚– €Š:_
-€€:€Ê|16 1 sd 33 ‚— ore:€² ore:oc:€® ore:N ore:oc:€³
-€Š:‚˜ 1 sd 33 €Ì ore:€ï ore:€ÿ
-€€:q 1 sl 00 1 €€:q
-€€:q|4 1 sl 00 1 €€:q|4
-€Š:bed 1 sd 32 €î €Š:€— ore:€ï
-€·:>|6 1 sd 33 €Å €·:€¸|17 ore: €·:@ €·:€¸
-€·:‚™ 1 sd 33  ore:€â ore:€Ó ore:€¾
-€€:€Ê|7 1 sd 33 ‚0 ore:€” ore:oc:€ ore:N ore:€Ğ ore:oc:€†
-€Š:(|1 4 sd 22 ˆ €Š:( €Š:6
-€Š:€Ğ_· 1 sd 12 12 ore:İ €Š:·
-€€:€Ê|13 1 sd 33  ore:€² ore:oc:Û ore:oc:€ ore:oc:‚š ore:oc:€³
-€Š:P|4 3 sd 21 11 €Š:€—|4
-€Š:sea_‚› 1 sd 33  ore:‚ ore:‚œ
-€€:€Ê|12 1 sd 33  ore:€² ore:oc:Û ore:oc:€® ore:oc:‚ ore:oc:€³
-€€:€Ê|15 1 sd 33 ‚— ore:€” ore:oc:€ €Š:€ú ore:oc:€³
-€€:€Ê|14 1 sd 33  ore:€² ore:oc:Û ore:oc:€… ore:oc:‚ ore:oc:€³
-€€:€Ê|9 1 sd 33 ‚0 ore:€² ore:oc:€ ore:N ore:€Ğ ore:oc:€³
-€€:€Ê|8 1 sd 33 ‚0 ore:€² ore:oc:€® ore:N ore:€Ğ ore:oc:€³
-€€:€Ê|11 1 sd 33 ‚— ore:€² ore:oc:€® ore:‚a ore:oc:€³
-€€:€Ê|10 1 sd 33 ‚0 ore:€” ore:oc:€ ore:N ore:€Ğ ore:oc:€³
-€Š:dye|1 2 sl 00 1 €Š:”_•|4
-€Š:‚Ÿ_‚J_eye 1 sl 00 123 €Š:‚J_eye €Š:€ _€¡ €Š:½
-€·:|2 9 sl 00 1 €·:|3
-€·:%|1 1 sd 33 ‚  €Š:end_rod|* ore:€² ore:´
-€Š:€â_hoe 1 sd 23 : ore:€Ó ore:€•
-€Š:U_g 1 sd 32 h €Š:€Ã|3
-€Š:€¹_hoe 1 sd 23 : ore:€ÿ ore:€•
-€Š:_pie 1 sl 00 123 €Š: €Š:½ ore:egg
-€Š:œ_‚¡ 6 sd 31 111 €Š:œ
-€·:€Æ 4 sl 00   ore:€â ore:‚¢
-€·:€¸|8 1 sl 00 12 €·:€¸|9 €Š:€‘_€ı
-€Š:U_€Á 3 sd 32 €Â €Š:€Ã|3 €Š:€£
-€Š:æ_ç_¸_¹ 1 sd 21 11 ore:€”
-€Š:€Ø_Ì 3 sd 32 €ü ore:
-€Š:€‹_€ó 3 sd 23 €Õ ore:€²
-€·:€¸|17 9 sl 00 1 €·:Ğ|2
-€Š:€×_€Ø_€Ù|10 16 sd 32 €Õ ore:‚£
-€Š:€â|2 4 sd 22  ore:‚¤
-€·:‚¥|‚¦ 1 sd 33 ‚§ €Š:€â|* €Š:€¢|*
-€Š:ğ_· 1 sd 12 12 €Š:ğ €Š:·
-€Š:€×_€Ø_€Ù|11 16 sd 32 €Õ ore:‚u
-€Š:€Ñ|9 1 sd 33 €Ò €Š:€—|6 ore:€•
-€Š:Y_€µ|1 1 sd 12 11 €Š:€â_\|7
-€Š:bed|11 1 sl 00 12 €Š:bed ore:J
-€·:‚b 4 sd 33 €¼ ore:€² ore:€– ore:İ
-€É:‚s 1 sd 33 ‚¨ ore:€• ore:İ
-€€:‚ƒ 1 sd 33 €± ore:€² ore:oc:€­ ore:oc:€® ore:oc:€³
-€É:‚s|1 2 sd 33 C ore:€• ore:İ ore:€ï
-€É:‚s|2 4 sd 33 €¼ ore:İ ore:€• ore:€ï
-€Š:€—|6 1 sl 00 12 ore:~ €Š:€—
-€Š:€ê 1 sd 22  €Š:€™_‚©
-€·:‚ª 1 sd 33 … ore:€” ore:İ €·:t|1
-€€:‚« 1 sd 33  ore:€² ore:oc:€® ore:oc:‚  ore:oc:€¦ ore:oc:€³
-€·:‚ 1 sd 33 €¶ €Š:6
-€É:€Ê_q|2 1 sd 33 … ore:€• €Š:_V €É:€Ê_€Ë
-€Š:‚¬ 9 sl 00 1 €·:
-€Š:3_|8 8 sl 00 4 ore: €Š:5 €Š:6
-€Š:¶ 1 sd 33 $ ore:€Ó
-€·: 1 sd 33 €¶ €Š:€Ó
-€·:)|2 1 sd 33 €¶ €·:)|1
-€·:)|1 1 sd 33 €¶ €·:)
-€É:€Ê_‚­ 1 sd 33 €¼ €Š:dye|4 ore:€• €É:€Ê_€Ë
-€·:B|1 1 sd 33 C ore:€² €Š:‚>_ç_¸_¹|* €Š:Ñ|*
+|5 4 sd 33  ore:€• 1 1 
 €É:
-|4 4 sd 33  ore:€• €Š:€Ã|4
-€€:‚® 1 sd 33 ‚0 ore:€² ore:oc:€® ore:N ore:€• ore:oc:€³
-€·:)|3 1 sd 33 €¶ €·:)|2
-€Š:‚¯_€’ 6 sd 33 C ore:€² ore:€• €Š:_
-€·:0|3 2 sd 33 ‚ €Š:€ª_Í|* €·:0 ore:€û
-€Š:dye|10 2 sl 00 12 ore: ore:€Ü
-€€:‚° 1 sd 33  €Š:€‹_€Œ ore:oc:‚± ore:€ê ore:oc:‚² ore:oc:Q
-€Š:€Ã 4 sd 11 1 €Š:log
-€€:è|8 4 sd 33 … ore:€ƒ €Š: ore:oc:‚ 
-€·:‚y 1 sd 33 ‚³ ore:€˜ ore:€² ore:€–
-€€:è|7 8 sd 33 … €Š:€‹_€Œ €Š: ore:oc:‚ 
-€€:è|10 1 sd 33 ‚i €Š:€‹_€Œ €Š: ore:oc:‚  ore:oc:€®
-€€:è|9 2 sd 33 … ore:€‡ €Š: ore:oc:‚ 
-€€:è|2 8 sl 00 123 ore:€” €Š:€à ore:
-€€:è|1 1 sl 00 ‚* €Š:b_L €Š:½ ore:€ğ €Š:‚Ÿ_‚J_eye ore:€´
-€€:è|6 8 sd 33 ‚´ ore:€² ore:€ƒ ore:† €Š:
-€É:€Ê_q|4 1 sd 33 … ore:€• €Š:€ú €É:€Ê_€Ë
-€€:è|5 1 sd 33 ‚µ €Š:€‹_€Œ ore:oc:€³ ore:€ƒ
-€·:‚¶ 1 sd 33 €± ore:€– €·:€Æ|2 €Š:€İ|* €Š:W|*
-€É:‚· 4 sd 33 { ore:€ï ore:€•
-€€:è 1 sd 31 121 ore:€• ore:í
-€·:|3 2 sl 00 121 €·: ore:€Û
-€·: 1 sd 33 €¶ €Š:‚¬
-€·:‚¸ 1 sd 32 ‚¹ €·:t|1
-€Š:dye|5 2 sl 00 12 ore:J ore:€˜
-€Š:red_T 1 sd 22  €Š:5|1
-€Š:€‹_€ı 1 sd 33 €ş ore:€² ore:€•
-€Š:€â_\|7 6 sd 31 111 €Š:Y_€µ,€Š:Y_€µ|1,€Š:Y_€µ|2
-€€:è|20 1 sd 33  €Š:€‹_€Œ ore:oc:€® €Š: ore:€Ğ ore:oc:€³
-€€:è|18 1 sd 33 ‚º ore:oc:€ €Š:€â_H ore:€” ore:oc:‚  ore:oc:‚N ore:oc:€… ore:oc:€³
-€€:è|21 1 sd 33  ore:€ƒ ore:oc:€… ore:€¾ ore:€Ğ ore:oc:€³
-€€:è|15 1 sd 32 ‚» €Š:€â_H
-€€:è|14 1 sd 32 €Õ €Š:€â_H
-€€:è|17 1 sd 33 ‚O ore:€” €Š:€â_H ore:oc:‚! ore:oc:‚N ore:oc:€… ore:oc:€³
-€€:è|16 1 sd 33 €¶ €Š:€â_H
-€€:è|11 1 sd 33 ‚i ore:€ƒ €Š: ore:oc:‚  €Š:¡
-€€:è|13 1 sd 33 €Ì ore:€½ ore:€¯
-€€:è|12 1 sd 33 ‚¼ €Š:€‹_€Œ
-€Š:€â_\|6 6 sd 31 111 €Š:€Ç_€È
-€Š:dye|6 2 sl 00 12 ore:J ore:
-€Š:€×_€ß_€à|7 8 sd 33 €Ì €Š:€ß_€à ore:j
-€Š:&_' 1 sd 33 ‚½ €Š:€õ ore:€ÿ €Š:€¨
-€Š:Y_€µ|2 2 sd 12 11 €Š:Y_€µ
-€Š:‚{ 2 sd 33 ‚¾ ore:€½ ore:€ğ
-€·:€¸|15 1 sd 33 €¼ €·:‚G €·:€¸|12 €·:€¸|6
-€Š:€è_g 1 sd 32 h €Š:€Ã|1
-€Š:_€µ 1 sd 33 €¶ ore:€”
-€Š:€À_g 1 sd 32 h €Š:€Ã|2
-€É:€Ê_‚¿ 1 sd 33 €Ì €Š:€¨ €É:€Ê_€Ë
-€Š:‚À 1 sd 33 ‚Á ore:€Ó ore:€– €Š:Y
-€Š:† 3 sd 31 111 ore:ş
-€Š:€È_ 4 sd 33 	 €Š:€È_€µ
-€Š:€×_€Ø|5 8 sd 33 €Ì ore: ore:Æ
-€·:¥_€‹ 1 sd 33 ¦ ore:€² ore:€•
-€Š:dye|9 2 sl 00 1 €Š:”_•|5
-€·:Ğ|1 1 sd 33 €¶ €·:€¸|11
-€·:0|1 4 sd 32 1 ore:€– €·:€» ore:€â €·:2
-€Š:L 1 sd 32 €ü ore:€²
-€Š:€â|6 4 sd 22  ore:‚Â
-€Š:€×_€Ø|15 8 sd 33 €Ì ore: ore:€Û
-]==],['crafting.db.bak']= [==[#…¶:
-#'ƒ, …· —' '‚v …· …¸' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …¹ …º|…»'
-€Š:bow 1 sd 33 …¼ €Š:€£ €Š:€½ 
-€Š:€Ğ 1 sd 33 …½ €Š:€Ã 
+ 4 sd 33  ore:€• 1 1 
+€É:
+|1 4 sd 33  ore:€• 1 1 
+€É:€Ê_‚­ 1 sd 33 €¼ 1 1 1 €Š:dye|4 ore:€• 
+€É:€Ê_one_‚F 1 sd 33 … ore:€• 1 1 1 €Š:| 
+€É:€Ê_|2 1 sd 33 y ore:€• 1 1 1 €É:€Ê_€Ë 
+€É:€Ê_ 1 sd 33 €¼ 1 1 1 €Š: ore:€• 
+€É:€Ê_|1 1 sd 33  1 1 1 €Š: ore:€• 
+€É:€Ê_Ó 1 sd 33 Ô 1 1 1 €Š:_ ore:€• 1 €É:€Ê_€Ë 
+€É:€Ê_Ó|1 1 sd 33 Ô 1 1 1 €Š:W ore:€• 1 €É:€Ê_€Ë 
+€É:€Ê_q|2 1 sd 33 … ore:€• 1 1 1 €Š:_V 
+€É:€Ê_q|3 1 sd 33 … ore:€• 1 1 1 €Š:€¹ 
+€É:€Ê_q|4 1 sd 33 … ore:€• 1 1 1 €Š:€ú 
+€É:€Ê_q 1 sd 33 … ore:€• 1 1 1 €Š:€¨ 
+€É:€Ê_q|1 1 sd 33 … ore:€• 1 1 1 €Š:€‹_V 
+€É:€Ê_€Ë 2 sd 33 €Ì ore:€• ore:€Í 
+€É:€Ê_‚¿ 1 sd 33 €Ì 1 1 1 €Š:€¨ 
+]==],['crafting.db.bak']= [==[#…·:
+#'ƒ, …¸ —' '‚v …¸ …¹' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …º …»|…¼'
+€Š:bow 1 sd 33 …Î €Š:€£ €Š:€½ 
+€Š:€Ğ 1 sd 33 …Ç €Š:€Ã 
 €Š:„_' 1 sd 22  €Š:€Ã 
-€Š:€¹_axe 1 sd 23 …¾ €Š:€¹ €Š:€£ 
-€Š:€¹_€ı 1 sd 33 …¾ €Š:€¹ €Š:€£ 
-€Š:¶ 1 sd 33 …½ €Š:€Ó 
+€Š:€¹_axe 1 sd 23 …¿ €Š:€¹ €Š:€£ 
+€Š:€¹_€ı 1 sd 33 …¿ €Š:€¹ €Š:€£ 
+€Š:¶ 1 sd 33 …Ç €Š:€Ó 
 €Š:_€Œ 9 sd 00 1 €Š:_V 
-€Š:€‹_axe 1 sd 23 …¾ €Š:€‹_V €Š:€£ 
+€Š:€‹_axe 1 sd 23 …¿ €Š:€‹_V €Š:€£ 
 €Š:€‹_ 16 sd 32 €Õ €Š:€‹_V 
 €Š:€‹_€Œ 9 sd 00 1 €Š:€‹_V 
-€Š:€‹_€ı 1 sd 33 …¾ €Š:€‹_V €Š:€£ 
-€Š:± 3 sd 33 …¿ €Š:€£ 
+€Š:€‹_€ı 1 sd 33 …¿ €Š:€‹_V €Š:€£ 
+€Š:± 3 sd 33 …Ğ €Š:€£ 
 €Š:† 3 sd 31 111 €Š:… 
 €Š:€Ã|0 4 sd 00 1 €Š:log|0 
 €Š:€£ 4 sd 12 11 €Š:€Ã 
-€Š:€â_axe 1 sd 23 …¾ €Š:€Ó €Š:€£ 
+€Š:€â_axe 1 sd 23 …¿ €Š:€Ó €Š:€£ 
 €Š:€â_H|0 1 sd 00 1 €Š:€â|0 
 €Š:€â_H 1 sd 00 1 €Š:€â|0 
-€Š:€â_€ı 1 sd 33 …¾ €Š:€Ó €Š:€£ 
-€Š:A_€ı 1 sd 33 …¾ €Š:€Ã €Š:€£ 
+€Š:€â_€ı 1 sd 33 …¿ €Š:€Ó €Š:€£ 
+€Š:A_€ı 1 sd 33 …¿ €Š:€Ã €Š:€£ 
 €€:ö 1 sd 33  €Š:_V €€:è|8 €Š:€‹_ €Š:€Ğ €€:è|4 
-€€:‚|7 1 sd 32 …À €€:è|7 €€:è|8 €€:è|4 
+€€:‚|7 1 sd 32 …İ €€:è|7 €€:è|8 €€:è|4 
 €€:‚|1 1 sd 33  €Š:_€Œ €Š: €€:è|8 €€:è|11 €€:è|10 
 €€:Š 1 sd 32 ‹ €€:è|14 €€:è|15 €€:è|16 
 €€:è|15 1 sd 32  €Š:€â_H 
@@ -3842,335 +3844,335 @@ end]==],['ct.txt']= [==[/mnt/cf4/lib/‚Ñ.lua:54: …« to …¬ a nil …­
 €€:è|8 4 sd 33 … €Š:_€Œ €Š: €€:è|6 
 €€:è|7 8 sd 33 … €Š:€‹_€Œ €Š: €€:è|6 
 €€:è|16 1 sd 33 €¶ €Š:€â_H 
-€€:è|6 8 sd 33 …Á €Š:€‹_V €Š:_€Œ €Š:† €Š: 
+€€:è|6 8 sd 33 …ß €Š:€‹_V €Š:_€Œ €Š:† €Š: 
 €€:n 1 sd 33 o €Š:€‹_V €Š: €€:è|7 €Š:€Ø 
-]==],['oredict.db']= [==[ore:€¤=€Š:log|*,€Š:û|*,€·:‚n_log|*
-ore:€ï=€Š:€Ã|*,€·:‚n_€Ã|*
-ore:‚t=€Š:A_\|*
-ore:Ö=€Š:oak_,€Š:€è_,€Š:€À_,€Š:U_,€Š:._,€Š:€ò_oak_
-ore:…=€Š:€Á,€Š:€è_€Á,€Š:€À_€Á,€Š:U_€Á,€Š:€ò_oak_€Á,€Š:._€Á
-ore:…=€Š:€Á_€é,€Š:€è_€Á_€é,€Š:€À_€Á_€é,€Š:U_€Á_€é,€Š:€ò_oak_€Á_€é,€Š:._€Á_€é
-ore:‚R=€Š:._€ó,€Š:€À_€ó,€Š:€ò_oak_€ó,€Š:A_€ó,€Š:U_€ó,€Š:€è_€ó
-ore:€•=€Š:€£
-ore:´=€Š:…|*,€·:‚n_…|*
-ore:…=€Š:…|*,€Š:…|*,€·:‚n_…|*
-ore:Ê=€Š:Ê
-ore:…=€Š:_ore
-ore:…=€Š:€‹_ore
-ore:…	=€Š:‚k_ore
-ore:…
-=€Š:€¹_ore
-ore:…=€Š:_ore
-ore:…=€Š:€ú_ore
-ore:…=€Š:Y_ore
-ore:…=€Š:€İ_ore
-ore:€²=€Š:€‹_V
-ore:€”=€Š:_V
-ore:„X=€Š:€È
-ore:…=€Š:‰
-ore:€ƒ=€Š:_€Œ
-ore:í=€Š:€‹_€Œ
-ore:€ÿ=€Š:€¹
-ore:€û=€Š:€ú
-ore:…=€Š:Y
-ore:‚=€Š:_„R
-ore:‚œ=€Š:_…
-ore:€–=€Š:
-ore:ú=€Š:ã_ä
-ore:#=€Š:dye|4
+]==],['oredict.db']= [==[ore:…=€Š:…
+ore:­=€Š:€İ_€µ
+ore:…d=€·:Ğ|1
+ore:‚=€Š:€¹_€µ
+ore:…=€Š:€ú_€µ
+ore:…c=€·:Ğ
+ore:…e=€·:Ğ|2
+ore:=€Š:€Ø,€Š:€×_€Ø|*
+ore:€=€Š:€×_€Ø|15
+ore:‚u=€Š:€×_€Ø|11
+ore:‚•=€Š:€×_€Ø|12
+ore:=€Š:€Ø
+ore:‚=€Š:€×_€Ø|9
+ore:‚…=€Š:€×_€Ø|7
+ore:ò=€Š:€×_€Ø|13
+ore:’=€Š:€×_€Ø|3
+ore:÷=€Š:€×_€Ø|8
+ore:€Ú=€Š:€×_€Ø|5
+ore:=€Š:€×_€Ø|2
+ore:‚o=€Š:€×_€Ø|1
+ore:Å=€Š:€×_€Ø|6
+ore:‚£=€Š:€×_€Ø|10
+ore:Ç=€Š:€×_€Ø|14
+ore:=€Š:€×_€Ø
+ore:?=€Š:€×_€Ø|4
 ore: =€Š:_€µ
 ore:‚=€Š:€‹_€µ
 ore:‚~=€Š:‚k_€µ
-ore:‚=€Š:€¹_€µ
-ore:€¾=€Š:_€µ
-ore:…=€Š:€ú_€µ
-ore:…=€Š:Y_€µ
-ore:­=€Š:€İ_€µ
-ore:…=€Š:¾
-ore:…=€Š:€Ÿ
-ore:…=€Š:€
-ore:…=€Š:€Ç_€Î
-ore:ş=€Š:…
-ore:…=€Š:…
-ore:dye=€Š:dye|*,€·:€¸|14
-ore:†=€Š:†
-ore:€ğ=€Š:€æ_€ç
-ore:‚–=€Š:€ª_Í
-ore:€´=€Š:€´
-ore:==€Š:=
-ore:€½=€Š:€½
-ore:z=€Š:€Ç_î
-ore:€ê=€Š:€ê
-ore:€ö=€Š:€ö
-ore:egg=€Š:egg
-ore:…=€Š:…_13,€Š:…_cat,€Š:…_…,€Š:…_…,€Š:…_far,€Š:…_…,€Š:…_…,€Š:…_… ,€Š:…_…!,€Š:…_…",€Š:…_11,€Š:…_…#
-ore:(=€Š:(
-ore:‚S=€Š:‚S
-ore:€â=€Š:€â
-ore:€Ó=€Š:€Ó
-ore:6=€Š:6
-ore:5=€Š:5|*
-ore:T=€Š:T|*,€Š:red_T|*
-ore:‚¬=€Š:‚¬
-ore:€¨=€Š:€¨
-ore:ã=€Š:ã
-ore:‚]=€Š:end_€â
-ore:=€Š:
-ore:‚a=€Š:„_'
-ore:…$=€Š:€æ
+ore:…g=€·:t|1
 ore:…%=€Š:
 ore:…&=€Š:|1
 ore:…'=€Š:|2
-ore:‚¤=€Š:€â|1
-ore:…(=€Š:€â|2
-ore:‚/=€Š:€â|3
-ore:…)=€Š:€â|4
-ore:‚Â=€Š:€â|5
-ore:…*=€Š:€â|6
-ore:=€Š:€Ø
-ore:=€Š:€Ø,€Š:€×_€Ø|*
-ore:…+=€Š:€Ø_€Ù
-ore:Ú=€Š:€Ø_€Ù,€Š:€×_€Ø_€Ù|*
-ore:€Ğ=€Š:€Ğ,€Š:€ª_€Ğ,€Š:‚_€Ğ
-ore:İ=€Š:€Ğ,€Š:‚_€Ğ
-ore:…,=€Š:€ª_€Ğ
-ore:…-=€Š:‚_€Ğ
-ore:€Û=€Š:dye
-ore:€=€Š:€×_€Ø|15
-ore:….=€Š:€×_€Ø_€Ù|15
-ore:€˜=€Š:dye|1
-ore:Ç=€Š:€×_€Ø|14
-ore:…/=€Š:€×_€Ø_€Ù|14
-ore:=€Š:dye|2
-ore:ò=€Š:€×_€Ø|13
-ore:…0=€Š:€×_€Ø_€Ù|13
-ore:=€Š:dye|3
-ore:‚•=€Š:€×_€Ø|12
-ore:…1=€Š:€×_€Ø_€Ù|12
-ore:J=€Š:dye|4,€·:€¸|14
-ore:‚u=€Š:€×_€Ø|11
-ore:…2=€Š:€×_€Ø_€Ù|11
-ore:=€Š:dye|5
-ore:‚£=€Š:€×_€Ø|10
-ore:…3=€Š:€×_€Ø_€Ù|10
-ore:€Ş=€Š:dye|6
-ore:‚=€Š:€×_€Ø|9
-ore:…4=€Š:€×_€Ø_€Ù|9
-ore:=€Š:dye|7
-ore:÷=€Š:€×_€Ø|8
-ore:…5=€Š:€×_€Ø_€Ù|8
-ore:j=€Š:dye|8
-ore:‚…=€Š:€×_€Ø|7
-ore:…6=€Š:€×_€Ø_€Ù|7
-ore:~=€Š:dye|9
-ore:Å=€Š:€×_€Ø|6
-ore:…7=€Š:€×_€Ø_€Ù|6
-ore:Æ=€Š:dye|10
-ore:€Ú=€Š:€×_€Ø|5
-ore:…8=€Š:€×_€Ø_€Ù|5
-ore:+=€Š:dye|11
-ore:?=€Š:€×_€Ø|4
-ore:…9=€Š:€×_€Ø_€Ù|4
-ore:m=€Š:dye|12
-ore:’=€Š:€×_€Ø|3
-ore:…:=€Š:€×_€Ø_€Ù|3
-ore:€Ö=€Š:dye|13,€·:€¸|3
-ore:=€Š:€×_€Ø|2
-ore:…;=€Š:€×_€Ø_€Ù|2
-ore:!=€Š:dye|14
-ore:‚o=€Š:€×_€Ø|1
-ore:…<=€Š:€×_€Ø_€Ù|1
-ore:€Ü=€Š:dye|15
-ore:=€Š:€×_€Ø
-ore:…==€Š:€×_€Ø_€Ù
-ore:›_œ_=€·:‚P|1
-ore:ü=€·:€ñ,€·:€ñ|2
-ore:…>=€·:€ñ|1
-ore:€å=€·:
-ore:…?=€·:|1
-ore:…@=€·:|2
-ore:…A=€·:|3
-ore:…B=€·:|4
-ore:…C=€·:|5
-ore:…D=€·:|6
-ore:…E=€·:|7
-ore:…F=€·:)
-ore:…G=€·:)|1
-ore:…H=€·:)|2
-ore:…I=€·:)|3
-ore:…J=€·:®
-ore:…K=€·:®|1
-ore:…L=€·:‚
-ore:…M=€·:‚|1
-ore:…N=€·:
-ore:…O=€·:|1
-ore:…P=€·:|2
-ore:…Q=€·:|3
-ore:…R=€·:|4
-ore:…S=€·:|5
-ore:…T=€·:€¸
-ore:…U=€·:€¸|1
-ore:…V=€·:€¸|2
-ore:…W=€·:€¸|3
-ore:…X=€·:€¸|4
-ore:…Y=€·:€¸|5
-ore:…Z=€·:€¸|6
-ore:…[=€·:€¸|7
-ore:…\=€·:€¸|8
-ore:…]=€·:€¸|9
-ore:…^=€·:€¸|10
-ore:D=€·:€¸|11
-ore:…_=€·:€¸|12
-ore:…`=€·:€¸|13
-ore:…a=€·:€¸|15,€·:€¸|16
-ore:…b=€·:€¸|17
-ore:…c=€·:Ğ
-ore:…d=€·:Ğ|1
-ore:…e=€·:Ğ|2
-ore:…f=€Š:€‹_€ó
-ore:…g=€·:t|1
+ore:…=€Š:Y_€µ
+ore:€¾=€Š:_€µ
+ore:…$=€Š:€æ
+ore:€´=€Š:€´
 ore:‚“=€Š:‚“
 ore:‚¢=€Š:I
-ore:N=€Š:9,€Š:8_9
-ore:€§=€Š:_
-ore:€¯=€Š:€ª_Í
-ore:oc:‚=€€:€|7
+ore:€Ğ=€Š:€Ğ,€Š:€ª_€Ğ,€Š:‚_€Ğ
+ore:…,=€Š:€ª_€Ğ
+ore:…-=€Š:‚_€Ğ
+ore:İ=€Š:€Ğ,€Š:‚_€Ğ
 ore:€‡=€€:è|29
-ore:oc:‚%=€Š:end_€â,€€:‚]
+ore:…X=€·:€¸|4
+ore:€Ó=€Š:€Ó
+ore:€å=€·:
+ore:…F=€·:)
+ore:…L=€·:‚
+ore:…N=€·:
+ore:…J=€·:®
+ore:…?=€·:|1
+ore:…G=€·:)|1
+ore:…M=€·:‚|1
+ore:…O=€·:|1
+ore:…K=€·:®|1
+ore:…@=€·:|2
+ore:…H=€·:)|2
+ore:…P=€·:|2
+ore:…A=€·:|3
+ore:…I=€·:)|3
+ore:…Q=€·:|3
+ore:…B=€·:|4
+ore:…R=€·:|4
+ore:…C=€·:|5
+ore:…S=€·:|5
+ore:…D=€·:|6
+ore:…E=€·:|7
+ore:N=€Š:9,€Š:8_9
+ore:…=€Š:€
+ore:…=€Š:€Ç_€Î
+ore:…=€Š:€Ÿ
+ore:…=€Š:¾
+ore:(=€Š:(
+ore:…f=€Š:€‹_€ó
+ore:‚R=€Š:._€ó,€Š:€À_€ó,€Š:€ò_oak_€ó,€Š:U_€ó,€Š:€è_€ó,€Š:A_€ó
 ore:€Í=€É:ƒ€|*
 ore:ê=€É:
 |*
+ore:…^=€·:€¸|10
+ore:ú=€Š:ã_ä
+ore:…W=€·:€¸|3
+ore:‚œ=€Š:_…
+ore:€–=€Š:
+ore:dye=€·:€¸|14,€Š:dye|*
+ore:€Û=€Š:dye
+ore:J=€·:€¸|14,€Š:dye|4
+ore:=€Š:dye|3
+ore:€Ş=€Š:dye|6
+ore:j=€Š:dye|8
+ore:=€Š:dye|2
+ore:m=€Š:dye|12
+ore:=€Š:dye|7
+ore:Æ=€Š:dye|10
+ore:€Ö=€·:€¸|3,€Š:dye|13
+ore:!=€Š:dye|14
+ore:~=€Š:dye|9
+ore:=€Š:dye|5
+ore:€˜=€Š:dye|1
+ore:€Ü=€Š:dye|15
+ore:+=€Š:dye|11
+ore:egg=€Š:egg
+ore:‚–=€Š:€ª_Í
+ore:‚]=€Š:end_€â
+ore:…V=€·:€¸|2
+ore:€ö=€Š:€ö
+ore:…=€Š:._€Á_€é,€Š:€À_€Á_€é,€Š:€ò_oak_€Á_€é,€Š:€Á_€é,€Š:U_€Á_€é,€Š:€è_€Á_€é
+ore:…=€Š:._€Á,€Š:€À_€Á,€Š:€ò_oak_€Á,€Š:€Á,€Š:U_€Á,€Š:€è_€Á
+ore:…U=€·:€¸|1
+ore:€ÿ=€Š:€¹
+ore:€û=€Š:€ú
+ore:#=€Š:dye|4
+ore:…Y=€·:€¸|5
+ore:‚=€Š:_„R
+ore:…=€Š:Y
+ore:…T=€·:€¸
+ore:ã=€Š:ã
+ore:‚S=€Š:‚S
+ore:6=€Š:6
+ore:==€Š:=
+ore:„X=€Š:€È
+ore:…=€Š:‰
+ore:D=€·:€¸|11
+ore:…_=€·:€¸|12
+ore:…b=€·:€¸|17
+ore:€”=€Š:_V
+ore:€²=€Š:€‹_V
+ore:ü=€·:€ñ,€·:€ñ|2
+ore:€ê=€Š:€ê
+ore:€¤=€·:‚n_log|*,€Š:log|*,€Š:û|*
+ore:›_œ_=€·:‚P|1
+ore:€¯=€Š:€ª_Í
+ore:z=€Š:€Ç_î
+ore:‚¬=€Š:‚¬
+ore:€ƒ=€Š:_€Œ
+ore:í=€Š:€‹_€Œ
+ore:…>=€·:€ñ|1
+ore:€¨=€Š:€¨
 ore:oc:‚ƒ=€€:‚ƒ
+ore:oc:Û=€€:‚†
+ore:oc:…ƒ=€€:€Ê
+ore:oc:…y=€€:‚|16
+ore:oc:…z=€€:‚|17
 ore:oc:‚`=€€:‚`
+ore:oc:…„=€€:€Ê|1
+ore:oc:……=€€:€Ê|2
+ore:oc:…†=€€:€Ê|3
 ore:oc:€­=€€:€­|‚e
 ore:oc:Q=€€:Q
+ore:oc:…ˆ=€€:€Ê|5
+ore:oc:…‰=€€:€Ê|6
+ore:oc:…Š=€€:€Ê|7
+ore:oc:…k=€€:O
 ore:oc:ì=€€:ì
-ore:oc:ñ=€€:ñ
 ore:oc:ö=€€:ö
+ore:oc:ñ=€€:ñ
+ore:oc:°=€€:è|28
 ore:oc:‚^=€€:¯
 ore:oc:‚’=€€:‚’
-ore:oc:×=€€:×
-ore:oc:=€€:‚®
-ore:oc:‚=€€:‚
-ore:oc:‚@=€€:‚@
-ore:oc:=€€:
-ore:oc:Š=€€:Š
-ore:oc:…h=€€:‚p
-ore:oc:…i=€€:ô
-ore:oc:=€€:‚E
-ore:oc:ï=€€:ï
-ore:oc:=€€:
-ore:oc:=€€:
-ore:oc:€°=€€:€°
-ore:oc:n=€€:n
-ore:oc:â=€€:â
-ore:oc:‚N=€€:‚N
-ore:oc:=€€:
-ore:oc:‚«=€€:‚«
-ore:oc:…j=€€:M
-ore:oc:‚=€€:‚
-ore:oc:…k=€€:O
-ore:oc:‚D=€€:è
-ore:oc:‚=€€:è|1
-ore:oc:…l=€€:è|2
-ore:oc:…m=€€:è|3
-ore:oc:€³=€€:è|4
-ore:oc:€†=€€:è|5
-ore:oc:‚ =€€:è|6
+ore:oc:…‡=€€:€Ê|4
 ore:oc:€®=€€:è|7
 ore:oc:€=€€:è|8
 ore:oc:€…=€€:è|9
-ore:oc:€=€€:è|10
-ore:oc:Ù=€€:è|11
-ore:oc:‚h=€€:è|12
-ore:oc:€¦=€€:è|13
-ore:oc:Œ=€€:è|14
-ore:oc:=€€:è|15
-ore:oc:=€€:è|16
-ore:oc:…n=€€:è|17
-ore:oc:…o=€€:è|18
-ore:oc:‚)=€€:è|20
-ore:oc:‚&=€€:è|21
-ore:oc:‚²=€€:è|23
-ore:oc:…p=€€:è|24
-ore:oc:‚+=€€:è|26
-ore:oc:…q=€€:è|27
-ore:oc:°=€€:è|28
-ore:oc:Û=€€:‚†
-ore:oc:…r=€€:‚†|2
-ore:oc:…s=€€:‚†|3
-ore:oc:ƒ=€€:‚†|4
-ore:oc:‚y=€€:‚y
-ore:oc:…t=€€:‚°
-ore:oc:…u=€€:‚†|5
-ore:oc:€„=€€:‚
-ore:oc:€ˆ=€€:‚|1
-ore:oc:=€€:‚|2
 ore:oc:‚!=€€:‚|3
 ore:oc:‚=€€:‚|4
 ore:oc:‚ =€€:‚|5
+ore:oc:€„=€€:‚
+ore:oc:€ˆ=€€:‚|1
+ore:oc:=€€:‚|2
+ore:oc:…=€€:€Ê|11
+ore:oc:…€=€€:€|10
+ore:oc:…=€€:€|11
+ore:oc:…‚=€€:€|12
+ore:oc:…=€€:€Ê|12
+ore:oc:…=€€:€Ê|13
+ore:oc:…‘=€€:€Ê|14
+ore:oc:×=€€:×
+ore:oc:=€€:‚®
+ore:oc:…|=€€:‚|20
+ore:oc:‚²=€€:è|23
+ore:oc:…p=€€:è|24
+ore:oc:„ =€€:q
+ore:oc:…’=€€:€Ê|15
+ore:oc:„=€€:q|1
+ore:oc:…“=€€:€Ê|16
+ore:oc:‚=€€:‚
+ore:oc:‚"=€€:€|1
+ore:oc:‚=€€:€|2
+ore:oc:…}=€€:€|3
+ore:oc:‚=€€:q|2
+ore:oc:‚š=€€:q|3
+ore:oc:‚=€€:q|4
+ore:oc:‚@=€€:‚@
+ore:oc:=€€:
+ore:oc:…t=€€:‚°
+ore:oc:…›=€€:€Ê|27
+ore:oc:‚±=€€:€Ê|28
+ore:oc:…q=€€:è|27
+ore:oc:‚+=€€:è|26
+ore:oc:…=€€:€|8
+ore:oc:‚=€€:€Ê|18
+ore:oc:…”=€€:€Ê|17
+ore:oc:Š=€€:Š
+ore:oc:€«=€€:€|6
+ore:oc:…š=€€:€Ê|26
+ore:oc:‚‚=€€:€|9
+ore:oc:ƒ=€€:‚†|4
+ore:oc:€=€€:è|10
+ore:oc:‚=€€:è|1
+ore:oc:=€€:è|15
+ore:oc:Œ=€€:è|14
+ore:oc:Ù=€€:è|11
+ore:oc:€†=€€:è|5
+ore:oc:…m=€€:è|3
+ore:oc:€³=€€:è|4
+ore:oc:…l=€€:è|2
+ore:oc:‚D=€€:è
+ore:oc:‚h=€€:è|12
+ore:oc:€¦=€€:è|13
+ore:oc:=€€:è|16
+ore:oc:‚ =€€:è|6
+ore:oc:mfu=€€:€Ê|30
+ore:oc:‚)=€€:è|20
+ore:oc:‚&=€€:è|21
+ore:oc:…h=€€:‚p
+ore:oc:…u=€€:‚†|5
+ore:oc:…•=€€:€Ê|19
+ore:oc:…j=€€:M
+ore:oc:…–=€€:€Ê|20
+ore:oc:…i=€€:ô
+ore:oc:=€€:‚E
+ore:oc:ï=€€:ï
+ore:oc:=€€:
+ore:oc:=€€:
 ore:oc:€º=€€:‚|6
 ore:oc:‚#=€€:‚|7
 ore:oc:€¿=€€:‚|8
 ore:oc:‚$=€€:‚|9
 ore:oc:€‰=€€:‚|10
 ore:oc:‚=€€:‚|11
+ore:oc:=€€:
+ore:oc:*=€€:€|4
+ore:oc:…~=€€:€|5
+ore:oc:€°=€€:€°
+ore:oc:n=€€:n
+ore:oc:‚N=€€:‚N
+ore:oc:â=€€:â
 ore:oc:…v=€€:‚|13
 ore:oc:…w=€€:‚|14
 ore:oc:…x=€€:‚|15
-ore:oc:…y=€€:‚|16
-ore:oc:…z=€€:‚|17
+ore:oc:…—=€€:€Ê|21
+ore:oc:‚ˆ=€€:€Ê|22
+ore:oc:‚%=€Š:end_€â,€€:‚]
+ore:oc:…n=€€:è|17
+ore:oc:…o=€€:è|18
+ore:oc:‚=€€:€Ê|24
+ore:oc:…˜=€€:€Ê|23
+ore:oc:…r=€€:‚†|2
 ore:oc:…{=€€:‚|19
-ore:oc:…|=€€:‚|20
-ore:oc:‚"=€€:€|1
-ore:oc:‚=€€:€|2
-ore:oc:…}=€€:€|3
-ore:oc:*=€€:€|4
-ore:oc:…~=€€:€|5
-ore:oc:€«=€€:€|6
-ore:oc:=€€:€|7
-ore:oc:…=€€:€|8
-ore:oc:‚‚=€€:€|9
-ore:oc:…€=€€:€|10
-ore:oc:…=€€:€|11
-ore:oc:…‚=€€:€|12
-ore:oc:…ƒ=€€:€Ê
-ore:oc:…„=€€:€Ê|1
-ore:oc:……=€€:€Ê|2
-ore:oc:…†=€€:€Ê|3
-ore:oc:…‡=€€:€Ê|4
-ore:oc:…ˆ=€€:€Ê|5
-ore:oc:…‰=€€:€Ê|6
-ore:oc:…Š=€€:€Ê|7
+ore:oc:…s=€€:‚†|3
+ore:oc:…™=€€:€Ê|25
+ore:oc:…œ=€€:€Ê|29
+ore:oc:‚=€€:‚
 ore:oc:…‹=€€:€Ê|8
 ore:oc:…Œ=€€:€Ê|9
 ore:oc:…=€€:€Ê|10
-ore:oc:…=€€:€Ê|11
-ore:oc:…=€€:€Ê|12
-ore:oc:…=€€:€Ê|13
-ore:oc:…‘=€€:€Ê|14
-ore:oc:…’=€€:€Ê|15
-ore:oc:…“=€€:€Ê|16
-ore:oc:…”=€€:€Ê|17
-ore:oc:‚=€€:€Ê|18
-ore:oc:…•=€€:€Ê|19
-ore:oc:…–=€€:€Ê|20
-ore:oc:…—=€€:€Ê|21
-ore:oc:‚ˆ=€€:€Ê|22
-ore:oc:…˜=€€:€Ê|23
-ore:oc:‚=€€:€Ê|24
-ore:oc:…™=€€:€Ê|25
-ore:oc:…š=€€:€Ê|26
-ore:oc:…›=€€:€Ê|27
-ore:oc:‚±=€€:€Ê|28
-ore:oc:…œ=€€:€Ê|29
-ore:oc:mfu=€€:€Ê|30
+ore:oc:‚«=€€:‚«
+ore:oc:‚=€€:€|7
 ore:oc:…=€€:€Ê|31
-ore:oc:„ =€€:q
-ore:oc:„=€€:q|1
-ore:oc:‚=€€:q|2
-ore:oc:‚š=€€:q|3
-ore:oc:‚=€€:q|4
+ore:oc:=€€:€|7
+ore:oc:‚y=€€:‚y
+ore:…=€Š:€İ_ore
+ore:…
+=€Š:€¹_ore
+ore:…=€Š:€ú_ore
+ore:…=€Š:_ore
+ore:…=€Š:€‹_ore
+ore:…	=€Š:‚k_ore
+ore:…=€Š:Y_ore
+ore:…=€Š:_ore
+ore:Ú=€Š:€Ø_€Ù,€Š:€×_€Ø_€Ù|*
+ore:….=€Š:€×_€Ø_€Ù|15
+ore:…2=€Š:€×_€Ø_€Ù|11
+ore:…1=€Š:€×_€Ø_€Ù|12
+ore:…+=€Š:€Ø_€Ù
+ore:…4=€Š:€×_€Ø_€Ù|9
+ore:…6=€Š:€×_€Ø_€Ù|7
+ore:…0=€Š:€×_€Ø_€Ù|13
+ore:…:=€Š:€×_€Ø_€Ù|3
+ore:…5=€Š:€×_€Ø_€Ù|8
+ore:…8=€Š:€×_€Ø_€Ù|5
+ore:…;=€Š:€×_€Ø_€Ù|2
+ore:…<=€Š:€×_€Ø_€Ù|1
+ore:…7=€Š:€×_€Ø_€Ù|6
+ore:…3=€Š:€×_€Ø_€Ù|10
+ore:…/=€Š:€×_€Ø_€Ù|14
+ore:…==€Š:€×_€Ø_€Ù
+ore:…9=€Š:€×_€Ø_€Ù|4
+ore:†=€Š:†
+ore:€ï=€·:‚n_€Ã|*,€Š:€Ã|*
+ore:…=€Š:…_11,€Š:…_13,€Š:…_…,€Š:…_cat,€Š:…_…,€Š:…_far,€Š:…_…,€Š:…_…,€Š:…_… ,€Š:…_…!,€Š:…_…#,€Š:…_…"
+ore:5=€Š:5|*
+ore:T=€Š:red_T|*,€Š:T|*
+ore:‚t=€Š:A_\|*
+ore:€ğ=€Š:€æ_€ç
+ore:Ö=€Š:._,€Š:€À_,€Š:€ò_oak_,€Š:U_,€Š:oak_,€Š:€è_
+ore:€•=€Š:€£
+ore:€â=€Š:€â
+ore:‚Â=€Š:€â|5
+ore:…*=€Š:€â|6
+ore:‚/=€Š:€â|3
+ore:…)=€Š:€â|4
+ore:‚¤=€Š:€â|1
+ore:…(=€Š:€â|2
+ore:€½=€Š:€½
+ore:ş=€Š:…
+ore:=€Š:
+ore:€§=€Š:_
+ore:…=€·:‚n_…|*,€Š:…|*,€Š:…|*
+ore:´=€·:‚n_…|*,€Š:…|*
+ore:Ê=€Š:Ê
+ore:‚a=€Š:„_'
+ore:…`=€·:€¸|13
+ore:…]=€·:€¸|9
+ore:…\=€·:€¸|8
+ore:…Z=€·:€¸|6
+ore:…a=€·:€¸|15,€·:€¸|16
+ore:…[=€·:€¸|7
 ]==],['raw.db']= [==[€Š:€Ó
 €Š:€¹
 €Š:€Ø
@@ -4185,23 +4187,231 @@ ore:oc:‚=€€:q|4
 €Š:€½
 €€:è|4
 ]==]},['deprecatrace.log']= [==[‚F ‚È:
-	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …Â '…Ã'
-	/mnt/cf4/lib/‚Ğ.lua:52: in …° 'get'
-	/mnt/cf4/lib/‚Ğ.lua:60: in …° 'has'
-	/mnt/cf4/lib/‚Ï.lua:65: in ‚Ã '…Ä'
-	/mnt/cf4/lib/‚Ï.lua:81: in …° 'ƒ8'
-	/mnt/cf4/ƒE.lua:354: in …° '‚Ù'
-	/mnt/cf4/ƒE.lua:404: in …± ƒ
-	/mnt/cf4/faf.lua:19: in …± ƒ
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:65: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:81: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:354: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:404: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
 	[C]: in ‚Ú '‚Å'
-	‚b:791: in …² '‚Å'
-	/mnt/cf4/ct.lua:17: in …± ƒ
-	(...…³ …´...)
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	(...…´ …µ...)
 	[C]: in ‚Ú '‚Å'
-	‚b:791: in …² '‚Å'
-	/lib/…µ.lua:63: in ‚Ú </lib/…µ.lua:59>
-]==],['faf.lua']= [==[-- …Å and …Æ, for …Ç.
--- …È …É ƒ …Ê.
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+‚F ‚È:
+	/mnt/cf4/lib/‚Ô/‚v.lua:74: in …® '…ã'
+	/mnt/cf4/lib/‚Ğ.lua:52: in …± 'get'
+	/mnt/cf4/lib/‚Ğ.lua:60: in …± 'has'
+	/mnt/cf4/lib/‚Ï.lua:68: in ‚Ã '…°'
+	/mnt/cf4/lib/‚Ï.lua:84: in …± 'ƒ8'
+	/mnt/cf4/ƒE.lua:355: in …± '‚Ù'
+	/mnt/cf4/ƒE.lua:405: in …² ƒ
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/mnt/cf4/ct.lua:17: in …² ƒ
+	/mnt/cf4/faf.lua:19: in …² ƒ
+	(...…´ …µ...)
+	[C]: in ‚Ú '‚Å'
+	‚b:791: in …³ '‚Å'
+	/lib/…¶.lua:63: in ‚Ú </lib/…¶.lua:59>
+]==],['faf.lua']= [==[-- …ä and …å, for …æ.
+-- …ç …è ƒ …é.
 
 ‚Ã á = ‚Æ('á')
 ‚Ã fs = ‚Æ('…')
@@ -4219,9 +4429,9 @@ if not fs.…¢(… ) ‚É
 end
 
 …¦(… )('.ƒI(…Ÿ))
-for k, v in ‚ë(…Ë.ƒ) do
-	if k:…Ì('lib.') == 1 ‚É
-		…Ë.ƒ[k] = nil
+for k, v in ‚ë(…ê.ƒ) do
+	if k:…ë('lib.') == 1 ‚É
+		…ê.ƒ[k] = nil
 	end
 end]==],['failed.txt']= [==[ƒe.ƒl("€É:ƒ€_ƒ_U", <€É:ƒ€:4>.ƒ‚({è: "U"}) * 4, [[<ore:İ>, <€Š:A_\:3>, <ore:İ>], [<€Š:A_\:3>, <€Š:A_\:3>, <€Š:A_\:3>], [<ore:İ>, <€Š:A_\:3>, <ore:İ>]]);
 ƒe.ƒl("€·:‚b_ƒ‰", <€·:‚b>.ƒ‚({ƒŠ: "€·:ƒ‰"}), [[ƒn, <€Š:ƒ‹_€õ:*>, ƒn], [<ore:€ÿ>, <€·:‚b>, <ore:€ÿ>], [<ore:€²>, <ore:€²>, <ore:€²>]]);
@@ -4327,54 +4537,54 @@ end]==],['failed.txt']= [==[ƒe.ƒl("€É:ƒ€_ƒ_U", <€É:ƒ€:4>.ƒ‚({è: "U"}) * 4, [
 ƒe.ƒl("€·:ƒ¦_ƒ¦_tnt", <€·:‚b>.ƒ‚({ƒŠ: "€·:ƒ¦_tnt"}), [[<€Š:=:*>, <€Š:=:*>, <€Š:=:*>], [<€Š:=:*>, <€Š:tnt:*>, <€Š:=:*>], [<ore:€–>, <€·:‚b>.ƒ‚({ƒŠ: "€·:ƒ¦"}), <ore:€–>]]);
 ƒe.ƒq("€Š:„ş", ƒn, []);
 ƒe.ƒq("€·:€‘_ƒÚ", <€·:ª>, []);
-]==],['filter.lua']= [==[‚Ã ‚Ú …Í(s, p)
+]==],['filter.lua']= [==[‚Ã ‚Ú …ì(s, p)
 	t = {}
-	for x in s:…Î(p) do
+	for x in s:…í(p) do
 		'.‚ì(t, x)
 	end
 	‚Í t
 end
 
-‚Ã ‚Ú …Ï(s, mt)
+‚Ã ‚Ú …î(s, mt)
 	for k, v in ‚ï(mt) do
-		if s:…Ì(v) ~= nil ‚É
+		if s:…ë(v) ~= nil ‚É
 			‚Í ‚á
 		end
 	end
 	‚Í ‚Ş
 end
 
-‚Ã ‚Ú …Ğ(bs)
-	‚Ã ‚Ú bro(s) -- …Ñ …§
+‚Ã ‚Ú …ï(bs)
+	‚Ã ‚Ú bro(s) -- …ğ …§
 		‚Í (s == '[') or (s == '(') or (s == '<') or (s == '{')
 	end
-	‚Ã ‚Ú brc(s) -- …Ñ …¨
+	‚Ã ‚Ú brc(s) -- …ğ …¨
 		‚Í (s == ']') or (s == ')') or (s == '>') or (s == '}')
 	end
 
-	‚Ã …Ò = bs:sub(2, #bs - 1):…Ó(', ', ',')
-	‚Ã …Ô = 0
-	‚Ã …Õ = 1
-	‚Ã …Ö = {}
-	for i = 1, #…Ò do
-		if bro(…Ò:sub(i,i)) ‚É
-			…Ô = …Ô + 1
-		ƒ  brc(…Ò:sub(i,i)) ‚É
-			…Ô = …Ô - 1
-		ƒ  …Ò:sub(i,i) == ',' ‚É
-			if …Ô == 0 ‚É
-				‚Ã st = …Ò:sub(…Õ, i - 1):…Ó(',', ', ')
-				'.‚ì(…Ö, st)
-				…Õ = i + 1
+	‚Ã …ñ = bs:sub(2, #bs - 1):…ò(', ', ',')
+	‚Ã …ó = 0
+	‚Ã …ô = 1
+	‚Ã …õ = {}
+	for i = 1, #…ñ do
+		if bro(…ñ:sub(i,i)) ‚É
+			…ó = …ó + 1
+		ƒ  brc(…ñ:sub(i,i)) ‚É
+			…ó = …ó - 1
+		ƒ  …ñ:sub(i,i) == ',' ‚É
+			if …ó == 0 ‚É
+				‚Ã st = …ñ:sub(…ô, i - 1):…ò(',', ', ')
+				'.‚ì(…õ, st)
+				…ô = i + 1
 			end
 		end
 	end
-	‚Ã st = …Ò:sub(…Õ, #bs):…Ó(',', ', ')
-	'.‚ì(…Ö, st)
-	‚Í …Ö
+	‚Ã st = …ñ:sub(…ô, #bs):…ò(',', ', ')
+	'.‚ì(…õ, st)
+	‚Í …õ
 end
 
-‚Ã ‚Ú …×(arr, f, t)
+‚Ã ‚Ú …ö(arr, f, t)
 	‚Ã tb = {}
 	for i = f, t do
 		'.‚ì(tb, arr[i])
@@ -4382,16 +4592,16 @@ end
 	‚Í tb
 end
 
-‚Ã ‚Ú …Ø(t, s)
+‚Ã ‚Ú …÷(t, s)
 	‚Ã buf = ''
 	for k, v in ‚ï(t) do
-		buf = buf .. ƒ6(v) .. ((…Ù(t, k) == nil) and '' or s)
+		buf = buf .. ƒ6(v) .. ((…ø(t, k) == nil) and '' or s)
 	end
 	‚Í buf
 end
 
--- Old ' …Ú, so …Û.
-‚Ã ‚Ú …Ú(t, f, ...)
+-- Old ' …ù, so …ú.
+‚Ã ‚Ú …ù(t, f, ...)
 	‚Ã res = {}
 	for k, v in ‚ï(t) do
 		res[k] = f(v, ...)
@@ -4399,23 +4609,23 @@ end
 	‚Í res
 end
 
--- ƒ, …Ü, …İ ‚v …Ş to the …ß …Ş.
-‚Ã ‚Ú …à(…á)
-	‚Ã p = …Í(…á:…Ó('[<>]', ''), '[^:]+')
-	‚Í p[1] .. ':' .. p[2] .. ((p[3] == nil) and '' or (((…á:…â('ore:') == nil) and '|' or ':') .. p[3]))
+-- ƒ, …û, …ü ‚v …ı to the …ş …ı.
+‚Ã ‚Ú …ÿ(† )
+	‚Ã p = …ì(† :…ò('[<>]', ''), '[^:]+')
+	‚Í p[1] .. ':' .. p[2] .. ((p[3] == nil) and '' or (((† :†('ore:') == nil) and '|' or ':') .. p[3]))
 end
 
--- ƒ, …Ü too, but …ã if …ä …å one ‚v …æ.
--- …ç: `|` is the …è, not `,`.
-‚Ã ‚Ú …é(…á)
-	if …á:…Ì('|') == nil ‚É
-		‚Í …à(…á)
+-- ƒ, …û too, but † if † † one ‚v †.
+-- †: `|` is the †, not `,`.
+‚Ã ‚Ú †(† )
+	if † :…ë('|') == nil ‚É
+		‚Í …ÿ(† )
 	‚è
-		‚Í …Ø(…Ú(…Í(…á:…Ó(' | ', '|'), '[^|]+'), …à), ',')
+		‚Í …÷(…ù(…ì(† :…ò(' | ', '|'), '[^|]+'), …ÿ), ',')
 	end
 end
 
-‚Ã ‚Ú …ê(t, obj)
+‚Ã ‚Ú †	(t, obj)
 	for k, v in ‚ï(t) do
 		if obj == v ‚É
 			‚Í k
@@ -4424,175 +4634,177 @@ end
 	‚Í nil
 end
 
-‚Ã ‚Ú …ë(t, obj)
-	‚Í …ê(t, obj) ~= nil
+‚Ã ‚Ú †
+(t, obj)
+	‚Í †	(t, obj) ~= nil
 end
 
--- 'ƒ, …· —' '‚v …· …¸' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …¹ …º|…»'
-‚Ã …ì = {'.…í', '.…î', '.ƒ‚', '.…ï', '…ğ:'}
-‚Ã ‚Ú …ñ(…ò)
-	if …ò:…â('ƒe%..-%(.+%);') == nil ‚É
-		‚Í ‚á, …ò
+-- 'ƒ, …¸ —' '‚v …¸ …¹' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …º …»|…¼'
+‚Ã † = {'.†', '.†', '.ƒ‚', '.†', '†:'}
+‚Ã ‚Ú †(†)
+	if †:†('ƒe%..-%(.+%);') == nil ‚É
+		‚Í ‚á, †
 	end
-	‚Ã ƒ = …ò:…Ì('…ó') == nil
-	‚Ã …ô = ƒ and 'sd' or 'sl'
-	‚Ã c = …ò:…â('ƒe%..-%(.+%);'):…â('%(.-,.-,.+%)')
-	‚Ã c = '(' .. …Ø(…×(…Ğ(c), 2, 3), ', ') .. ')'
-	‚Ã …Ÿ = …Ğ(c)
-	if …Ğ(…Ÿ[2])[1] == '' ‚É
-		‚Í ‚á, …ò
+	‚Ã ƒ = †:…ë('†') == nil
+	‚Ã † = ƒ and 'sd' or 'sl'
+	‚Ã c = †:†('ƒe%..-%(.+%);'):†('%(.-,.-,.+%)')
+	‚Ã c = '(' .. …÷(…ö(…ï(c), 2, 3), ', ') .. ')'
+	‚Ã …Ÿ = …ï(c)
+	if …ï(…Ÿ[2])[1] == '' ‚É
+		‚Í ‚á, †
 	end
-	if …Ï(c, …ì) and …Ÿ[1] ~= "ƒn" ‚É
-		‚Ã …õ = …Í(…Ÿ[1]:…Ó(' * ','*'), '[^%*]+')
-		‚Ã ‚v = …à(…õ[1])
-		‚Ã …ö = …÷(…õ[2]) or 1
+	if …î(c, †) and …Ÿ[1] ~= "ƒn" ‚É
+		‚Ã † = …ì(…Ÿ[1]:…ò(' * ','*'), '[^%*]+')
+		‚Ã ‚v = …ÿ(†[1])
+		‚Ã † = †(†[2]) or 1
 		‚Ã wh = ''
-		‚Ã …ø = ''
+		‚Ã † = ''
 		if ƒ ‚É
-			wh = ƒ6(#…Ğ(…Ğ(…Ÿ[2])[1])) .. ƒ6(#…Ğ(…Ÿ[2]))
+			wh = ƒ6(#…ï(…ï(…Ÿ[2])[1])) .. ƒ6(#…ï(…Ÿ[2]))
 			‚Ã ƒ@ = {}
-			for yi, y in ‚ï(…Ğ(…Ÿ[2])) do
-				for xi, x in ‚ï(…Ğ(y)) do
-					if not …ë(ƒ@, x) ‚É
+			for yi, y in ‚ï(…ï(…Ÿ[2])) do
+				for xi, x in ‚ï(…ï(y)) do
+					if not †
+(ƒ@, x) ‚É
 						if x ~= 'ƒn' ‚É
 							'.‚ì(ƒ@, x)
 						end
 					end
 				end
 			end
-			‚Ã …ù = ''
-			for yi, y in ‚ï(…Ğ(…Ÿ[2])) do
-				for xi, x in ‚ï(…Ğ(y)) do
-					…ù = …ù .. (…ê(ƒ@, x) or '0')
+			‚Ã † = ''
+			for yi, y in ‚ï(…ï(…Ÿ[2])) do
+				for xi, x in ‚ï(…ï(y)) do
+					† = † .. (†	(ƒ@, x) or '0')
 				end
 			end
-			…ø = …ù .. ' ' .. …Ø(…Ú(ƒ@, …é), ' ')
+			† = † .. ' ' .. …÷(…ù(ƒ@, †), ' ')
 		‚è
 			wh = '00'
 			‚Ã ƒ@ = {}
-			for ii, i in ‚ï(…Ğ(…Ÿ[2])) do
-				if not …ë(ƒ@, i) ‚É
+			for ii, i in ‚ï(…ï(…Ÿ[2])) do
+				if not †
+(ƒ@, i) ‚É
 					if i ~= 'ƒn' ‚É
 						'.‚ì(ƒ@, i)
 					end
 				end
 			end
-			‚Ã …ù = ''
-			for ii, i in ‚ï(…Ğ(…Ÿ[2])) do
-				…ù = …ù .. (…ê(ƒ@, i) or '0')
+			‚Ã † = ''
+			for ii, i in ‚ï(…ï(…Ÿ[2])) do
+				† = † .. (†	(ƒ@, i) or '0')
 			end
-			…ø = …ù .. ' ' .. …Ø(…Ú(ƒ@, …é), ' ')
+			† = † .. ' ' .. …÷(…ù(ƒ@, †), ' ')
 		end
-		‚Í ‚Ş, €½.…Ş("%s %s %s %s %s", ‚v, …ö, …ô, wh, …ø)
+		‚Í ‚Ş, €½.…ı("%s %s %s %s %s", ‚v, †, †, wh, †)
 	‚è
-		‚Í ‚á, …ò
+		‚Í ‚á, †
 	end
 end
 
-‚Ã ‚Ú …ú(sod)
-	if sod:…â('<ore:.->=.+') == nil ‚É
+‚Ã ‚Ú †(sod)
+	if sod:†('<ore:.->=.+') == nil ‚É
 		‚Í ‚á, sod
 	end
-	‚Ã ore = sod:…â('<ore:.->=.+')
-	--‚Ã ore = ore:sub(1, #ore - 1) -- …û ';'.
-	‚Ã …ü = …à(…Í(ore, '[^=]+')[1])
-	‚Ã …ı = …é(…Í(ore, '[^=]+')[2])
-	‚Í ‚Ş, €½.…Ş('%s=%s', …ü, …ı)
+	‚Ã ore = sod:†('<ore:.->=.+')
+	--‚Ã ore = ore:sub(1, #ore - 1) -- † ';'.
+	‚Ã † = …ÿ(…ì(ore, '[^=]+')[1])
+	‚Ã † = †(…ì(ore, '[^=]+')[2])
+	‚Í ‚Ş, €½.…ı('%s=%s', †, †)
 end
 
-‚Ã …ş = io.…§('„.db', 'w')
-‚Ã …ÿ = io.…§('† .db', 'w')
-‚Ã † = io.…§('ƒ>.txt', 'w')
-‚Ã † = io.…§('ƒb.log', 'r')
+‚Ã † = io.…§('„.db', 'w')
+‚Ã † = io.…§('†.db', 'w')
+‚Ã †  = io.…§('ƒ>.txt', 'w')
+‚Ã †! = io.…§('ƒb.log', 'r')
 ‚Ã ‚ü = ''
-‚Ã † = ''
-‚Ã † = {}
-‚Ã †, †, † = 0, 0, 0
-‚Ã ‚Ú †()
-	‚Ã †	, ƒ = …ú(† .. '=' .. …Ø(†, '|'))
-	if †	 ‚É
-		…ÿ:‚ó(ƒ .. '\n')
-		† = † + 1
+‚Ã †" = ''
+‚Ã †# = {}
+‚Ã †$, †%, †& = 0, 0, 0
+‚Ã ‚Ú †'()
+	‚Ã †(, ƒ = †(†" .. '=' .. …÷(†#, '|'))
+	if †( ‚É
+		†:‚ó(ƒ .. '\n')
+		†% = †% + 1
 	‚è
-		†:‚ó(ƒ .. '\n')
-		† = † + 1
+		† :‚ó(ƒ .. '\n')
+		†& = †& + 1
 	end
 end
 ƒD ‚ü ~= nil do
-	if ‚ü:…Ì('ƒe%..-%(.+%);') ~= nil ‚É
-		‚Ã †	, ƒ = …ñ(‚ü)
-		if †	 ‚É
-			…ş:‚ó(ƒ .. '\n')
-			† = † + 1
+	if ‚ü:…ë('ƒe%..-%(.+%);') ~= nil ‚É
+		‚Ã †(, ƒ = †(‚ü)
+		if †( ‚É
+			†:‚ó(ƒ .. '\n')
+			†$ = †$ + 1
 		‚è
-			†:‚ó(ƒ .. '\n')
-			† = † + 1
+			† :‚ó(ƒ .. '\n')
+			†& = †& + 1
 		end
-		if † ~= '' ‚É
-			†()
+		if †" ~= '' ‚É
+			†'()
 		end
-		† = ''
-	ƒ  ‚ü:…Ì('Ore%†
-') == 1 ‚É
-		if † ~= '' ‚É
-			†()
+		†" = ''
+	ƒ  ‚ü:…ë('Ore%†)') == 1 ‚É
+		if †" ~= '' ‚É
+			†'()
 		end
-		† = ‚ü:…â('<.->')
-		† = {}
-	ƒ  ‚ü:…Ì('-') == 1 and † ~= '' ‚É
-		'.‚ì(†, ‚ü:…â('<.->'))
+		†" = ‚ü:†('<.->')
+		†# = {}
+	ƒ  ‚ü:…ë('-') == 1 and †" ~= '' ‚É
+		'.‚ì(†#, ‚ü:†('<.->'))
 	‚è
-		if † ~= '' ‚É
-			†()
+		if †" ~= '' ‚É
+			†'()
 		end
-		† = ''
+		†" = ''
 	end
-	‚ü = †:‚ş('*l')
+	‚ü = †!:‚ş('*l')
 	--‚Ê(‚ü)
-	io.‚ó('\x1b[†' .. €½.…Ş('‚Ò: %d, ‚Ñ: %d, †: %d.', †, †, †))
+	io.‚ó('\x1b[†*' .. €½.…ı('‚Ò: %d, ‚Ñ: %d, †+: %d.', †$, †%, †&))
 end
-if † ~= '' ‚É
-	†()
+if †" ~= '' ‚É
+	†'()
 end
-‚Ê('\x1b[†' .. €½.…Ş('† %d † of ‚Ò, %d † of ‚Ñ, and %d † ƒ> to be † or out of †.', †, †, †))
+‚Ê('\x1b[†*' .. €½.…ı('†, %d †- of ‚Ò, %d †- of ‚Ñ, and %d †- ƒ> to be †. or out of †/.', †$, †%, †&))
 ]==],['lib']={['craftingdb.lua']= [==[‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †0 = ‚Æ('lib.‚Ô.†0')
 ‚Ã „ = ‚Æ('lib.‚Ô.„')
-‚Ã † = ‚Æ('lib.‚Ô.†')
-‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †1 = ‚Æ('lib.‚Ô.†1')
+‚Ã †2 = ‚Æ('lib.‚Ô.†2')
 
 ‚Ã ‚Î = ‚Æ('lib.‚Î')
 
--- † †
+-- †3 †4
 ‚Ã ‚Ò = {
 	db = {}
 }
 
--- † †
-‚Ã † = 'db/„.db'
+-- †3 †5
+‚Ã †6 = 'db/„.db'
 ‚Ú ‚Ò.‚Ë()
-	‚Ã f = io.…§(†, 'r')
+	‚Ã f = io.…§(†6, 'r')
 	‚Ã l = f:‚ş('*l')
 	ƒD l ~= nil do
 		if (l:sub(1,1) ~= '#') and (l ~= '') ‚É
-			‚Ã † = {ƒ" = 0, ƒ# = 0}
+			‚Ã †7 = {ƒ" = 0, ƒ# = 0}
 			‚Ã ƒ = {}
 			‚Ã ƒ = ‚Ş
 			‚Ã ƒ = {}
-			‚Ã † = ‚Î.ƒG(l)
-			ƒ = ‚v.new(†[1])
-			ƒ.† = …÷(†[2])
-			ƒ = (†[3] == 'sd')
-			†.ƒ", †.ƒ# = …÷(†[4]:sub(1,1)), …÷(†[4]:sub(2,2))
-			‚Ã pat = †[5]
-			‚Ã €¸ = †.new()
-			for i = 6, #† do
-				€¸:add(†.†(†[i]))
+			‚Ã †8 = ‚Î.ƒG(l)
+			ƒ = ‚v.new(†8[1])
+			ƒ.†9 = †(†8[2])
+			ƒ = (†8[3] == 'sd')
+			†7.ƒ", †7.ƒ# = †(†8[4]:sub(1,1)), †(†8[4]:sub(2,2))
+			‚Ã pat = †8[5]
+			‚Ã €¸ = †2.new()
+			for i = 6, #†8 do
+				€¸:add(†1.†:(†8[i]))
 			end
-			for † = 1, #pat do
-				ƒ[†] = €¸[…÷(pat:sub(†, †))]
+			for †; = 1, #pat do
+				ƒ[†;] = €¸[†(pat:sub(†;, †;))]
 			end
-			‚Ò.db[ƒ] = „.new(†, ƒ, ƒ, ƒ)
+			‚Ò.db[ƒ] = „.new(†7, ƒ, ƒ, ƒ)
 		end
 		l = f:‚ş('*l')
 	end
@@ -4600,11 +4812,11 @@ end
 end
 io.‚ó('ƒS ‚Ò... ')
 ‚Ò.‚Ë()
-‚Ã † = 0
+‚Ã †$ = 0
 for k, v in ‚ë(‚Ò.db) do
-	† = † + 1
+	†$ = †$ + 1
 end
-io.‚ó (€½.…Ş('%d ƒ.\n', †))
+io.‚ó (€½.…ı('%d ƒ.\n', †$))
 
 ‚Ú ‚Ò.ƒ7()
 	‚Ã a = {}
@@ -4622,30 +4834,30 @@ io.‚ó (€½.…Ş('%d ƒ.\n', †))
 end
 
 ‚Ú ‚Ò.‚ù()
-	-- …¶: 'ƒ, …· —' '‚v …· …¸' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …¹ …º|…»'
-	‚Ã f = io.…§(†, 'w')
-	f:‚ó("#…¶:\n#'ƒ, …· —' '‚v …· …¸' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …¹ …º|…»'\n")
+	-- …·: 'ƒ, …¸ —' '‚v …¸ …¹' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …º …»|…¼'
+	‚Ã f = io.…§(†6, 'w')
+	f:‚ó("#…·:\n#'ƒ, …¸ —' '‚v …¸ …¹' 'sd=ƒ/sl=ƒ' 'wh' '‚v ƒ' '‚v …º …»|…¼'\n")
 	for k, v in ‚Ò.ƒ7() do
-		‚Ã † = ƒ6(~k)
-		‚Ã † = ƒ6(k.†)
-		‚Ã † = v and 'sd' or 'sl'
-		‚Ã dim = ƒ6(v.†.ƒ") .. ƒ6(v.†.ƒ#)
-		‚Ã †  = v:†!()
-		‚Ã †" = ''
+		‚Ã †< = ƒ6(~k)
+		‚Ã †= = ƒ6(k.†9)
+		‚Ã †> = v and 'sd' or 'sl'
+		‚Ã dim = ƒ6(v.†7.ƒ") .. ƒ6(v.†7.ƒ#)
+		‚Ã †? = v:†@()
+		‚Ã †A = ''
 		for k, v in ‚ë(v.ƒ) do
-			†" = †" .. † :†#(v) or '0'
+			†A = †A .. †?:‚Ü(v) or '0'
 		end
-		‚Ã †$ = ''
-		for k, v in ‚ï(† ) do
-			†$ = †$ .. ƒ6(~v) .. ' '
+		‚Ã †B = ''
+		for k, v in ‚ï(†?) do
+			†B = †B .. ƒ6(v) .. ' '
 		end
-		†$ = †$:sub(1, #†$)
-		f:‚ó(† .. ' ' .. † .. ' ' .. † .. ' ' .. dim .. ' ' .. †" .. ' ' .. †$ .. '\n')
+		†B = †B:sub(1, #†B)
+		f:‚ó(†< .. ' ' .. †= .. ' ' .. †> .. ' ' .. dim .. ' ' .. †A .. ' ' .. †B .. '\n')
 	end
 	f:…¨()
 end
 
--- † †%
+-- †3 †C
 ‚Ú ‚Ò.get(i)
 	for k, v in ‚ë(‚Ò.db) do
 		if i == k ‚É
@@ -4657,7 +4869,7 @@ end
 
 ‚Ú ‚Ò.set(„)
 	if „ == nil ‚É
-		†&('Can\'t add nil to ‚Ò!')
+		†D('Can\'t add nil to ‚Ò!')
 	end
 	‚Ò.db[„.ƒ] = „
 	‚Í ‚Ò.db[„.ƒ]
@@ -4665,7 +4877,7 @@ end
 
 ‚Ú ‚Ò.ƒ0(i)
 	for k, v in ‚ë(‚Ò.db) do
-		if i:…Ã(k) ‚É
+		if i:…ã(k) ‚É
 			‚Ã tmp = ‚Ò.db[k]
 			‚Ò.db[k] = nil
 			‚Í tmp
@@ -4674,18 +4886,18 @@ end
 	‚Í nil
 end
 
-‚Í craftingdb]==],['init.lua']= [==[-- Lib ƒÖ. Run †'.
+‚Í craftingdb]==],['init.lua']= [==[-- Lib ƒÖ. Run †E.
 
--- †( ‚Ô
-‚Ã †)_‚Ô = ‚Ô
+-- †F ‚Ô
+‚Ã †G_‚Ô = ‚Ô
 ‚Ú ‚Ô(v)
-	‚Ã †* = †)_‚Ô(v)
-	if †* == ''' ‚É
+	‚Ã †H = †G_‚Ô(v)
+	if †H == ''' ‚É
 		if v.‚Ô ~= nil ‚É
 			‚Í v.‚Ô
 		end
 	end
-	‚Í †*
+	‚Í †H
 end]==],['inventory.lua']= [==[‚Ã ‚Ä, ‚8 = ‚Å(‚Æ, ‚Ç.‚È, '‚8')
 if not ‚Ä ‚É
 	‚Ê('Can\'t ‚Ë ‚8 ‚Ì.')
@@ -4694,60 +4906,60 @@ end
 
 ‚Ã ‚ = ‚Æ('‚')
 if ‚.‚Ó_‚' == nil ‚É
-	‚Ê('†+ ‚Ó ‚'!')
+	‚Ê('†I ‚Ó ‚'!')
 	‚Í
 end
-‚Ã †, = ‚.‚Ó_‚'
+‚Ã †J = ‚.‚Ó_‚'
 
 ‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †0 = ‚Æ('lib.‚Ô.†0')
 
--- † †
+-- †3 †4
 ‚Ã ƒ = {
-	†- = {},
-	† = †..†/(‚8.†0()),
+	†K = {},
+	†9 = †L.†M(‚8.†N()),
 	ex = {}
 }
 
--- † †%
+-- †3 †C
 ‚Ú ƒ.ƒ(‚ß)
 	‚Í ‚8.ƒ(‚ß)
 end
 
 ‚Ú ƒ.ƒ(‚ß)
-	‚Ã t = †,.†1(‚ß)
+	‚Ã t = †J.†O(‚ß)
 	if t == nil ‚É
 		‚Í nil
 	end
 	‚Í ‚v.new(t)
 end
 
-‚Ú ƒ.†2(‚ß)
-	ƒ.†-[‚ß] = ƒ.ƒ(‚ß)
-	‚Í ƒ.†-[‚ß]
+‚Ú ƒ.†P(‚ß)
+	ƒ.†K[‚ß] = ƒ.ƒ(‚ß)
+	‚Í ƒ.†K[‚ß]
 end
 
 ‚Ú ƒ.ƒ()
-	for i = 1, ƒ.† do
-		ƒ.†2(i)
+	for i = 1, ƒ.†9 do
+		ƒ.†P(i)
 	end
 end
-io.‚ó('†3 ‚Ó... 00')
-for i = 1, ƒ.† do
-	ƒ.†2(i)
-	io.‚ó('\8\8' .. €½.…Ş('%02d', i))
+io.‚ó('†Q ‚Ó... 00')
+for i = 1, ƒ.†9 do
+	ƒ.†P(i)
+	io.‚ó('\8\8' .. €½.…ı('%02d', i))
 end
-io.‚ó(' †4.\n')
+io.‚ó(' †R.\n')
 
 ‚Ú ƒ.ƒ$()
 	‚Ã ƒ = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
 	for k, v in ‚ï(ƒ) do
-		ƒ.†2(v)
+		ƒ.†P(v)
 	end
 end
 
-‚Ú ƒ.†5(‚ß, †6)
-	for k, v in ‚ï(†6) do
+‚Ú ƒ.†S(‚ß, †T)
+	for k, v in ‚ï(†T) do
 		if ‚ß == v ‚É
 			‚Í ‚Ş
 		end
@@ -4755,99 +4967,99 @@ end
 	‚Í ‚á
 end
 
-‚Ú ƒ.†7(‚ß)
-	‚Í ƒ.†5(‚ß, {1, 2, 3, 5, 6, 7, 8, 9, 10, 11})
+‚Ú ƒ.†U(‚ß)
+	‚Í ƒ.†S(‚ß, {1, 2, 3, 5, 6, 7, 8, 9, 10, 11})
 end
 
-‚Ú ƒ.ƒ¯(†8, †9)
-	‚Ã res = ‚8.†:(†8, †9)
-	ƒ.†2(ƒ.ƒ())
-	ƒ.†2(†8)
+‚Ú ƒ.ƒ¯(†V, †W)
+	‚Ã res = ‚8.†X(†V, †W)
+	ƒ.†P(ƒ.ƒ())
+	ƒ.†P(†V)
 	‚Í res
 end
 
-‚Ú ƒ.…Ì(i)
-	‚Ã †; = {}
-	for ‚ß = 1, ƒ.† do
-		if ƒ.†-[‚ß] ~= nil ‚É
-			if i == ƒ.†-[‚ß] ‚É
-				'.‚ì(†;, ‚ß)
+‚Ú ƒ.…ë(i)
+	‚Ã †Y = {}
+	for ‚ß = 1, ƒ.†9 do
+		if ƒ.†K[‚ß] ~= nil ‚É
+			if i == ƒ.†K[‚ß] ‚É
+				'.‚ì(†Y, ‚ß)
 			end
 		end
 	end
-	‚Í †;
+	‚Í †Y
 end
 
-‚Ú ƒ.†<(i)
+‚Ú ƒ.†Z(i)
 	‚Ã c = 0
-	for k, v in ‚ï(ƒ.…Ì(i)) do
-		c = c + ƒ.†-[v].†
+	for k, v in ‚ï(ƒ.…ë(i)) do
+		c = c + ƒ.†K[v].†9
 	end
 	‚Í c
 end
 
-‚Ú ƒ.†=(i, †>)
-	‚Ã †9 = i.†
-	‚Ã †> = †>
-	if †> == nil ‚É †> = ‚Ş end
-	‚Ã †? = ƒ.ƒ()
-	‚Ã †@ = †.new()
-	for k, v in ‚ë(ƒ.…Ì(i)) do
-		†@:add(ƒ.†-[v])
+‚Ú ƒ.†[(i, †\)
+	‚Ã †W = i.†9
+	‚Ã †\ = †\
+	if †\ == nil ‚É †\ = ‚Ş end
+	‚Ã †] = ƒ.ƒ()
+	‚Ã †^ = †0.new()
+	for k, v in ‚ë(ƒ.…ë(i)) do
+		†^:add(ƒ.†K[v])
 	end
-	for k, v in ‚ï(†@) do
-		if ƒ.†<(v) >= †9 ‚É
-			for kf, vf in ‚ï(ƒ.…Ì(v)) do
-				 if not (†> or ƒ.†7(vf)) ‚É
-					if †9 > 0 ‚É
+	for k, v in ‚ï(†^) do
+		if ƒ.†Z(v) >= †W ‚É
+			for kf, vf in ‚ï(ƒ.…ë(v)) do
+				 if not (†\ or ƒ.†U(vf)) ‚É
+					if †W > 0 ‚É
 						ƒ.ƒ(vf)
-						‚Ã †A = ƒ.†-[vf].†
-						if not ƒ.ƒ¯(†?, †9) ‚É
+						‚Ã †_ = ƒ.†K[vf].†9
+						if not ƒ.ƒ¯(†], †W) ‚É
 							‚Í ‚á
 						end
-						†9 = †9 - †A
+						†W = †W - †_
 					‚è
-						ƒ.ƒ(†?)
+						ƒ.ƒ(†])
 						‚Í ‚Ş
 					end
 				 end
 			end
-			†B
+			†`
 		end
 	end
-	ƒ.ƒ(†?)
+	ƒ.ƒ(†])
 	‚Í ‚Ş
 end
 
-‚Ú ƒ.ƒ(†9, †>, †6)
-	‚Ã †C = ƒ.ƒ()
-	‚Ã †9 = †9 or ƒ.†-[†C].†
-	‚Ã †> = †>
-	if †> == nil ‚É †> = ‚Ş end
-	‚Ã †6 = †6 or {}
+‚Ú ƒ.ƒ(†W, †\, †T)
+	‚Ã †a = ƒ.ƒ()
+	‚Ã †W = †W or ƒ.†K[†a].†9
+	‚Ã †\ = †\
+	if †\ == nil ‚É †\ = ‚Ş end
+	‚Ã †T = †T or {}
 	
-	-- †D ƒ@ †'
-	for k, v in ‚ë(ƒ.…Ì(ƒ.†-[†C])) do
-		if not (†> or ƒ.†7(v)) and not ƒ.†5(v, †6) ‚É
-			‚Ã †E = ƒ.†-[v]
-			if †E.† < †E.†F ‚É
-				‚Ã †G = †..min(†E.†F - †E.†, †9)
-				if not ƒ.ƒ¯(v, †G) ‚É
+	-- †b ƒ@ †E
+	for k, v in ‚ë(ƒ.…ë(ƒ.†K[†a])) do
+		if not (†\ or ƒ.†U(v)) and not ƒ.†S(v, †T) ‚É
+			‚Ã †c = ƒ.†K[v]
+			if †c.†9 < †c.†d ‚É
+				‚Ã †e = †L.min(†c.†d - †c.†9, †W)
+				if not ƒ.ƒ¯(v, †e) ‚É
 					‚Í ‚á
 				end
-				†9 = †9 - †G
-				if †9 == 0 ‚É
+				†W = †W - †e
+				if †W == 0 ‚É
 					‚Í ‚Ş
 				end
 			end
 		end
 	end
 	
-	-- †H, †I †J †-
-	for †E = 1, ƒ.† do
-		if not (†> or ƒ.†7(†E)) and not ƒ.†5(†E, †6) ‚É
-			if ƒ.†-[†E] == nil ‚É
-				if not ƒ.ƒ¯(†E, †9) ‚É
+	-- †f, †g †h †K
+	for †c = 1, ƒ.†9 do
+		if not (†\ or ƒ.†U(†c)) and not ƒ.†S(†c, †T) ‚É
+			if ƒ.†K[†c] == nil ‚É
+				if not ƒ.ƒ¯(†c, †W) ‚É
 					‚Í ‚á
 				end
 				‚Í ‚Ş
@@ -4860,9 +5072,9 @@ end
 
 ‚Ú ƒ.ƒB()
 	for k, v in ‚ï({1, 2, 3, 5, 6, 7, 8, 9, 10, 11}) do
-		if ƒ.†-[v] ~= nil ‚É
+		if ƒ.†K[v] ~= nil ‚É
 			ƒ.ƒ(v)
-			if not ƒ.ƒ(ƒ.†-[v].†, ‚á) ‚É
+			if not ƒ.ƒ(ƒ.†K[v].†9, ‚á) ‚É
 				‚Í ‚á
 			end
 		end
@@ -4870,63 +5082,63 @@ end
 	‚Í ‚Ş
 end
 
-‚Ú ƒ.ex.†K()
-	‚Í ƒ.ex.†L() ~= nil
+‚Ú ƒ.ex.†i()
+	‚Í ƒ.ex.†j() ~= nil
 end
 
-‚Ú ƒ.ex.†M()
-	‚Í ƒ.ex.†N() ~= nil
+‚Ú ƒ.ex.†k()
+	‚Í ƒ.ex.†l() ~= nil
 end
 
-‚Ú ƒ.ex.†L()
-	‚Í †,.†L(3)
+‚Ú ƒ.ex.†j()
+	‚Í †J.†j(3)
 end
 
-‚Ú ƒ.ex.†N()
-	‚Í †,.†L(1)
+‚Ú ƒ.ex.†l()
+	‚Í †J.†j(1)
 end
 
 ‚Ú ƒ.ex.ƒ(‚ß)
-	‚Ã t = †,.†1(3, ‚ß)
+	‚Ã t = †J.†O(3, ‚ß)
 	if t == nil ‚É
 		‚Í nil
 	end
 	‚Í ‚v.new(t)
 end
 
-‚Ú ƒ.ex.†O(i, †9)
-	-- †P: †= †Q ‚v
+‚Ú ƒ.ex.†m(i, †W)
+	-- †n: †[ †o ‚v
 end
 
-‚Ú ƒ.ex.†R(i, †9)
-	-- †P: †S ‚v to ‚Ó in †T
+‚Ú ƒ.ex.†p(i, †W)
+	-- †n: †q ‚v to ‚Ó in †r
 end
 
-‚Ú ƒ.ex.ƒ(‚ß, †9)
-	-- †P: ƒ †U †9 of †V ‚ß in †T
+‚Ú ƒ.ex.ƒ(‚ß, †W)
+	-- †n: ƒ †s †W of †t ‚ß in †r
 end
 
-‚Ú ƒ.ex.†W(†X, †9)
-	‚Í †,.†Y(3, †X, †9)
+‚Ú ƒ.ex.†u(†v, †W)
+	‚Í †J.†w(3, †v, †W)
 end
 
-‚Ú ƒ.ex.†Z(†X, †9)
-	‚Í †,.†[(3, †X, †9)
+‚Ú ƒ.ex.†x(†v, †W)
+	‚Í †J.†y(3, †v, †W)
 end
 
 ‚Í Inventory]==],['oredictdb.lua']= [==[‚Ã ‚Î = ‚Æ('lib.‚Î')
-‚Ã †  = ‚Æ('lib.‚Ô.† ')
-‚Ã †\ = ‚Æ('lib.‚Ô.†\')
+‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †z = ‚Æ('lib.‚Ô.†z')
 
--- † †
+-- †3 †4
 ‚Ã ‚Ñ = {
 	db = {}
 }
 
--- † †
-‚Ã †] = 'db/† .db'
+-- †3 †5
+‚Ã †{ = 'db/†.db'
 
-‚Ú ‚Ñ:†^()
+‚Ú ‚Ñ:†|()
 	‚Ã a = {}
 	for k, v in ‚ë(‚Ñ.db) do '.‚ì(a, k) end
 	'.‚í(a)
@@ -4942,32 +5154,28 @@ end
 end
 
 ‚Ú ‚Ñ.‚Ë()
-	‚Ã f = io.…§(†], 'r')
+	‚Ã f = io.…§(†{, 'r')
 	‚Ã l = f:‚ş('*l')
 	ƒD l ~= nil do
 		if l ~= '' ‚É
-			‚Ã †_ = ‚Î.ƒG(l, '=')
-			‚Ñ.db[†_[1]] = † .new(†_[1], †\.†(†_[2]))
+			‚Ã †} = ‚Î.ƒG(l, '=')
+			‚Ñ.db[†}[1]] = †.new(†}[1], †z.†:(†}[2]))
 		end
 		l = f:‚ş('*l')
 	end
 end
 io.‚ó('ƒS ‚Ñ... ')
 ‚Ñ.‚Ë()
-‚Ã † = 0
+‚Ã †% = 0
 for k, v in ‚ë(‚Ñ.db) do
-	† = † + 1
+	†% = †% + 1
 end
-io.‚ó(€½.…Ş('%d ƒ.\n', †))
+io.‚ó(€½.…ı('%d ƒ.\n', †%))
 
 ‚Ú ‚Ñ.‚ù()
-	‚Ã f = io.…§(†], 'w')
-	for k, v in ‚Ñ:†^() do
-		if (‚Ô(k) ~= '€½') or (‚Ô(ƒ6(v)) ~= '€½') ‚É
-			‚Ê(k)
-			‚Ê(ƒ6(v))
-		end
-		f:‚ó(k .. '=' .. ƒ6(v) .. '\n')
+	‚Ã f = io.…§(†{, 'w')
+	for k, v in ‚Ñ:†|() do
+		f:‚ó(k .. '=' .. ƒ6(v.†~) .. '\n')
 	end
 	f:…¨()
 end
@@ -4992,17 +5200,17 @@ end
 end
 
 ‚Í oredictdb]==],['rawdb.lua']= [==[‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †0 = ‚Æ('lib.‚Ô.†0')
 
 ‚Ã ‚Î = ‚Æ('lib.‚Î')
 
--- † †
+-- †3 †4
 ‚Ã ‚Ğ = {
 	db = {}
 }
 
--- † †
-‚Ã †` = 'db/raw.db'
+-- †3 †5
+‚Ã † = 'db/raw.db'
 
 ‚Ú ‚Ğ.‚í()
 	'.‚í(‚Ğ.db, ‚Ú(a, b) ‚Í a.— < b.— end)
@@ -5010,7 +5218,7 @@ end
 
 ‚Ú ‚Ğ.‚Ë()
 	‚Ğ.db = {}
-	‚Ã f = io.…§(†`, 'r')
+	‚Ã f = io.…§(†, 'r')
 	‚Ã l = f:‚ş('*l')
 	ƒD l ~= nil do
 		'.‚ì(‚Ğ.db, ~‚v.new(l))
@@ -5021,28 +5229,28 @@ end
 end
 io.‚ó('ƒS ‚Ğ... ')
 ‚Ğ.‚Ë()
-‚Ã †a = 0
+‚Ã †€ = 0
 for k, v in ‚ï(‚Ğ.db) do
-	†a = †a + 1
+	†€ = †€ + 1
 end
-io.‚ó(€½.…Ş('%d ƒ.\n', †a))
+io.‚ó(€½.…ı('%d ƒ.\n', †€))
 
 ‚Ú ‚Ğ.‚ù()
 	‚Ğ.‚í()
-	‚Ã f = io.…§(†`, 'w')
+	‚Ã f = io.…§(†, 'w')
 	for k, v in ‚ï(‚Ğ.db) do
 		f:‚ó(ƒ6(v) .. '\n')
 	end
 	f:…¨()
 end
 
--- † †%
+-- †3 †C
 ‚Ú ‚Ğ.get(i)
 	if ƒ*(i) ~= ‚v ‚É
-		†&('Can\'t …Ì ' .. ‚Ô(‚v) .. ' ƒr ‚Ğ.')
+		†D('Can\'t …ë ' .. ‚Ô(‚v) .. ' ƒr ‚Ğ.')
 	end
 	for k, v in ‚ï(‚Ğ.db) do
-		if i:…Ã(v) ‚É
+		if i:…ã(v) ‚É
 			‚Í v
 		end
 	end
@@ -5055,10 +5263,10 @@ end
 
 ‚Ú ‚Ğ.add(i)
 	if ƒ*(i) ~= ‚v ‚É
-		†&('Can\'t add ' .. ‚Ô(‚v) .. ' to ‚Ğ.')
+		†D('Can\'t add ' .. ‚Ô(‚v) .. ' to ‚Ğ.')
 	end
 	for k, v in ‚ï(‚Ğ.db) do
-		if i:…Ã(v) ‚É
+		if i:…ã(v) ‚É
 			‚Í i
 		end
 	end
@@ -5069,119 +5277,119 @@ end
 
 ‚Ú ‚Ğ.ƒ0(i)
 	for k, v in ‚ï(‚Ğ.db) do
-		if i:…Ã(v) ‚É
+		if i:…ã(v) ‚É
 			‚Í '.ƒ0(‚Ğ.db, k)
 		end
 	end
 	‚Í nil
 end
 
-‚Í rawdb]==],['reset.lua']= [==[…Ë.ƒ['lib.‚Ò'] = nil
-…Ë.ƒ['lib.‚Ğ'] = nil
-…Ë.ƒ['lib.‚Ñ'] = nil
-…Ë.ƒ['lib.‚Ó'] = nil
-…Ë.ƒ['lib.‚Î'] = nil
-…Ë.ƒ['lib.†b'] = nil
-…Ë.ƒ['lib.‚Ï'] = nil
-…Ë.ƒ['lib.‚Ô.‚v'] = nil
-…Ë.ƒ['lib.‚Ô.† '] = nil
-…Ë.ƒ['lib.‚Ô.„'] = nil
-…Ë.ƒ['lib.‚Ô.†'] = nil
-…Ë.ƒ['lib.‚Ô.†'] = nil
-…Ë.ƒ['lib.‚Ô.†'] = nil
-…Ë.ƒ['lib.‚Ô.†\'] = nil]==],['resproc.lua']= [==[‚Ã ‚Ä, ‚8 = ‚Å(‚Æ, ‚Ç.‚È, '‚8')
+‚Í rawdb]==],['reset.lua']= [==[…ê.ƒ['lib.‚Ò'] = nil
+…ê.ƒ['lib.‚Ğ'] = nil
+…ê.ƒ['lib.‚Ñ'] = nil
+…ê.ƒ['lib.‚Ó'] = nil
+…ê.ƒ['lib.‚Î'] = nil
+…ê.ƒ['lib.†'] = nil
+…ê.ƒ['lib.‚Ï'] = nil
+…ê.ƒ['lib.‚Ô.‚v'] = nil
+…ê.ƒ['lib.‚Ô.†'] = nil
+…ê.ƒ['lib.‚Ô.„'] = nil
+…ê.ƒ['lib.‚Ô.†1'] = nil
+…ê.ƒ['lib.‚Ô.†2'] = nil
+…ê.ƒ['lib.‚Ô.†0'] = nil
+…ê.ƒ['lib.‚Ô.†z'] = nil]==],['resproc.lua']= [==[‚Ã ‚Ä, ‚8 = ‚Å(‚Æ, ‚Ç.‚È, '‚8')
 if not ‚Ä ‚É
 	‚Ê('Can\'t ‚Ë ‚8 ‚Ì.')
 	‚Í
 end
 
 ‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †0 = ‚Æ('lib.‚Ô.†0')
 ‚Ã ‚Ğ = ‚Æ('lib.‚Ğ')
 ‚Ã ‚Ò = ‚Æ('lib.‚Ò')
 ‚Ã ‚Ñ = ‚Æ('lib.‚Ñ')
 ‚Ã „ = ‚Æ('lib.‚Ô.„')
 ‚Ã ‚Ó = ‚Æ('lib.‚Ó')
 
--- † †
-‚Ã †c = {}
+-- †3 †4
+‚Ã †‚ = {}
 
--- † †%
-‚Ú †c.‚Ë()
+-- †3 †C
+‚Ú †‚.‚Ë()
 	‚Ğ.‚Ë()
 	‚Ñ.‚Ë()
 	‚Ò.‚Ë()
 end
 
-‚Ú †c.‚ù()
+‚Ú †‚.‚ù()
 	‚Ğ.‚ù()
 	‚Ñ.‚ù()
 	‚Ò.‚ù()
 end
 
-‚Ú †c.†d(i)
+‚Ú †‚.†ƒ(i)
 	if ‚Ò.get(i) ~= nil ‚É
 		‚Í ‚Ò.get(i)
 	end
 	‚Í nil
 end
 
-‚Ú †c.ƒ8(it)
+‚Ú †‚.ƒ8(it)
 	if ‚Ô(it) == ''' ‚É
 		if ƒ*(it) ~= ‚v ‚É
-			†&('Can\'t ƒ; non-‚v †e.')
+			†D('Can\'t ƒ; non-‚v †„.')
 		end
 	‚è
-		†&('Can\'t ƒ; ' .. ‚Ô(it) .. '.')
+		†D('Can\'t ƒ; ' .. ‚Ô(it) .. '.')
 	end
 
-	‚Ã ƒ: = †.new()
-	‚Ã ƒ9 = †.new()
+	‚Ã ƒ: = †0.new()
+	‚Ã ƒ9 = †0.new()
 	
-	‚Ã ‚Ú †f(i)
+	‚Ã ‚Ú †…(i)
 		ƒ::add(i)
 		ƒ9:add(i)
 	end
 	
-	‚Ã ‚Ú †g(i)
+	‚Ã ‚Ú ††(i)
 		ƒ::add(i)
 	end
 	
-	‚Ã ‚Ú †h(i)
+	‚Ã ‚Ú †‡(i)
 		if ƒ::has(i) ‚É
-			ƒ::†i(i)
+			ƒ::†ˆ(i)
 			‚Í ‚Ş
 		end
 		‚Í ‚á
 	end
 	
-	‚Ã ‚Ú …Ä(i)
+	‚Ã ‚Ú …°(i)
 		if ‚Ğ.has(i) ‚É
-			†f(i)
-		ƒ  †c.†d(i) ~= nil ‚É
-			for ite = 1, †..†j(i.† / †c.†d(i).ƒ.†) do
-				for k, v in ‚ë(†c.†d(i):†!()) do
-					ƒD not †h(v) do
-						…Ä(v)
+			†…(i)
+		ƒ  †‚.†ƒ(i) ~= nil ‚É
+			for ite = 1, †L.†‰(i.†9 / †‚.†ƒ(i).ƒ.†9) do
+				for k, v in ‚ë(†‚.†ƒ(i):…¯()) do
+					ƒD not †‡(v) do
+						…°(v)
 					end
 				end
-				†g(†c.†d(i).ƒ)
+				††(†‚.†ƒ(i).ƒ)
 			end
 		‚è
-			†f(i)
+			†…(i)
 		end
 	end
 	
-	…Ä(it)
+	…°(it)
 	ƒ9:‚í()
 	ƒ::‚í()
 	‚Í ƒ9, ƒ:
 end
 
-‚Ú †c.ƒB()
+‚Ú †‚.ƒB()
 	‚Ã ƒ = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11}
 	for k, v in ‚ï(ƒ) do
-		if ‚Ó.†-[v] ~= nil ‚É
+		if ‚Ó.†K[v] ~= nil ‚É
 			‚Ó.ƒ(v)
 			if not ‚Ó.ƒ() ‚É
 				‚Í ‚á
@@ -5190,7 +5398,7 @@ end
 	end
 end
 
-‚Ú †c.ƒ((it)
+‚Ú †‚.ƒ((it)
 	if ‚Ò.get(it) ~= nil ‚É
 		‚Í ‚Ò.get(it)
 	ƒ  ‚Ğ.get(it) ~= nil ‚É
@@ -5200,7 +5408,7 @@ end
 	end
 end
 
-‚Ú †c.ƒ+(ƒ1)
+‚Ú †‚.ƒ+(ƒ1)
 	if ƒ*(ƒ1) == „ ‚É
 		‚Í ‚Ò.set(ƒ1)
 	ƒ  ƒ*(ƒ1) == ‚v ‚É
@@ -5210,7 +5418,7 @@ end
 	end
 end
 
-‚Ú †c.ƒ0(it)
+‚Ú †‚.ƒ0(it)
 	if ‚Ò.get(it) ~= nil ‚É
 		‚Í ‚Ò.ƒ0(it)
 	ƒ  ‚Ğ.get(it) ~= nil ‚É
@@ -5220,175 +5428,175 @@ end
 	end
 end
 
-‚Ú †c.†k(‚v, †l)
-	-- †m ‚Ó ƒ@ ƒV †Q ƒ@
-	‚Ã †n = †.new()
-	for k, v in ‚ë(‚Ó.†-) do
-		†n:add(v)
+‚Ú †‚.†Š(‚v, †‹)
+	-- †Œ ‚Ó ƒ@ ƒV †o ƒ@
+	‚Ã † = †0.new()
+	for k, v in ‚ë(‚Ó.†K) do
+		†:add(v)
 	end
-	if †l ~= nil ‚É
-		†n:†o(†l)
+	if †‹ ~= nil ‚É
+		†:†(†‹)
 	end
 	
-	-- †p ƒ@
-	‚Ã †q = †.new()
-	†q:add(‚v)
+	-- † ƒ@
+	‚Ã † = †0.new()
+	†:add(‚v)
 	
-	-- †r and †s †t ƒ@ †u it's †J
-	ƒD #†q ~= 0 do
-		‚Ã †v = '.ƒ0(†q, 1)
-		if not †n:has(†v) ‚É
-			if (†c.†d(†v) == nil) or ‚Ğ.has(†v) ‚É
+	-- †‘ and †’ †“ ƒ@ †” it's †h
+	ƒD #† ~= 0 do
+		‚Ã †• = '.ƒ0(†, 1)
+		if not †:has(†•) ‚É
+			if (†‚.†ƒ(†•) == nil) or ‚Ğ.has(†•) ‚É
 				‚Í ‚á
 			‚è
-				†q:†o(†c.†d(†v):†!() * †v.†)
+				†:†(†‚.†ƒ(†•):…¯() * †•.†9)
 			end
 		end
 	end
 	‚Í ‚Ş
 end
 
-‚Ú †c.ƒ<(‚v, †l)
-	-- †m ‚Ó ƒ@ ƒV †Q ƒ@
-	‚Ã †n = †.new()
-	for k, v in ‚ë(‚Ó.†-) do
-		†n:add(v)
+‚Ú †‚.ƒ<(‚v, †‹)
+	-- †Œ ‚Ó ƒ@ ƒV †o ƒ@
+	‚Ã † = †0.new()
+	for k, v in ‚ë(‚Ó.†K) do
+		†:add(v)
 	end
-	if †l ~= nil ‚É
-		†n:†o(†l)
+	if †‹ ~= nil ‚É
+		†:†(†‹)
 	end
 	
-	-- †p ƒ@
-	‚Ã †q = †.new()
-	†q:add(‚v)
+	-- † ƒ@
+	‚Ã † = †0.new()
+	†:add(‚v)
 	
-	-- †r and †s †t ƒ@ †u it's †J
-	ƒD #†q ~= 0 do
-		‚Ã †v = †q:†w()
-		if not †n:has(†v) ‚É
-			if (‚Ò.get(†v) == nil) or ‚Ğ.has(†v) ‚É
+	-- †‘ and †’ †“ ƒ@ †” it's †h
+	ƒD #† ~= 0 do
+		‚Ã †• = †:†–()
+		if not †:has(†•) ‚É
+			if (‚Ò.get(†•) == nil) or ‚Ğ.has(†•) ‚É
 				‚Í ‚á
 			‚è
-				†q:†o(‚Ò.get(†v):†!())
-				†n:add(‚Ò.get(†v).ƒ)
+				†:†(‚Ò.get(†•):…¯())
+				†:add(‚Ò.get(†•).ƒ)
 			end
 		‚è
-			†n:†i(†v)
+			†:†ˆ(†•)
 		end
 	end
 	‚Í ‚Ş
 end
 
-‚Ú †c.ƒ!(‚v)
+‚Ú †‚.ƒ!(‚v)
 	if ‚Ò.get(‚v) == nil ‚É
-		†&('Can\'t ƒ! ' .. ƒ6(‚v) .. '.')
+		†D('Can\'t ƒ! ' .. ƒ6(‚v) .. '.')
 	end
 	
-	-- †p †x
-	‚Ã †y = {}
-	'.‚ì(†y, ‚Ò.get(‚v))
+	-- † †—
+	‚Ã †˜ = {}
+	'.‚ì(†˜, ‚Ò.get(‚v))
 	
-	ƒD #†y ~= 0 do
-		‚Ã †z = †y[#†y]
+	ƒD #†˜ ~= 0 do
+		‚Ã †™ = †˜[#†˜]
 		
-		-- ƒ €¸ †{
-		‚Ã †| = ‚Ş
-		for k, v in ‚ï(†z:†!()) do
-			if ‚Ó.†<(v) < v.† ‚É
-				†| = ‚á
+		-- ƒ €¸ †š
+		‚Ã †› = ‚Ş
+		for k, v in ‚ï(†™:…¯()) do
+			if ‚Ó.†Z(v) < v.†9 ‚É
+				†› = ‚á
 				if (‚Ò.get(v) == nil) or ‚Ğ.has(v) ‚É
-					‚Ê('†} 1')
+					‚Ê('†œ 1')
 					‚Í ‚á
 				‚è
-					for kc, vc in ‚ï(†y) do
+					for kc, vc in ‚ï(†˜) do
 						if vc == ‚Ò.get(v) ‚É
-							'.ƒ0(†y, kc)
+							'.ƒ0(†˜, kc)
 						end
 					end
-					'.‚ì(†y, ‚Ò.get(v))
+					'.‚ì(†˜, ‚Ò.get(v))
 				end
 			end
 		end
 		
-		if †| ‚É
+		if †› ‚É
 			if not ‚Ó.ƒB() ‚É
-				‚Ê('†} 2')
+				‚Ê('†œ 2')
 				‚Í ‚á
 			end
 			‚Ê('ƒ/')
-			if †z.ƒ ‚É
+			if †™.ƒ ‚É
 				‚Ã ƒ = {{1, 2, 3}, {5, 6, 7}, {9, 10, 11}}
-				for y = 1, †z.†.ƒ# do
-					for x = 1, †z.†.ƒ" do
-						if †z.ƒ[(y - 1) * †z.†.ƒ" + x] ~= nil ‚É
+				for y = 1, †™.†7.ƒ# do
+					for x = 1, †™.†7.ƒ" do
+						if †™.ƒ[(y - 1) * †™.†7.ƒ" + x] ~= nil ‚É
 							‚Ó.ƒ(ƒ[y][x])
-							‚Ó.†=(†z.ƒ[(y - 1) * †z.†.ƒ" + x]:†~(), ‚á)
+							‚Ó.†[(†™.ƒ[(y - 1) * †™.†7.ƒ" + x]:†(), ‚á)
 						end
 					end
 				end
 			‚è
 				‚Ã ƒ = {1, 2, 3, 5, 6, 7, 9, 10, 11}
-				for k = 1, #†z.ƒ do
+				for k = 1, #†™.ƒ do
 					‚Ó.ƒ(ƒ[k])
-					‚Ó.†=(†z.ƒ[k]:†~(), ‚á)
+					‚Ó.†[(†™.ƒ[k]:†(), ‚á)
 				end
 			end
 			‚Ó.ƒ(8)
 			if not ‚.„.ƒ!(1) ‚É
-				‚Ê('†} 3')
+				‚Ê('†œ 3')
 				‚Í ‚á
 			end
 			‚Ó.ƒ$()
-			'.ƒ0(†y)
+			'.ƒ0(†˜)
 		end
 	end
 	
 	‚Í ‚Ş
 end
 
-‚Í ResProc]==],['stringlib.lua']= [==[‚Ã † = ‚Æ('†')
+‚Í ResProc]==],['stringlib.lua']= [==[‚Ã † = ‚Æ('†')
 ‚Ã ‚ = ‚Æ('‚')
 if ‚.gpu == nil ‚É
-	‚Ê('†+ gpu!')
+	‚Ê('†I gpu!')
 	‚Í
 end
 ‚Ã gpu = ‚.gpu
 
--- † †
+-- †3 †4
 ‚Ã ‚Î = {}
 
--- † †%
-‚Ú ‚Î.ƒG(s, †€)
+-- †3 †C
+‚Ú ‚Î.ƒG(s, †Ÿ)
 	if s == nil ‚É
-		†&('† nil.')
+		†D('†  nil.')
 	end
 
 	‚Ã t = {}
-	for str in €½.…Î(s, '([^' .. (†€ or '%s') .. ']+)') do
+	for str in €½.…í(s, '([^' .. (†Ÿ or '%s') .. ']+)') do
 		'.‚ì(t, str)
 	end
 	‚Í t
 end
 
 ‚Ú ‚Î.‚ğ(s)
-	‚Ã †‚, †ƒ = gpu.†„()
-	‚Ã ‚Ú †…(str)
-		†< = 1
+	‚Ã †¡, †¢ = gpu.†£()
+	‚Ã ‚Ú †¤(str)
+		†Z = 1
 		for i = 1, #str do
 			if str:sub(i, i) == '\n' ‚É
-				†< = †< + 1
+				†Z = †Z + 1
 			end
 		end
-		‚Í †<
+		‚Í †Z
 	end
-	‚Ã ‚Ú ††(str)
+	‚Ã ‚Ú †¥(str)
 		‚Ã t = {}
 		‚Ã l = ''
 		for i = 1, #str do
 			if str:sub(i, i) == '\n' ‚É
 				t[#t+1] = l
 				l = ''
-			ƒ  #l == †‚ - 1 ‚É
+			ƒ  #l == †¡ - 1 ‚É
 				t[#t+1] = l .. str:sub(i, i)
 				l = ''
 			‚è
@@ -5399,76 +5607,76 @@ end
 		‚Í t
 	end
 	‚Ã ‚Ú mod(a, b)
-		‚Í a - †..†/(a / b) * b
+		‚Í a - †L.†M(a / b) * b
 	end
 
-	‚Ã †‡ = ‚Ş
-	‚Ã †ˆ = ††(s)
-	for k, v in ‚ë(†ˆ) do
-		if †‡ ‚É
+	‚Ã †¦ = ‚Ş
+	‚Ã †§ = †¥(s)
+	for k, v in ‚ë(†§) do
+		if †¦ ‚É
 			io.‚ó(v)
-			†‡ = ‚á
+			†¦ = ‚á
 		‚è
 			io.‚ó('\n' .. v)
-			if (#v == †‚) ‚É †‡ = ‚Ş end
+			if (#v == †¡) ‚É †¦ = ‚Ş end
 		end
-		if mod(k, †ƒ) == 0 ‚É
-			†.†=('key_†‰', nil, 32.0)
+		if mod(k, †¢) == 0 ‚É
+			†.†[('key_†¨', nil, 32.0)
 		end
 	end
 	io.‚ó('\n')
 end
 
-‚Í stringlib]==],['tablelib.lua']= [==[‚Ã †b = {}
+‚Í stringlib]==],['tablelib.lua']= [==[‚Ã † = {}
 
-‚Ú †b.†Š(t)
-	-- †‹ …ã. †Œ †.
+‚Ú †.†©(t)
+	-- †ª †. †« †¬.
 	if ‚Ô(t) ~= ''' ‚É
-		†&('† to †Š † † …å '.')
+		†D('†­ to †© †® †¯ † '.')
 	end
 
-	‚Ã †‘ = {}
+	‚Ã †° = {}
 	for k, v in ‚ë(t) do
-		†‘[k] = v
+		†°[k] = v
 	end
 	
-	‚Í †‘
+	‚Í †°
 end
 
-‚Ú †b.†’(t)
-	-- †‹ …ã. †Œ †.
+‚Ú †.†±(t)
+	-- †ª †. †« †¬.
 	if ‚Ô(t) ~= ''' ‚É
-		†&('† to †Š † † …å '.')
+		†D('†­ to †© †® †¯ † '.')
 	end
 
-	‚Ã †‘ = {}
+	‚Ã †° = {}
 	for k, v in ‚ë(t) do
 		if ‚Ô(v) == ''' ‚É
-			†‘[k] = †b.†’(v)
+			†°[k] = †.†±(v)
 		‚è
-			†‘[k] = v
+			†°[k] = v
 		end
 	end
 	
-	‚Í †‘
+	‚Í †°
 end
 
-‚Ú †b.…¯(t, †“)
+‚Ú †.†²(t, †³)
 	‚Ã buf = ''
 	for k, v in ‚ï(t) do
 		buf = buf .. ƒ6(v)
-		if …Ù(t, k) ~= nil ‚É
-			buf = buf .. †“
+		if …ø(t, k) ~= nil ‚É
+			buf = buf .. †³
 		end
 	end
 	‚Í buf
 end
 
-‚Ú †b.str(tb, —)
+‚Ú †.str(tb, —)
 	‚Ã buf = ''
 
-	‚Ã ‚Ú tab(†”)
-		‚Í €½.rep('  ', †”)
+	‚Ã ‚Ú tab(†´)
+		‚Í €½.rep('  ', †´)
 	end
 	‚Ã ‚Ú val(v)
 		if ‚Ô(v) == '€½' ‚É
@@ -5484,192 +5692,198 @@ end
 			‚Í ƒ6(k)
 		end
 	end
-	‚Ã ‚Ú †•(t)
-		†< = 0
+	‚Ã ‚Ú †µ(t)
+		†Z = 0
 		for _ in ‚ë(t) do
-			†< = †< + 1
+			†Z = †Z + 1
 		end
-		‚Í †<
+		‚Í †Z
 	end
 
-	‚Ã ‚Ú †–(t, †”, —)
+	‚Ã ‚Ú †¶(t, †´, —)
 		if ‚Ô(t) ~= ''' ‚É ‚Í 'nil' end
-		if …Ù(t) == nil ‚É ‚Í '{}' end
-		‚Ã †” = †” or 0
+		if …ø(t) == nil ‚É ‚Í '{}' end
+		‚Ã †´ = †´ or 0
 		‚Ã buf = ''
 		if — == nil ‚É
 			buf = buf .. '{'
 		‚è
 			buf = buf .. — .. ' = {'
 		end
-		†” = †” + 1
-		‚Ã k, v = …Ù(t, nil)
+		†´ = †´ + 1
+		‚Ã k, v = …ø(t, nil)
 		ƒD k do
 			if ‚Ô(v) == ''' ‚É
-				buf = buf .. '\n' .. tab(†”) .. key(k) .. ' = ' .. †–(v, †” + 1)
+				buf = buf .. '\n' .. tab(†´) .. key(k) .. ' = ' .. †¶(v, †´ + 1)
 			‚è
-				buf = buf .. '\n' .. tab(†”) .. key(k) .. ' = ' .. val(v)
+				buf = buf .. '\n' .. tab(†´) .. key(k) .. ' = ' .. val(v)
 			end
-			if …Ù(t, k) ~= nil ‚É
+			if …ø(t, k) ~= nil ‚É
 				buf = buf .. ','
 			end
-			k, v = …Ù(t, k)
+			k, v = …ø(t, k)
 		end
-		†” = †” - 1
-		buf = buf .. '\n' .. tab(†”) .. '}'
+		†´ = †´ - 1
+		buf = buf .. '\n' .. tab(†´) .. '}'
 		‚Í buf
 	end
 
-	‚Í †–(tb, 0, —)
+	‚Í †¶(tb, 0, —)
 end
 
 ‚Í tablelib]==],['type']={['crafting.lua']= [==[‚Ã ‚Î = ‚Æ('lib.‚Î')
 ‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ã †0 = ‚Æ('lib.‚Ô.†0')
+‚Ã †1 = ‚Æ('lib.‚Ô.†1')
+‚Ã †2 = ‚Æ('lib.‚Ô.†2')
 
--- † †
+-- †3 †4
 ‚Ã ƒ = {
-	† = { ƒ" = 0, ƒ# = 0 },
+	†7 = { ƒ" = 0, ƒ# = 0 },
 	ƒ = {},
 	ƒ = ‚Ş,
 	ƒ = {}
 }
 
--- † †%
-‚Ú ƒ.new(†, ƒ, ƒ, ƒ)
-	-- †‹ …ã. †Œ †.
-	if († == nil) or (ƒ == nil) or (ƒ == nil) ‚É
-		†&('Can\'t †— nil „.')
+-- †3 †C
+‚Ú ƒ.new(†7, ƒ, ƒ, ƒ)
+	-- †ª †. †« †¬.
+	if (†7 == nil) or (ƒ == nil) or (ƒ == nil) ‚É
+		†D('Can\'t †· nil „.')
 	end
-	if (†.ƒ" == nil) or (†.ƒ# == nil) ‚É
-		†&('ƒ †˜ †!')
+	if (†7.ƒ" == nil) or (†7.ƒ# == nil) ‚É
+		†D('ƒ †¸ †7!')
 	end
 	if (ƒ*(ƒ) ~= ‚v) ‚É
-		†&('Can\'t put †™ ‚è †š ƒ †› ‚v!')
+		†D('Can\'t put †¹ ‚è †º ƒ †» ‚v!')
 	end
-	if (ƒ.† == 0) ‚É
-		†&('Can\'t †— †œ ‚v!')
+	if (ƒ.†9 == 0) ‚É
+		†D('Can\'t †· †¼ ‚v!')
 	end
 	
 	‚Ã o = {}
 	‚Û(o, ƒ)
 	ƒ.__‚Ü = ƒ
-	o.† = †
+	o.†7 = †7
 	o.ƒ = ƒ
 	o.ƒ = ƒ
 	o.ƒ = ƒ
 	‚Í o
 end
 
-‚Ú ƒ:†!()
-	‚Ã † = †.new()
-	for k, v in ‚ë(†.ƒ) do
+‚Ú ƒ:†@()
+	‚Ã †½ = †2.new()
+	for k, v in ‚ë(†¾.ƒ) do
 		if v ~= nil ‚É
-			†:add(v:†~())
+			†½:add(v)
 		end
 	end
-	‚Í †
+	‚Í †½
 end
 
--- †Ÿ
+-- †¿
 ‚Ú ƒ.__ƒ6(cr)
-	‚Ã †  = €½.…Ş('(%dx%d) ', cr.†.ƒ", cr.†.ƒ#) .. (cr.ƒ and 'ƒ ' or 'ƒ ') .. ƒ6(cr.ƒ) .. ':\n'
+	‚Ã †À = €½.…ı('(%dx%d) ', cr.†7.ƒ", cr.†7.ƒ#) .. (cr.ƒ and 'ƒ ' or 'ƒ ') .. ƒ6(cr.ƒ) .. ':\n'
 	
 	if cr.ƒ ‚É
-		for c = 1, cr.†.ƒ" * cr.†.ƒ# do
-			†  = †  .. €½.…Ş('[%d] %s\n', c, cr.ƒ[c])
+		for c = 1, cr.†7.ƒ" * cr.†7.ƒ# do
+			†À = †À .. €½.…ı('[%d] %s\n', c, cr.ƒ[c])
 		end
 	‚è
 		for c = 1, #cr.ƒ do
-			†  = †  .. €½.…Ş('[%d] %s\n', c, cr.ƒ[c])
+			†À = †À .. €½.…ı('[%d] %s\n', c, cr.ƒ[c])
 		end
 	end
-	†  = † :sub(1, #†  - 1)
+	†À = †À:sub(1, #†À - 1)
 	
-	‚Í † 
+	‚Í †À
 end
 
 ‚Í Crafting]==],['ingredient.lua']= [==[‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã †\ = ‚Æ('lib.‚Ô.†\')
-‚Ã †  = ‚Æ('lib.‚Ô.† ')
+‚Ã †z = ‚Æ('lib.‚Ô.†z')
+‚Ã † = ‚Æ('lib.‚Ô.†')
 ‚Ã ‚Ñ = ‚Æ('lib.‚Ñ')
 
--- † †
-‚Ã †¡ = {
-	†¢ = {}
+-- †3 †4
+‚Ã †Á = {
+	†Â = {}
 }
 
--- † †%
-‚Ú †¡.†(str)
+-- †3 †C
+‚Ú †Á.†:(str)
 	‚Ã a = {}
-	‚Û(a, †¡)
-	†¡.__‚Ü = †¡
+	‚Û(a, †Á)
+	†Á.__‚Ü = †Á
 
-	if str:…Ì('ore:') ~= nil ‚É
+	if str:…ë('ore:') ~= nil ‚É
 		‚Ã od = ‚Ñ.get(str)
 		if od == nil ‚É
-			†&('†£ †¤ ' .. str .. ' as †.')
+			†D('†Ã †Ä ' .. str .. ' as †1.')
 		end
-		a.†¢ = od
-	ƒ  str:…Ì(',') ~= nil ‚É
-		‚Ã ic = †\.†(str)
-		a.†¢ = ic
+		a.†Â = od
+	ƒ  str:…ë(',') ~= nil ‚É
+		‚Ã ic = †z.†:(str)
+		a.†Â = ic
 	‚è
 		‚Ã i = ‚v.new(str)
-		a.†¢ = i
+		a.†Â = i
 	end
 	
 	‚Í a
 end
 
-‚Ú †¡:…ã(i)
-	-- †‹ …ã. †Œ †.
+‚Ú †Á:†(i)
+	-- †ª †. †« †¬.
 	if ƒ*(i) ~= ‚v ‚É
-		†&('†¥ †¦\'t …ã ' .. ‚Ô(i) .. '.')
+		†D('†Å †Æ\'t † ' .. ‚Ô(i) .. '.')
 	end
 	
-	if ƒ*(†.†¢) == †  ‚É
-		‚Í †.†¢.…ã(i)
-	ƒ  ƒ*(†.†¢) == †\ ‚É
-		‚Í †.†¢.…ã(i)
-	ƒ  ƒ*(†.†¢) == ‚v ‚É
-		‚Í †.†¢ == i
+	if ƒ*(†¾.†Â) == † ‚É
+		‚Í †¾.†Â.†(i)
+	ƒ  ƒ*(†¾.†Â) == †z ‚É
+		‚Í †¾.†Â.†(i)
+	ƒ  ƒ*(†¾.†Â) == ‚v ‚É
+		‚Í †¾.†Â == i
 	end
 end
 
--- †Ÿ
-‚Ú †¡.__eq(a, b)
-	-- †‹ …ã. †Œ †.
-	if not (((ƒ*(a) == ‚v) and (ƒ*(b) == †¡)) or
-			((ƒ*(a) == †¡) and (ƒ*(b) == ‚v))) ‚É
-		if (ƒ*(a) == †¡) and (ƒ*(b) == †¡) ‚É
-			‚Í a.†¢ == b.†¢
+-- †¿
+‚Ú †Á.__eq(a, b)
+	-- †ª †. †« †¬.
+	if not (((ƒ*(a) == ‚v) and (ƒ*(b) == †Á)) or
+			((ƒ*(a) == †Á) and (ƒ*(b) == ‚v))) ‚É
+		if (ƒ*(a) == †Á) and (ƒ*(b) == †Á) ‚É
+			‚Í a.†Â == b.†Â
 		end
-		†&(€½.…Ş('† to do †§ †¨ ƒV †© †e ‚Ô. (%s, %s)', ‚Ô(a), ‚Ô(b)))
+		†D(€½.…ı('†­ to do †Ç †È ƒV †É †„ ‚Ô. (%s, %s)', ‚Ô(a), ‚Ô(b)))
 	end
 	
 	if ƒ*(a) == ‚v ‚É
-		‚Í b:…ã(a)
+		‚Í b:†(a)
 	‚è
-		‚Í a:…ã(b)
+		‚Í a:†(b)
 	end
 end
 
-‚Í Ingredient]==],['ingredientarray.lua']= [==[‚Ã † = ‚Æ('lib.‚Ô.†')
+‚Ú †Á.__ƒ6(†Ê)
+	‚Í ƒ6(†Ê.†Â)
+end
 
--- † †
-‚Ã †ª = {}
+‚Í Ingredient]==],['ingredientarray.lua']= [==[‚Ã †1 = ‚Æ('lib.‚Ô.†1')
 
--- † †%
-‚Ú †ª.new()
+-- †3 †4
+‚Ã †Ë = {}
+
+-- †3 †C
+‚Ú †Ë.new()
 	‚Ã a = {}
-	‚Û(a, †ª)
-	†ª.__‚Ü = †ª
+	‚Û(a, †Ë)
+	†Ë.__‚Ü = †Ë
 	‚Í a
 end
 
-‚Ú †ª:‚Ü(i)
-	for k, v in ‚ï(†) do
+‚Ú †Ë:‚Ü(i)
+	for k, v in ‚ï(†¾) do
 		if v == i ‚É
 			‚Í k
 		end
@@ -5677,26 +5891,26 @@ end
 	‚Í nil
 end
 
-‚Ú †ª:add(i)
-	for k, v in ‚ï(†) do
+‚Ú †Ë:add(i)
+	for k, v in ‚ï(†¾) do
 		if v == i ‚É
 			‚Í i
 		end
 	end
-	‚Í '.‚ì(†, i)
+	‚Í '.‚ì(†¾, i)
 end
 
 ‚Í IngredientArray]==],['item.lua']= [==[‚Ã ‚Î = ‚Æ('lib.‚Î')
 
--- † †
+-- †3 †4
 ‚Ã ƒ, = {
 	— = '',
 	ƒ = -1,
-	† = 1,
-	†F = 1
+	†9 = 1,
+	†d = 1
 }
 
--- † †%
+-- †3 †C
 ‚Ú ƒ,.new(...)
 	‚Ã …Ÿ = {...}
 	‚Ã i = {}
@@ -5705,292 +5919,294 @@ end
 	
 	if ‚Ô(…Ÿ[1]) == '€½' ‚É
 		if …Ÿ[1] == '' ‚É
-			†&('†« ‚v —.')
+			†D('†Ì ‚v —.')
 		end
-		‚Ã †¬ = ‚Î.ƒG(…Ÿ[1], '|')
-		i.— = †¬[1]
-		i.ƒ = ((†¬[2] == '*') and -1 or …÷(†¬[2])) or 0
-		i.† = 1
-		i.†F = 1
+		‚Ã †Í = ‚Î.ƒG(…Ÿ[1], '|')
+		i.— = †Í[1]
+		i.ƒ = ((†Í[2] == '*') and -1 or †(†Í[2])) or 0
+		i.†9 = 1
+		i.†d = 1
 	ƒ  ‚Ô(…Ÿ[1]) == ''' ‚É
 		i.— = …Ÿ[1].—
 		if …Ÿ[1].ƒ ~= nil ‚É
-			i.ƒ = †..†/(…Ÿ[1].ƒ)
+			i.ƒ = †L.†M(…Ÿ[1].ƒ)
 		end
-		i.† = †..†/(…Ÿ[1].†) or 1
-		i.†F = †..†/(…Ÿ[1].†F) or 1
+		i.†9 = †L.†M(…Ÿ[1].†9) or 1
+		i.†d = †L.†M(…Ÿ[1].†d) or 1
 	ƒ  #…Ÿ == 0 ‚É
-		†&('Not †­ nil or †J †®.')
+		†D('Not †Î nil or †h †Ï.')
 	‚è
-		†&('‚ä †¯ †®.')
+		†D('‚ä †Ğ †Ï.')
 	end
 	
 	‚Í i
 end
 
 ‚Ú ƒ,:ƒ()
-	†.ƒ = -1
-	‚Í †
+	†¾.ƒ = -1
+	‚Í †¾
 end
 
-‚Ú ƒ,:†~()
-	‚Ã icl = †:†Š()
-	icl.† = 1
+‚Ú ƒ,:†()
+	‚Ã icl = †¾:†©()
+	icl.†9 = 1
 	‚Í icl
 end
 
-‚Ú ƒ,:†Š()
-	‚Í ƒ,.new(†)
+‚Ú ƒ,:†©()
+	‚Í ƒ,.new(†¾)
 end
 
-‚Ú ƒ,:†°(i)
-	-- †‹ …ã. †Œ †.
+‚Ú ƒ,:†Ñ(i)
+	-- †ª †. †« †¬.
 	if ƒ*(i) ~= ƒ, ‚É
-		†&('† to †± ƒV ' .. ‚Ô(i) .. '.')
+		†D('†­ to †Ò ƒV ' .. ‚Ô(i) .. '.')
 	end
 
-	if (†.ƒ == -1) or (i.ƒ == -1) ‚É
-		‚Í †.— == i.—
+	if (†¾.ƒ == -1) or (i.ƒ == -1) ‚É
+		‚Í †¾.— == i.—
 	‚è
-		‚Í (†.— == i.—) and (†.ƒ == i.ƒ)
+		‚Í (†¾.— == i.—) and (†¾.ƒ == i.ƒ)
 	end
 end
 
-‚Ú ƒ,:…Ã(i)
-	-- †².
-	‚Ã f = io.…§('†³.log', 'a')
+‚Ú ƒ,:…ã(i)
+	-- †Ó.
+	‚Ã f = io.…§('†Ô.log', 'a')
 	f:‚ó(‚Ç.‚È() .. '\n')
 	f:…¨()
 	
-	‚Í ƒ,:†°(i)
+	‚Í ƒ,:†Ñ(i)
 end
 
--- †Ÿ
+-- †¿
 ‚Ú ƒ,.__eq(a, b)
-	-- Don't do †´ †µ. †¶ †· †¸ out.
+	-- Don't do †Õ †Ö. †× †Ø †Ù out.
 	if (ƒ*(a) ~= ƒ,) or (ƒ*(b) ~= ƒ,) ‚É
-		if not (((ƒ*(a) == ‚v) and (ƒ*(b) == †¡)) or
-				((ƒ*(a) == †¡) and (ƒ*(b) == ‚v))) ‚É
+		if not (((ƒ*(a) == ‚v) and (ƒ*(b) == †Á)) or
+				((ƒ*(a) == †Á) and (ƒ*(b) == ‚v))) ‚É
 			‚Í ‚á
 		‚è
 			if ƒ*(a) == ‚v ‚É
-				‚Í b:…ã(a)
+				‚Í b:†(a)
 			‚è
-				‚Í a:…ã(b)
+				‚Í a:†(b)
 			end
 		end
 		‚Í ‚á
 	end
 
-	‚Í a:†°(b)
+	‚Í a:†Ñ(b)
 end
 
 ‚Ú ƒ,.__add(a, b)
-	-- †‹ …ã. †Œ †.
+	-- †ª †. †« †¬.
 	if (ƒ*(a) ~= ƒ,) or (ƒ*(b) ~= ƒ,) ‚É
-		†&('† to do †§ †¨ ƒV †© †e ‚Ô.')
+		†D('†­ to do †Ç †È ƒV †É †„ ‚Ô.')
 	end
 
-	‚Ã n = a:†Š()
+	‚Ã n = a:†©()
 	if (a.— == b.—) and (a.ƒ == b.ƒ) ‚É
-		n.† = a.† + b.†
+		n.†9 = a.†9 + b.†9
 	‚è
-		†&(€½.…Ş('Can\'t add †© ƒ@.'))
+		†D(€½.…ı('Can\'t add †É ƒ@.'))
 	end
 	‚Í n
 end
 
 ‚Ú ƒ,.__sub(a, b)
-	-- †‹ …ã. †Œ †.
+	-- †ª †. †« †¬.
 	if (ƒ*(a) ~= ƒ,) and (ƒ*(b) ~= ƒ,) ‚É
-		†&('† to do †§ †¨ ƒV †© †e ‚Ô.')
+		†D('†­ to do †Ç †È ƒV †É †„ ‚Ô.')
 	end
 
-	‚Ã n = a:†Š()
+	‚Ã n = a:†©()
 	if (a.— == b.—) and (a.ƒ == b.ƒ) ‚É
-		n.† = a.† - b.†
+		n.†9 = a.†9 - b.†9
 	‚è
-		†&('Can\'t sub †© ƒ@.')
+		†D('Can\'t sub †É ƒ@.')
 	end
 	‚Í n
 end
 
 ‚Ú ƒ,.__mul(a, b)
-	-- †‹ …ã. †Œ †.
-	if (ƒ*(a) ~= ƒ,) and (‚Ô(b) ~= '†¹') ‚É
-		†&(€½.…Ş('†º ‚v † †»: %s * %s.', ‚Ô(a), ‚Ô(b)))
+	-- †ª †. †« †¬.
+	if (ƒ*(a) ~= ƒ,) and (‚Ô(b) ~= '†Ú') ‚É
+		†D(€½.…ı('†Û ‚v †9 †Ü: %s * %s.', ‚Ô(a), ‚Ô(b)))
 	end
 	
-	‚Ã n = a:†Š()
-	n.† = n.† * b
+	‚Ã n = a:†©()
+	n.†9 = n.†9 * b
 	‚Í n
 end
 
 ‚Ú ƒ,.__unm(a)
-	‚Ã icl = a:†Š()
-	icl = a.†F - a.†
+	‚Ã icl = a:†©()
+	icl = a.†d - a.†9
 	‚Í icl
 end
 
 ‚Ú ƒ,.__len(a)
-	‚Í a.†;
+	‚Í a.†9;
 end
 
 ‚Ú ƒ,.__ƒ6(a)
-	‚Ã †¼ = a.—
+	‚Ã †İ = a.—
 	if a.ƒ ~= nil ‚É
-		if a.ƒ ~= 0 ‚É
-			†¼ = †¼ .. '|' .. ƒ6(a.ƒ)
+		if a.ƒ == -1 ‚É
+			†İ = †İ .. '|*'
+		ƒ  a.ƒ ~= 0 ‚É
+			†İ = †İ .. '|' .. ƒ6(a.ƒ)
 		end
 	end
 
-	if a.† ~= 0 ‚É
-		‚Í €½.…Ş('%d %s', a.†, †¼)
+	if a.†9 ~= 0 ‚É
+		‚Í €½.…ı('%d %s', a.†9, †İ)
 	end
-	‚Í †¼
+	‚Í †İ
 end
 
-‚Ú ƒ,.__†½(a)
-	‚Ã icl = a:†Š()
-	icl.† = 0
+‚Ú ƒ,.__†Ş(a)
+	‚Ã icl = a:†©()
+	icl.†9 = 0
 	‚Í icl
 end
 
 ‚Í Item]==],['itemarray.lua']= [==[‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
 
--- † †
-‚Ã †¾ = {}
+-- †3 †4
+‚Ã †ß = {}
 
--- † †%
-‚Ú †¾.new()
+-- †3 †C
+‚Ú †ß.new()
 	‚Ã o = {}
-	‚Û(o, †¾)
-	†¾.__‚Ü = †¾
+	‚Û(o, †ß)
+	†ß.__‚Ü = †ß
 	‚Í o
 end
 
-‚Ú †¾:has(i)
-	for k, v in ‚ï(†) do
+‚Ú †ß:has(i)
+	for k, v in ‚ï(†¾) do
 		if i == v ‚É
-			‚Í (i.† == 0) or (i.† <= v.†)
+			‚Í (i.†9 == 0) or (i.†9 <= v.†9)
 		end
 	end
 	‚Í ‚á
 end
 
-‚Ú †¾:†¿(i)
-	for k, v in ‚ï(†) do
-		if v:…Ã(i) ‚É
-			‚Í v.† >= i.†
+‚Ú †ß:†à(i)
+	for k, v in ‚ï(†¾) do
+		if v:…ã(i) ‚É
+			‚Í v.†9 >= i.†9
 		end
 	end
 	‚Í ‚á
 end
 
-‚Ú †¾:†À(ia)
+‚Ú †ß:†á(ia)
 	for k, v in ‚ï(ia) do
-		if not †:has(v) ‚É
+		if not †¾:has(v) ‚É
 			‚Í ‚á
 		end
 	end
 	‚Í ‚Ş
 end
 
-‚Ú †¾:†Á(ia)
+‚Ú †ß:†â(ia)
 	for k, v in ‚ï(ia) do
-		if not †:†¿(v) ‚É
+		if not †¾:†à(v) ‚É
 			‚Í ‚á
 		end
 	end
 	‚Í ‚Ş
 end
 
-‚Ú †¾:†<(i)
+‚Ú †ß:†Z(i)
 	‚Ã c = 0
-	for k, v in ‚ï(†) do
+	for k, v in ‚ï(†¾) do
 		if i == v ‚É
-			c = c + v.†
+			c = c + v.†9
 		end
 	end
 	‚Í c
 end
 
-‚Ú †¾:add(i)
-	for k, v in ‚ï(†) do
-		if v:…Ã(i) ‚É
-			†[k].† = †[k].† + i.†
-			‚Í †[k]
+‚Ú †ß:add(i)
+	for k, v in ‚ï(†¾) do
+		if v:…ã(i) ‚É
+			†¾[k].†9 = †¾[k].†9 + i.†9
+			‚Í †¾[k]
 		end
 	end
-	'.‚ì(†, i:†Š())
+	'.‚ì(†¾, i:†©())
 	‚Í i
 end
 
-‚Ú †¾:†o(ia)
+‚Ú †ß:†(ia)
 	if ‚Ô(ia) == ''' ‚É
-		if ƒ*(ia) ~= †¾ ‚É
-			†&('Can\'t add non-† †e.')
+		if ƒ*(ia) ~= †ß ‚É
+			†D('Can\'t add non-†0 †„.')
 		end
 	‚è
-		†&('Can\'t add ' .. ‚Ô(ia) .. '.')
+		†D('Can\'t add ' .. ‚Ô(ia) .. '.')
 	end
 	
 	for k, v in ‚ï(ia) do
-		†:add(v)
+		†¾:add(v)
 	end
 	‚Í ia
 end
 
-‚Ú †¾:ƒ0(i)
-	for k, v in ‚ï(†) do
+‚Ú †ß:ƒ0(i)
+	for k, v in ‚ï(†¾) do
 		if i == v ‚É
-			‚Í '.ƒ0(†, k)
+			‚Í '.ƒ0(†¾, k)
 		end
 	end
 	‚Í nil
 end
 
-‚Ú †¾:†Â(i)
-	for k, v in ‚ï(†) do
-		if i:…Ã(v) ‚É
-			‚Í '.ƒ0(†, k)
+‚Ú †ß:†ã(i)
+	for k, v in ‚ï(†¾) do
+		if i:…ã(v) ‚É
+			‚Í '.ƒ0(†¾, k)
 		end
 	end
 	‚Í nil
 end
 
-‚Ú †¾:†i(i)
-	‚Ã †Ã = i:†Š()
-	for k, v in ‚ï(†) do
+‚Ú †ß:†ˆ(i)
+	‚Ã †ä = i:†©()
+	for k, v in ‚ï(†¾) do
 		if i == v ‚É
-			†Ã.† = v.† - †Ã.†
-			if †Ã.† < 0 ‚É
-				†:ƒ0(v)
-				†Ã.† = -†Ã.†
+			†ä.†9 = v.†9 - †ä.†9
+			if †ä.†9 < 0 ‚É
+				†¾:ƒ0(v)
+				†ä.†9 = -†ä.†9
 			‚è
-				v.† = †Ã.†
+				v.†9 = †ä.†9
 				‚Í nil
 			end
 		end
 	end
-	‚Í †Ã
+	‚Í †ä
 end
 
-‚Ú †¾:pop()
-	‚Í '.ƒ0(†)
+‚Ú †ß:pop()
+	‚Í '.ƒ0(†¾)
 end
 
-‚Ú †¾:†w()
-	if †[#†].† <= 1 ‚É
-		‚Í '.ƒ0(†)
+‚Ú †ß:†–()
+	if †¾[#†¾].†9 <= 1 ‚É
+		‚Í '.ƒ0(†¾)
 	‚è
-		†[#†].† = †[#†].† - 1
-		‚Í †[#†]:†~()
+		†¾[#†¾].†9 = †¾[#†¾].†9 - 1
+		‚Í †¾[#†¾]:†()
 	end
 end
 
-‚Ú †¾:‚Ü(i)
-	for k, v in ‚ï(†) do
+‚Ú †ß:‚Ü(i)
+	for k, v in ‚ï(†¾) do
 		if i == v ‚É
 			‚Í k
 		end
@@ -5998,71 +6214,71 @@ end
 	‚Í nil
 end
 
-‚Ú †¾:get(i)
-	‚Í †[†:‚Ü(i)]
+‚Ú †ß:get(i)
+	‚Í †¾[†¾:‚Ü(i)]
 end
 
-‚Ú †¾:†#(i)
-	for k, v in ‚ï(†) do
-		if i:…Ã(v) ‚É
+‚Ú †ß:†å(i)
+	for k, v in ‚ï(†¾) do
+		if i:…ã(v) ‚É
 			‚Í k
 		end
 	end
 	‚Í nil
 end
 
-‚Ú †¾:‚í()
-	'.‚í(†, ‚Ú(a, b) ‚Í a.— < b.— end)
-	‚Í †
+‚Ú †ß:‚í()
+	'.‚í(†¾, ‚Ú(a, b) ‚Í a.— < b.— end)
+	‚Í †¾
 end
 
--- †Ÿ
-‚Ú †¾.__add(a, b)
-	-- †‹ …ã. †Œ †.
-	if not ((ƒ*(a) == †¾) or (ƒ*(a) == ‚v)) or not ((ƒ*(b) == †¾) or (ƒ*(b) == ‚v)) ‚É
-		†&('† to add †Ä †Å † …å †¾ and ƒ,. [' .. ‚Ô(b) .. ']')
+-- †¿
+‚Ú †ß.__add(a, b)
+	-- †ª †. †« †¬.
+	if not ((ƒ*(a) == †ß) or (ƒ*(a) == ‚v)) or not ((ƒ*(b) == †ß) or (ƒ*(b) == ‚v)) ‚É
+		†D('†­ to add †æ †ç †¯ † †ß and ƒ,. [' .. ‚Ô(b) .. ']')
 	end
 	
-	‚Ã o = †¾.new()
+	‚Ã o = †ß.new()
 	if (ƒ*(a) == ‚v) ‚É
-		‚Ã †Æ = ‚á
+		‚Ã †è = ‚á
 		for k, v in ‚ï(o) do
-			if a:…Ã(v) ‚É
+			if a:…ã(v) ‚É
 				o[k] = o[k] + a
-				†Æ = ‚Ş
-				†B
+				†è = ‚Ş
+				†`
 			end
 		end
-		if not †Æ ‚É
-			o:add(a:†Š())
+		if not †è ‚É
+			o:add(a:†©())
 		end
 	‚è
 		for ks, vs in ‚ï(a) do
-			‚Ã †Æ = ‚á
+			‚Ã †è = ‚á
 			for kd, vd in ‚ï(o) do
-				if vs:…Ã(vd) ‚É
+				if vs:…ã(vd) ‚É
 					o[kd] = o[kd] + vs
 				end
 			end
 		end
 	end
 	if (ƒ*(b) == ‚v) ‚É
-		‚Ã †Æ = ‚á
+		‚Ã †è = ‚á
 		for k, v in ‚ï(o) do
-			if b:…Ã(v) ‚É
+			if b:…ã(v) ‚É
 				o[k] = o[k] + b
-				†Æ = ‚Ş
-				†B
+				†è = ‚Ş
+				†`
 			end
 		end
-		if not †Æ ‚É
-			o:add(b:†Š())
+		if not †è ‚É
+			o:add(b:†©())
 		end
 	‚è
 		for ks, vs in ‚ë(b) do
-			‚Ã †Æ = ‚á
+			‚Ã †è = ‚á
 			for kd, vd in ‚ï(o) do
-				if vs:…Ã(vd) ‚É
+				if vs:…ã(vd) ‚É
 					o[kd] = o[kd] + vs
 				end
 			end
@@ -6071,13 +6287,13 @@ end
 	‚Í o
 end
 
-‚Ú †¾.__mul(a, b)
-	-- †‹ …ã. †Œ †.
-	if (ƒ*(a) ~= †¾) or (‚Ô(b) ~= '†¹') ‚É
-		†&(€½.…Ş('†º † † †»: %s * %s.', ‚Ô(a), ‚Ô(b)))
+‚Ú †ß.__mul(a, b)
+	-- †ª †. †« †¬.
+	if (ƒ*(a) ~= †ß) or (‚Ô(b) ~= '†Ú') ‚É
+		†D(€½.…ı('†Û †0 †9 †Ü: %s * %s.', ‚Ô(a), ‚Ô(b)))
 	end
 	
-	‚Ã o = †¾.new()
+	‚Ã o = †ß.new()
 	for k, v in ‚ï(a) do
 		o[k] = a[k] * b
 	end
@@ -6086,34 +6302,34 @@ end
 
 ‚Í ItemArray]==],['itemcompound.lua']= [==[‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
 ‚Ã ‚Î = ‚Æ('lib.‚Î')
-‚Ã †b = ‚Æ('lib.†b')
+‚Ã † = ‚Æ('lib.†')
 
--- † †
-‚Ã †Ç = {
+-- †3 †4
+‚Ã †é = {
 	ƒ@ = {}
 }
 
--- † †%
-‚Ú †Ç.†(†È)
+-- †3 †C
+‚Ú †é.†:(†ê)
 	‚Ã ic = {}
-	‚Û(ic, †Ç)
-	†Ç.__‚Ü = †Ç
+	‚Û(ic, †é)
+	†é.__‚Ü = †é
 	
 	ic.ƒ@ = {}
-	for k, v in ‚ï(‚Î.ƒG(†È, ',')) do
+	for k, v in ‚ï(‚Î.ƒG(†ê, ',')) do
 		'.‚ì(ic.ƒ@, ~‚v.new(v))
 	end
 	
 	‚Í ic
 end
 
-‚Ú †Ç:…ã(i)
-	-- †‹ …ã. †Œ †.
+‚Ú †é:†(i)
+	-- †ª †. †« †¬.
 	if ƒ*(i) ~= ‚v ‚É
-		†&('Can\'t add ' .. ‚Ô(i) .. ' to ‚v „[.')
+		†D('Can\'t add ' .. ‚Ô(i) .. ' to ‚v „[.')
 	end
 	
-	for k, v in ‚ï(†.ƒ@) do
+	for k, v in ‚ï(†¾.ƒ@) do
 		if i == v ‚É
 			‚Í ‚Ş
 		end
@@ -6121,44 +6337,44 @@ end
 	‚Í ‚á
 end
 
-‚Ú †Ç:add(i)
-	-- †‹ …ã. †Œ †.
+‚Ú †é:add(i)
+	-- †ª †. †« †¬.
 	if ƒ*(i) ~= ‚v ‚É
-		†&('Can\'t add ' .. ‚Ô(i) .. ' to ‚v „[.')
+		†D('Can\'t add ' .. ‚Ô(i) .. ' to ‚v „[.')
 	end
 	
-	for k, v in ‚ï(†.ƒ@) do
+	for k, v in ‚ï(†¾.ƒ@) do
 		if i == v ‚É
 			‚Í v
 		end
 	end
-	‚Í '.‚ì(†.ƒ@, ~i:†Š())
+	‚Í '.‚ì(†¾.ƒ@, ~i:†©())
 end
 
-‚Ú †Ç:ƒ0(i)
-	-- †‹ …ã. †Œ †.
+‚Ú †é:ƒ0(i)
+	-- †ª †. †« †¬.
 	if ƒ*(i) ~= ‚v ‚É
-		†&('Can\'t add ' .. ‚Ô(i) .. ' to ‚v „[.')
+		†D('Can\'t add ' .. ‚Ô(i) .. ' to ‚v „[.')
 	end
 	
-	for k, v in ‚ï(†.ƒ@) do
+	for k, v in ‚ï(†¾.ƒ@) do
 		if i == v ‚É
-			'.ƒ0(†.ƒ@, v)
+			'.ƒ0(†¾.ƒ@, v)
 			‚Í ‚Ş
 		end
 	end
 	‚Í ‚á
 end
 
--- †Ÿ
-‚Ú †Ç.__ƒ6(†É)
-	'.‚í(†É.ƒ@, ‚Ú(a, b) ‚Í a.— < b.— end)
-	‚Í †b.…¯(†É.ƒ@, ',')
+-- †¿
+‚Ú †é.__ƒ6(†ë)
+	'.‚í(†ë.ƒ@, ‚Ú(a, b) ‚Í a.— < b.— end)
+	‚Í †.†²(†ë.ƒ@, ',')
 end
 
-‚Ú †Ç.__eq(a, b)
-	-- Don't do †´ †µ. †¶ †· †¸ out.
-	if (ƒ*(a) ~= †Ç) and (ƒ*(b) ~= †Ç) ‚É
+‚Ú †é.__eq(a, b)
+	-- Don't do †Õ †Ö. †× †Ø †Ù out.
+	if (ƒ*(a) ~= †é) and (ƒ*(b) ~= †é) ‚É
 		‚Í ‚á
 	end
 	
@@ -6166,45 +6382,45 @@ end
 end
 
 ‚Í ItemCompound]==],['oredict.lua']= [==[‚Ã ‚v = ‚Æ('lib.‚Ô.‚v')
-‚Ã †\ = ‚Æ('lib.‚Ô.†\')
+‚Ã †z = ‚Æ('lib.‚Ô.†z')
 
--- † †
-‚Ã †Ê = {
+-- †3 †4
+‚Ã †ì = {
 	— = '',
-	†Ë = {}
+	†~ = {}
 }
 
--- † †%
-‚Ú †Ê.new(—, †Ë)
-	-- †‹ …ã. †Œ †.
-	if ƒ*(†Ë) ~= †\ ‚É
-		†&('Can\'t †Ì †  ƒV ' .. ‚Ô(†Ë) .. '.')
+-- †3 †C
+‚Ú †ì.new(—, †~)
+	-- †ª †. †« †¬.
+	if ƒ*(†~) ~= †z ‚É
+		†D('Can\'t †í † ƒV ' .. ‚Ô(†~) .. '.')
 	end
 
 	‚Ã od = {}
-	‚Û(od, †Ê)
-	†Ê.__‚Ü = †Ê
+	‚Û(od, †ì)
+	†ì.__‚Ü = †ì
 	od.— = —
-	od.†Ë = †Ë or {}
+	od.†~ = †~ or {}
 	‚Í od
 end
 
-‚Ú †Ê:…ã(i)
-	‚Í †Ë:…ã(i)
+‚Ú †ì:†(i)
+	‚Í †~:†(i)
 end
 
--- †Ÿ
-‚Ú †Ê.__ƒ6(od)
-	‚Í —
+-- †¿
+‚Ú †ì.__ƒ6(od)
+	‚Í od.—
 end
 
-‚Ú †Ê.__eq(a, b)
-	-- Don't do †´ †µ. †¶ †· †¸ out.
-	if (ƒ*(a) ~= †Ê) and (ƒ*(b) ~= †Ê) ‚É
+‚Ú †ì.__eq(a, b)
+	-- Don't do †Õ †Ö. †× †Ø †Ù out.
+	if (ƒ*(a) ~= †ì) and (ƒ*(b) ~= †ì) ‚É
 		‚Í ‚á
 	end
 	
-	‚Í (a.— == b.—) and (a.†Ë == b.†Ë)
+	‚Í (a.— == b.—) and (a.†~ == b.†~)
 end
 
 ‚Í OreDict]==]}},['oredict.db']= [==[ore:€¤=€Š:log|*,€Š:û|*,€·:‚n_log|*
