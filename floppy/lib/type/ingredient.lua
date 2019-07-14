@@ -25,7 +25,7 @@ function Ingredient.parse(str)
 		a.content = ic
 	else
 		local i = item.new(str)
-		a.content(i)
+		a.content = i
 	end
 	
 	return a

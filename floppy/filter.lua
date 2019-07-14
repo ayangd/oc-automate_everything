@@ -77,6 +77,7 @@ local function iNormalize(iname)
 end
 
 -- Item Normalize too, but check if more than one item fits.
+-- Note: `|` is the delimiter, not `,`.
 local function iNormExt(iname)
 	if iname:find('|') == nil then
 		return iNormalize(iname)
@@ -164,7 +165,7 @@ local function oredictConvert(sod)
 		return false, sod
 	end
 	local ore = sod:match('<ore:.->=.+')
-	local ore = ore:sub(1, #ore - 1)
+	--local ore = ore:sub(1, #ore - 1) -- Removes ';'.
 	local orename = iNormalize(allMatch(ore, '[^=]+')[1])
 	local oredef = iNormExt(allMatch(ore, '[^=]+')[2])
 	return true, string.format('%s=%s', orename, oredef)
@@ -175,9 +176,21 @@ local oredictdbf = io.open('oredict.db', 'w')
 local failedf = io.open('failed.txt', 'w')
 local crafttweakerlog = io.open('crafttweaker.log', 'r')
 local userInput = ''
+local curOre = ''
+local oreContent = {}
 local craftingCount, oredictCount, failedCount = 0, 0, 0
+local function convertOredict()
+	local converted, result = oredictConvert(curOre .. '=' .. tableConcat(oreContent, '|'))
+	if converted then
+		oredictdbf:write(result .. '\n')
+		oredictCount = oredictCount + 1
+	else
+		failedf:write(result .. '\n')
+		failedCount = failedCount + 1
+	end
+end
 while userInput ~= nil do
-	if userInput:find('=%[crafting%]=>') ~= nil then
+	if userInput:find('recipes%..-%(.+%);') ~= nil then
 		local converted, result = craftingConvert(userInput)
 		if converted then
 			craftingdbf:write(result .. '\n')
@@ -186,18 +199,29 @@ while userInput ~= nil do
 			failedf:write(result .. '\n')
 			failedCount = failedCount + 1
 		end
-	elseif userInput:find('=%[ore%]=>') then
-		local converted, result = oredictConvert(userInput)
-		if converted then
-			oredictdbf:write(result .. '\n')
-			oredictCount = oredictCount + 1
-		else
-			failedf:write(result .. '\n')
-			failedCount = failedCount + 1
+		if curOre ~= '' then
+			convertOredict()
 		end
+		curOre = ''
+	elseif userInput:find('Ore%sentries') == 1 then
+		if curOre ~= '' then
+			convertOredict()
+		end
+		curOre = userInput:match('<.->')
+		oreContent = {}
+	elseif userInput:find('-') == 1 and curOre ~= '' then
+		table.insert(oreContent, userInput:match('<.->'))
+	else
+		if curOre ~= '' then
+			convertOredict()
+		end
+		curOre = ''
 	end
 	userInput = crafttweakerlog:read('*l')
 	--print(userInput)
 	io.write('\x1b[160D' .. string.format('craftingdb: %d, oredictdb: %d, fails: %d.', craftingCount, oredictCount, failedCount))
 end
-print('\x1b[160D' .. string.format('Wrote %d lines of craftingdb, %d lines of oredictdb, and %d lines failed to be parsed.', craftingCount, oredictCount, failedCount))
+if curOre ~= '' then
+	convertOredict()
+end
+print('\x1b[160D' .. string.format('Wrote %d lines of craftingdb, %d lines of oredictdb, and %d lines failed to be parsed or out of criteria.', craftingCount, oredictCount, failedCount))

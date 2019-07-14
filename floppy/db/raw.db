@@ -4,10 +4,10 @@ minecraft:glass
 minecraft:gold_ingot
 minecraft:iron_ingot
 minecraft:iron_nugget
-minecraft:log|0
+minecraft:log
 minecraft:redstone
 minecraft:reeds
 minecraft:sand
-minecraft:stone|0
+minecraft:stone
 minecraft:string
 opencomputers:material|4

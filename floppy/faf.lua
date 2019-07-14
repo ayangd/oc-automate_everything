@@ -1,3 +1,6 @@
+-- Fire and Forget, for debugging.
+-- Automatically unloads loaded library.
+
 local shell = require('shell')
 local fs = require('filesystem')
 
@@ -13,11 +16,9 @@ if not fs.exists(path) then
 	end
 end
 
-local executable = loadfile(path)
-local a, b = xpcall(executable, debug.traceback, table.unpack(args))
-if not a then
-	local f = io.open('ct.txt', 'w')
-	f:write(b)
-	f:close()
-	print('Crash collected.')
+loadfile(path)(table.unpack(args))
+for k, v in pairs(package.loaded) do
+	if k:find('lib.') == 1 then
+		package.loaded[k] = nil
+	end
 end

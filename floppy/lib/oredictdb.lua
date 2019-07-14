@@ -12,7 +12,7 @@ local oredictdbpath = 'db/oredict.db'
 
 function oredictdb:sorted()
 	local a = {}
-	for n in pairs(oredictdb.db) do table.insert(a, n) end
+	for k, v in pairs(oredictdb.db) do table.insert(a, k) end
 	table.sort(a)
 	local i = 0
 	return function()
@@ -20,7 +20,7 @@ function oredictdb:sorted()
 		if a[i] == nil then
 			return nil
 		else
-			return a[i], craftingdb.db[a[i]]
+			return a[i], oredictdb.db[a[i]]
 		end
 	end
 end
@@ -30,7 +30,7 @@ function oredictdb.load()
 	local l = f:read('*l')
 	while l ~= nil do
 		if l ~= '' then
-			local splitted = stringlib.split('=')
+			local splitted = stringlib.split(l, '=')
 			oredictdb.db[splitted[1]] = oredict.new(splitted[1], itemcompound.parse(splitted[2]))
 		end
 		l = f:read('*l')
@@ -47,6 +47,10 @@ io.write(string.format('%d loaded.\n', oredictCount))
 function oredictdb.save()
 	local f = io.open(oredictdbpath, 'w')
 	for k, v in oredictdb:sorted() do
+		if (type(k) ~= 'string') or (type(tostring(v)) ~= 'string') then
+			print(k)
+			print(tostring(v))
+		end
 		f:write(k .. '=' .. tostring(v) .. '\n')
 	end
 	f:close()

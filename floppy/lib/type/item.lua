@@ -70,7 +70,7 @@ end
 
 function Item:compareDamage(i)
 	-- Deprecated.
-	local f = io.open('deprecatrace.log', 'w')
+	local f = io.open('deprecatrace.log', 'a')
 	f:write(debug.traceback() .. '\n')
 	f:close()
 	
@@ -151,7 +151,9 @@ end
 function Item.__tostring(a)
 	local completename = a.name
 	if a.damage ~= nil then
-		completename = completename .. '|' .. tostring(a.damage)
+		if a.damage ~= 0 then
+			completename = completename .. '|' .. tostring(a.damage)
+		end
 	end
 
 	if a.size ~= 0 then

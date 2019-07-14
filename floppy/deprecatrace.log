@@ -1,0 +1,16 @@
+stack traceback:
+	/mnt/cf4/lib/type/item.lua:74: in method 'compareDamage'
+	/mnt/cf4/lib/rawdb.lua:52: in field 'get'
+	/mnt/cf4/lib/rawdb.lua:60: in field 'has'
+	/mnt/cf4/lib/resproc.lua:65: in local 'processItem'
+	/mnt/cf4/lib/resproc.lua:81: in field 'traceraw'
+	/mnt/cf4/craftmgr.lua:354: in field 'func'
+	/mnt/cf4/craftmgr.lua:404: in main chunk
+	/mnt/cf4/faf.lua:19: in main chunk
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/mnt/cf4/ct.lua:17: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:791: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>

@@ -10,11 +10,12 @@ local ItemCompound = {
 -- Class Functions
 function ItemCompound.parse(itemCompoundString)
 	local ic = {}
-	setmetatable(i, ItemCompound)
+	setmetatable(ic, ItemCompound)
 	ItemCompound.__index = ItemCompound
 	
-	for k, v in ipairs(stringlib.split(itemCompoundString)) do
-		table.insert(ic.items, item.new(v))
+	ic.items = {}
+	for k, v in ipairs(stringlib.split(itemCompoundString, ',')) do
+		table.insert(ic.items, ~item.new(v))
 	end
 	
 	return ic

@@ -11,9 +11,12 @@ local stringlib = {}
 
 -- Class Functions
 function stringlib.split(s, delim)
-	delim = delim or '%s'
+	if s == nil then
+		error('Splitting nil.')
+	end
+
 	local t = {}
-	for str in string.gmatch(s, '([^'..delim..']+)') do
+	for str in string.gmatch(s, '([^' .. (delim or '%s') .. ']+)') do
 		table.insert(t, str)
 	end
 	return t

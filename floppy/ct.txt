@@ -1,15 +1,14 @@
-/mnt/cf4/filter.lua:78: attempt to concatenate a nil value (field '?')
+/mnt/cf4/lib/oredictdb.lua:54: attempt to concatenate a nil value
 stack traceback:
 	machine:796: in metamethod '__concat'
-	/mnt/cf4/filter.lua:78: in function </mnt/cf4/filter.lua:76>
-	(...tail calls...)
-	/mnt/cf4/filter.lua:70: in upvalue 'foreach'
-	/mnt/cf4/filter.lua:157: in local 'craftingConvert'
-	/mnt/cf4/filter.lua:183: in main chunk
-	(...tail calls...)
+	/mnt/cf4/lib/oredictdb.lua:54: in field 'save'
+	/mnt/cf4/lib/resproc.lua:27: in field 'save'
+	/mnt/cf4/craftmgr.lua:102: in field 'func'
+	/mnt/cf4/craftmgr.lua:405: in main chunk
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
-	/mnt/cf4/ct.lua:16: in main chunk
+	/mnt/cf4/ct.lua:17: in main chunk
+	/mnt/cf4/faf.lua:19: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

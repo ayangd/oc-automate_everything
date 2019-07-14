@@ -1,9 +1,14 @@
 package.loaded['lib.craftingdb'] = nil
 package.loaded['lib.rawdb'] = nil
+package.loaded['lib.oredictdb'] = nil
 package.loaded['lib.inventory'] = nil
 package.loaded['lib.stringlib'] = nil
 package.loaded['lib.tablelib'] = nil
 package.loaded['lib.resproc'] = nil
 package.loaded['lib.type.item'] = nil
+package.loaded['lib.type.oredict'] = nil
 package.loaded['lib.type.crafting'] = nil
+package.loaded['lib.type.ingredient'] = nil
+package.loaded['lib.type.ingredientarray'] = nil
 package.loaded['lib.type.itemarray'] = nil
+package.loaded['lib.type.itemcompound'] = nil
