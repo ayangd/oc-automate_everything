@@ -73,14 +73,14 @@ function craftingdb.save()
 		local itemoutputq = tostring(k.size)
 		local itemshape = v and 'sd' or 'sl'
 		local dim = tostring(v.dimension.width) .. tostring(v.dimension.height)
-		local itemUsed = v:itemsNeeded()
+		local itemUsed = v:ingredientsNeeded()
 		local itemPattern = ''
 		for k, v in pairs(v.pattern) do
-			itemPattern = itemPattern .. itemUsed:indexDamage(v) or '0'
+			itemPattern = itemPattern .. itemUsed:index(v) or '0'
 		end
 		local allitems = ''
 		for k, v in ipairs(itemUsed) do
-			allitems = allitems .. tostring(~v) .. ' '
+			allitems = allitems .. tostring(v) .. ' '
 		end
 		allitems = allitems:sub(1, #allitems)
 		f:write(itemoutput .. ' ' .. itemoutputq .. ' ' .. itemshape .. ' ' .. dim .. ' ' .. itemPattern .. ' ' .. allitems .. '\n')

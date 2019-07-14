@@ -28,7 +28,7 @@ end
 
 -- Metamethods
 function OreDict.__tostring(od)
-	return name
+	return od.name
 end
 
 function OreDict.__eq(a, b)

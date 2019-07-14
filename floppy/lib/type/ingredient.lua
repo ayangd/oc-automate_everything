@@ -64,4 +64,8 @@ function Ingredient.__eq(a, b)
 	end
 end
 
+function Ingredient.__tostring(ingr)
+	return tostring(ingr.content)
+end
+
 return Ingredient

@@ -151,7 +151,9 @@ end
 function Item.__tostring(a)
 	local completename = a.name
 	if a.damage ~= nil then
-		if a.damage ~= 0 then
+		if a.damage == -1 then
+			completename = completename .. '|*'
+		elseif a.damage ~= 0 then
 			completename = completename .. '|' .. tostring(a.damage)
 		end
 	end

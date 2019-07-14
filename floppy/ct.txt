@@ -1,9 +1,9 @@
-/mnt/cf4/lib/oredictdb.lua:54: attempt to concatenate a nil value
+/mnt/cf4/lib/resproc.lua:72: attempt to call a nil value (method 'itemsNeeded')
 stack traceback:
-	machine:796: in metamethod '__concat'
-	/mnt/cf4/lib/oredictdb.lua:54: in field 'save'
-	/mnt/cf4/lib/resproc.lua:27: in field 'save'
-	/mnt/cf4/craftmgr.lua:102: in field 'func'
+	machine:796: in method 'itemsNeeded'
+	/mnt/cf4/lib/resproc.lua:72: in local 'processItem'
+	/mnt/cf4/lib/resproc.lua:84: in field 'traceraw'
+	/mnt/cf4/craftmgr.lua:355: in field 'func'
 	/mnt/cf4/craftmgr.lua:405: in main chunk
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

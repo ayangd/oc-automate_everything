@@ -47,11 +47,7 @@ io.write(string.format('%d loaded.\n', oredictCount))
 function oredictdb.save()
 	local f = io.open(oredictdbpath, 'w')
 	for k, v in oredictdb:sorted() do
-		if (type(k) ~= 'string') or (type(tostring(v)) ~= 'string') then
-			print(k)
-			print(tostring(v))
-		end
-		f:write(k .. '=' .. tostring(v) .. '\n')
+		f:write(k .. '=' .. tostring(v.iComp) .. '\n')
 	end
 	f:close()
 end
