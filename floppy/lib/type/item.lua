@@ -3,7 +3,7 @@ local stringlib = require('lib.stringlib')
 -- Class Meta
 local Item = {
 	name = '',
-	damage = nil,
+	damage = -1,
 	size = 1,
 	maxSize = 1
 }
@@ -19,8 +19,9 @@ function Item.new(...)
 		if args[1] == '' then
 			error('Empty item name.')
 		end
-		i.name = stringlib.split(args[1], '|')[1]
-		i.damage = tonumber(stringlib.split(args[1], '|')[2])
+		local splits = stringlib.split(args[1], '|')
+		i.name = splits[1]
+		i.damage = ((splits[2] == '*') and -1 or tonumber(splits[2])) or 0
 		i.size = 1
 		i.maxSize = 1
 	elseif type(args[1]) == 'table' then
@@ -40,7 +41,7 @@ function Item.new(...)
 end
 
 function Item:ignoreDamage()
-	self.damage = nil
+	self.damage = -1
 	return self
 end
 
@@ -60,7 +61,7 @@ function Item:compareTo(i)
 		error('Attempting to compare with ' .. type(i) .. '.')
 	end
 
-	if self.damage == nil then
+	if (self.damage == -1) or (i.damage == -1) then
 		return self.name == i.name
 	else
 		return (self.name == i.name) and (self.damage == i.damage)
@@ -68,19 +69,29 @@ function Item:compareTo(i)
 end
 
 function Item:compareDamage(i)
-	-- Safety check. Reduces headache.
-	if getmetatable(i) ~= Item then
-		error('Attempting to compare with ' .. type(i) .. '.')
-	end
+	-- Deprecated.
+	local f = io.open('deprecatrace.log', 'a')
+	f:write(debug.traceback() .. '\n')
+	f:close()
 	
-	return (self.name == i.name) and (self.damage == i.damage)
+	return Item:compareTo(i)
 end
 
 -- Metamethods
 function Item.__eq(a, b)
-	-- Safety check. Reduces headache.
+	-- Don't do errors here. Craftingdb will freak out.
 	if (getmetatable(a) ~= Item) or (getmetatable(b) ~= Item) then
-		error(string.format('Attempting to do comparison operation with different object type. (%s, %s)', type(a), type(b)))
+		if not (((getmetatable(a) == item) and (getmetatable(b) == Ingredient)) or
+				((getmetatable(a) == Ingredient) and (getmetatable(b) == item))) then
+			return false
+		else
+			if getmetatable(a) == item then
+				return b:check(a)
+			else
+				return a:check(b)
+			end
+		end
+		return false
 	end
 
 	return a:compareTo(b)
@@ -93,7 +104,7 @@ function Item.__add(a, b)
 	end
 
 	local n = a:clone()
-	if (a.name == b.name) and (a.damage == b.damage) and (a.maxSize == b.maxSize) then
+	if (a.name == b.name) and (a.damage == b.damage) then
 		n.size = a.size + b.size
 	else
 		error(string.format('Can\'t add different items.'))
@@ -108,7 +119,7 @@ function Item.__sub(a, b)
 	end
 
 	local n = a:clone()
-	if (a.name == b.name) and (a.damage == b.damage) and (a.maxSize == b.maxSize) then
+	if (a.name == b.name) and (a.damage == b.damage) then
 		n.size = a.size - b.size
 	else
 		error('Can\'t sub different items.')
@@ -140,7 +151,11 @@ end
 function Item.__tostring(a)
 	local completename = a.name
 	if a.damage ~= nil then
-		completename = completename .. '|' .. tostring(a.damage)
+		if a.damage == -1 then
+			completename = completename .. '|*'
+		elseif a.damage ~= 0 then
+			completename = completename .. '|' .. tostring(a.damage)
+		end
 	end
 
 	if a.size ~= 0 then

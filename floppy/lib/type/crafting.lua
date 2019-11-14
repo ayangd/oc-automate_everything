@@ -1,6 +1,8 @@
 local stringlib = require('lib.stringlib')
 local item = require('lib.type.item')
 local itemarray = require('lib.type.itemarray')
+local ingredient = require('lib.type.ingredient')
+local ingredientarray = require('lib.type.ingredientarray')
 
 -- Class Meta
 local Crafting = {
@@ -36,14 +38,14 @@ function Crafting.new(dimension, pattern, shaped, result)
 	return o
 end
 
-function Crafting:itemsNeeded()
-	local itemsneeded = itemarray.new()
+function Crafting:ingredientsNeeded()
+	local ingredientsneeded = ingredientarray.new()
 	for k, v in pairs(self.pattern) do
 		if v ~= nil then
-			itemsneeded:add(v:singleItem())
+			ingredientsneeded:add(v)
 		end
 	end
-	return itemsneeded
+	return ingredientsneeded
 end
 
 -- Metamethods

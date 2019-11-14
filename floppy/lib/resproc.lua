@@ -8,6 +8,7 @@ local item = require('lib.type.item')
 local itemarray = require('lib.type.itemarray')
 local rawdb = require('lib.rawdb')
 local craftingdb = require('lib.craftingdb')
+local oredictdb = require('lib.oredictdb')
 local crafting = require('lib.type.crafting')
 local inventory = require('lib.inventory')
 
@@ -17,11 +18,13 @@ local ResProc = {}
 -- Class Functions
 function ResProc.load()
 	rawdb.load()
+	oredictdb.load()
 	craftingdb.load()
 end
 
 function ResProc.save()
 	rawdb.save()
+	oredictdb.save()
 	craftingdb.save()
 end
 

@@ -7,6 +7,7 @@ end
 local stringlib = require('lib.stringlib')
 local resproc = require('lib.resproc')
 local rawdb = require('lib.rawdb')
+local oredictdb = require('lib.oredictdb')
 local craftingdb = require('lib.craftingdb')
 local inventory = require('lib.inventory')
 

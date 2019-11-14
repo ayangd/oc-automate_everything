@@ -1,15 +1,14 @@
-/mnt/cf4/lib/rawdb.lua:75: bad argument #1 to 'remove' (table expected)
+/mnt/cf4/lib/resproc.lua:72: attempt to call a nil value (method 'itemsNeeded')
 stack traceback:
-	machine:796: in function <machine:791>
-	[C]: in function 'table.remove'
-	/mnt/cf4/lib/rawdb.lua:75: in function </mnt/cf4/lib/rawdb.lua:72>
-	(...tail calls...)
-	/mnt/cf4/craftmgr.lua:297: in field 'func'
-	/mnt/cf4/craftmgr.lua:403: in main chunk
-	(...tail calls...)
+	machine:796: in method 'itemsNeeded'
+	/mnt/cf4/lib/resproc.lua:72: in local 'processItem'
+	/mnt/cf4/lib/resproc.lua:84: in field 'traceraw'
+	/mnt/cf4/craftmgr.lua:355: in field 'func'
+	/mnt/cf4/craftmgr.lua:405: in main chunk
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'
-	/mnt/cf4/ct.lua:16: in main chunk
+	/mnt/cf4/ct.lua:17: in main chunk
+	/mnt/cf4/faf.lua:19: in main chunk
 	(...tail calls...)
 	[C]: in function 'xpcall'
 	machine:791: in global 'xpcall'

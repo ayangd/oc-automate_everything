@@ -1,6 +1,8 @@
 local item = require('lib.type.item')
 local itemarray = require('lib.type.itemarray')
 local crafting = require('lib.type.crafting')
+local ingredient = require('lib.type.ingredient')
+local ingredientarray = require('lib.type.ingredientarray')
 
 local stringlib = require('lib.stringlib')
 
@@ -26,12 +28,12 @@ function craftingdb.load()
 			shaped = (craftingParams[3] == 'sd')
 			dimension.width, dimension.height = tonumber(craftingParams[4]:sub(1,1)), tonumber(craftingParams[4]:sub(2,2))
 			local pat = craftingParams[5]
-			local items = itemarray.new()
+			local ingredients = ingredientarray.new()
 			for i = 6, #craftingParams do
-				items:add(~item.new(craftingParams[i]))
+				ingredients:add(ingredient.parse(craftingParams[i]))
 			end
 			for npat = 1, #pat do
-				pattern[npat] = items[tonumber(pat:sub(npat, npat))]
+				pattern[npat] = ingredients[tonumber(pat:sub(npat, npat))]
 			end
 			craftingdb.db[result] = crafting.new(dimension, pattern, shaped, result)
 		end
@@ -71,14 +73,14 @@ function craftingdb.save()
 		local itemoutputq = tostring(k.size)
 		local itemshape = v and 'sd' or 'sl'
 		local dim = tostring(v.dimension.width) .. tostring(v.dimension.height)
-		local itemUsed = v:itemsNeeded()
+		local itemUsed = v:ingredientsNeeded()
 		local itemPattern = ''
 		for k, v in pairs(v.pattern) do
-			itemPattern = itemPattern .. itemUsed:indexDamage(v) or '0'
+			itemPattern = itemPattern .. itemUsed:index(v) or '0'
 		end
 		local allitems = ''
 		for k, v in ipairs(itemUsed) do
-			allitems = allitems .. tostring(~v) .. ' '
+			allitems = allitems .. tostring(v) .. ' '
 		end
 		allitems = allitems:sub(1, #allitems)
 		f:write(itemoutput .. ' ' .. itemoutputq .. ' ' .. itemshape .. ' ' .. dim .. ' ' .. itemPattern .. ' ' .. allitems .. '\n')
