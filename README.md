@@ -1,5 +1,8 @@
 ![Minecraft Version](https://img.shields.io/badge/minecraft%20version-1.12.2-green.svg) [![Discord](https://img.shields.io/discord/593706016156286979.svg?color=%237289da&logo=discord&logoColor=white)](https://discord.gg/YxHGxVs)
 
+> # Notice
+> The project's current state is broken. I'm planning to remake it, but it'll take me some time to make the new one. Some of the project's file is still useful, and can be used. But the one in the subprojects can be used independently.
+
 # oc-automate_everything
 Minecraft opencomputers project. Aimed for automating everything in a system.\
 Starting from a robot and a computer, then they expand themselves into an unlimited resource generator!
